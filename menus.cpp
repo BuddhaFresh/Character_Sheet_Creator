@@ -11,6 +11,7 @@ int menu()
   int mainMenuInput;
   int optionsMenuInput;
   int diceMenuInput;
+  int newMenuInput;
 
   //Generate a new seed at boot
   SEEDER.randomSeed();
@@ -24,7 +25,7 @@ int menu()
     std::cout << "2. Load Sheet\n";
     std::cout << "3. Dice Roller\n";
     std::cout << "4. Options\n";
-    std::cout << "5. Exit\n";
+    std::cout << "\n0. Exit\n";
     std::cout << "<>~~~~~~~~~~<>~~~~~~~~~~<>~~~~~~~~~~<>\n\n";
 
     std::cout << "Please Enter Your Command\n";
@@ -33,8 +34,19 @@ int menu()
     switch (mainMenuInput)
     {//Main menu input start    
       case 1: //New Sheet
-        std::cout << "\nNew Sheet not availible\n\n";
+        while(true)
+        {//New Sheet menu 
+          std::cout << "\nNew Sheet not availible\n\n";
+          
+          std::cin >> newMenuInput;
+          switch(newMenuInput)
+          {//New Sheet menu input start
+            
+          }//New Sheet menu input end
+          if (newMenuInput == 0) break;
+        }//New Sheet menu end
         break;
+      
       case 2: //Load Sheet
         std::cout << "\nLoad Sheet not availible\n\n";
         break;
@@ -51,7 +63,7 @@ int menu()
             std::cout << "5. Roll a D12\n";
             std::cout << "6. Roll a D20\n";
             std::cout << "7. Roll a D100\n";
-            std::cout << "8. Return to Options\n";
+            std::cout << "\n0. Return to Options\n";
             std::cout << "<>++++++++++<>++++++++++<>++++++++++<>\n\n";
     
             std::cout << "Please make your selection\n";
@@ -80,13 +92,13 @@ int menu()
               case 7:
                 std::cout << "\nYou rolled a hundred-sided die and got a " << ROLL.Donehundred() << std::endl;
                 break;
-              case 8:
+              case 0:
                 break;
               default:
                std::cout << "Please enter one of the listed options";
                break;
             }//Dice Roller input end
-            if (diceMenuInput == 8) break;
+            if (diceMenuInput == 0) break;
           }//Dice Roller menu end
           break;
       
@@ -96,7 +108,7 @@ int menu()
         std::cout << "\n\n<>==========<>==========<>==========<>\n";
           std::cout << "\t\t\t\tOptions\n";
           std::cout << "1. Input Manual Seed \n(Current Seed: "<< SEEDER.currentSeed <<")\n";
-          std::cout << "2. Main Menu\n";
+          std::cout << "\n0. Return to Main Menu\n";
           std::cout << "<>==========<>==========<>==========<>\n\n";
 
           std::cout << "Please Enter Your Command\n";
@@ -107,17 +119,17 @@ int menu()
               case 1:
                 SEEDER.userSeed();
                 break;
-              case 2:
+              case 0:
                 std::cout << "\nReturning to Main Menu\n";
                 break;
               default: 
                 std::cout << "\nNot an availible command\n";
                 break;
             }//Options input end
-        if (optionsMenuInput == 2) break; 
+        if (optionsMenuInput == 0) break; 
       }//Options sub-menu end
       break;
-      case 5: //Exit
+      case 0: //Exit
         std::cout << "\nExiting Program\nGood Bye!\n";
         return 0;
       default: 

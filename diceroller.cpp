@@ -1,9 +1,6 @@
 #include "menus.h"
 
 
-int currentSeed;
-std::string seedinput;
-
 //RandomSetUp class functions
 void RandomSetUp::randomSeed() 
 {
