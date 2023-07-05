@@ -36,8 +36,13 @@ int menu()
       case 1: //New Sheet
         while(true)
         {//New Sheet menu 
-          std::cout << "\nNew Sheet not availible\n\n";
-          
+          std::cout << "\n\n<>----------<>----------<>----------<>\n";
+          std::cout << "\t\t\tNew Sheet Menu\n";
+          std::cout << "New Sheet not availible\n\n";
+          std::cout << "\n0. Return to Main Menu\n";
+          std::cout << "<>----------<>----------<>----------<>\n\n";
+
+          std::cout << "Please Enter Your Command\n";
           std::cin >> newMenuInput;
           switch(newMenuInput)
           {//New Sheet menu input start
@@ -108,6 +113,7 @@ int menu()
         std::cout << "\n\n<>==========<>==========<>==========<>\n";
           std::cout << "\t\t\t\tOptions\n";
           std::cout << "1. Input Manual Seed \n(Current Seed: "<< SEEDER.currentSeed <<")\n";
+          std::cout << "2. Generate New Seed\n";
           std::cout << "\n0. Return to Main Menu\n";
           std::cout << "<>==========<>==========<>==========<>\n\n";
 
@@ -118,6 +124,10 @@ int menu()
             {//Options input
               case 1:
                 SEEDER.userSeed();
+                break;
+              case 2:
+                std::cout << "\nNew Seed has been generated\n";
+                SEEDER.randomSeed();
                 break;
               case 0:
                 std::cout << "\nReturning to Main Menu\n";

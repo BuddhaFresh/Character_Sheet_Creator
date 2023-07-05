@@ -29,4 +29,5 @@ class Dice
     int Donehundred();
 };
 
+
 int menu();

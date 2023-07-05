@@ -2,6 +2,8 @@
 #include "../../menus.h"
 #include "BRP.h"
 
+Dice PLAY;
+
 //GOAL FOR SCRIPT
 //everything needed to make a standard Basic Role-Playing Character
 //Needs to have attrabutes, diraived stats, list of relivent features, equipment(just a basic set for now)
@@ -9,9 +11,23 @@
 
 
 //BRP_human_base class
+
+//Constructor to hold Characteristics, 
+BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y) 
+{
+  STR = a;
+  CON = b;
+  POW = c;
+  DEX = d;
+  CHA = e;
+  INT = x;
+  SIZ = y;
+}
+
 int BRP_human_base::Age()
 {
-  return 1;
+  int age = 17+PLAY.Dsix();
+  return age;
 }
 
 int BRP_human_base::CharacteristicRoll()
