@@ -2,16 +2,40 @@
 #include "../../menus.h"
 #include "BRP.h"
 
-Dice PLAY;
-
 //GOAL FOR SCRIPT
 //everything needed to make a standard Basic Role-Playing Character
 //Needs to have attrabutes, diraived stats, list of relivent features, equipment(just a basic set for now)
 //class BRP char with roll inputs
 
 
-//BRP_human_base class
+//Classes
+Dice PLAY;
 
+
+//Special Dice Rolls for this system
+int ThreeDSix()
+{
+  int x = 0;
+  for(int i = 0; i < 3; i++)
+  {
+    x += PLAY.Dsix();
+  }
+  return x;
+}
+
+int TwoDSixPlusSix()
+{
+  int x = 0;
+  for(int i = 0; i < 2; i++)
+  {
+    x += PLAY.Dsix();
+  }
+  return x+6;
+}
+
+int RandomBRP_Human_base[7]{};
+
+//BRP_human_base class
 //Constructor to hold Characteristics, 
 BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y) 
 {

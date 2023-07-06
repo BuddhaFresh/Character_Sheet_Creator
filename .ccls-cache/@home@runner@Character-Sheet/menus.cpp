@@ -1,4 +1,5 @@
 #include "menus.h"
+#include "Systems/BRP/BRP.h"
 
 
 //Classes
@@ -39,6 +40,8 @@ int menu()
           std::cout << "\n\n<>----------<>----------<>----------<>\n";
           std::cout << "\t\t\tNew Sheet Menu\n";
           std::cout << "New Sheet not availible\n\n";
+          std::cout << "1. DOJO [2d6+6]\n\n";
+          std::cout << "2. DOJO [3d6]\n\n";
           std::cout << "\n0. Return to Main Menu\n";
           std::cout << "<>----------<>----------<>----------<>\n\n";
 
@@ -46,7 +49,20 @@ int menu()
           std::cin >> newMenuInput;
           switch(newMenuInput)
           {//New Sheet menu input start
-            
+            case 1://temp for testing
+              for (int i = 0; i < 20; i++)
+              {
+               std::cout << TwoDSixPlusSix() << std::endl; 
+              }
+              break;
+            case 2://temp for testing
+              for (int i = 0; i < 20; i++)
+              {
+               std::cout << ThreeDSix() << std::endl; 
+              }
+              break;
+            default:
+              break;
           }//New Sheet menu input end
           if (newMenuInput == 0) break;
         }//New Sheet menu end

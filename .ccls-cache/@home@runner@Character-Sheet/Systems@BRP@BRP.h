@@ -1,5 +1,8 @@
 #include "../../menus.h"
 
+int ThreeDSix();
+int TwoDSixPlusSix();
+
 //Class declarations
 
 class BRP_human_base
