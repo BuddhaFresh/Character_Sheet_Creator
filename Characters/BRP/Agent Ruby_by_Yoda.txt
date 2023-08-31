@@ -1,0 +1,33 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: Agent Ruby		Player: Yoda
+Culture: Human		Gender: Female
+Handedness: Right-Handed	Height: Tall	Weight: Overweight
+Profession: Spy		Wealth: Average
+Gods/Religion: Agnostic
+
+They have distintive Hair on head and Clothes.
+MOV: 10		Age: 22
+===========================================================
+			CHARACTERISTICS
+===========================================================
+STR 06	Effort roll 30%			INT 13	Idea roll 65%
+CON 12	Stamina roll 60%		CHA 13	Charm roll 65%
+DEX 10	Agility roll 50%		POW 10	Luck roll 50%
+EDU 15	Knowledge roll 75%	SIZ 16	Damage Bonus of None
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 14 with Major Would occuring at 7 HP
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 300
+Personal Skill Points Pool: 130
+Appraise (15%)			0%
+COMMUNICATION (0%)			MENTAL (0%)			PHYSICAL (0%)			
+MANIPULATION (0%)			PERCEPTION (0%)			COMBAT (0%)			
+
+
+Seed: 1691593395

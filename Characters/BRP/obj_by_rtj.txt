@@ -1,0 +1,33 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: obj		Player: rtj
+Culture: Human		Gender: Female
+Handedness: Right-Handed	Height: Average	Weight: Average
+Profession: Computer Tech		Wealth: Average
+Gods/Religion: 
+
+They have distintive Legs and feet and Torso.
+MOV: 10		Age: 19
+===========================================================
+			CHARACTERISTICS
+===========================================================
+STR 13	Effort roll 65%			INT 16	Idea roll 80%
+CON 12	Stamina roll 60%		CHA 12	Charm roll 60%
+DEX 10	Agility roll 50%		POW 13	Luck roll 65%
+EDU 13	Knowledge roll 65%	SIZ 12	Damage Bonus of +1D4
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 12 with Major Would occuring at 6 HP
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 260
+Personal Skill Points Pool: 160
+Appraise (15%)			22%
+COMMUNICATION (8%)			MENTAL (7%)			PHYSICAL (0%)			
+MANIPULATION (4%)			PERCEPTION (8%)			COMBAT (7%)			
+
+
+Seed: 1692041582

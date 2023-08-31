@@ -1,0 +1,59 @@
+Appraise
+Art (various)
+Artillery (various)
+Bargain
+Brawl
+Climb
+Command
+Craft (various)
+Demolition
+Disguise
+Dodge
+Drive (various)
+Energy Weapon (various)
+Etiquette (various)
+Fast Talk
+Fine Manipulation
+Firearm (various)
+First Aid
+Fly
+Gaming
+Grapple
+Heavy Machine (various)
+Heavy Weapon (various)
+Hide
+Insight
+Jump
+Knowledge (various)
+Language (varius)
+Listen
+Literacy (optional)
+Martial Arts
+Medicine Mental
+Melee Weapon (various)
+Missile Weapon (various)
+Navigate
+Parry (various)
+Perform
+Persuade
+Pilot (various)
+Projection
+Psychotherapy
+Repair (various)
+Research
+Ride (various)
+Science (various)
+Sense
+Shield
+Sleight of Hand
+Spot
+Status
+Stealth
+Strategy
+Swim
+Teach
+Technical Skill (various)
+Throw
+Track
+
+"Appraise", "Art", "Artillery", "Bargain", "Brawl", "Climb", "Command", "Craft", "Demolition", "Disguise", "Dodge", "Drive", "Energy Weapon", "Etiquette", "Fast Talk", "Fine Manipulation", "Firearm", "First Aid", "Fly", "Gaming", "Grapple", "Heavy Machine", "Heavy Weapon", "Hide", "Insight", "Jump", "Knowledge", "Language", "Listen", "Literacy", "Martial Arts", "Medicine", "Melee Weapon", "Missile Weapon", "Navigate", "Parry", "Perform", "Persuade", "Pilot", "Projection", "Psychotherapy", "Repair", "Research", "Ride", "Science", "Sense", "Shield", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Technical Skill", "Throw", "Track"

@@ -1,0 +1,33 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: 777		Player: 1
+Culture: Human		Gender: Female
+Handedness: Right-Handed	Height: Average	Weight: Average
+Profession: Hunter		Wealth: Poor
+Gods/Religion: Agnostic
+
+They have distintive Facial hair and ExpressionExpression.
+MOV: 10		Age: 23
+===========================================================
+			CHARACTERISTICS
+===========================================================
+STR 10	Effort roll 50%			INT 13	Idea roll 65%
+CON 09	Stamina roll 45%		CHA 05	Charm roll 25%
+DEX 14	Agility roll 70%		POW 09	Luck roll 45%
+EDU 13	Knowledge roll 65%	SIZ 12	Damage Bonus of None
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 10 with Major Would occuring at 5 HP
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 260
+Personal Skill Points Pool: 130
+Appraise (15%)			18%
+COMMUNICATION (1%)			MENTAL (3%)			PHYSICAL (2%)			
+MANIPULATION (5%)			PERCEPTION (3%)			COMBAT (7%)			
+
+
+Seed: 1691787365

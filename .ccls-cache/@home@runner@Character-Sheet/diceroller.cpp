@@ -1,27 +1,28 @@
 #include "menus.h"
+#include "diceroller.h"
 
 
 //RandomSetUp class functions
 void RandomSetUp::randomSeed() 
 {
   currentSeed = time(NULL);
-  srand(time(NULL));
+  srand(currentSeed);
 }
 
 void RandomSetUp::userSeed()
 {
   // Prompt for user to input their seed
   std::cout << "\nEnter seed\n";
+  //std::getline(std::cin >> std::ws, seedinput);
   std::cin >> seedinput;
 
-  // Use std::hash to convert the input string into an integer
-  std::hash<std::string> strtohash;
-  int seed = static_cast<int>(strtohash(seedinput));
-  currentSeed = seed;
+  //Turn string into int
+  currentSeed = std::stoi(seedinput);
 
   // Providing the custom seed value
-  srand(seed);
+  srand(currentSeed);
 }
+
 
 //Dice class functions
 int Dice::Dfour()
