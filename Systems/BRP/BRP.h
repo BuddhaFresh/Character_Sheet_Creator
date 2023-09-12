@@ -63,8 +63,12 @@ private:
   int SIZ;
   int CHA;
   int EDU;
+  int SAN;
   int Age;
   int HP;
+  int LAH_HP;
+  int Arms_HP;
+  int Chest_HP;
   int MW;
 
   std::string Religion;
@@ -76,6 +80,7 @@ private:
   std::string Handedness;
   std::string Height;
   std::string Weight;
+  std::string Personality;
 
   int Combat_skillcategory;
   int Communication_skillcategory;
@@ -84,23 +89,32 @@ private:
   int Perception_skillcategory;
   int Physical_skillcategory;
   int ExperenceBonus;
-  int LAH_HP;
-  int Arms_HP;
-  int Chest_HP;
   int FatiguePointsMax;
   int SanityBase;
-  int SAN;
+
   int TIS;
   int SanityThreshold;
   int ProSkillPtsMAX;
   int PerSkillPtsMAX;
   int SkillRatingMAX;
   int Hired;
+
+  std::vector <std::string> Art;
+  std::vector <std::string> Craft;
+  std::vector <std::string> Heavy_Machine;
+  std::vector <std::string> Knowledge;
+  std::vector <std::string> Language;
+  std::vector <std::string> Pilot;
+  std::vector <std::string> Preform;
+  std::vector <std::string> Repair;
+  std::vector <std::string> Ride;
+  std::vector <std::string> Science;
+  std::vector <std::string> Technical;
+
   std::string JOBSKILLS[10];
   std::string HOBBYSKILL[0];
 
-
-
+  void FillSkillMod();
   void Faith();
   void SettingsSwitches();
   void ExpBonus(int E);
@@ -113,14 +127,18 @@ private:
   void PersonalSkillSet();
   int CharacteristicRoll(int r);
   int Born();
+  void OwnLanguage();
   void HPbyLocation(int B);
   std::string DamageBonus();
   int HitPoints();
+  void PickJobSkills();
   int MajorWounds();
   std::string DistinctiveFeatures();
   void Professions();
+  void PersonalityPick();
   std::string RandGender();
   std::string HandDom();
+  int SkillRatingMaximum();
   int ProSkillPointsPool();
   int PerSkillPonitsPool();
   void HeightandWeight();

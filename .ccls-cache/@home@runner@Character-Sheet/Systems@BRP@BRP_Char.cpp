@@ -68,7 +68,7 @@ BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y)
 void BRP_human_base::SettingsSwitches()
 {
   EDUCATION_STAT = true;
-  SKILL_CATEGORY = false;
+  SKILL_CATEGORY = true;
   SKILL_CATEGORY_SIMPLE = false;
   INCREASED_PERSONAL_SKILL_POINTS = false;
   WINGED_CHARACTER = false;
@@ -140,7 +140,7 @@ std::string BRP_human_base::DamageBonus()
   DamageModifierTable[5] = "+1D6";
   DamageModifierTable[6] = "+2D6";
   DamageModifierTable[7] = "+3D6";
-  DamageModifierTable[8] = "Ea. +16"; //need to edit result 8, adding 1d6 for every 16th value above 73 (double check the book). Can do a for loop in the else if(Db >= 73) which adds 1 to x for "+"4+x"D6"
+  DamageModifierTable[8] = "Ea. +16"; //need to edit result 8, adding 1d6 for every 16th value above 73 (double check the book). Can I do a for loop in the else if(Db >= 73) which adds 1 to x for "+"4+x"D6"?
 
   int DMT;
   
@@ -315,15 +315,13 @@ std::string BRP_human_base::DistinctiveFeatures()
   return UnitedFeatures;
 }
 
-//Profession skill points, also sets up Skill Rating Max
+//Profession skill points
 int BRP_human_base::ProSkillPointsPool()
 {
-  SkillRatingMAX = 0;
   ProSkillPtsMAX = 0;
   
   if (POWER_LEVEL == 1) //Heroic game
     {
-      SkillRatingMAX = 90;
       if (EDUCATION_STAT == true) 
         {
           ProSkillPtsMAX = EDU*25;
@@ -335,7 +333,6 @@ int BRP_human_base::ProSkillPointsPool()
     }
   else if (POWER_LEVEL == 2) //Epic game
     {
-      SkillRatingMAX = 101;
       if (EDUCATION_STAT == true) 
         {
           ProSkillPtsMAX = EDU*30;
@@ -347,7 +344,6 @@ int BRP_human_base::ProSkillPointsPool()
     }
   else if (POWER_LEVEL == 3) //Superhuman game
     {
-      SkillRatingMAX = 999; //No limit to skill ratings
       if (EDUCATION_STAT == true) 
         {
           ProSkillPtsMAX = EDU*40;
@@ -359,7 +355,6 @@ int BRP_human_base::ProSkillPointsPool()
     }
   else //default for Nomral game
   {
-    SkillRatingMAX = 75;
     if (EDUCATION_STAT == true) 
       {
         ProSkillPtsMAX = EDU*20;
@@ -370,6 +365,31 @@ int BRP_human_base::ProSkillPointsPool()
       }
   }
   return ProSkillPtsMAX;
+}
+
+//Set Skill Rating Maximum
+int BRP_human_base::SkillRatingMaximum()
+{
+  SkillRatingMAX = 0;
+
+  if (POWER_LEVEL == 1) //Heroic game
+    {
+      SkillRatingMAX = 90;
+    }
+  else if (POWER_LEVEL == 2) //Epic game
+    {
+      SkillRatingMAX = 101;
+    }
+  else if (POWER_LEVEL == 3) //Superhuman game
+    {
+      SkillRatingMAX = 999; //No limit to skill ratings
+    }
+  else //default for Nomral game
+    {
+      SkillRatingMAX = 75;
+    }
+  
+  return SkillRatingMAX;
 }
 
 //Personal skill points
@@ -595,7 +615,7 @@ int BRP_human_base::Skill_Category_Secondary(int x)
 //Negative Skill Category
 int BRP_human_base::Skill_Category_Negative(int x)
 {
-  //argument x = one STAT (SIZ is the only one), 11 for every point over 10, +1 for every point under 10, 0 at 10
+  //argument x = one STAT (SIZ is the only one), -1 for every point over 10, +1 for every point under 10, 0 at 10
   int P = 0;
   if (x >= 10)
    {
@@ -630,47 +650,47 @@ void BRP_human_base::SkillCategory()
   //Standard Skill Category rules
   if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == false) 
   {
-    //Takes a relevant STAT and returns the appropriate value to be added for the Skill Category 
-    int A = Skill_Category_Primary(DEX);
-    int B = Skill_Category_Primary(INT);
+   //Takes a relevant STAT and returns the appropriate value to be added for the Skill Category 
+   int A = Skill_Category_Primary(DEX);
+   int B = Skill_Category_Primary(INT);
     
-    int E = Skill_Category_Secondary(INT);
-    int F = Skill_Category_Secondary(STR);
-    int G = Skill_Category_Secondary(POW);
-    int J = Skill_Category_Secondary(CHA);
-    int H = Skill_Category_Secondary(CON);
-    int I = 0;
-    if (EDUCATION_STAT == true) 
-      {int I = Skill_Category_Secondary(EDU);}
+   int E = Skill_Category_Secondary(INT);
+   int F = Skill_Category_Secondary(STR);
+   int G = Skill_Category_Secondary(POW);
+   int J = Skill_Category_Secondary(CHA);
+   int H = Skill_Category_Secondary(CON);
+   int I = 0;
+   if (EDUCATION_STAT == true) 
+     {int I = Skill_Category_Secondary(EDU);}
     
-    int Z = Skill_Category_Negative(SIZ);
-
-    //Mental Skill Category also addes in EDU as a secondary characteristic but ommits it if EDU is not used
-    Combat_skillcategory = (A + B + F);    
-    Communication_skillcategory = (B + G + J);
-    Manipulation_skillcategory = (A + E + F);
-    Mental_skillcategory = (B + G + I);
-    Perception_skillcategory = (B + G + H);
-    Physical_skillcategory = (A + F + H + Z);
+   int Z = Skill_Category_Negative(SIZ);
+  
+   //Mental Skill Category also addes in EDU as a secondary characteristic but ommits it if EDU is not used
+   Combat_skillcategory = (A + B + F);    
+   Communication_skillcategory = (B + G + J);
+   Manipulation_skillcategory = (A + E + F);
+   Mental_skillcategory = (B + G + I);
+   Perception_skillcategory = (B + G + H);
+   Physical_skillcategory = (A + F + H + Z);
   }
 
-   //Simple Skill Category rules
-   if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == true) 
-   {
-    //Takes a relevant STAT and divides it by 2 rounded up
-    int Dx = ceil(DEX/2);
-    int Ca = ceil(CHA/2);
-    int It = ceil(INT/2);
-    int Pw = ceil(POW/2);
-    int Sr = ceil(STR/2);
+  //Simple Skill Category rules
+  if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == true) 
+  {
+   //Takes a relevant STAT and divides it by 2 rounded up
+   int Dx = ceil(DEX/2);
+   int Ca = ceil(CHA/2);
+   int It = ceil(INT/2);
+   int Pw = ceil(POW/2);
+   int Sr = ceil(STR/2);
      
-    Combat_skillcategory = Dx;    
-    Communication_skillcategory = Ca;
-    Manipulation_skillcategory = Dx;
-    Mental_skillcategory = It;
-    Perception_skillcategory = Pw;
-    Physical_skillcategory = Sr;
-   } 
+   Combat_skillcategory = Dx;    
+   Communication_skillcategory = Ca;
+   Manipulation_skillcategory = Dx;
+   Mental_skillcategory = It;
+   Perception_skillcategory = Pw;
+   Physical_skillcategory = Sr;
+  } 
 }
 
 //Handles all skills and skill categorys 
@@ -693,7 +713,14 @@ void BRP_human_base::Skills()
   //map of all skills with; name, subtype, base%, a value to be modifyed, and skill category
   //This still seems too unweildly, especially with subtypes and Bases set by weapons
   //Should Each type also have skill category assigned too it as well?
-  SkillTable["BLANK"] = { "     ", "", 0, 0, 0};
+  //ARMS are slots for all combat and weapon skills.  
+  SkillTable["ARMS0"] = { "", "", 0, 0, Combat_skillcategory};
+  SkillTable["ARMS1"] = { "", "", 0, 0, Combat_skillcategory};
+  SkillTable["ARMS2"] = { "", "", 0, 0, Combat_skillcategory};
+  SkillTable["ARMS3"] = { "", "", 0, 0, Combat_skillcategory};
+  SkillTable["ARMS4"] = { "", "", 0, 0, Combat_skillcategory};
+  SkillTable["ARMS5"] = { "", "", 0, 0, Combat_skillcategory};
+  SkillTable["BLANK"] = { "", "", 0, 0, 0};
   SkillTable["Appraise"] = { "Appraise", "", 15, 0, Mental_skillcategory};
   SkillTable["Art0"] = { "Art", "", 5, 0, Manipulation_skillcategory};
   SkillTable["Art1"] = { "Art", "", 5, 0, Manipulation_skillcategory};
@@ -787,200 +814,281 @@ void BRP_human_base::Skills()
   SkillTable["Technical Skill2"] = { "Technical", "", 5, 0, Mental_skillcategory};
   SkillTable["Throw"] = { "Throw", "", 25, 0, Physical_skillcategory};
   SkillTable["Track"] = { "Track", "", 10, 0, Perception_skillcategory};
+  SkillTable["SLOT00"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT01"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT02"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT03"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT04"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT05"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT06"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT07"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT08"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT09"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT10"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT11"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT12"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT13"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT14"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT15"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT16"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT17"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT18"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT19"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT20"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT21"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT22"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT23"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT24"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT25"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT26"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT27"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT28"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT29"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT30"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT31"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT32"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT33"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT34"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT35"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT36"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT37"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT38"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT39"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT40"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT41"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT42"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT43"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT44"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT45"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT46"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT47"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT48"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT49"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT50"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT51"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT52"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT53"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT54"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT55"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT56"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT57"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT58"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT59"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT60"] = { "", "", 0, 0, 0};
 
+  //An arrray of all Skill names.
   std::string SkillList[] = {"Appraise", "Art", "Artillery", "Bargain", "Brawl", "Climb", "Command", "Craft", "Demolition", "Disguise", "Dodge", "Drive", "Energy Weapon", "Etiquette", "Fast Talk", "Fine Manipulation", "Firearm", "First Aid", "Fly", "Gaming", "Grapple", "Heavy Machine", "Heavy Weapon", "Hide", "Insight", "Jump", "Knowledge", "Language", "Listen", "Literacy", "Martial Arts", "Medicine", "Melee Weapon", "Missile Weapon", "Navigate", "Parry", "Perform", "Persuade", "Pilot", "Projection", "Psychotherapy", "Repair", "Research", "Ride", "Science", "Sense", "Shield", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Technical Skill", "Throw", "Track"};
   
   //Skil Sub Categories
   //Art
-  std::string Art[] = {"Calligraphy", "Composing", "Conceptual Art", "Digital Art", "Drawing", "Painting", "Photography", "Poetry", "Sculpture", "Sketching", "Songwriting", "Writing"};
+  Art = {"Calligraphy", "Composing", "Conceptual Art", "Digital Art", "Drawing", "Painting", "Photography", "Poetry", "Sculpture", "Sketching", "Songwriting", "Writing"};
 
   //Craft
-  std::string Craft[] = {"Blacksmithing", "Carpentry", "Ceramics", "Cooking", "Leatherworking", "Locksmithing", "Metallurgy", "Stonemasonry"};
+  Craft = {"Blacksmithing", "Carpentry", "Ceramics", "Cooking", "Leatherworking", "Locksmithing", "Metallurgy", "Stonemasonry"};
   
   //Heavy Machines
-  std::string Heavy_Machine[] = {"Armored Vehicles", "Boilers", "Bulldozers", "Cranes", "Drilling Machine", "Engines", "Forklift", "Street Sweeper", "Tracker", "Turbines"};
+  Heavy_Machine = {"Armored Vehicles", "Boilers", "Bulldozers", "Cranes", "Drilling Machine", "Engines", "Forklift", "Street Sweeper", "Tracker", "Turbines"};
 
   //Knowledges
-  std::string Knowledge[] = {"Academic Lore", "Accounting", "Anthropology", "Archaeology", "Art History", "Blasphemous Lore", "Business", "Espionage", "Folklore", "Group (subspecialty)", "History", "Law", "Linguistics", "Literature", "Occult", "Philosophy", "Politics", "Region (subspecialty)", "Religion (subspecialty)", "Streetwise"}; //maybe make another array of subskills for Knowledge
+  Knowledge = {"Academic Lore", "Accounting", "Anthropology", "Archaeology", "Art History", "Blasphemous Lore", "Business", "Espionage", "Folklore", "Group (subspecialty)", "History", "Law", "Linguistics", "Literature", "Occult", "Philosophy", "Politics", "Region (subspecialty)", "Religion (subspecialty)", "Streetwise"}; //maybe make another array of subskills for Knowledge
 
-  //Group
-  //Region
-  //Religion
+  //Knowledge (Group)
+  //std::string KnowledgeGroup[] = {Americans,Chinese,British,Europeans,};
+  //Knowledge (Region)
+  //std::string KnowledgeRegion[] = {Local, };
+  //Knowledge (Religion)
+  //std::string KnowledgeReligion[] = {Judisum, Christianity, Islam, Folk};
   
   //Languages
-  std::string Language[] = {"Amharic", "Arabic", "Bengali", "Bhojpuri", "Cebuano", "Chinese", "Czech", "Danish", "Dutch", "English", "Estonian", "Farsi", "Finnish", "French", "German", "Greek", "Hausa", "Hindi-Urdu", "Hungarian", "Igbo", "Italian", "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Lolo", "Macedonian", "Malay", "Māori", "Marathi", "Navajo", "Norwegian", "Oromo", "Polish", "Portuguese", "Russian", "Shona", "Sioux", "Slovak", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tai–Kadai", "Tibetan", "Turkic", "Ukrainian", "Vietnamese", "Yoruba", "Yumplatok", "Zulu"};
+  Language = {"Amharic", "Arabic", "Bengali", "Bhojpuri", "Cebuano", "Chinese", "Czech", "Danish", "Dutch", "English", "Estonian", "Farsi", "Finnish", "French", "German", "Greek", "Hausa", "Hindi-Urdu", "Hungarian", "Igbo", "Italian", "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Lolo", "Macedonian", "Malay", "Māori", "Marathi", "Navajo", "Norwegian", "Oromo", "Polish", "Portuguese", "Russian", "Shona", "Sioux", "Slovak", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tai–Kadai", "Tibetan", "Turkic", "Ukrainian", "Vietnamese", "Yoruba", "Yumplatok", "Zulu"};
 
   //Preform
-  std::string Preform[] = {"Act", "Conduct Orchestra", "Dance", "Juggle", "Orate", "Play", "Instrument (subspeciality)", "Recite", "Ritual", "Sing"};
+  Preform = {"Act", "Conduct Orchestra", "Dance", "Juggle", "Orate", "Play", "Instrument (subspeciality)", "Recite", "Ritual", "Sing"};
 
   //Pilot
-  std::string Pilot[] = {"Airplane", "Airship", "Balloon", "Boat", "Helicopter", "Hovercraft", "Jet Aircraft", "Jetpack", "Starship", "Submarine"};
+  Pilot = {"Airplane", "Airship", "Balloon", "Boat", "Helicopter", "Hovercraft", "Jet Aircraft", "Jetpack", "Starship", "Submarine"};
 
   //Repair
-  std::string Repair[] = {"Electrical", "Electronic", "Engineering", "Hydroelectric", "Mechanical", "Structural", "Quantum"};
+  Repair = {"Electrical", "Electronic", "Engineering", "Hydroelectric", "Mechanical", "Structural", "Quantum"};
 
   //Ride
-  std::string Ride[] = {"Bull", "Camel", "Cattle", "Donkey", "Elephant", "Horse", "Llama", "Mule", "Ostrich", "Water Buffalo", "Yak"};
+  Ride = {"Bull", "Camel", "Cattle", "Donkey", "Elephant", "Horse", "Llama", "Mule", "Ostrich", "Water Buffalo", "Yak"};
 
   //Science
-  std::string Science[] = {"Alchemy", "Astronomy", "Behavioral Science", "Biology", "Botany", "Chemistry", "Cryptography", "Genetics", "Geology", "Mathematics", "Meteorology", "Natural History", "Pharmacology", "Physics", "Planetology", "Psychology", "Quantum Mechanics", "Xenobiology", "Zoology"};
+  Science = {"Alchemy", "Astronomy", "Behavioral Science", "Biology", "Botany", "Chemistry", "Cryptography", "Genetics", "Geology", "Mathematics", "Meteorology", "Natural History", "Pharmacology", "Physics", "Planetology", "Psychology", "Quantum Mechanics", "Xenobiology", "Zoology"};
 
   //Technical
-  std::string Technical[] = {"Clockwork", "Computers", "Cybernetics", "Electronics", "Robotics", "Sensors", "Siege Engines", "Traps"};
-  
-  //for loop to update SkillMod with SkillBase value plus SkillCategory value
-  for (auto& X : SkillTable)
-  {
-    X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
-  }
-  
-  //Assign Own Language
-  int OwnLang = rand() % sizeof(Language) / sizeof(std::string);
-  SkillTable["Language0"].SubSkillName = Language[OwnLang];
+  Technical = {"Clockwork", "Computers", "Cybernetics", "Electronics", "Robotics", "Sensors", "Siege Engines", "Traps"};
+}
 
-
-  //Picking Profession Skills and assigns them to the JOBSKILL array
+//Assigns skills to JOBSKILLS array based on Profession
+void BRP_human_base::PickJobSkills()
+{
   switch (Hired) 
-  {
-    case 0: //Artist
     {
-      //first random art skill
-      int artsubpick = rand() % sizeof(Art)/sizeof(std::string);
-      std::string artstyle0 = Art[artsubpick];
-      SkillTable["Art0"].SubSkillName = artstyle0;
-      JOBSKILLS[0] = "Art0";
-      
-      //second random art skill
-      std::string artstyle1 = artstyle0;
-      while (artstyle1 == artstyle0) 
+      case 0: //Artist
       {
-        int newartsubpick = rand() % sizeof(Art)/sizeof(std::string);
-        artstyle1 = Art[newartsubpick];
+        //first random art skill
+        int artsubpick = rand() % Art.size();
+        std::string artstyle0 = Art.at(artsubpick);
+        SkillTable["Art0"].SubSkillName = artstyle0;
+        JOBSKILLS[0] = "Art0";
+        
+        //second random art skill
+        std::string artstyle1 = artstyle0;
+        while (artstyle1 == artstyle0) 
+        {
+          int newartsubpick = rand() % Art.size();
+          artstyle1 = Art.at(newartsubpick);
+        }
+        SkillTable["Art1"].SubSkillName = artstyle1;
+        JOBSKILLS[1] = "Art1";
+        
+        //random craft skill
+        int craftsubpick = rand() % Craft.size();
+        SkillTable["Craft0"].SubSkillName = Craft.at(craftsubpick);
+        JOBSKILLS[2] = "Craft0";
+        
+        //random (appropriate?) Knowledge skill
+        int knowsubpick = rand() % Knowledge.size();
+        SkillTable["Knowledge0"].SubSkillName = Knowledge.at(knowsubpick);
+        JOBSKILLS[3] = "Knowledge0";
+       
+        //random Other Language
+        std::string langspoken1 = SkillTable["Language0"].SubSkillName;
+        while (SkillTable["Language0"].SubSkillName == langspoken1) 
+        {
+          int newlangsubpick = rand() % Language.size();
+          langspoken1 = Language.at(newlangsubpick);
+        }
+        SkillTable["Language1"].SubSkillName = langspoken1;
+        JOBSKILLS[4] = "Language1";
+  
+        //Own Language
+        JOBSKILLS[5] = "Language0";
+        
+        //Listen
+        JOBSKILLS[6] = "Listen";
+        
+        //Research
+        JOBSKILLS[7] = "Research";
+        
+        //Spot
+        JOBSKILLS[8] = "Spot";
+        
+        //Insight
+        JOBSKILLS[9] = "Insight";
+      break;
       }
-      SkillTable["Art1"].SubSkillName = artstyle1;
-      JOBSKILLS[1] = "Art1";
-      
-      //random craft skill
-      int craftsubpick = rand() % sizeof(Craft)/sizeof(std::string);
-      SkillTable["Craft0"].SubSkillName = Craft[craftsubpick];
-      JOBSKILLS[2] = "Craft0";
-      
-      //random (appropriate?) Knowledge skill
-      int knowsubpick = rand() % sizeof(Knowledge)/sizeof(std::string);
-      SkillTable["Knowledge0"].SubSkillName = Knowledge[knowsubpick];
-      JOBSKILLS[3] = "Knowledge0";
-     
-      //random Other Language
-      std::string langspoken1 = SkillTable["Language0"].SubSkillName;
-      while (SkillTable["Language0"].SubSkillName == langspoken1) 
+      case 1: //Assassin
       {
-        int newlangsubpick = rand() % sizeof(Language)/sizeof(std::string);
-        langspoken1 = Language[newlangsubpick];
-      }
-      SkillTable["Language1"].SubSkillName = langspoken1;
-      JOBSKILLS[4] = "Language1";
-
-      //Own Language
-      JOBSKILLS[5] = "Language0";
-      
+      //any 5 based on setting:
+        //Brawl
+        //Disguise
+        //Drive
+        //Electronics
+        //Grapple
+        //Firearm (any)
+        //Fine Manipulation
+        //Martial Arts
+        //Melee Weapon (any)
+        //Missile Weapon (any)
+        //Ride
+        //Throw
+        //Track
+      //Dodge
+      //Hide
       //Listen
-      JOBSKILLS[6] = "Listen";
-      
-      //Research
-      JOBSKILLS[7] = "Research";
-      
       //Spot
-      JOBSKILLS[8] = "Spot";
-      
-      //Insight
-      JOBSKILLS[9] = "Insight";
-    break;
+      //Stealth
+      break;
+      }
+      case 2:
+      {
+      break;
+      }
+      case 3:
+      {
+      break;
+      }
+      case 4:
+      {
+      break;
+      }
+      case 5:
+      {
+      break;
+      }
+      case 6:
+      {
+      break;
+      }
+      case 7:
+      {
+      break;
+      }
+      case 8:
+      {
+      break;
+      }
+      case 9:
+      {
+      break;
+      }
+      case 10:
+      {
+      break;
+      } 
+      case 11:
+      {
+      break;
+      }
+      case 12:
+      {
+      break;
+      }
+      case 13:
+      {
+      break;
+      }
+      case 14:
+      {
+      break;
+      }
+      case 15:
+      {
+      break;
+      }
+      case 16:
+      {
+      break;
+      }
+      case 17:
+      {
+      break;
+      }
+      case 18:
+      {
+      break;
+      }
+      case 19:
+      {
+      break;
+      }
+      case 20:
+      {
+      break;
+      }
+      default:
+        {break;}
     }
-    case 1: //Assassin
-    {
-    break;
-    }
-    case 2:
-    {
-    break;
-    }
-    case 3:
-    {
-    break;
-    }
-    case 4:
-    {
-    break;
-    }
-    case 5:
-    {
-    break;
-    }
-    case 6:
-    {
-    break;
-    }
-    case 7:
-    {
-    break;
-    }
-    case 8:
-    {
-    break;
-    }
-    case 9:
-    {
-    break;
-    }
-    case 10:
-    {
-    break;
-    } 
-    case 11:
-    {
-    break;
-    }
-    case 12:
-    {
-    break;
-    }
-    case 13:
-    {
-    break;
-    }
-    case 14:
-    {
-    break;
-    }
-    case 15:
-    {
-    break;
-    }
-    case 16:
-    {
-    break;
-    }
-    case 17:
-    {
-    break;
-    }
-    case 18:
-    {
-    break;
-    }
-    case 19:
-    {
-    break;
-    }
-    case 20:
-    {
-    break;
-    }
-    default:
-      {break;}
-  }
+}
 
-  //Picking Personnal Skills and assigns them to the HOBBYSKILL array
+//Assigns skills to HOBBYSKILLS array based on random chance
+/*
+void BRP_human_base::PickHobbySkills()
+{
+   //Picking Personnal Skills and assigns them to the HOBBYSKILL array
   //Number of Personal Skills, between 8 to 10
   int TotalPersonalSkillsKnown = rand() % (10 + 1 - 8) + 8;
 
@@ -989,81 +1097,126 @@ void BRP_human_base::Skills()
 
   //arrays of the results for skills with multiple skill subtypes on the sheet; slots are just spaces on the charater sheet where subskill names can be written
   int twoslot[4] = {1,7,41,43}; //Art,Craft,Repair,Ride
-  int threeslot[13] = {2,11,12,16,21,22,26,32,33,35,38,43,54}; //HELL NO, THIS IS WAY TOO MUCH!
+  int threeslot[5] = {11,26,38,43,54}; //Drive,Knowledge,Pilot,Ride,Technical Skill
   int fourslot[2] = {27,44}; //Language,Science
+  int combatskillslot[8] = {2,12,16,22,32,33,35,46}; //Artillery,Energy Weapons,Firearms,Heavy Weapons,Melee Weapon,Missile Weapon,Parry,Shield
+  //All other skills lack a subskill and can just be increased.
 
+  
+  //Redo loop to reduce KnownSkillLeft whenever it does 
   //Loop adding skill names to HOBBYSKILL array also assigns SubSkills when needed
   for(int i = 0; i < TotalPersonalSkillsKnown; i++)
   {
     //Randomlly picked skill from SkillList
     int SkillPicked = rand() % sizeof(SkillList) / sizeof(std::string);
+    
     //Bools for confirming if the skill picked is one that requires checking subtypes
-    bool A = std::find(std::begin(twoslot),std::end(twoslot),SkillPicked) != std::end(twoslot);
-    bool B = std::find(std::begin(threeslot),std::end(threeslot),SkillPicked) != std::end(threeslot);
-    bool C = std::find(std::begin(fourslot),std::end(fourslot),SkillPicked) != std::end(fourslot);
-    if (A == true)
+    bool SkillwithTwoSlots = std::find(std::begin(twoslot),std::end(twoslot),SkillPicked) != std::end(twoslot);
+    bool SkillwithThreeSlots = std::find(std::begin(threeslot),std::end(threeslot),SkillPicked) != std::end(threeslot);
+    bool SkillwithFourSlots = std::find(std::begin(fourslot),std::end(fourslot),SkillPicked) != std::end(fourslot);
+    bool SkillinCombat = std::find(std::begin(combatskillslot),std::end(combatskillslot),SkillPicked) != std::end(combatskillslot);
+
+    //String making the picked skill into something matching a skill from SkillTable that has subskills
+    std::string SkillSlotZERO = SkillList[SkillPicked] + "0"; //skill0
+    std::string SkillSlotONE = SkillList[SkillPicked] + "1"; //skill1
+    std::string SkillSlotTWO = SkillList[SkillPicked] + "2"; //skill2
+    std::string SkillSlotTHREE = SkillList[SkillPicked] + "3"; //skill3
+
+    //For subskills;  
+    if (SkillwithTwoSlots == true) //Selected skill has 2 slots
       {
-        std::string SkillSlotZERO = SkillList[SkillPicked] + "0"; //skill0
-        std::string SkillSlotONE = SkillList[SkillPicked] + "1"; //skill1
-        if (SkillTable[SkillSlotZERO].SubSkillName != "" && SkillTable[SkillSlotONE].SubSkillName != "") 
+        if (SkillTable[SkillSlotZERO].SubSkillName != "" && SkillTable[SkillSlotONE].SubSkillName != "") //if this skill hasn't been selected yet
           {
-            int coin = rand() % 1;
+            HOBBYSKILL[i] = SkillSlotZERO;
+          }
+        else 
+          {
+            int coin = rand() % 1; //Do I increase skill in slot 0 or add new one?
             if (coin == 1)
               {
-                SkillTable[SkillSlotZERO].SubSkillName = "hold";
+                SkillTable[SkillSlotZERO].SubSkillName = ""; //Stopped working here till I come up with a better system
                 HOBBYSKILL[i] = SkillSlotZERO;
               }
             else {HOBBYSKILL[i] = SkillSlotONE;}
           }
-        else 
-          {
-            
-          }
       }
-    else if(B == true)
-      {break;}
-    else if(C == true)
-      {break;}
-    else 
+    else if(SkillwithThreeSlots == true) //Selected skill has 3 slots
+      {
+        //no code, need to fill
+        break;
+      }
+    else if(SkillwithFourSlots == true) //Selected skill has 4 slots
+      {
+        //no code, need to fill
+        break;
+      }
+    else if(SkillinCombat == true) //Selected skill is a combat skill
+      {
+      //no code, need to fill
+      break;
+    }
+    else //Selected skill has 1 slot
       {
         HOBBYSKILL[i] = SkillList[SkillPicked];
+        //set up condional for Heavy Machine
       }
-  }
-}
-
-//Personality
-/*
-void BRP_human_base::Personality()
-{
-  int pick = PLAY.Dfour();
-  std::string PERSONALITY = ""; //need to put into BRP.h to use
-  switch (pick)
-  {
-  case 1:
-    {
-    PERSONALITY = "They have a brutal personality, thinking first of solving problems by means of physical force and brawn.";
-    }
-  case 2:
-    {
-    PERSONALITY = "They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.";
-    }
-  case 3:
-    {
-    PERSONALITY = "They have a cunning personality, trying first to outsmart an opponent to gain an advantage.";
-    }
-  case 4:
-    {
-    PERSONALITY = "They have a charming personality, enjoying persuading other people to work, while they make the decisions.";
-    }
   }
 }
 */
 
+//Loop through all skills and add a skill's base value and a skill's category value to the skill's mod value
+void BRP_human_base::FillSkillMod()
+{
+  for (auto& X : SkillTable)
+    {
+      X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
+    }
+}
+
+//Assign Own Language
+void BRP_human_base::OwnLanguage() 
+{
+  int OwnLang = rand() % Language.size();
+  SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
+}
+
+//Personality
+void BRP_human_base::PersonalityPick()
+{
+  int pick = PLAY.Dfour();
+  Personality = "";
+  switch (pick)
+  {//need to add skill points asigning for each case, also only returns case 4?
+  case 1:
+    {
+    Personality = "They have a brutal personality, thinking first of solving problems by means of physical force and brawn.";
+    break;
+    }
+  case 2:
+    {
+    Personality = "They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.";
+    break;
+    }
+  case 3:
+    {
+    Personality = "They have a cunning personality, trying first to outsmart an opponent to gain an advantage.";
+    break;
+    }
+  case 4:
+    {
+    Personality = "They have a charming personality, enjoying persuading other people to work, while they make the decisions.";
+    break;
+    }
+  }
+}
+
 //Randomly assigns skill points to the Profession's Skills
 void BRP_human_base::ProfessionSkillSet()
 {
+  //Sets up the Current Skill Points to be spent for the following loop.
   int CurrentSkillPoints = ProSkillPtsMAX;
 
+  //Function ends when all CurrentSkillPoints are used up.
   while (CurrentSkillPoints > 0)
   {
     //This loops 10 times through the JOBSKILLS array because there are 10 skills for each Profession. If there is a different number skills per profession it is recommended to adjust 10 in the for loop argument by that amount. I could run a check for how long the JOBSKILLS and make that a veriable so the max JOBSKILL array can be changed without issues
@@ -1093,10 +1246,10 @@ void BRP_human_base::ProfessionSkillSet()
 }
 
 //Randomly assigns skill points to the Character's personnal skills 
-//Maybe change this to also pick and assign personnel skills too
+/*
 void BRP_human_base::PersonalSkillSet()
 {
-/*
+
   Make a random list of skills (How many? Has to be more then 0 but whats the min and max?)
   INT can be 8-18; Pts 80-180 for NORMAL limit: 75%
   INT can be 8-18; Pts 120-270 for HEROIC limit: 90%
@@ -1119,14 +1272,15 @@ void BRP_human_base::PersonalSkillSet()
     ;
   }
 
+  \\This should be its own funciton
+  \\
   int CurrentPoints = PerSkillPtsMAX;
   
   while (CurrentPoints > 0)
   {
     
   }
-*/
-}
+}*/
 
 //Gets the character's name
 void BRP_human_base::CharName()
@@ -1148,28 +1302,36 @@ void BRP_human_base::fullrandom(RandomSetUp& WOW)
   SettingsSwitches();
   EDUstat();
   ExpBonus(INT);
+  SanityPoints(POW);
   FatiguePoints(STR, CON);
+  HitPoints();
+  HPbyLocation(HP);
+  MajorWounds();
+  DamageBonus();
   Born();
   RandGender();
   HandDom();
   Faith();
-  HitPoints();
-  HPbyLocation(HP);
-  MajorWounds();
-  DamageBonus(); 
   DistinctiveFeatures();
   HeightandWeight();
-  PerSkillPonitsPool();
   ProSkillPointsPool();
-  Professions();
+  PerSkillPonitsPool();
+  SkillRatingMaximum();
   SkillCategory();
   Skills();
+  FillSkillMod();
+  PersonalityPick();
+  OwnLanguage();
+  Professions();
+  PickJobSkills();
   ProfessionSkillSet();
   //PersonalSkillSet();
-  SanityPoints(POW);
+  
+
 
 } 
 
+//Prints character sheet to console
 void BRP_human_base::consoleChar(RandomSetUp& WOW)
 {
   std::cout << "\n" << std::endl;
@@ -1183,15 +1345,15 @@ void BRP_human_base::consoleChar(RandomSetUp& WOW)
   std::cout << "CON " << CON << "\t" << "Stamina roll " << CharacteristicRoll(CON) << "%\t\t" << "CHA " << CHA << "\t" << "Charm roll " << CharacteristicRoll(CHA) << "%" << std::endl;
   std::cout << "DEX " << DEX << "\t" << "Agility roll " << CharacteristicRoll(DEX) << "%\t\t" << "POW " << POW << "\t" << "Luck roll " << CharacteristicRoll(POW) << "%" << std::endl;  
   if (EDUCATION_STAT == true) 
-  {std::cout << "EDU " << EDU << "\t" << "Knoweledge roll " << CharacteristicRoll(EDU) << "%\t\t" << "SIZ " << SIZ << std::endl;}
+  {std::cout << "EDU " << EDU << "\t" << "Knoweledge roll " << CharacteristicRoll(EDU) << "%\t\t" << "SIZ " << SIZ << "\t" << "Damage Bonus of " << DamBonus << std::endl;}
   else
-  {std::cout << "SIZ " << SIZ << std::endl;}
+  {std::cout << "SIZ " << SIZ << "\t" << "Damage Bonus of " << DamBonus << std::endl;}
   std::cout << "HP: " << HP << " with Major Would occuring at " << MW << " HP" << std::endl;
-  std::cout << "Damage Bonus of " << DamBonus << std::endl;
   std::cout << "\n" << UnitedFeatures <<std::endl;
+  std::cout << "\n\t" << Personality << std::endl;
   std::cout << "\nProfessional Skill Points Pool: "  << ProSkillPtsMAX << "\t\t" << "Personal Skill Points Pool: "  << PerSkillPtsMAX << std::endl;
 
-  
+  //START OF SKILLS
   std::cout << "COMMUNICATION " << Communication_skillcategory << "%" << "\t\t\t" << "MENTAL " << Mental_skillcategory << "%" << "\t\t\t" << "PHYSICAL " << Physical_skillcategory << "%" << "\t\t\t" << std::endl;
 
   
@@ -1199,13 +1361,13 @@ void BRP_human_base::consoleChar(RandomSetUp& WOW)
 
   std::cout << SkillTable["Command"].SkillName << " (" << SkillTable["Command"].SkillBase << ")" << "\t\t" << SkillTable["Command"].SkillMod << "%" << "\t\t" << SkillTable["First Aid"].SkillName << " (" << SkillTable["First Aid"].SkillBase << ")" << "\t" << SkillTable["First Aid"].SkillMod << "%" << "\t\t" << SkillTable["Drive0"].SkillName << " (" << SkillTable["Drive0"].SkillBase << ")" << "\t" << SkillTable["Drive0"].SkillMod << "%" << "\t\t" << std::endl;
 
-  std::cout << SkillTable["Disguise"].SkillName << " (" << SkillTable["Disguise"].SkillBase << ")" << "\t" << SkillTable["Disguise"].SkillMod << "%" << "\t\t\t" << SkillTable["Gaming"].SkillName << " (" << SkillTable["Gaming"].SkillBase << ")" << "\t" << SkillTable["Gaming"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Disguise"].SkillName << " (" << SkillTable["Disguise"].SkillBase << ")" << "\t" << SkillTable["Disguise"].SkillMod << "%" << "\t\t" << SkillTable["Gaming"].SkillName << " (" << SkillTable["Gaming"].SkillBase << ")" << "\t" << SkillTable["Gaming"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
-  std::cout << SkillTable["Etiquette"].SkillName << " (" << SkillTable["Etiquette"].SkillBase << ")" << "\t" << SkillTable["Etiquette"].SkillMod << "%" << "\t\t\t" << SkillTable["Knowledge0"].SkillName << " (" << SkillTable["Knowledge0"].SkillBase << ")" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Etiquette"].SkillName << " (" << SkillTable["Etiquette"].SkillBase << ")" << "\t" << SkillTable["Etiquette"].SkillMod << "%" << "\t\t" << SkillTable["Knowledge0"].SkillName << " (" << SkillTable["Knowledge0"].SkillBase << ")" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
-  std::cout << SkillTable["Fast Talk"].SkillName << " (" << SkillTable["Fast Talk"].SkillBase << ")" << "\t" << SkillTable["Fast Talk"].SkillMod << "%" << "\t\t\t" << "  " << SkillTable["Knowledge0"].SubSkillName << "\t" << SkillTable["Knowledge0"].SkillMod << "%" << "\t\t" << SkillTable["Fly"].SkillName << " (" << SkillTable["Fly"].SkillBase << ")" << "\t" << SkillTable["Fly"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Fast Talk"].SkillName << " (" << SkillTable["Fast Talk"].SkillBase << ")" << "\t" << SkillTable["Fast Talk"].SkillMod << "%" << "\t\t" << "  " << SkillTable["Knowledge0"].SubSkillName << "\t" << SkillTable["Knowledge0"].SkillMod << "%" << "\t\t" << SkillTable["Fly"].SkillName << " (" << SkillTable["Fly"].SkillBase << ")" << "\t" << SkillTable["Fly"].SkillMod << "%" << "\t\t" << std::endl;
 
-  std::cout << SkillTable["Language0"].SkillName << " (" << SkillTable["Language0"].SkillBase << ")" << "\t\t\t\t" << "  " << SkillTable["Knowledge1"].SubSkillName << "\t" << SkillTable["Knowledge1"].SkillMod << "%" << "\t\t" << SkillTable["Hide"].SkillName << " (" << SkillTable["Hide"].SkillBase << ")" << "\t" << SkillTable["Hide"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Language0"].SkillName << " (" << SkillTable["Language0"].SkillBase << ")" << "\t\t" << "  " << SkillTable["Knowledge1"].SubSkillName << "\t" << SkillTable["Knowledge1"].SkillMod << "%" << "\t\t" << SkillTable["Hide"].SkillName << " (" << SkillTable["Hide"].SkillBase << ")" << "\t" << SkillTable["Hide"].SkillMod << "%" << "\t\t" << std::endl;
 
   std::cout << "  " << SkillTable["Language0"].SubSkillName << "\t\t" << SkillTable["Language0"].SkillMod << "%" << "\t\t" << "  " << SkillTable["Knowledge2"].SubSkillName << "\t" << SkillTable["Knowledge2"].SkillMod << "%" << "\t\t" << SkillTable["Jump"].SkillName << " (" << SkillTable["Jump"].SkillBase << ")" << "\t" << SkillTable["Jump"].SkillMod << "%" << "\t\t" << std::endl;
 
@@ -1225,29 +1387,34 @@ void BRP_human_base::consoleChar(RandomSetUp& WOW)
 
   std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Strategy"].SkillName << " (" << SkillTable["Strategy"].SkillBase << ")" << "\t" << SkillTable["Strategy"].SkillMod << "%" << "\t\t" << SkillTable["Swim"].SkillName << " (" << SkillTable["Swim"].SkillBase << ")" << "\t" << SkillTable["Swim"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //MANIPULATION
   std::cout << "MANIPULATION (" << Manipulation_skillcategory << ")" << "\t\t\t" << SkillTable["Technical Skill0"].SkillName << " (" << SkillTable["Technical Skill0"].SkillBase << ")" << "\t" << SkillTable["Technical Skill0"].SkillMod << "%" << "\t\t" << SkillTable["Throw"].SkillName << " (" << SkillTable["Throw"].SkillBase << ")" << "\t" << SkillTable["Throw"].SkillMod << "%" << "\t\t" << std::endl;
 
   std::cout << SkillTable["Art0"].SkillName << " (" << SkillTable["Art0"].SkillBase << ")" << " " << SkillTable["Art0"].SubSkillName << "\t" << SkillTable["Art0"].SkillMod << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //COMBAT
   std::cout << "  " << SkillTable["Art1"].SubSkillName << "\t" << SkillTable["Art1"].SkillMod << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << "COMBAT (" << Combat_skillcategory << ")" << std::endl;
 
   std::cout << SkillTable["Craft0"].SkillName << " (" << SkillTable["Craft0"].SkillBase << ")" << "\t" << SkillTable["Craft0"].SkillMod << "%" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << SkillTable["Dodge"].SkillName << " (" << SkillTable["Dodge"].SkillBase << ")" << "\t" << SkillTable["Dodge"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //PERCEPTION
   std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << "PERCEPTION (" << Perception_skillcategory << ")" << "\t" << "\t\t" << SkillTable["Martial Arts"].SkillName << " (" << SkillTable["Martial Arts"].SkillBase << ")" << "\t" << SkillTable["Martial Arts"].SkillMod << "%" << "\t\t" << std::endl;
   
-  std::cout << SkillTable["Demolition"].SkillName << " (" << SkillTable["Demolition"].SkillBase << ")" << "\t" << SkillTable["Demolition"].SkillMod << "%" << "\t\t\t" << SkillTable["Insight"].SkillName << " (" << SkillTable["Insight"].SkillBase << ")" << "\t" << SkillTable["Insight"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Demolition"].SkillName << " (" << SkillTable["Demolition"].SkillBase << ")" << "\t" << SkillTable["Demolition"].SkillMod << "%" << "\t\t\t" << SkillTable["Insight"].SkillName << " (" << SkillTable["Insight"].SkillBase << ")" << "\t" << SkillTable["Insight"].SkillMod << "%" << "\t\t" << "See Weapons below for more Combat skills" << std::endl;
 
-  std::cout << SkillTable["Fine Manipulation"].SkillName << " (" << SkillTable["Fine Manipulation"].SkillBase << ")" << "\t" << SkillTable["Fine Manipulation"].SkillMod << "%" << "\t\t\t" << SkillTable["Listen"].SkillName << " (" << SkillTable["Listen"].SkillBase << ")" << "\t" << SkillTable["Listen"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Fine Manipulation"].SkillName << " (" << SkillTable["Fine Manipulation"].SkillBase << ")" << "\t" << SkillTable["Fine Manipulation"].SkillMod << "%" << "\t\t\t" << SkillTable["Listen"].SkillName << " (" << SkillTable["Listen"].SkillBase << ")" << "\t" << SkillTable["Listen"].SkillMod << "%" << std::endl;
 
-  std::cout << SkillTable["Heavy Machine0"].SkillName << " (" << SkillTable["Heavy Machine0"].SkillBase << ")" << "\t" << SkillTable["Heavy Machine0"].SkillMod << "%" << "\t\t\t" << SkillTable["Navigate"].SkillName << " (" << SkillTable["Navigate"].SkillBase << ")" << "\t" << SkillTable["Navigate"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  //Replace all ARMS# with SLOT00 through SLOT 03!
+  std::cout << SkillTable["Heavy Machine0"].SkillName << " (" << SkillTable["Heavy Machine0"].SkillBase << ")" << "\t" << SkillTable["Heavy Machine0"].SkillMod << "%" << "\t\t\t" << SkillTable["Navigate"].SkillName << " (" << SkillTable["Navigate"].SkillBase << ")" << "\t" << SkillTable["Navigate"].SkillMod << "%" << "\t\t" << SkillTable["ARMS0"].SkillName << " (" << SkillTable["ARMS0"].SkillBase << ")" << "\t" << SkillTable["ARMS0"].SkillMod << "%" << "\t\t" << std::endl;
 
-  std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Research"].SkillName << " (" << SkillTable["Research"].SkillBase << ")" << "\t" << SkillTable["Research"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Research"].SkillName << " (" << SkillTable["Research"].SkillBase << ")" << "\t" << SkillTable["Research"].SkillMod << "%" << "\t\t" << SkillTable["ARMS1"].SkillName << " (" << SkillTable["ARMS1"].SkillBase << ")" << "\t" << SkillTable["ARMS1"].SkillMod << "%" << "\t\t" << std::endl;
 
-  std::cout << SkillTable["Repair0"].SkillName << " (" << SkillTable["Repair0"].SkillBase << ")" << "\t" << SkillTable["Repair0"].SkillMod << "%" << "\t\t\t\t" << SkillTable["Sense"].SkillName << " (" << SkillTable["Sense"].SkillBase << ")" << "\t" << SkillTable["Sense"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Repair0"].SkillName << " (" << SkillTable["Repair0"].SkillBase << ")" << "\t" << SkillTable["Repair0"].SkillMod << "%" << "\t\t\t\t" << SkillTable["Sense"].SkillName << " (" << SkillTable["Sense"].SkillBase << ")" << "\t" << SkillTable["Sense"].SkillMod << "%" << "\t\t" << SkillTable["ARMS2"].SkillName << " (" << SkillTable["ARMS2"].SkillBase << ")" << "\t" << SkillTable["ARMS2"].SkillMod << "%" << "\t\t" << std::endl;
 
-  std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Spot"].SkillName << " (" << SkillTable["Spot"].SkillBase << ")" << "\t" << SkillTable["Spot"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Spot"].SkillName << " (" << SkillTable["Spot"].SkillBase << ")" << "\t" << SkillTable["Spot"].SkillMod << "%" << "\t\t" << SkillTable["ARMS3"].SkillName << " (" << SkillTable["ARMS3"].SkillBase << ")" << "\t" << SkillTable["ARMS3"].SkillMod << "%" << "\t\t" << std::endl;
 
   std::cout << SkillTable["Slight of Hand"].SkillName << " (" << SkillTable["Slight of Hand"].SkillBase << ")" << "\t" << SkillTable["Slight of Hand"].SkillMod << "%" << "\t\t\t" << SkillTable["Track"].SkillName << " (" << SkillTable["Track"].SkillBase << ")" << "\t" << SkillTable["Track"].SkillMod << "%" << "\t\t"; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << ExperenceBonus << "%"<< std::endl;} else{std::cout << "" << std::endl;}
+  //END OF SKILLS
 
   
   std::cout << "\n\nSeed: " << WOW.currentSeed;

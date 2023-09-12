@@ -6,17 +6,23 @@
 ROADMAP
  
 0. txt file version complete
- 0.1 skills [put all selected skills in an array?]
+ 0.1 skills [IN PROGRESS]
    0.1a selecting skills based on profession [DONE]
    0.1b selecting personnel skills by random
    0.1c filter skills based on era/setting
+     0.1cI Eras/Settings need to be picked but expandable
+     0.1cII Adjust what kind of equipment can be generated
+     0.1cIII Adjust what kind of skills can be selected (maybe a tag system?)
  0.2 description
    0.2a setup simple features [DONE]
    0.2b put in bool triggers for features [DONE]
+   0.2c Fix Height & Weight; have a toggle for random chance range or Stat base?(CON,APP,CHR,STR,)
+   0.2d Have descriptions remove and add things from the array based on Gender. Could lead to Cultural and Setting modififyers too
  0.3 page 2
    0.3a powers
    0.3b sanity
-   0.3c equipment
+   0.3c equipment 
+     0.3cI Just 3 Weapons per? 
    0.3d fatigue
    0.3e power points
    0.3f attack powers?
@@ -28,18 +34,16 @@ ROADMAP
    1.2a Make a multi-dice roller too
  1.3 Clean up all headers so every script is modular  
 2. Load from txt file
- 2.1 need to make something that reads a code on the bottom that tells it settings for layout
+ 2.1 need to make something that reads a code on the bottom that tells it settings for layout [LOADCODE: Character Name#C0DeSy$t3m#0060180090200
+ numbers ar end are raw base rolls,selections,outcomes, etc. Two digit code system sets the parameters/context for the numbers. Maybe another at the end for equipment tracking.]
 3. Able to edit a blank sheet (point buy and full custom edit)
 4. Able to edit randomized sheet
 5. Make a user defined multi-random character (txt) sheet generater
- 5.1 Make each called random charcter generate a new seed
+ 5.1 Make each called random charcter generate a new seed, but save old current one and reapply it after the the loop [save old seed on NEW, use pointer to replace whatever was generated during the loop. DELETE after loop is complete.].
 6. basic windows GUI (can do on replit?)
 7. exe file installer (need to be on own pc?)
 8. PDF file output (may just skip, needs a plugin)
  8.1 Fillable PDF file output
-9. Eras/Settings 
- 9.1 Adjust what kind of equipment can be generated 
- 9.2 Adjust what kind of skills can be selected (maybe a tag system?)
 */
 
 
