@@ -26,7 +26,7 @@ ROADMAP
    0.3d fatigue
    0.3e power points
    0.3f attack powers?
- 0.4 hit location 
+ 0.4 hit location [DONE]
  0.5 armor
 1. Move BRP Menus in BRP.cpp
  1.1 Have options adjustment menu
