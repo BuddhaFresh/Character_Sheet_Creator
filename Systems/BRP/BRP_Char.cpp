@@ -82,8 +82,8 @@ void BRP_human_base::SettingsSwitches()
   /*Setting&Era switches
   Basic?; prehistoric, medieval, modern, future?
   Basic has like 5 options
-  Detailed?; WWII, Noir, Cyberpunk, etc
-  Detailed has some 20 options 
+  Detailed?; 23 opitions
+  Prehistoric Age, Bronze Age, Iron Age, High Medieval, High Fantasy, Imperial Asia, Arabian Nights, Enlightenment and Renaissance, Age of Exploration, Age of Sail, Industrial Age, Victorian Age, Wild West, Pulp Era, Planetary Adventure, World War II, Noir, Modern, Super World, Postapocalyptic, Near-Future/Cyberpunk, Space Exploration, Space Opera
   */
   POWER_LEVEL = 0;
 }
@@ -739,6 +739,7 @@ void BRP_human_base::Skills()
   SkillTable["Drive0"] = { "Drive", "", 20, 0, Manipulation_skillcategory};
   SkillTable["Drive1"] = { "Drive", "", 1, 0, Manipulation_skillcategory};
   SkillTable["Drive2"] = { "Drive", "", 20, 0, Manipulation_skillcategory};
+  SkillTable["Drive3"] = { "Drive", "", 1, 0, Manipulation_skillcategory};
   SkillTable["Energy Weapon0"] = { "Energy Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Energy Weapon1"] = { "Energy Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Energy Weapon2"] = { "Energy Weapon", "", 0, 0, Combat_skillcategory};
@@ -1354,65 +1355,88 @@ void BRP_human_base::consoleChar(RandomSetUp& WOW)
   std::cout << "\nProfessional Skill Points Pool: "  << ProSkillPtsMAX << "\t\t" << "Personal Skill Points Pool: "  << PerSkillPtsMAX << std::endl;
 
   //START OF SKILLS
+  //COMMUNICATION    MENTAL    PHYSICAL
   std::cout << "COMMUNICATION " << Communication_skillcategory << "%" << "\t\t\t" << "MENTAL " << Mental_skillcategory << "%" << "\t\t\t" << "PHYSICAL " << Physical_skillcategory << "%" << "\t\t\t" << std::endl;
 
-  
+  //Bargain    Appraise    Climb
   std::cout << SkillTable["Bargain"].SkillName << " (" << SkillTable["Bargain"].SkillBase << ")" << "\t\t" << SkillTable["Bargain"].SkillMod << "%" << "\t\t" << SkillTable["Appraise"].SkillName << " (" << SkillTable["Appraise"].SkillBase << ")" << "\t" << SkillTable["Appraise"].SkillMod << "%" << "\t\t" << SkillTable["Climb"].SkillName << " (" << SkillTable["Climb"].SkillBase << ")" << "\t" << SkillTable["Climb"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Command    First Aid    Drive(subskill0)
   std::cout << SkillTable["Command"].SkillName << " (" << SkillTable["Command"].SkillBase << ")" << "\t\t" << SkillTable["Command"].SkillMod << "%" << "\t\t" << SkillTable["First Aid"].SkillName << " (" << SkillTable["First Aid"].SkillBase << ")" << "\t" << SkillTable["First Aid"].SkillMod << "%" << "\t\t" << SkillTable["Drive0"].SkillName << " (" << SkillTable["Drive0"].SkillBase << ")" << "\t" << SkillTable["Drive0"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Disguise    Gaming    Drive(subskill1)
   std::cout << SkillTable["Disguise"].SkillName << " (" << SkillTable["Disguise"].SkillBase << ")" << "\t" << SkillTable["Disguise"].SkillMod << "%" << "\t\t" << SkillTable["Gaming"].SkillName << " (" << SkillTable["Gaming"].SkillBase << ")" << "\t" << SkillTable["Gaming"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Etiquette    Drive(subskill2)
   std::cout << SkillTable["Etiquette"].SkillName << " (" << SkillTable["Etiquette"].SkillBase << ")" << "\t" << SkillTable["Etiquette"].SkillMod << "%" << "\t\t" << SkillTable["Knowledge0"].SkillName << " (" << SkillTable["Knowledge0"].SkillBase << ")" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Fast Talk    Knowledge(subskill0)    Fly
   std::cout << SkillTable["Fast Talk"].SkillName << " (" << SkillTable["Fast Talk"].SkillBase << ")" << "\t" << SkillTable["Fast Talk"].SkillMod << "%" << "\t\t" << "  " << SkillTable["Knowledge0"].SubSkillName << "\t" << SkillTable["Knowledge0"].SkillMod << "%" << "\t\t" << SkillTable["Fly"].SkillName << " (" << SkillTable["Fly"].SkillBase << ")" << "\t" << SkillTable["Fly"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Knowledge(subskill1)    Hide
   std::cout << SkillTable["Language0"].SkillName << " (" << SkillTable["Language0"].SkillBase << ")" << "\t\t" << "  " << SkillTable["Knowledge1"].SubSkillName << "\t" << SkillTable["Knowledge1"].SkillMod << "%" << "\t\t" << SkillTable["Hide"].SkillName << " (" << SkillTable["Hide"].SkillBase << ")" << "\t" << SkillTable["Hide"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Language(subskill0)    Knowledge(subskill2)    Jump
   std::cout << "  " << SkillTable["Language0"].SubSkillName << "\t\t" << SkillTable["Language0"].SkillMod << "%" << "\t\t" << "  " << SkillTable["Knowledge2"].SubSkillName << "\t" << SkillTable["Knowledge2"].SkillMod << "%" << "\t\t" << SkillTable["Jump"].SkillName << " (" << SkillTable["Jump"].SkillBase << ")" << "\t" << SkillTable["Jump"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Language(subskill1)    Literacy    Pilot(subskill0)
   std::cout << "  " << SkillTable["Language1"].SubSkillName << "\t\t" << SkillTable["Language1"].SkillMod << "%" << "\t\t" << SkillTable["Literacy"].SkillName << " (" << SkillTable["Language0"].SkillBase << ")" << "  " << SkillTable["Language0"].SkillMod << "%" << "\t\t\t\t" << SkillTable["Pilot0"].SkillName << " (" << SkillTable["Pilot0"].SkillBase << ")" << "\t" << SkillTable["Pilot0"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Language(subskill2)    Medicine    Pilot(subskill1)
   std::cout << "  " << SkillTable["Language2"].SubSkillName << "\t\t" << SkillTable["Language2"].SkillMod << "%" << "\t\t" << "\t\t\t" << SkillTable["Medicine"].SkillName << " (" << SkillTable["Medicine"].SkillBase << ")" << "\t" << SkillTable["Medicine"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Language(subskill3)    Psychotherapy    Pilot(subskill2)
   std::cout << "  " << SkillTable["Language3"].SubSkillName << "\t\t" << SkillTable["Language3"].SkillMod << "%" << "\t\t" << SkillTable["Psychotherapy"].SkillName << " (" << SkillTable["Psychotherapy"].SkillBase << ")" << "\t" << SkillTable["Psychotherapy"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Preform    Science(subskill0)    Projection
   std::cout << SkillTable["Preform"].SkillName << " (" << SkillTable["Preform"].SkillBase << ")" << "\t" << SkillTable["Preform"].SkillMod << "%" << "\t\t\t\t\t" << SkillTable["Science0"].SkillName << " (" << SkillTable["Science0"].SkillBase << ")" << "\t" << SkillTable["Science0"].SkillMod << "%" << "\t\t" << SkillTable["Projection"].SkillName << " (" << SkillTable["Projection"].SkillBase << ")" << "\t" << SkillTable["Projection"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Persuade    Science(subskill1)    Ride(subskill0)
   std::cout << SkillTable["Persuade"].SkillName << " (" << SkillTable["Persuade"].SkillBase << ")" << "\t" << SkillTable["Persuade"].SkillMod << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << SkillTable["Ride0"].SkillName << " (" << SkillTable["Ride0"].SkillBase << ")" << "\t" << SkillTable["Ride0"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Status    Science(subskill2)    Ride(subskill1)
   std::cout << SkillTable["Status"].SkillName << " (" << SkillTable["Status"].SkillBase << ")" << "\t" << SkillTable["Status"].SkillMod << "%" << "\t\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Teach    Science(subskill3)    Stealth
   std::cout << SkillTable["Teach"].SkillName << " (" << SkillTable["Teach"].SkillBase << ")" << "\t\t" << SkillTable["Teach"].SkillMod << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << SkillTable["Stealth"].SkillName << " (" << SkillTable["Stealth"].SkillBase << ")" << "\t" << SkillTable["Stealth"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Strategy    Swim
   std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Strategy"].SkillName << " (" << SkillTable["Strategy"].SkillBase << ")" << "\t" << SkillTable["Strategy"].SkillMod << "%" << "\t\t" << SkillTable["Swim"].SkillName << " (" << SkillTable["Swim"].SkillBase << ")" << "\t" << SkillTable["Swim"].SkillMod << "%" << "\t\t" << std::endl;
 
-  //MANIPULATION
+  //MANIPULATION    Technical Skill(subskill0)    Throw
   std::cout << "MANIPULATION (" << Manipulation_skillcategory << ")" << "\t\t\t" << SkillTable["Technical Skill0"].SkillName << " (" << SkillTable["Technical Skill0"].SkillBase << ")" << "\t" << SkillTable["Technical Skill0"].SkillMod << "%" << "\t\t" << SkillTable["Throw"].SkillName << " (" << SkillTable["Throw"].SkillBase << ")" << "\t" << SkillTable["Throw"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Art(subskill0)    Technical Skill(subskill1)
   std::cout << SkillTable["Art0"].SkillName << " (" << SkillTable["Art0"].SkillBase << ")" << " " << SkillTable["Art0"].SubSkillName << "\t" << SkillTable["Art0"].SkillMod << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << std::endl;
 
-  //COMBAT
+  //Art(subskill1)    COMBAT
   std::cout << "  " << SkillTable["Art1"].SubSkillName << "\t" << SkillTable["Art1"].SkillMod << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << "COMBAT (" << Combat_skillcategory << ")" << std::endl;
 
+  //Craft(subskill0)    Dodge
   std::cout << SkillTable["Craft0"].SkillName << " (" << SkillTable["Craft0"].SkillBase << ")" << "\t" << SkillTable["Craft0"].SkillMod << "%" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t" << SkillTable["Dodge"].SkillName << " (" << SkillTable["Dodge"].SkillBase << ")" << "\t" << SkillTable["Dodge"].SkillMod << "%" << "\t\t" << std::endl;
 
-  //PERCEPTION
+  //Craft(subskill1)    PERCEPTION    Martial Arts
   std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << "PERCEPTION (" << Perception_skillcategory << ")" << "\t" << "\t\t" << SkillTable["Martial Arts"].SkillName << " (" << SkillTable["Martial Arts"].SkillBase << ")" << "\t" << SkillTable["Martial Arts"].SkillMod << "%" << "\t\t" << std::endl;
-  
+
+  //Demolition    Insight
   std::cout << SkillTable["Demolition"].SkillName << " (" << SkillTable["Demolition"].SkillBase << ")" << "\t" << SkillTable["Demolition"].SkillMod << "%" << "\t\t\t" << SkillTable["Insight"].SkillName << " (" << SkillTable["Insight"].SkillBase << ")" << "\t" << SkillTable["Insight"].SkillMod << "%" << "\t\t" << "See Weapons below for more Combat skills" << std::endl;
 
+  //Fine Manipulation    Listen
   std::cout << SkillTable["Fine Manipulation"].SkillName << " (" << SkillTable["Fine Manipulation"].SkillBase << ")" << "\t" << SkillTable["Fine Manipulation"].SkillMod << "%" << "\t\t\t" << SkillTable["Listen"].SkillName << " (" << SkillTable["Listen"].SkillBase << ")" << "\t" << SkillTable["Listen"].SkillMod << "%" << std::endl;
 
-  //Replace all ARMS# with SLOT00 through SLOT 03!
+  //Heavy Machine(subskill0)    Navigate    Combat Skill(ARMS0)
   std::cout << SkillTable["Heavy Machine0"].SkillName << " (" << SkillTable["Heavy Machine0"].SkillBase << ")" << "\t" << SkillTable["Heavy Machine0"].SkillMod << "%" << "\t\t\t" << SkillTable["Navigate"].SkillName << " (" << SkillTable["Navigate"].SkillBase << ")" << "\t" << SkillTable["Navigate"].SkillMod << "%" << "\t\t" << SkillTable["ARMS0"].SkillName << " (" << SkillTable["ARMS0"].SkillBase << ")" << "\t" << SkillTable["ARMS0"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Heavy Machine(subskill1)    Research    Combat Skill(ARMS1)
   std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Research"].SkillName << " (" << SkillTable["Research"].SkillBase << ")" << "\t" << SkillTable["Research"].SkillMod << "%" << "\t\t" << SkillTable["ARMS1"].SkillName << " (" << SkillTable["ARMS1"].SkillBase << ")" << "\t" << SkillTable["ARMS1"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Repair(subskill0)    Sense    Combat Skill(ARMS2)
   std::cout << SkillTable["Repair0"].SkillName << " (" << SkillTable["Repair0"].SkillBase << ")" << "\t" << SkillTable["Repair0"].SkillMod << "%" << "\t\t\t\t" << SkillTable["Sense"].SkillName << " (" << SkillTable["Sense"].SkillBase << ")" << "\t" << SkillTable["Sense"].SkillMod << "%" << "\t\t" << SkillTable["ARMS2"].SkillName << " (" << SkillTable["ARMS2"].SkillBase << ")" << "\t" << SkillTable["ARMS2"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Repair(subskill1)    Spot    Combat Skill(ARMS3)
   std::cout << SkillTable["BLANK"].SkillName << " (" << SkillTable["BLANK"].SkillBase << ")" << "\t" << SkillTable["BLANK"].SkillMod << "%" << "\t\t\t" << SkillTable["Spot"].SkillName << " (" << SkillTable["Spot"].SkillBase << ")" << "\t" << SkillTable["Spot"].SkillMod << "%" << "\t\t" << SkillTable["ARMS3"].SkillName << " (" << SkillTable["ARMS3"].SkillBase << ")" << "\t" << SkillTable["ARMS3"].SkillMod << "%" << "\t\t" << std::endl;
 
+  //Slight of Hand    Track    EXPERENCE BONUS
   std::cout << SkillTable["Slight of Hand"].SkillName << " (" << SkillTable["Slight of Hand"].SkillBase << ")" << "\t" << SkillTable["Slight of Hand"].SkillMod << "%" << "\t\t\t" << SkillTable["Track"].SkillName << " (" << SkillTable["Track"].SkillBase << ")" << "\t" << SkillTable["Track"].SkillMod << "%" << "\t\t"; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << ExperenceBonus << "%"<< std::endl;} else{std::cout << "" << std::endl;}
   //END OF SKILLS
 

@@ -14,6 +14,12 @@ void FolderOriginBRP();
 int ThreeDSix();
 int TwoDSixPlusSix();
 
+//Setting Codes
+struct SettingIDs
+{
+  //std::vector<int> IDs;
+};
+
 //Skill struct
 struct SkillData 
 {
@@ -22,6 +28,36 @@ struct SkillData
   int SkillBase;
   int SkillMod;
   int SkillCat;
+};
+
+//Weapons struct
+struct WeaponsData
+{
+  //std::string WeaponName;
+  //std::string WeaponSkillType;
+  //std::string WeaponSkillName;
+  //int WeaponSkill;
+  //int WeaponSkillBase;
+  //std::string WeaponDMG;
+  //std::string WeaponAttk;
+  //std::string WeaponSpecial;
+  //int WeaponRng;
+  //std::string WeaponHands;
+  //int WeaponHP;
+  //bool Parry;
+  //int STRReq;
+  //int DEXReq;
+  //std::string WeaponMal;
+  //int MissileAmmo;
+  //std::string Value;
+  //int WeaponSIZ;
+  //std::string MissileRateOfFire;
+  //char SettingCodes
+};
+
+struct Armory
+{ 
+  std::vector<WeaponsData> draw;
 };
 
 //Profession Wealth structs
