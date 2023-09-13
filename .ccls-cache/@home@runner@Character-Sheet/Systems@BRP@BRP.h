@@ -15,9 +15,14 @@ int ThreeDSix();
 int TwoDSixPlusSix();
 
 //Setting Codes
-struct SettingIDs
+struct SettingCodeType
 {
-  //std::vector<int> IDs;
+  char CodeData[2];
+};
+
+struct SettingIDs //Do I need this?
+{
+  std::vector<SettingCodeType> IDs;
 };
 
 //Skill struct
@@ -33,26 +38,26 @@ struct SkillData
 //Weapons struct
 struct WeaponsData
 {
-  //std::string WeaponName;
-  //std::string WeaponSkillType;
-  //std::string WeaponSkillName;
-  //int WeaponSkill;
-  //int WeaponSkillBase;
-  //std::string WeaponDMG;
-  //std::string WeaponAttk;
-  //std::string WeaponSpecial;
-  //int WeaponRng;
-  //std::string WeaponHands;
-  //int WeaponHP;
-  //bool Parry;
-  //int STRReq;
-  //int DEXReq;
-  //std::string WeaponMal;
-  //int MissileAmmo;
-  //std::string Value;
-  //int WeaponSIZ;
-  //std::string MissileRateOfFire;
-  //char SettingCodes
+  std::string WeaponName;
+  std::string WeaponSkillName;
+  std::string WeaponSkillSubType;
+  int WeaponSkillBase;
+  std::string WeaponDMG;
+  std::string WeaponAttk;
+  std::string WeaponSpecial;
+  std::string MeleeRng;
+  int MissileRng;
+  std::string WeaponHands;
+  int WeaponHP;
+  bool Parry;
+  int STRReq;
+  int DEXReq;
+  std::string WeaponMal;
+  int MissileAmmo;
+  std::string Value;
+  float WeaponSIZ;
+  std::string MissileRateOfFire;
+  //std::vector<SettingCodeType> Setting_IDs;
 };
 
 struct Armory
@@ -150,6 +155,7 @@ private:
   std::string JOBSKILLS[10];
   std::string HOBBYSKILL[0];
 
+  void Weapons();
   void FillSkillMod();
   void Faith();
   void SettingsSwitches();
@@ -183,6 +189,7 @@ private:
   int Skill_Category_Negative(int x);
 
   std::map<std::string, SkillData>SkillTable;
+  std::map<std::string, WeaponsData>WeaponsTable;
 
 
 

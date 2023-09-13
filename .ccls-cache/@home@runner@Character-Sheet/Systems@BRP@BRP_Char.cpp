@@ -88,6 +88,42 @@ void BRP_human_base::SettingsSwitches()
   POWER_LEVEL = 0;
 }
 
+//Weapons Table
+void BRP_human_base::Weapons()
+{
+/*
+  
+  WeaponsTable["Weapon Name Key"] = {"Weapon Name","Main Skill","SubSkill",Base,"dmg","Attk","Special","Melee Rng",Missile Rng,"hands",HP,Parry bool,STR,DEX,"Mal",Ammo,"Value",SIZ,"Missile Rate-of-Fire",will need to set up setting codes here};
+*/
+  //Melee
+  WeaponsTable["Axe, Hand"] = {"Hand Axe","Melee Weapon","Axe",15,"1D6+1+dm","1","Bleeding","Short",0,"1H",12,true,7,9,"-",0,"Cheap",0.5,""};
+  WeaponsTable["Club, Heavy"] = {"Heavy Club","Melee Weapon","Club",25,"1D8+dm","1","Crushing","Medium",0,"2H",22,true,9,7,"-",0,"Cheap",0.2,""};
+  WeaponsTable["Knife"] = {"Knife","Melee Weapon","Dagger",25,"1D3+1+dm","1","Impaling","Short",0,"1H",15,true,4,4,"-",0,"",02,""};
+  WeaponsTable["Spear, Long"] = {"Long Spear","Melee Weapon","Spear",15,"1D10+1+dm","1","Impaling","Long",0,"2H",15,true,11,9,"-",0,"Cheap",2.0,""};
+  WeaponsTable["Blackjack"] = {"Blackjack","Melee Weapon","Hand",25,"1D8+dm","1","Crushing","Short",0,"1H",10,false,7,7,"-",0,"Inexpensive",0.2,""};
+  WeaponsTable["Pike"] = {"Pike","Melee Weapon","Polearm",15,"1D10+2+dm","1","Impaling","Long",0,"2H",15,true,11,7,"-",0,"Inexpensive",3.5,""};
+  WeaponsTable["Staff, Quarter-"] = {"Quarter-Staff","Melee Weapon","Staff",25,"1D8+dm","1","Crushing","All",0,"2H",20,true,9,9,"-",0,"Cheap",1.5,""};
+  WeaponsTable["Sword, Short"] = {"Short Sword","Melee Weapon","Sword",15,"1D6+1+dm","1","Impaling","Medium",0,"1H",20,true,5,5,"-",0,"Cheap",1.0,""};
+  WeaponsTable["Brass Knuckles"] = {"Brass Knuckles","Melee Weapon","Brawl",SkillTable["Brawl"].SkillMod,"+2","1","Crushing","Short",0,"1H",18,false,5,0,"-",0,"Cheap",0.1,""};
+  WeaponsTable["Chainsaw"] = {"Chainsaw","Melee Weapon","Improvised",20,"2D8","1","Bleeding","Medium",0,"2H",20,false,11,11,"97-00",0,"Average",8.0,""}; 
+  WeaponsTable["Knife, Switchblade"] = {"Switchblade Knife","Melee Weapon","Dagger",25,"1D4+dm","1","Impaling","Short",0,"1H",7,false,0,5,"99-00",0,"Cheap",0.1,""}; 
+  WeaponsTable["Taser, Contact"] = {"Contact Taser","Melee Weapon","Other",SkillTable["Brawl"].SkillMod,"Stunning","1","","Short",0,"1H",7,false,5,7,"97-00",0,"Expensive",0.3,""}; 
+
+  //Missile
+  WeaponsTable["Blowgun"] = {"Blowgun","Missile Weapon","Blowgun",10,"1D3","1","Impaling","",30,"2H",4,false,0,11,"-",0,"Cheap",0.5,"1/CR"};
+  WeaponsTable["Bow, Self"] = {"Self Bow","Missile Weapon","Bow",10,"1D6+1+1/2dm","1","Impaling","",80,"2H",6,false,9,9,"-",0,"Cheap",0.5,"1/CR"};
+  WeaponsTable["Javelin"] = {"Javelin","Missile Weapon","Javelin",15,"1D6+1/2dm","1","Impaling","",25,"1H",10,false,9,9,"-",0,"Cheap",1.5,"1/CR"};
+  WeaponsTable["Sling"] = {"Sling","Missile Weapon","Sling",05,"1D8+1/2dm","1","Crushing","",80,"1H",2,false,7,11,"-",0,"Cheap",01,"1/CR"};
+  WeaponsTable["Arbalest"] = {"Arbalest","Missile Weapon","Crossbow",15,"2D6+4","1/3","Impaling","",90,"2H",14,false,11,9,"93-00",0,"Average",10.0,"1/4CR"};
+  WeaponsTable["Bow, Composite"] = {"Composite Bow","Missile Weapon","Bow",05,"1D8+1+1/2dm","1","Impaling","",120,"2H",12,false,13,9,"-",0,"Average",0.5,"1/CR"};
+  WeaponsTable["Crossbow, Medium"] = {"Medium Crossbow","Missile Weapon","Crossbow",25,"2D4+2","1/2","Impaling","",50,"2H",14,false,11,7,"95-00",0,"Average",5.0,"1/2CR"};
+  WeaponsTable["Shuriken"] = {"Shuriken","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
+  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
+  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
+  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
+  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
+}
+
 //EDU Characteristic
 int BRP_human_base::EDUstat()
 {
@@ -815,7 +851,7 @@ void BRP_human_base::Skills()
   SkillTable["Technical Skill2"] = { "Technical", "", 5, 0, Mental_skillcategory};
   SkillTable["Throw"] = { "Throw", "", 25, 0, Physical_skillcategory};
   SkillTable["Track"] = { "Track", "", 10, 0, Perception_skillcategory};
-  SkillTable["SLOT00"] = { "", "", 0, 0, 0};
+ /* SkillTable["SLOT00"] = { "", "", 0, 0, 0};
   SkillTable["SLOT01"] = { "", "", 0, 0, 0};
   SkillTable["SLOT02"] = { "", "", 0, 0, 0};
   SkillTable["SLOT03"] = { "", "", 0, 0, 0};
@@ -875,7 +911,7 @@ void BRP_human_base::Skills()
   SkillTable["SLOT57"] = { "", "", 0, 0, 0};
   SkillTable["SLOT58"] = { "", "", 0, 0, 0};
   SkillTable["SLOT59"] = { "", "", 0, 0, 0};
-  SkillTable["SLOT60"] = { "", "", 0, 0, 0};
+  SkillTable["SLOT60"] = { "", "", 0, 0, 0};*/
 
   //An arrray of all Skill names.
   std::string SkillList[] = {"Appraise", "Art", "Artillery", "Bargain", "Brawl", "Climb", "Command", "Craft", "Demolition", "Disguise", "Dodge", "Drive", "Energy Weapon", "Etiquette", "Fast Talk", "Fine Manipulation", "Firearm", "First Aid", "Fly", "Gaming", "Grapple", "Heavy Machine", "Heavy Weapon", "Hide", "Insight", "Jump", "Knowledge", "Language", "Listen", "Literacy", "Martial Arts", "Medicine", "Melee Weapon", "Missile Weapon", "Navigate", "Parry", "Perform", "Persuade", "Pilot", "Projection", "Psychotherapy", "Repair", "Research", "Ride", "Science", "Sense", "Shield", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Technical Skill", "Throw", "Track"};
@@ -1187,7 +1223,7 @@ void BRP_human_base::PersonalityPick()
   int pick = PLAY.Dfour();
   Personality = "";
   switch (pick)
-  {//need to add skill points asigning for each case, also only returns case 4?
+  {//need to add skill points asigning for each case
   case 1:
     {
     Personality = "They have a brutal personality, thinking first of solving problems by means of physical force and brawn.";
