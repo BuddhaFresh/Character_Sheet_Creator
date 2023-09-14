@@ -134,7 +134,10 @@ void BRP_human_base::Weapons()
   WeaponsTable["Gun, Mini-"] = {"Mini-Gun","Heavy Weapon","Machine Gun",15,"2D6+4","3","Impaling","",400,"2H",14,false,16,12,"98-00",4000,"Expensive",6.0,"1/CR"};
  
   //Energy Missile
-  
+  WeaponsTable["Pistol, Laser"] = {"Laser Pistol","Energy Weapon","Pistol",20,"1D8","3","Impaling","",20,"1H",14,false,5,5,"99-00",20,"Average",1.0,""};
+  WeaponsTable["Pistol, Disintegrator"] = {"Disintegrator Pistol","Energy Weapon","Pistol",05,"3D4+1","1","-","",10,"1H",12,false,7,5,"96-00",10,"Expensive",1.0,""};
+  WeaponsTable["Rifle, Plasma"] = {"Plasma Rifle","Energy Weapon","Rifle",10,"2D10+4","1","Impaling","",70,"2H",18,false,9,7,"98-00",16,"Expensive",2.0,""};
+  WeaponsTable["Rifle, Electromagnetic Pulse"] = {"Electromagnetic Pulse Rifle","Energy Weapon","Rifle",25,"3D8 vs. tech","1","-","",75,"2H",18,false,7,5,"98-00",12,"Average",2.0,""};
 }
 
 //EDU Characteristic
@@ -1030,6 +1033,7 @@ void BRP_human_base::PickJobSkills()
         JOBSKILLS[9] = "Insight";
       break;
       }
+      
       case 1: //Assassin
       {
       //any 5 based on setting:
@@ -1053,8 +1057,24 @@ void BRP_human_base::PickJobSkills()
       //Stealth
       break;
       }
-      case 2:
+      
+      case 2: //Athlete
       {
+      //any 5 based on setting and sport
+        //Brawl
+        //First Aid
+        //Grapple
+        //Insight
+        //Listen
+        //Martial Arts
+        //Spot
+        //Ride
+        //Swim
+      //Climb
+      //Dodge
+      //Jump
+      //Stealth
+      //Throw
       break;
       }
       case 3:
@@ -1214,6 +1234,43 @@ void BRP_human_base::PickHobbySkills()
 }
 */
 
+//Randomly assigns skill points to the Character's personnal skills 
+/*
+void BRP_human_base::PersonalSkillSet()
+{
+
+  Make a random list of skills (How many? Has to be more then 0 but whats the min and max?)
+  INT can be 8-18; Pts 80-180 for NORMAL limit: 75%
+  INT can be 8-18; Pts 120-270 for HEROIC limit: 90%
+  INT can be 8-18; Pts 160-360 for EPIC limit: 101%
+  INT can be 8-18; Pts 200-450 for SUPERHUMAN limit: 999%
+  maybe try 6 to 10 skills for all level?
+  Maybe adjust total number of personl skills by power level
+  Compare to Profession Skill List to check for duplications and check that skill's MAX
+  Then run a For Loop to randomlly assign points from PerSkillPtsMAX
+  
+  
+  //Number of Personal Skills, between 8 to 10
+  int TotalPersonalSkillsKnown = rand() % 8 + 10;
+
+  //array of string to hold the Personal Skills
+  std::string PerSkillKnown[TotalPersonalSkillsKnown];
+
+  for(int i = 0; i < TotalPersonalSkillsKnown; i++)
+  {
+    ;
+  }
+
+  \\This should be its own funciton
+  \\
+  int CurrentPoints = PerSkillPtsMAX;
+  
+  while (CurrentPoints > 0)
+  {
+    
+  }
+}*/
+
 //Loop through all skills and add a skill's base value and a skill's category value to the skill's mod value
 void BRP_human_base::FillSkillMod()
 {
@@ -1277,60 +1334,28 @@ void BRP_human_base::ProfessionSkillSet()
       //Skip any skill already at max rating.
       if (SkillTable[ROLE].SkillMod >= SkillRatingMAX)
         {continue;}
-      //Assigns 0 to 10 points.
-      int LEARNED = rand() % 11;
-      //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
-      while (LEARNED > CurrentSkillPoints)
-        {LEARNED--;}
-      //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
-      while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX) 
-        {LEARNED--;}
-      //Add and remove points to the skill and from the CurrentSkillPoints availible.
-      SkillTable[ROLE].SkillMod += LEARNED; 
-      CurrentSkillPoints -= LEARNED;
-      //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
-      if (CurrentSkillPoints == 0)
-        {break;};
+      else 
+        {
+          //Assigns 0 to 10 points.
+          int LEARNED = rand() % 11;
+          //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
+          while (LEARNED > CurrentSkillPoints)
+            {LEARNED--;}
+          //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
+          while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX) 
+            {LEARNED--;}
+          //Add and remove points to the skill and from the CurrentSkillPoints availible.
+          SkillTable[ROLE].SkillMod += LEARNED; 
+          CurrentSkillPoints -= LEARNED;
+          //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
+          if (CurrentSkillPoints == 0)
+            {break;}
+          else
+            {continue;}
+        }
     }
   }
 }
-
-//Randomly assigns skill points to the Character's personnal skills 
-/*
-void BRP_human_base::PersonalSkillSet()
-{
-
-  Make a random list of skills (How many? Has to be more then 0 but whats the min and max?)
-  INT can be 8-18; Pts 80-180 for NORMAL limit: 75%
-  INT can be 8-18; Pts 120-270 for HEROIC limit: 90%
-  INT can be 8-18; Pts 160-360 for EPIC limit: 101%
-  INT can be 8-18; Pts 200-450 for SUPERHUMAN limit: 999%
-  maybe try 6 to 10 skills for all level?
-  Maybe adjust total number of personl skills by power level
-  Compare to Profession Skill List to check for duplications and check that skill's MAX
-  Then run a For Loop to randomlly assign points from PerSkillPtsMAX
-  
-  
-  //Number of Personal Skills, between 8 to 10
-  int TotalPersonalSkillsKnown = rand() % 8 + 10;
-
-  //array of string to hold the Personal Skills
-  std::string PerSkillKnown[TotalPersonalSkillsKnown];
-
-  for(int i = 0; i < TotalPersonalSkillsKnown; i++)
-  {
-    ;
-  }
-
-  \\This should be its own funciton
-  \\
-  int CurrentPoints = PerSkillPtsMAX;
-  
-  while (CurrentPoints > 0)
-  {
-    
-  }
-}*/
 
 //Gets the character's name
 void BRP_human_base::CharName()

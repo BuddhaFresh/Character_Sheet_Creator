@@ -107,7 +107,11 @@ void BRP_human_base::Weapons()
   WeaponsTable["Brass Knuckles"] = {"Brass Knuckles","Melee Weapon","Brawl",SkillTable["Brawl"].SkillMod,"+2","1","Crushing","Short",0,"1H",18,false,5,0,"-",0,"Cheap",0.1,""};
   WeaponsTable["Chainsaw"] = {"Chainsaw","Melee Weapon","Improvised",20,"2D8","1","Bleeding","Medium",0,"2H",20,false,11,11,"97-00",0,"Average",8.0,""}; 
   WeaponsTable["Knife, Switchblade"] = {"Switchblade Knife","Melee Weapon","Dagger",25,"1D4+dm","1","Impaling","Short",0,"1H",7,false,0,5,"99-00",0,"Cheap",0.1,""}; 
-  WeaponsTable["Taser, Contact"] = {"Contact Taser","Melee Weapon","Other",SkillTable["Brawl"].SkillMod,"Stunning","1","","Short",0,"1H",7,false,5,7,"97-00",0,"Expensive",0.3,""}; 
+  WeaponsTable["Taser, Contact"] = {"Contact Taser","Melee Weapon","Other",SkillTable["Brawl"].SkillMod,"Stunning","1","","Short",0,"1H",7,false,5,7,"97-00",0,"Expensive",0.3,""};
+  WeaponsTable["Axe, Vibro-"] = {"Vibro-Axe","Melee Weapon","Polearm",10,"2D8+4+dm","1","Bleeding","Medium",0,"2H",20,true,11,5,"98-00",0,"Average",3.0,""};
+  WeaponsTable["Knife, Vibro-"] = {"Vibro-Knife","Melee Weapon","Dagger",25,"2D4+2+dm","1","Bleeding","Short",0,"1H",16,true,7,7,"99-00",0,"Average",0.5,""};
+  WeaponsTable["Lance, Stun"] = {"Stun Lance","Melee Weapon","Staff",15,"1D6+dm+stun","1","Knockback","Long",0,"2H",18,true,9,5,"98-00",0,"Average",2.5,""};
+  WeaponsTable["Sword, Monofilament"] = {"Monofilament Sword","Melee Weapon","Sword",20,"3D12","1","Bleeding","Medium",0,"1H",12,false,5,15,"91-00",0,"Expensive",0.5,""};
 
   //Missile
   WeaponsTable["Blowgun"] = {"Blowgun","Missile Weapon","Blowgun",10,"1D3","1","Impaling","",30,"2H",4,false,0,11,"-",0,"Cheap",0.5,"1/CR"};
@@ -118,10 +122,22 @@ void BRP_human_base::Weapons()
   WeaponsTable["Bow, Composite"] = {"Composite Bow","Missile Weapon","Bow",05,"1D8+1+1/2dm","1","Impaling","",120,"2H",12,false,13,9,"-",0,"Average",0.5,"1/CR"};
   WeaponsTable["Crossbow, Medium"] = {"Medium Crossbow","Missile Weapon","Crossbow",25,"2D4+2","1/2","Impaling","",50,"2H",14,false,11,7,"95-00",0,"Average",5.0,"1/2CR"};
   WeaponsTable["Shuriken"] = {"Shuriken","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
-  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
-  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
-  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
-  WeaponsTable["-"] = {"--","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
+
+  //Firearm
+  WeaponsTable["Pistol, Flintlock"] = {"Flintlock Pistol","Firearm","Pistol",20,"1D6+1","1/4","Impaling","",10,"1H",8,false,7,5,"95-00",1,"Average",1.0,"1/2CR"};
+  WeaponsTable["Revolver, Light"] = {"Light Revolver","Firearm","Revolver",20,"1D6","2","Impaling","",10,"1H",6,false,5,5,"00",6,"Average",0.7,"1/CR"};
+  WeaponsTable["Rifle, Sniper"] = {"Sniper Rifle","Firearm","Rifle",20,"2D10+4","1","Impaling","",250,"2H",10,false,12,7,"98-00",11,"Expensive",4.0,"1/CR"};
+  WeaponsTable["Shotgun, Sawn-off"] = {"Sawn-off Shotgun","Firearm","Shotgun",30,"4D6/1D6","1 or 2","Impaling","",20,"1H",14,false,9,5,"00",2,"Average",2.0,"1 or 2/CR"};
+
+  //Heavy Weapon
+  WeaponsTable["Gun, Machine"] = {"Machine Gun","Heavy Weapon","Machine Gun",15,"2D6+4","1, 3, or brust","Impaling","",90,"2H",11,false,9,5,"00",40,"Expensive",3.0,"1 or 3/CR or 1/CR"};
+  WeaponsTable["Gun, Mini-"] = {"Mini-Gun","Heavy Weapon","Machine Gun",15,"2D6+4","3","Impaling","",400,"2H",14,false,16,12,"98-00",4000,"Expensive",6.0,"1/CR"};
+ 
+  //Energy Missile
+  WeaponsTable["Pistol, Laser"] = {"Laser Pistol","Energy Weapon","Pistol",20,"1D8","3","Impaling","",20,"1H",14,false,5,5,"99-00",20,"Average",1.0,""};
+  WeaponsTable["Pistol, Disintegrator"] = {"Disintegrator Pistol","Energy Weapon","Pistol",05,"3D4+1","1","-","",10,"1H",12,false,7,5,"96-00",10,"Expensive",1.0,""};
+  WeaponsTable["Rifle, Plasma"] = {"Plasma Rifle","Energy Weapon","Rifle",10,"2D10+4","1","Impaling","",70,"2H",18,false,9,7,"98-00",16,"Expensive",2.0,""};
+  WeaponsTable["Rifle, Electromagnetic Pulse"] = {"Electromagnetic Pulse Rifle","Energy Weapon","Rifle",25,"3D8 vs. tech","1","-","",75,"2H",18,false,7,5,"98-00",12,"Average",2.0,""};
 }
 
 //EDU Characteristic
@@ -1017,6 +1033,7 @@ void BRP_human_base::PickJobSkills()
         JOBSKILLS[9] = "Insight";
       break;
       }
+      
       case 1: //Assassin
       {
       //any 5 based on setting:
@@ -1040,8 +1057,24 @@ void BRP_human_base::PickJobSkills()
       //Stealth
       break;
       }
-      case 2:
+      
+      case 2: //Athlete
       {
+      //any 5 based on setting and sport
+        //Brawl
+        //First Aid
+        //Grapple
+        //Insight
+        //Listen
+        //Martial Arts
+        //Spot
+        //Ride
+        //Swim
+      //Climb
+      //Dodge
+      //Jump
+      //Stealth
+      //Throw
       break;
       }
       case 3:
@@ -1201,6 +1234,43 @@ void BRP_human_base::PickHobbySkills()
 }
 */
 
+//Randomly assigns skill points to the Character's personnal skills 
+/*
+void BRP_human_base::PersonalSkillSet()
+{
+
+  Make a random list of skills (How many? Has to be more then 0 but whats the min and max?)
+  INT can be 8-18; Pts 80-180 for NORMAL limit: 75%
+  INT can be 8-18; Pts 120-270 for HEROIC limit: 90%
+  INT can be 8-18; Pts 160-360 for EPIC limit: 101%
+  INT can be 8-18; Pts 200-450 for SUPERHUMAN limit: 999%
+  maybe try 6 to 10 skills for all level?
+  Maybe adjust total number of personl skills by power level
+  Compare to Profession Skill List to check for duplications and check that skill's MAX
+  Then run a For Loop to randomlly assign points from PerSkillPtsMAX
+  
+  
+  //Number of Personal Skills, between 8 to 10
+  int TotalPersonalSkillsKnown = rand() % 8 + 10;
+
+  //array of string to hold the Personal Skills
+  std::string PerSkillKnown[TotalPersonalSkillsKnown];
+
+  for(int i = 0; i < TotalPersonalSkillsKnown; i++)
+  {
+    ;
+  }
+
+  \\This should be its own funciton
+  \\
+  int CurrentPoints = PerSkillPtsMAX;
+  
+  while (CurrentPoints > 0)
+  {
+    
+  }
+}*/
+
 //Loop through all skills and add a skill's base value and a skill's category value to the skill's mod value
 void BRP_human_base::FillSkillMod()
 {
@@ -1264,60 +1334,28 @@ void BRP_human_base::ProfessionSkillSet()
       //Skip any skill already at max rating.
       if (SkillTable[ROLE].SkillMod >= SkillRatingMAX)
         {continue;}
-      //Assigns 0 to 10 points.
-      int LEARNED = rand() % 11;
-      //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
-      while (LEARNED > CurrentSkillPoints)
-        {LEARNED--;}
-      //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
-      while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX) 
-        {LEARNED--;}
-      //Add and remove points to the skill and from the CurrentSkillPoints availible.
-      SkillTable[ROLE].SkillMod += LEARNED; 
-      CurrentSkillPoints -= LEARNED;
-      //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
-      if (CurrentSkillPoints == 0)
-        {break;};
+      else 
+        {
+          //Assigns 0 to 10 points.
+          int LEARNED = rand() % 11;
+          //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
+          while (LEARNED > CurrentSkillPoints)
+            {LEARNED--;}
+          //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
+          while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX) 
+            {LEARNED--;}
+          //Add and remove points to the skill and from the CurrentSkillPoints availible.
+          SkillTable[ROLE].SkillMod += LEARNED; 
+          CurrentSkillPoints -= LEARNED;
+          //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
+          if (CurrentSkillPoints == 0)
+            {break;}
+          else
+            {continue;}
+        }
     }
   }
 }
-
-//Randomly assigns skill points to the Character's personnal skills 
-/*
-void BRP_human_base::PersonalSkillSet()
-{
-
-  Make a random list of skills (How many? Has to be more then 0 but whats the min and max?)
-  INT can be 8-18; Pts 80-180 for NORMAL limit: 75%
-  INT can be 8-18; Pts 120-270 for HEROIC limit: 90%
-  INT can be 8-18; Pts 160-360 for EPIC limit: 101%
-  INT can be 8-18; Pts 200-450 for SUPERHUMAN limit: 999%
-  maybe try 6 to 10 skills for all level?
-  Maybe adjust total number of personl skills by power level
-  Compare to Profession Skill List to check for duplications and check that skill's MAX
-  Then run a For Loop to randomlly assign points from PerSkillPtsMAX
-  
-  
-  //Number of Personal Skills, between 8 to 10
-  int TotalPersonalSkillsKnown = rand() % 8 + 10;
-
-  //array of string to hold the Personal Skills
-  std::string PerSkillKnown[TotalPersonalSkillsKnown];
-
-  for(int i = 0; i < TotalPersonalSkillsKnown; i++)
-  {
-    ;
-  }
-
-  \\This should be its own funciton
-  \\
-  int CurrentPoints = PerSkillPtsMAX;
-  
-  while (CurrentPoints > 0)
-  {
-    
-  }
-}*/
 
 //Gets the character's name
 void BRP_human_base::CharName()
