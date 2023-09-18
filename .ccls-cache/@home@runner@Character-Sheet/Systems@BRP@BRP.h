@@ -14,16 +14,7 @@ void FolderOriginBRP();
 int ThreeDSix();
 int TwoDSixPlusSix();
 
-//Setting Codes
-struct SettingCodeType
-{
-  char CodeData[2];
-};
 
-struct SettingIDs //Do I need this?
-{
-  std::vector<SettingCodeType> IDs;
-};
 
 //Skill struct
 struct SkillData 
@@ -57,7 +48,7 @@ struct WeaponsData
   std::string Value;
   float WeaponSIZ;
   std::string MissileRateOfFire;
-  //std::vector<SettingCodeType> Setting_IDs;
+  //std::string IDs;
 };
 
 struct Armory
@@ -140,6 +131,7 @@ private:
   int SkillRatingMAX;
   int Hired;
 
+  std::vector <std::string> SkillList;
   std::vector <std::string> Art;
   std::vector <std::string> Craft;
   std::vector <std::string> Heavy_Machine;
@@ -153,7 +145,7 @@ private:
   std::vector <std::string> Technical;
 
   std::string JOBSKILLS[10];
-  std::string HOBBYSKILL[0];
+  std::string HOBBYSKILLS[0];
 
   void Weapons();
   void FillSkillMod();

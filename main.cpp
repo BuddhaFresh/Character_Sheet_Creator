@@ -94,7 +94,7 @@ int main()
             std::cout << "\t\t\tNew Sheet Menu\n";
             std::cout << "New Sheet not availible\n\n";
             std::cout << "1. DOJO [Make 5 random BRP chars]\n\n";
-            std::cout << "2. DOJO [3d6]\n\n";
+            std::cout << "2. DOJO [Custom BRP Character]\n\n";
             std::cout << "3. DOJO [make random BRP char rolls]\n";
             std::cout << "\n0. Return to Main Menu\n";
             std::cout << "<>----------<>----------<>----------<>\n\n";

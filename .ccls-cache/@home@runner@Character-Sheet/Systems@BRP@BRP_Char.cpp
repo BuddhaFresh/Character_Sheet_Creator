@@ -83,7 +83,30 @@ void BRP_human_base::SettingsSwitches()
   Basic?; prehistoric, medieval, modern, future?
   Basic has like 5 options
   Detailed?; 23 opitions
-  Prehistoric Age, Bronze Age, Iron Age, High Medieval, High Fantasy, Imperial Asia, Arabian Nights, Enlightenment and Renaissance, Age of Exploration, Age of Sail, Industrial Age, Victorian Age, Wild West, Pulp Era, Planetary Adventure, World War II, Noir, Modern, Super World, Postapocalyptic, Near-Future/Cyberpunk, Space Exploration, Space Opera
+    Prehistoric Age                 PH
+    Bronze Age                      BZ
+    Iron Age                        IR
+    High Medieval                   HM
+    High Fantasy                    HF
+    Imperial Asia                   IA
+    Arabian Nights                  AN
+    Enlightenment and Renaissance   ER
+    Age of Exploration              EX
+    Age of Sail                     SA
+    Industrial Age                  ID
+    Victorian Age                   VA
+    Wild West                       WW
+    Pulp Era                        PP
+    Planetary Adventure             PV
+    World War II                    WA
+    Noir                            NR
+    Modern                          MD
+    Super World                     SW
+    Postapocalyptic                 PA
+    Near-Future/Cyberpunk           NF
+    Space Exploration               SE
+    Space Opera                     SO
+    .PH.BZ.IR.HM.HF.IA.AN.ER.EX.SA.ID.VA.WW.PP.PV.WA.NR.MD.SW.PA.NF.SE.SO.
   */
   POWER_LEVEL = 0;
 }
@@ -316,7 +339,6 @@ std::string BRP_human_base::DistinctiveFeatures()
     }
   }
   
-  
   //2D array of detailed features
   if (DISTINCTIVE_FEATURES == true && DISTINCTIVE_FEATURES_BASIC == false)
   {
@@ -337,28 +359,28 @@ std::string BRP_human_base::DistinctiveFeatures()
 
     //For loop to get the the full detailed feature discription
     for (int i = 0; i < DFs; i++) 
-    {
-      //"they have " + rand_feature + ". " + next feature...
-      int Type = rand() % 10;  
-      int Count = 0;
-      
-      //counts how many choices their are in a selected array
-      while (FeatureArray[Type][Count] != "") 
       {
-        Count++;
+        //"they have " + rand_feature + ". " + next feature...
+        int Type = rand() % 10;  
+        int Count = 0;
+        
+        //counts how many choices their are in a selected array
+        while (FeatureArray[Type][Count] != "") 
+        {
+          Count++;
+        }
+        
+        //Picks a random choice from the counted array that was selected and adds it to UnitedFeatures
+        if (Count > 0) 
+        {
+          int Feature = rand() % Count;
+          std::string Sentence = " They have " + FeatureArray[Type][Feature] + ".";
+          UnitedFeatures += Sentence;
+        }
       }
-      
-      //Picks a random choice from the counted array that was selected and adds it to UnitedFeatures
-      if (Count > 0) 
-      {
-        int Feature = rand() % Count;
-        std::string Sentence = " They have " + FeatureArray[Type][Feature] + ".";
-        UnitedFeatures += Sentence;
-      }
-    }
   }
 
-  // default if DISTINCTIVE_FEATURES is false, returns a blank space on the sheet
+  //default if DISTINCTIVE_FEATURES is false, returns a blank space on the sheet
   else
   {
     UnitedFeatures = "";
@@ -373,38 +395,38 @@ int BRP_human_base::ProSkillPointsPool()
   ProSkillPtsMAX = 0;
   
   if (POWER_LEVEL == 1) //Heroic game
-    {
-      if (EDUCATION_STAT == true) 
-        {
-          ProSkillPtsMAX = EDU*25;
-        }
-      else
-        {
-          ProSkillPtsMAX = 325;
-        }
-    }
+  {
+    if (EDUCATION_STAT == true) 
+      {
+        ProSkillPtsMAX = EDU*25;
+      }
+    else
+      {
+        ProSkillPtsMAX = 325;
+      }
+  }
   else if (POWER_LEVEL == 2) //Epic game
-    {
-      if (EDUCATION_STAT == true) 
-        {
-          ProSkillPtsMAX = EDU*30;
-        }
-      else
-        {
-          ProSkillPtsMAX = 400; 
-        }
-    }
+  {
+    if (EDUCATION_STAT == true) 
+      {
+        ProSkillPtsMAX = EDU*30;
+      }
+    else
+      {
+        ProSkillPtsMAX = 400; 
+      }
+  }
   else if (POWER_LEVEL == 3) //Superhuman game
-    {
-      if (EDUCATION_STAT == true) 
-        {
-          ProSkillPtsMAX = EDU*40;
-        }
-      else
-        {
-          ProSkillPtsMAX = 500;
-        }
-    }
+  {
+    if (EDUCATION_STAT == true) 
+      {
+        ProSkillPtsMAX = EDU*40;
+      }
+    else
+      {
+        ProSkillPtsMAX = 500;
+      }
+  }
   else //default for Nomral game
   {
     if (EDUCATION_STAT == true) 
@@ -475,7 +497,7 @@ void BRP_human_base::Professions()
 {
   std::string jobs[] = {"Artist", "Assassin", "Athlete", "Beggar", "Clerk", "Computer Tech", "Crafter", "Criminal", "Detective", "Doctor", "Engineer", "Entertainer", "Explorer", "Farmer", "Gambler", "Herder", "Hunter", "Journalist", "Laborer", "Lawkeeper", "Lawyer", "Mechanic", "Merchant", "Noble", "Occultist", "Pilot", "Politician", "Priest", "Sailor", "Scholar", "Scientist", "Servant", "Shaman", "Slave", "Soldier", "Spy", "Student", "Teacher", "Technician", "Thief", "Tribesperson", "Warrior", "Wizard", "Writer"};
 
- // Hired = rand() % 44; OFF FOR TESTING, alos need to replace the 44 with dynamic count of the jobs array
+  // Hired = rand() % 44; OFF FOR TESTING, alos need to replace the 44 with dynamic count of the jobs array
   Hired = 0;
 
   Profession = jobs[Hired];
@@ -543,14 +565,13 @@ void BRP_human_base::Professions()
   //I don't get it and need to study and come up with one I know and can work with
   for (auto& range : WC.range)
   {
-    if (range.WealthWeight >= Income)
-    {
+      if (range.WealthWeight >= Income)
+      {
         Wealth = range.WealthLevel;
         break;
-    }
-    Income -= range.WealthWeight;
+      }
+      Income -= range.WealthWeight;
   }
-
 }
 
 //Determines character's gender 
@@ -691,6 +712,7 @@ int BRP_human_base::Skill_Category_Negative(int x)
 //Handles the optional Skill Category system, both standard & simple
 void BRP_human_base::SkillCategory()
 {
+
   //Skill Category variables
   Combat_skillcategory = 0;    
   Communication_skillcategory = 0;
@@ -929,8 +951,8 @@ void BRP_human_base::Skills()
   SkillTable["SLOT59"] = { "", "", 0, 0, 0};
   SkillTable["SLOT60"] = { "", "", 0, 0, 0};*/
 
-  //An arrray of all Skill names.
-  std::string SkillList[] = {"Appraise", "Art", "Artillery", "Bargain", "Brawl", "Climb", "Command", "Craft", "Demolition", "Disguise", "Dodge", "Drive", "Energy Weapon", "Etiquette", "Fast Talk", "Fine Manipulation", "Firearm", "First Aid", "Fly", "Gaming", "Grapple", "Heavy Machine", "Heavy Weapon", "Hide", "Insight", "Jump", "Knowledge", "Language", "Listen", "Literacy", "Martial Arts", "Medicine", "Melee Weapon", "Missile Weapon", "Navigate", "Parry", "Perform", "Persuade", "Pilot", "Projection", "Psychotherapy", "Repair", "Research", "Ride", "Science", "Sense", "Shield", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Technical Skill", "Throw", "Track"};
+  //A vector of all Skill names.
+  SkillList = {"Appraise", "Art", "Artillery", "Bargain", "Brawl", "Climb", "Command", "Craft", "Demolition", "Disguise", "Dodge", "Drive", "Energy Weapon", "Etiquette", "Fast Talk", "Fine Manipulation", "Firearm", "First Aid", "Fly", "Gaming", "Grapple", "Heavy Machine", "Heavy Weapon", "Hide", "Insight", "Jump", "Knowledge", "Language", "Listen", "Literacy", "Martial Arts", "Medicine", "Melee Weapon", "Missile Weapon", "Navigate", "Parry", "Perform", "Persuade", "Pilot", "Projection", "Psychotherapy", "Repair", "Research", "Ride", "Science", "Sense", "Shield", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Technical Skill", "Throw", "Track"};
   
   //Skil Sub Categories
   //Art
@@ -978,180 +1000,187 @@ void BRP_human_base::Skills()
 void BRP_human_base::PickJobSkills()
 {
   switch (Hired) 
+  {
+    case 0: //Artist
     {
-      case 0: //Artist
-      {
-        //first random art skill
-        int artsubpick = rand() % Art.size();
-        std::string artstyle0 = Art.at(artsubpick);
-        SkillTable["Art0"].SubSkillName = artstyle0;
-        JOBSKILLS[0] = "Art0";
-        
-        //second random art skill
-        std::string artstyle1 = artstyle0;
-        while (artstyle1 == artstyle0) 
-        {
-          int newartsubpick = rand() % Art.size();
-          artstyle1 = Art.at(newartsubpick);
-        }
-        SkillTable["Art1"].SubSkillName = artstyle1;
-        JOBSKILLS[1] = "Art1";
-        
-        //random craft skill
-        int craftsubpick = rand() % Craft.size();
-        SkillTable["Craft0"].SubSkillName = Craft.at(craftsubpick);
-        JOBSKILLS[2] = "Craft0";
-        
-        //random (appropriate?) Knowledge skill
-        int knowsubpick = rand() % Knowledge.size();
-        SkillTable["Knowledge0"].SubSkillName = Knowledge.at(knowsubpick);
-        JOBSKILLS[3] = "Knowledge0";
-       
-        //random Other Language
-        std::string langspoken1 = SkillTable["Language0"].SubSkillName;
-        while (SkillTable["Language0"].SubSkillName == langspoken1) 
-        {
-          int newlangsubpick = rand() % Language.size();
-          langspoken1 = Language.at(newlangsubpick);
-        }
-        SkillTable["Language1"].SubSkillName = langspoken1;
-        JOBSKILLS[4] = "Language1";
-  
-        //Own Language
-        JOBSKILLS[5] = "Language0";
-        
-        //Listen
-        JOBSKILLS[6] = "Listen";
-        
-        //Research
-        JOBSKILLS[7] = "Research";
-        
-        //Spot
-        JOBSKILLS[8] = "Spot";
-        
-        //Insight
-        JOBSKILLS[9] = "Insight";
-      break;
-      }
+      //first random art skill
+      int artsubpick = rand() % Art.size();
+      std::string artstyle0 = Art.at(artsubpick);
+      SkillTable["Art0"].SubSkillName = artstyle0;
+      JOBSKILLS[0] = "Art0";
       
-      case 1: //Assassin
+      //second random art skill
+      std::string artstyle1 = artstyle0;
+      while (artstyle1 == artstyle0) 
       {
-      //any 5 based on setting:
-        //Brawl
-        //Disguise
-        //Drive
-        //Electronics
-        //Grapple
-        //Firearm (any)
-        //Fine Manipulation
-        //Martial Arts
-        //Melee Weapon (any)
-        //Missile Weapon (any)
-        //Ride
-        //Throw
-        //Track
-      //Dodge
-      //Hide
+        int newartsubpick = rand() % Art.size();
+        artstyle1 = Art.at(newartsubpick);
+      }
+      SkillTable["Art1"].SubSkillName = artstyle1;
+      JOBSKILLS[1] = "Art1";
+      
+      //random craft skill
+      int craftsubpick = rand() % Craft.size();
+      SkillTable["Craft0"].SubSkillName = Craft.at(craftsubpick);
+      JOBSKILLS[2] = "Craft0";
+      
+      //random (appropriate?) Knowledge skill
+      int knowsubpick = rand() % Knowledge.size();
+      SkillTable["Knowledge0"].SubSkillName = Knowledge.at(knowsubpick);
+      JOBSKILLS[3] = "Knowledge0";
+     
+      //random Other Language
+      std::string langspoken1 = SkillTable["Language0"].SubSkillName;
+      while (SkillTable["Language0"].SubSkillName == langspoken1) 
+      {
+        int newlangsubpick = rand() % Language.size();
+        langspoken1 = Language.at(newlangsubpick);
+      }
+      SkillTable["Language1"].SubSkillName = langspoken1;
+      JOBSKILLS[4] = "Language1";
+
+      //Own Language
+      JOBSKILLS[5] = "Language0";
+      
       //Listen
-      //Spot
-      //Stealth
-      break;
-      }
+      JOBSKILLS[6] = "Listen";
       
-      case 2: //Athlete
-      {
-      //any 5 based on setting and sport
-        //Brawl
-        //First Aid
-        //Grapple
-        //Insight
-        //Listen
-        //Martial Arts
-        //Spot
-        //Ride
-        //Swim
-      //Climb
-      //Dodge
-      //Jump
-      //Stealth
-      //Throw
-      break;
-      }
-      case 3:
-      {
-      break;
-      }
-      case 4:
-      {
-      break;
-      }
-      case 5:
-      {
-      break;
-      }
-      case 6:
-      {
-      break;
-      }
-      case 7:
-      {
-      break;
-      }
-      case 8:
-      {
-      break;
-      }
-      case 9:
-      {
-      break;
-      }
-      case 10:
-      {
-      break;
-      } 
-      case 11:
-      {
-      break;
-      }
-      case 12:
-      {
-      break;
-      }
-      case 13:
-      {
-      break;
-      }
-      case 14:
-      {
-      break;
-      }
-      case 15:
-      {
-      break;
-      }
-      case 16:
-      {
-      break;
-      }
-      case 17:
-      {
-      break;
-      }
-      case 18:
-      {
-      break;
-      }
-      case 19:
-      {
-      break;
-      }
-      case 20:
-      {
-      break;
-      }
-      default:
-        {break;}
+      //Research
+      JOBSKILLS[7] = "Research";
+      
+      //Spot
+      JOBSKILLS[8] = "Spot";
+      
+      //Insight
+      JOBSKILLS[9] = "Insight";
+    break;
     }
+    
+    case 1: //Assassin
+    {
+    //any 5 based on setting:
+      //Brawl
+      //Disguise
+      //Drive
+      //Electronics
+      //Grapple
+      //Firearm (any)
+      //Fine Manipulation
+      //Martial Arts
+      //Melee Weapon (any)
+      //Missile Weapon (any)
+      //Ride
+      //Throw
+      //Track
+    //Dodge
+    JOBSKILLS[5] = "Dodge";
+    //Hide
+    JOBSKILLS[6] = "Hide";
+    //Listen
+    JOBSKILLS[7] = "Listen";
+    //Spot
+    JOBSKILLS[8] = "Spot";
+    //Stealth
+    JOBSKILLS[9] = "Stealth";
+    break;
+    }
+    
+    case 2: //Athlete
+    {
+    //any 5 based on setting and sport
+      //Brawl
+      //First Aid
+      //Grapple
+      //Insight
+      //Listen
+      //Martial Arts
+      //Spot
+      //Ride
+      //Swim
+    //Climb
+    //Dodge
+    //Jump
+    //Stealth
+    //Throw
+    break;
+    }
+    case 3:
+    {
+    break;
+    }
+    case 4:
+    {
+    break;
+    }
+    case 5:
+    {
+    break;
+    }
+    case 6:
+    {
+    break;
+    }
+    case 7:
+    {
+    break;
+    }
+    case 8:
+    {
+    break;
+    }
+    case 9:
+    {
+    break;
+    }
+    case 10:
+    {
+    break;
+    } 
+    case 11:
+    {
+    break;
+    }
+    case 12:
+    {
+    break;
+    }
+    case 13:
+    {
+    break;
+    }
+    case 14:
+    {
+    break;
+    }
+    case 15:
+    {
+    break;
+    }
+    case 16:
+    {
+    break;
+    }
+    case 17:
+    {
+    break;
+    }
+    case 18:
+    {
+    break;
+    }
+    case 19:
+    {
+    break;
+    }
+    case 20:
+    {
+    break;
+    }
+    default:
+    {
+      break;
+    }
+  }
 }
 
 //Assigns skills to HOBBYSKILLS array based on random chance
@@ -1163,22 +1192,21 @@ void BRP_human_base::PickHobbySkills()
   int TotalPersonalSkillsKnown = rand() % (10 + 1 - 8) + 8;
 
   //array of strings to hold the Personal Skills
-  HOBBYSKILL[TotalPersonalSkillsKnown];
+  HOBBYSKILLS[TotalPersonalSkillsKnown];
 
   //arrays of the results for skills with multiple skill subtypes on the sheet; slots are just spaces on the charater sheet where subskill names can be written
   int twoslot[4] = {1,7,41,43}; //Art,Craft,Repair,Ride
   int threeslot[5] = {11,26,38,43,54}; //Drive,Knowledge,Pilot,Ride,Technical Skill
   int fourslot[2] = {27,44}; //Language,Science
   int combatskillslot[8] = {2,12,16,22,32,33,35,46}; //Artillery,Energy Weapons,Firearms,Heavy Weapons,Melee Weapon,Missile Weapon,Parry,Shield
-  //All other skills lack a subskill and can just be increased.
+  //All other skills lack a subskill and can just be added to HOBBYSKILLS.
 
-  
   //Redo loop to reduce KnownSkillLeft whenever it does 
   //Loop adding skill names to HOBBYSKILL array also assigns SubSkills when needed
   for(int i = 0; i < TotalPersonalSkillsKnown; i++)
   {
     //Randomlly picked skill from SkillList
-    int SkillPicked = rand() % sizeof(SkillList) / sizeof(std::string);
+    int SkillPicked = rand() % SkillList.size();
     
     //Bools for confirming if the skill picked is one that requires checking subtypes
     bool SkillwithTwoSlots = std::find(std::begin(twoslot),std::end(twoslot),SkillPicked) != std::end(twoslot);
@@ -1192,47 +1220,70 @@ void BRP_human_base::PickHobbySkills()
     std::string SkillSlotTWO = SkillList[SkillPicked] + "2"; //skill2
     std::string SkillSlotTHREE = SkillList[SkillPicked] + "3"; //skill3
 
+    for (int i = 0; i < TotalPersonalSkillsKnown; i++)
+    {
+      if (HOBBYSKILLS[i] == SkillList[SkillPicked] || HOBBYSKILLS[i] == SkillSlotZERO || HOBBYSKILLS[i] == SkillSlotONE || HOBBYSKILLS[i] == SkillSlotTWO || HOBBYSKILLS[i] == SkillSlotTHREE)
+      {}
+    }
+    
     //For subskills;  
     if (SkillwithTwoSlots == true) //Selected skill has 2 slots
+    {
+      int SIT = 0;
+      
+      switch (SIT)
       {
-        if (SkillTable[SkillSlotZERO].SubSkillName != "" && SkillTable[SkillSlotONE].SubSkillName != "") //if this skill hasn't been selected yet
-          {
-            HOBBYSKILL[i] = SkillSlotZERO;
-          }
-        else 
-          {
-            int coin = rand() % 1; //Do I increase skill in slot 0 or add new one?
-            if (coin == 1)
-              {
-                SkillTable[SkillSlotZERO].SubSkillName = ""; //Stopped working here till I come up with a better system
-                HOBBYSKILL[i] = SkillSlotZERO;
-              }
-            else {HOBBYSKILL[i] = SkillSlotONE;}
-          }
+        case 0: //Slot 0 used, slot 1 is free
+        {
+          break;
+        }; 
+        case 1: //Slot 0 and 1 are used
+        {
+          break;
+        };
+        default: //Slots 0 and 1 are free
+        {
+          break;
+        };
       }
+      break;
+      // if (SkillTable[SkillSlotZERO].SubSkillName != "" && SkillTable[SkillSlotONE].SubSkillName != "") //if this skill hasn't been selected yet
+      // {
+      //   HOBBYSKILLS[i] = SkillSlotZERO;
+      // }
+      // else 
+      // {
+      //   int coin = rand() % 1; //Do I increase skill in slot 0 or add new one?
+      //   if (coin == 0)
+      //   {
+      //     SkillTable[SkillSlotZERO].SubSkillName = ""; //Stopped working here till I come up with a better system
+      //     HOBBYSKILLS[i] = SkillSlotZERO;
+      //   }
+      //   else {HOBBYSKILLS[i] = SkillSlotONE;}
+      // }
+    }
     else if(SkillwithThreeSlots == true) //Selected skill has 3 slots
-      {
-        //no code, need to fill
-        break;
-      }
+    {
+      //no code, need to fill
+      break;
+    }
     else if(SkillwithFourSlots == true) //Selected skill has 4 slots
-      {
-        //no code, need to fill
-        break;
-      }
+    {
+      //no code, need to fill
+      break;
+    }
     else if(SkillinCombat == true) //Selected skill is a combat skill
-      {
+    {
       //no code, need to fill
       break;
     }
     else //Selected skill has 1 slot
-      {
-        HOBBYSKILL[i] = SkillList[SkillPicked];
-        //set up condional for Heavy Machine
-      }
+    {
+      HOBBYSKILLS[i] = SkillList[SkillPicked];
+      //set up condional for Heavy Machine
+    }
   }
-}
-*/
+}*/
 
 //Randomly assigns skill points to the Character's personnal skills 
 /*
@@ -1275,9 +1326,9 @@ void BRP_human_base::PersonalSkillSet()
 void BRP_human_base::FillSkillMod()
 {
   for (auto& X : SkillTable)
-    {
-      X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
-    }
+  {
+    X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
+  }
 }
 
 //Assign Own Language
@@ -1326,33 +1377,35 @@ void BRP_human_base::ProfessionSkillSet()
   //Function ends when all CurrentSkillPoints are used up.
   while (CurrentSkillPoints > 0)
   {
-    //This loops 10 times through the JOBSKILLS array because there are 10 skills for each Profession. If there is a different number skills per profession it is recommended to adjust 10 in the for loop argument by that amount. I could run a check for how long the JOBSKILLS and make that a veriable so the max JOBSKILL array can be changed without issues
+    /*This loops 10 times through the JOBSKILLS array because there are 10 skills for each Profession. 
+    If there is a different number skills per profession it is recommended to adjust 10 in the for loop argument by that amount. 
+    I could run a check for how long the JOBSKILLS and make that a veriable so the max JOBSKILL array can be changed without issues*/
     for (int i = 0; i < 10; i++)
     {
-      //Gets the name of the skill to be increased.
-      std::string ROLE = JOBSKILLS[i];
-      //Skip any skill already at max rating.
-      if (SkillTable[ROLE].SkillMod >= SkillRatingMAX)
+    //Gets the name of the skill to be increased.
+    std::string ROLE = JOBSKILLS[i];
+    //Skip any skill already at max rating.
+    if (SkillTable[ROLE].SkillMod >= SkillRatingMAX)
+      {continue;}
+    else 
+      {
+      //Assigns 0 to 10 points.
+      int LEARNED = rand() % 11;
+      //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
+      while (LEARNED > CurrentSkillPoints)
+        {LEARNED--;}
+      //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
+      while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX) 
+        {LEARNED--;}
+      //Add and remove points to the skill and from the CurrentSkillPoints availible.
+      SkillTable[ROLE].SkillMod += LEARNED; 
+      CurrentSkillPoints -= LEARNED;
+      //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
+      if (CurrentSkillPoints == 0)
+        {break;}
+      else
         {continue;}
-      else 
-        {
-          //Assigns 0 to 10 points.
-          int LEARNED = rand() % 11;
-          //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
-          while (LEARNED > CurrentSkillPoints)
-            {LEARNED--;}
-          //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
-          while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX) 
-            {LEARNED--;}
-          //Add and remove points to the skill and from the CurrentSkillPoints availible.
-          SkillTable[ROLE].SkillMod += LEARNED; 
-          CurrentSkillPoints -= LEARNED;
-          //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
-          if (CurrentSkillPoints == 0)
-            {break;}
-          else
-            {continue;}
-        }
+      }
     }
   }
 }
@@ -1383,6 +1436,7 @@ void BRP_human_base::fullrandom(RandomSetUp& WOW)
   HPbyLocation(HP);
   MajorWounds();
   DamageBonus();
+  Weapons();
   Born();
   RandGender();
   HandDom();
@@ -1410,6 +1464,7 @@ void BRP_human_base::fullrandom(RandomSetUp& WOW)
 void BRP_human_base::consoleChar(RandomSetUp& WOW)
 {
   std::cout << "\n" << std::endl;
+  std::cout << WeaponsTable["Sword, Short"].WeaponName << std::endl;
   std::cout << "Starting Age: " << Age << "\t" << "Works as ";
   if(Wealth[0] == 'A'){std::cout << "an ";}else{std::cout << "a ";}; 
   std::cout <<  Wealth << " " << Profession << std::endl;
@@ -1425,7 +1480,7 @@ void BRP_human_base::consoleChar(RandomSetUp& WOW)
   {std::cout << "SIZ " << SIZ << "\t" << "Damage Bonus of " << DamBonus << std::endl;}
   std::cout << "HP: " << HP << " with Major Would occuring at " << MW << " HP" << std::endl;
   std::cout << "\n" << UnitedFeatures <<std::endl;
-  std::cout << "\n\t" << Personality << std::endl;
+  std::cout <<"\n"<<" "<< Personality << std::endl;
   std::cout << "\nProfessional Skill Points Pool: "  << ProSkillPtsMAX << "\t\t" << "Personal Skill Points Pool: "  << PerSkillPtsMAX << std::endl;
 
   //START OF SKILLS
