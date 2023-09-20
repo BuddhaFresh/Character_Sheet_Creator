@@ -1220,6 +1220,8 @@ void BRP_human_base::PickHobbySkills()
     std::string SkillSlotTWO = SkillList[SkillPicked] + "2"; //skill2
     std::string SkillSlotTHREE = SkillList[SkillPicked] + "3"; //skill3
 
+    //Checks if picked skill is already in HOBBYSKILLS[]
+    //How does this loop effect the one it's in? This also doesn't check for ARMS which have tons of subtypes
     for (int i = 0; i < TotalPersonalSkillsKnown; i++)
     {
       if (HOBBYSKILLS[i] == SkillList[SkillPicked] || HOBBYSKILLS[i] == SkillSlotZERO || HOBBYSKILLS[i] == SkillSlotONE || HOBBYSKILLS[i] == SkillSlotTWO || HOBBYSKILLS[i] == SkillSlotTHREE)
@@ -1459,6 +1461,12 @@ void BRP_human_base::fullrandom(RandomSetUp& WOW)
 
 
 } 
+
+//Free build a full character
+void BRP_human_base::freebuild()
+{
+  ;
+}
 
 //Prints character sheet to console
 void BRP_human_base::consoleChar(RandomSetUp& WOW)

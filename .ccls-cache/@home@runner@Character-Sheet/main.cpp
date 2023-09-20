@@ -1,4 +1,5 @@
 #include "menus.h"
+#include "Systems/BRP/BRP_Menu.h"
 #include "Systems/BRP/BRP.h"
 #include "diceroller.h"
 
@@ -7,7 +8,7 @@ ROADMAP
  
 0. txt file version complete
  0.1 skills [IN PROGRESS]
-   0.1a selecting skills based on profession [DONE]
+   0.1a selecting skills based on profession by random [DONE]
    0.1b selecting personnel skills by random
    0.1c filter skills based on era/setting
      0.1cI Eras/Settings need to be picked but expandable
@@ -28,14 +29,19 @@ ROADMAP
    0.3f attack powers?
  0.4 hit location [DONE]
  0.5 armor
+ 0.6 Point Buy System Character Creater
+ 0.7 Free Build Character Creater
+   0.7a Maybe I should of started with this and build evertyhing else around it?
 1. Move BRP Menus in BRP.cpp
  1.1 Have options adjustment menu
  1.2 Move Dice Roller menu in Diceroller.cpp
    1.2a Make a multi-dice roller too
  1.3 Clean up all headers so every script is modular  
 2. Load from txt file
- 2.1 need to make something that reads a code on the bottom that tells it settings for layout [LOADCODE: Character Name#C0DeSy$t3m#0060180090200
- numbers ar end are raw base rolls,selections,outcomes, etc. Two digit code system sets the parameters/context for the numbers. Maybe another at the end for equipment tracking.]
+ 2.1 need to make something that reads a code on the bottom that tells it settings for layout 
+ [LOADCODE: Character Name#C0DeSy$t3m#0060180090200
+ Using # to seperate sections, numbers at end are raw base rolls,selections,outcomes, etc. Two digit code system sets the parameters/context for the numbers. 
+ Maybe another at the end for equipment tracking.]
 3. Able to edit a blank sheet (point buy and full custom edit)
 4. Able to edit randomized sheet
 5. Make a user defined multi-random character (txt) sheet generater
@@ -43,7 +49,7 @@ ROADMAP
 6. basic windows GUI (can do on replit?)
 7. exe file installer (need to be on own pc?)
 8. PDF file output (may just skip, needs a plugin)
- 8.1 Fillable PDF file output
+ 8.1 Fillable PDF file output (may just skip, needs a plugin)
 */
 
 
@@ -92,9 +98,8 @@ int main()
           {//New Sheet menu 
             std::cout << "\n\n<>----------<>----------<>----------<>\n";
             std::cout << "\t\t\tNew Sheet Menu\n";
-            std::cout << "New Sheet not availible\n\n";
             std::cout << "1. DOJO [Make 5 random BRP chars]\n\n";
-            std::cout << "2. DOJO [Custom BRP Character]\n\n";
+            std::cout << "2. DOJO [BRP menu]\n\n";
             std::cout << "3. DOJO [make random BRP char rolls]\n";
             std::cout << "\n0. Return to Main Menu\n";
             std::cout << "<>----------<>----------<>----------<>\n\n";
@@ -113,11 +118,10 @@ int main()
                 }
                 break;
               case 2://temp for testing
-                for (int i = 0; i < 20; i++)
                 {
-                 std::cout << ThreeDSix() << std::endl; 
-                }
+                BRP_menu(); 
                 break;
+                }
               case 3://temp for testing
                 {//case 3
                   BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());

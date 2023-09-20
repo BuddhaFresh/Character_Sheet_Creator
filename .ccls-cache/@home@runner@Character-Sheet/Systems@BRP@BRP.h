@@ -150,7 +150,7 @@ private:
   void Weapons();
   void FillSkillMod();
   void Faith();
-  void SettingsSwitches();
+  
   void ExpBonus(int E);
   int FatiguePoints(int A, int B);
   void SanityPoints(int G);
@@ -193,6 +193,8 @@ public:
   void PlayerName();
   std::string PN;
 
+  void SettingsSwitches();
+  void freebuild();
   void fullrandom(RandomSetUp& WOW);
   void consoleChar(RandomSetUp& WOW);
   void printChar(RandomSetUp& WOW);
