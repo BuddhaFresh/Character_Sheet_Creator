@@ -1,7 +1,14 @@
 #include "BRP_Menu.h"
+#include "BRP.h"
+#include "../../diceroller.h"
+#include "../../menus.h"
+
+RandomSetUp NEXT;
 
 int BRP_menu()
 {
+  //RANDO.randomSeed();
+  
   //inputs for menu
   int BRPMainMenuInput;
   
@@ -14,6 +21,7 @@ int BRP_menu()
     std::cout << "3. Create Character, Point-Buy System\n";
     std::cout << "4. Create Character, Free-Form\n";
     std::cout << "5. Settings\n";
+    
     std::cout << "\n0. Return to New Sheet Menu\n";
     std::cout << "<>v^v^v^v^v^<>v^v^vv^v^v<>^v^v^v^v^v<>\n\n";
   
@@ -24,12 +32,15 @@ int BRP_menu()
     {
       case 1://full random
         {
-          std::cout << "Not availible";
+          BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
+          BRPChar0.PlayerName();
+          BRPChar0.fullrandom(NEXT);
+          BRPChar0.consoleChar(NEXT);
           break;
         }
       case 2://multi full random
         {
-          std::cout << "Not availible";
+          std::cout << NEXT.currentSeed;
           break;
         }
       case 3://pointbuy
