@@ -27,42 +27,51 @@ void RandomSetUp::userSeed()
 //Dice class functions
 int Dice::Dfour()
 {
-  int x = rand() % 4 + 1;
-  return x;
+  return rand() % 4 + 1;
 }
 
 int Dice::Dsix()
 {
-  int x = rand() % 6 + 1;
-  return x;
+  return rand() % 6 + 1;
 }
 
 int Dice::Deight()
 {
-  int x = rand() % 8 + 1;
-  return x;
+  return rand() % 8 + 1;
 }
 
 int Dice::Dten()
 {
-  int x = rand() % 10 + 1;
-  return x;
+  return rand() % 10 + 1;
 }
 
 int Dice::Dtwelve()
 {
-  int x = rand() % 12 + 1;
-  return x;
+  return rand() % 12 + 1;
 }
 
 int Dice::Dtwenty()
 {
-  int x = rand() % 20 + 1;
-  return x;
+  return rand() % 20 + 1;
 }
 
 int Dice::Donehundred()
 {
-  int x = rand() % 100 + 1;
-  return x;
+  return rand() % 100 + 1;
 }
+
+//Multi-Dice Roll
+/*
+int MultiDiceRoll(){
+  int InputforDice;
+  int DicePicked = 0;
+  using funky = 
+  std::map<int,> DChoice;
+  int Rolls = 0;
+  std::vector RollOutcomes;
+  for (int i = 0, i < Rolls, i++){
+    
+  }
+  return RollOutcomes;
+}
+*/
