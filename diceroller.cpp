@@ -4,8 +4,10 @@
 
 //RandomSetUp class functions
 void RandomSetUp::randomSeed(){
-  currentSeed = time(NULL);
-  srand(currentSeed);
+  currentSeed = static_cast<unsigned int>(time(nullptr));
+  mt_rando.seed(currentSeed);
+  //currentSeed = time(NULL);
+  //srand(currentSeed);
 }
 
 void RandomSetUp::userSeed(){
@@ -39,8 +41,10 @@ int Dice::Dten(){
   return rand() % 10 + 1;
 }
 
-int Dice::Dtwelve(){
-  return rand() % 12 + 1;
+int Dice::Dtwelve(RandomSetUp& NUM){
+  std::uniform_int_distribution<int> twenty(1, 20);
+  int XXX = twenty(NUM.mt_rando);
+  return XXX;
 }
 
 int Dice::Dtwenty(){
@@ -48,7 +52,9 @@ int Dice::Dtwenty(){
 }
 
 int Dice::Donehundred(){
-  return rand() % 100 + 1;
+  std::uniform_int_distribution<int> hundred(1, 100);
+  int XXX = 99;
+  return XXX;
 }
 
 //Multi-Dice Roll

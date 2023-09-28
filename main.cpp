@@ -4,6 +4,12 @@
 #include "diceroller.h"
 
 /*
+Need to make a strut for professions!
+Also a strut for the currentSeed
+I also added in <random> to make a "better" pRNG
+*/
+
+/*
 ROADMAP
  
 0. txt file version complete
@@ -95,6 +101,7 @@ int main()
       switch (mainMenuInput)
       {//Main menu input start    
         case 1: //New Sheet
+          std::cout << "\033c";
           while(true)
           {//New Sheet menu 
             std::cout << "\n\n<>----------<>----------<>----------<>\n";
@@ -158,7 +165,10 @@ int main()
                         break;
                     }//save character input end
                     
-                    if (charKeepInput == 0 || charKeepInput == 1) break;
+                    if (charKeepInput == 0 || charKeepInput == 1){
+                      std::cout << "\033c";
+                      break;
+                    };
                     
                   }//save character menu end
                   
@@ -170,15 +180,20 @@ int main()
                 std::cout << "Please enter one of the listed options";
                 break;
             }//New Sheet menu input end
-            if (newMenuInput == 0) break;
+            if (newMenuInput == 0){
+              std::cout << "\033c";
+              break;
+            };
           }//New Sheet menu end
           break;
           
         case 2: //Load Sheet
+          std::cout << "\033c";
           std::cout << "\nLoad Sheet not availible\n\n";
           break;
         
         case 3: //Dice Roller
+          std::cout << "\033c";
           while (true)
             {//Dice Roller menu
               std::cout << "\n\n<>++++++++++<>++++++++++<>++++++++++<>\n";
@@ -211,7 +226,7 @@ int main()
                   std::cout << "\nYou rolled a ten-sided die and got a " << ROLL.Dten() << std::endl;
                   break;
                 case 5:
-                  std::cout << "\nYou rolled a twelve-sided die and got a " << ROLL.Dtwelve() << std::endl;
+                  std::cout << "\nYou rolled a twelve-sided die and got a " << ROLL.Dtwelve(RandomSetUp& NUM) << std::endl;
                   break;
                 case 6:
                   std::cout << "\nYou rolled a twenty-sided die and got a " << ROLL.Dtwenty() << std::endl;
@@ -225,11 +240,15 @@ int main()
                  std::cout << "Please enter one of the listed options";
                  break;
               }//Dice Roller input end
-              if (diceMenuInput == 0) break;
+              if (diceMenuInput == 0){
+                std::cout << "\033c";
+                break;
+              };
             }//Dice Roller menu end
             break;
         
         case 4: //Options
+        std::cout << "\033c";
         while (true)  
         {//Options sub-menu start
           std::cout << "\n\n<>==========<>==========<>==========<>\n";
@@ -245,26 +264,35 @@ int main()
             switch (optionsMenuInput)
               {//Options input
                 case 1:
+                  std::cout << "\033c";
                   SEEDER.userSeed();
                   break;
                 case 2:
+                  std::cout << "\033c";
                   std::cout << "\nNew Seed has been generated\n";
                   SEEDER.randomSeed();
                   break;
                 case 0:
+                  std::cout << "\033c";
                   std::cout << "\nReturning to Main Menu\n";
                   break;
                 default: 
+                  std::cout << "\033c";
                   std::cout << "\nNot an availible command\n";
                   break;
               }//Options input end
-          if (optionsMenuInput == 0) break; 
+          if (optionsMenuInput == 0){
+            std::cout << "\033c";
+            break;
+          }; 
         }//Options sub-menu end
         break;
         case 0: //Exit
+          std::cout << "\033c";
           std::cout << "\nExiting Program\nGood Bye!\n";
           return 0;
         default: 
+          std::cout << "\033c";
           std::cout << "\nNot an availible command\n";
           break;
       }//Main menu input end
