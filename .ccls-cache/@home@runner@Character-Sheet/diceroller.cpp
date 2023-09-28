@@ -3,14 +3,12 @@
 
 
 //RandomSetUp class functions
-void RandomSetUp::randomSeed() 
-{
+void RandomSetUp::randomSeed(){
   currentSeed = time(NULL);
   srand(currentSeed);
 }
 
-void RandomSetUp::userSeed()
-{
+void RandomSetUp::userSeed(){
   // Prompt for user to input their seed
   std::cout << "\nEnter seed\n";
   //std::getline(std::cin >> std::ws, seedinput);
@@ -25,43 +23,41 @@ void RandomSetUp::userSeed()
 
 
 //Dice class functions
-int Dice::Dfour()
-{
+int Dice::Dfour(){
   return rand() % 4 + 1;
 }
 
-int Dice::Dsix()
-{
+int Dice::Dsix(){
   return rand() % 6 + 1;
 }
 
-int Dice::Deight()
-{
+int Dice::Deight(){
   return rand() % 8 + 1;
 }
 
-int Dice::Dten()
-{
+int Dice::Dten(){
   return rand() % 10 + 1;
 }
 
-int Dice::Dtwelve()
-{
+int Dice::Dtwelve(){
   return rand() % 12 + 1;
 }
 
-int Dice::Dtwenty()
-{
+int Dice::Dtwenty(){
   return rand() % 20 + 1;
 }
 
-int Dice::Donehundred()
-{
+int Dice::Donehundred(){
   return rand() % 100 + 1;
 }
 
 //Multi-Dice Roll
+
 /*
+pick the die to roll
+how many to roll
+
+
 int MultiDiceRoll(){
   int InputforDice;
   int DicePicked = 0;
@@ -69,9 +65,8 @@ int MultiDiceRoll(){
   std::map<int,> DChoice;
   int Rolls = 0;
   std::vector RollOutcomes;
-  for (int i = 0, i < Rolls, i++){
+  for (int i = 0; Rolls; i++){
     
   }
   return RollOutcomes;
-}
-*/
+}*/

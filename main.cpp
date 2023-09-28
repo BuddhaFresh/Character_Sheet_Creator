@@ -79,6 +79,7 @@ int main()
   
   while(true) 
   {//MAIN MENU
+    //std::cout << "Hello!\033c";
     std::cout << "\n\n<>~~~~~~~~~~<>~~~~~~~~~~<>~~~~~~~~~~<>\n";
     std::cout << "Welcome to Character Sheet Creator\n\t\t\tMain Menu\n";
     std::cout << "1. New Sheet\n";
@@ -110,6 +111,7 @@ int main()
             switch(newMenuInput)
             {//New Sheet menu input start
               case 1://temp for testing
+                std::cout << "\033c";
                 for (int i = 0; i < 5; i++)
                 {
                  BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
@@ -119,11 +121,13 @@ int main()
                 break;
               case 2://temp for testing
                 {
+                std::cout << "\033c";
                 BRP_menu(); 
                 break;
                 }
               case 3://temp for testing
                 {//case 3
+                  std::cout << "\033c";
                   BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
                   BRPChar0.PlayerName();
                   BRPChar0.fullrandom(SEEDER);
@@ -141,12 +145,15 @@ int main()
                     switch(charKeepInput)
                     {//save character input
                       case 1:
+                        std::cout << "\033c";
                         BRPChar0.CharName();
                         BRPChar0.printChar(SEEDER);
                         break;
                       case 0:
+                        std::cout << "\033c";
                         break;
                       default:
+                        std::cout << "\033c";
                         std::cout << "\nNot one of the options";
                         break;
                     }//save character input end
@@ -159,6 +166,7 @@ int main()
                   
                 }//case 3 end
               default:
+                std::cout << "\033c";
                 std::cout << "Please enter one of the listed options";
                 break;
             }//New Sheet menu input end

@@ -2,6 +2,9 @@
 #include <iostream>
 #include <time.h>
 #include <string>
+#include <stdlib.h> //random number fucntions
+#include <random>
+#include <cstdlib> //C standard library; std
 
 class RandomSetUp 
 {
