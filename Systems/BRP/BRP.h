@@ -70,8 +70,7 @@ struct WealthCategorys
 
 
 
-class BRP_human_base
-{
+class BRP_human_base{
 private:
   bool EDUCATION_STAT;
   bool SKILL_CATEGORY;
@@ -184,7 +183,6 @@ private:
   std::map<std::string, WeaponsData>WeaponsTable;
 
 
-
 public:
   BRP_human_base(int a, int b, int c, int d, int e, int x, int y);
 
@@ -195,7 +193,7 @@ public:
 
   void SettingsSwitches();
   void freebuild();
-  void fullrandom(RandomSetUp& WOW);
-  void consoleChar(RandomSetUp& WOW);
-  void printChar(RandomSetUp& WOW);
+  void fullrandom();
+  void consoleChar();
+  void printChar();
 };

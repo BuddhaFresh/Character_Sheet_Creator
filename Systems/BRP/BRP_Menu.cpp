@@ -3,7 +3,7 @@
 #include "../../diceroller.h"
 #include "../../menus.h"
 
-RandomSetUp NEXT;
+//RandomSetUp NEXT;
 
 int BRP_menu()
 {
@@ -32,40 +32,40 @@ int BRP_menu()
     {
       case 1:{//full random
         std::cout << "Hello!\033c";
-          BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
-          BRPChar0.PlayerName();
-          BRPChar0.fullrandom(NEXT);
-          BRPChar0.consoleChar(NEXT);
-          break;
+        BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
+        BRPChar0.PlayerName();
+        BRPChar0.fullrandom();
+        BRPChar0.consoleChar();
+        break;
         }
       case 2:{//multi full random
         std::cout << "Hello!\033c";  
-        std::cout << NEXT.currentSeed;
-          break;
+        std::cout << RANDOMCORE.currentSeed;
+        break;
         }
       case 3:{//pointbuy
         std::cout << "Hello!\033c";
-          std::cout << "Not availible";
-          break;
+        std::cout << "Not availible";
+        break;
         }
       case 4:{//free-form
         std::cout << "Hello!\033c";
-          std::cout << "Not availible";
-          break;
+        std::cout << "Not availible";
+        break;
         }
       case 5:{//settings
         std::cout << "Hello!\033c";
-          std::cout << "Not availible";
-          break;
+        std::cout << "Not availible";
+        break;
         }
       case 0:{//exit
         std::cout << "Hello!\033c";
-          return 0;
+        return 0;
         }
       default:{//error message
         std::cout << "Hello!\033c";
-          std::cout << "Not an acceptable input.\nPlease enter only one of the number options in the menu." << std::endl;
-          break;
+        std::cout << "Not an acceptable input.\nPlease enter only one of the number options in the menu." << std::endl;
+        break;
         }
     }//BRP Main Menu Input
   }//Main While Loop

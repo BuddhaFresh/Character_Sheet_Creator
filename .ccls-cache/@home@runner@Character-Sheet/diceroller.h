@@ -7,8 +7,7 @@
 #include <cstdlib> //C standard library; std
 
 
-class RandomSetUp 
-{
+class RandomSetUp{
   public:
     int currentSeed;
     std::string seedinput;
@@ -18,15 +17,19 @@ class RandomSetUp
     void userSeed();
 };
 
-class Dice
-{
+class Dice{
   public:
+    int Die(int MIN, int MAX);
+    void ManyDice(int MIN, int MAX, int ROLLS);
     int Dfour();
     int Dsix();
     int Deight();
     int Dten();
-    int Dtwelve(RandomSetUp& NUM);
+    int Dtwelve();
     int Dtwenty();
     int Donehundred();
 
 };
+
+extern RandomSetUp RANDOMCORE;
+extern Dice ROLL;

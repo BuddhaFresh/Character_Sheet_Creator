@@ -12,9 +12,6 @@
 //class BRP char with roll inputs
 
 
-//Classes
-Dice PLAY;
-
 
 //Create folder for character sheets
 void FolderOriginBRP()
@@ -35,7 +32,7 @@ int ThreeDSix()
   int x = 0;
   for(int i = 0; i < 3; i++)
   {
-    x += PLAY.Dsix();
+    x += ROLL.Dsix();
   }
   return x;
 }
@@ -46,7 +43,7 @@ int TwoDSixPlusSix()
   int x = 0;
   for(int i = 0; i < 2; i++)
   {
-    x += PLAY.Dsix();
+    x += ROLL.Dsix();
   }
   return x+6;
 }
@@ -197,7 +194,7 @@ int BRP_human_base::CharacteristicRoll(int r)
 //Will need to expand to allow input from user and modifiers for higher and lower ages
 int BRP_human_base::Born()
 {
-  int startage = 17+PLAY.Dsix();
+  int startage = 17+ROLL.Dsix();
   Age = startage;
   return Age;
 }
@@ -333,7 +330,7 @@ std::string BRP_human_base::DistinctiveFeatures()
     for (int i = 0; i < DFs; i++) 
     {
       //"they have " + rand_feature + ". " + next feature...
-      int Type = PLAY.Dten();  
+      int Type = ROLL.Dten();  
   
       std::string Sentence = " They have distinctive " + FeatureTypeTable[Type] + ".";
       UnitedFeatures += Sentence;
@@ -498,7 +495,7 @@ void BRP_human_base::Professions()
 {
   std::string jobs[] = {"Artist", "Assassin", "Athlete", "Beggar", "Clerk", "Computer Tech", "Crafter", "Criminal", "Detective", "Doctor", "Engineer", "Entertainer", "Explorer", "Farmer", "Gambler", "Herder", "Hunter", "Journalist", "Laborer", "Lawkeeper", "Lawyer", "Mechanic", "Merchant", "Noble", "Occultist", "Pilot", "Politician", "Priest", "Sailor", "Scholar", "Scientist", "Servant", "Shaman", "Slave", "Soldier", "Spy", "Student", "Teacher", "Technician", "Thief", "Tribesperson", "Warrior", "Wizard", "Writer"};
 
-  // Hired = rand() % 44; OFF FOR TESTING, alos need to replace the 44 with dynamic count of the jobs array
+  // Hired = rand() % 44; //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
   Hired = 0;
 
   Profession = jobs[Hired];
@@ -578,7 +575,7 @@ void BRP_human_base::Professions()
 //Determines character's gender 
 std::string BRP_human_base::RandGender()
 {
-  int X = PLAY.Donehundred();
+  int X = ROLL.Donehundred();
 
   //50% Female, 49% Male, 1% Non-Binary
   if (X == 100) {Gender = "Non-Binary";}
@@ -600,7 +597,7 @@ void BRP_human_base::Faith()
 //Determines character's hand dominance 
 std::string BRP_human_base::HandDom()
 {
-  int Odds = PLAY.Donehundred();
+  int Odds = ROLL.Donehundred();
 
   //83% Right-Handed, 13% Left-Handed, 3% Ambidextrous, 1% Cross-Dominant; based on UN data
   if (Odds == 100) {Handedness = "Cross-Dominant";}
@@ -614,12 +611,12 @@ std::string BRP_human_base::HandDom()
 //Determines character's Height and Weight 
 void BRP_human_base::HeightandWeight()
 {
-  //2D-array of height and weight outcomes
-  std::string HTandWT[2][5] = 
-{
-  {"Tiny","Short","Average","Tall","Towering"},
-  {"Frail","Thin","Average","Overweight","Obese"}
-};
+    //2D-array of height and weight outcomes
+    std::string HTandWT[2][5] = 
+  {
+    {"Tiny","Short","Average","Tall","Towering"},
+    {"Frail","Thin","Average","Overweight","Obese"}
+  };
 
   //poor if statement just to use the array. should adjust results based on CON and maybe random chance
   //this is a pretty subjective thing. Maybe just pure random picks within SIZ based boundries
@@ -1344,7 +1341,7 @@ void BRP_human_base::OwnLanguage()
 //Personality
 void BRP_human_base::PersonalityPick()
 {
-  int pick = PLAY.Dfour();
+  int pick = ROLL.Dfour();
   Personality = "";
   switch (pick)
   {//need to add skill points asigning for each case
@@ -1372,8 +1369,7 @@ void BRP_human_base::PersonalityPick()
 }
 
 //Randomly assigns skill points to the Profession's Skills
-void BRP_human_base::ProfessionSkillSet()
-{
+void BRP_human_base::ProfessionSkillSet(){
   //Sets up the Current Skill Points to be spent for the following loop.
   int CurrentSkillPoints = ProSkillPtsMAX;
 
@@ -1382,32 +1378,42 @@ void BRP_human_base::ProfessionSkillSet()
   {
     /*This loops 10 times through the JOBSKILLS array because there are 10 skills for each Profession. 
     If there is a different number skills per profession it is recommended to adjust 10 in the for loop argument by that amount. 
-    I could run a check for how long the JOBSKILLS and make that a veriable so the max JOBSKILL array can be changed without issues*/
-    for (int i = 0; i < 10; i++)
-    {
+    I could run a check for how long the JOBSKILLS is and make that a veriable so the max JOBSKILL array can be changed without issues*/
+    for (int i = 0; i < 10; i++){
+    
     //Gets the name of the skill to be increased.
     std::string ROLE = JOBSKILLS[i];
+      
     //Skip any skill already at max rating.
-    if (SkillTable[ROLE].SkillMod >= SkillRatingMAX)
-      {continue;}
-    else 
-      {
+    if (SkillTable[ROLE].SkillMod >= SkillRatingMAX){
+      continue;
+    }
+    else {
+      
       //Assigns 0 to 10 points.
       int LEARNED = rand() % 11;
+      
       //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
-      while (LEARNED > CurrentSkillPoints)
-        {LEARNED--;}
+      while (LEARNED > CurrentSkillPoints){
+        LEARNED--;
+      }
+      
       //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
-      while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX) 
-        {LEARNED--;}
+      while (SkillTable[ROLE].SkillMod + LEARNED > SkillRatingMAX){
+        LEARNED--;
+      }
+      
       //Add and remove points to the skill and from the CurrentSkillPoints availible.
       SkillTable[ROLE].SkillMod += LEARNED; 
       CurrentSkillPoints -= LEARNED;
+      
       //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
-      if (CurrentSkillPoints == 0)
-        {break;}
-      else
-        {continue;}
+      if (CurrentSkillPoints == 0){
+        break;
+      }
+      else{
+        continue;
+      }
       }
     }
   }
@@ -1428,8 +1434,7 @@ void BRP_human_base::PlayerName()
 }
 
 //Generates a fully randomized character
-void BRP_human_base::fullrandom(RandomSetUp& WOW)
-{
+void BRP_human_base::fullrandom(){
   SettingsSwitches();
   EDUstat();
   ExpBonus(INT);
@@ -1458,8 +1463,7 @@ void BRP_human_base::fullrandom(RandomSetUp& WOW)
   PickJobSkills();
   ProfessionSkillSet();
   //PersonalSkillSet();
-  
-} 
+}
 
 //Free build a full character
 void BRP_human_base::freebuild()
@@ -1468,7 +1472,7 @@ void BRP_human_base::freebuild()
 }
 
 //Prints character sheet to console
-void BRP_human_base::consoleChar(RandomSetUp& WOW)
+void BRP_human_base::consoleChar()
 {
   std::cout << "\n" << std::endl;
   std::cout << "Starting Age: " << Age << "\t" << "Works as ";
@@ -1576,11 +1580,11 @@ void BRP_human_base::consoleChar(RandomSetUp& WOW)
   //END OF SKILLS
 
   
-  std::cout << "\n\nSeed: " << WOW.currentSeed;
+  std::cout << "\n\nSeed: " << RANDOMCORE.currentSeed;
 }
 
 //Prints a txt file character sheet
-void BRP_human_base::printChar(RandomSetUp& WOW)
+void BRP_human_base::printChar()
 {
   std::string BRPFilePath = "Characters/BRP/";
   
@@ -1622,7 +1626,7 @@ void BRP_human_base::printChar(RandomSetUp& WOW)
   BRPText << "COMMUNICATION (" << Communication_skillcategory << "%)" << "\t\t\t" << "MENTAL (" << Mental_skillcategory << "%)" << "\t\t\t" << "PHYSICAL (" << Physical_skillcategory << "%)" << "\t\t\t" << std::endl;
   BRPText << "MANIPULATION (" << Manipulation_skillcategory << "%)" << "\t\t\t" << "PERCEPTION (" << Perception_skillcategory << "%)" << "\t\t\t" << "COMBAT (" << Combat_skillcategory << "%)"  << "\t\t\t" << std::endl;
   
-  BRPText << "\n\nSeed: " << WOW.currentSeed;
+  BRPText << "\n\nSeed: " << RANDOMCORE.currentSeed;
   
   BRPText.close();
 }

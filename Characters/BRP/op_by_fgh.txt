@@ -1,0 +1,33 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: op		Player: fgh
+Culture: Human		Gender: Female
+Handedness: Left-Handed	Height: Tall	Weight: Overweight
+Profession: Artist		Wealth: Poor
+Gods/Religion: Taoist
+
+ They have pointed teeth. They have bulging biceps.
+MOV: 10		Age: 21
+===========================================================
+			CHARACTERISTICS
+===========================================================
+STR 11	Effort roll 55%			INT 08	Idea roll 40%
+CON 13	Stamina roll 65%		CHA 13	Charm roll 65%
+DEX 08	Agility roll 40%		POW 07	Luck roll 35%
+EDU 15	Knowledge roll 75%	SIZ 16	Damage Bonus of +1D4
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 14 with Major Would occuring at 7 HP
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 300
+Personal Skill Points Pool: 80
+Appraise (15%)			12%
+COMMUNICATION (-2%)			MENTAL (-3%)			PHYSICAL (-7%)			
+MANIPULATION (-3%)			PERCEPTION (-2%)			COMBAT (-4%)			
+
+
+Seed: 1696269855

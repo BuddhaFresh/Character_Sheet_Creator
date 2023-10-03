@@ -60,7 +60,8 @@ ROADMAP
 
 
 //Classes
-RandomSetUp SEEDER;
+RandomSetUp RANDOMCORE;
+//RandomSetUp SEEDER;
 Dice ROLL;
 
 
@@ -78,7 +79,7 @@ int main()
   int charKeepInput;
 
   //Generate a new seed at boot
-  SEEDER.randomSeed();
+  RANDOMCORE.randomSeed();
 
   //Makes a new folder in Characters for any added Systems
   FolderOriginBRP();
@@ -122,8 +123,8 @@ int main()
                 for (int i = 0; i < 5; i++)
                 {
                  BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
-                BRPChar0.fullrandom(SEEDER);
-                BRPChar0.consoleChar(SEEDER);
+                BRPChar0.fullrandom();
+                BRPChar0.consoleChar();
                 }
                 break;
               case 2://temp for testing
@@ -137,8 +138,8 @@ int main()
                   std::cout << "\033c";
                   BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
                   BRPChar0.PlayerName();
-                  BRPChar0.fullrandom(SEEDER);
-                  BRPChar0.consoleChar(SEEDER);
+                  BRPChar0.fullrandom();
+                  BRPChar0.consoleChar();
                   
                   while(true)
                   {//save character menu
@@ -154,7 +155,7 @@ int main()
                       case 1:
                         std::cout << "\033c";
                         BRPChar0.CharName();
-                        BRPChar0.printChar(SEEDER);
+                        BRPChar0.printChar();
                         break;
                       case 0:
                         std::cout << "\033c";
@@ -187,10 +188,12 @@ int main()
           }//New Sheet menu end
           break;
           
-        case 2: //Load Sheet
+        case 2: 
+          {//Load Sheet
           std::cout << "\033c";
           std::cout << "\nLoad Sheet not availible\n\n";
           break;
+          }
         
         case 3: //Dice Roller
           std::cout << "\033c";
@@ -214,29 +217,38 @@ int main()
               switch (diceMenuInput)
               {//Dice Roller input
                 case 1:
+                  std::cout << "\033c";
                   std::cout << "\nYou rolled a four-sided die and got a " << ROLL.Dfour() << std::endl;
                   break;
                 case 2:
+                  std::cout << "\033c";
                   std::cout << "\nYou rolled a six-sided die and got a " << ROLL.Dsix() << std::endl;
                   break;
                 case 3:
+                  std::cout << "\033c";
                   std::cout << "\nYou rolled an eight-sided die and got a " << ROLL.Deight() << std::endl;
                   break;
                 case 4:
+                  std::cout << "\033c";
                   std::cout << "\nYou rolled a ten-sided die and got a " << ROLL.Dten() << std::endl;
                   break;
                 case 5:
+                  std::cout << "\033c";
                   std::cout << "\nYou rolled a twelve-sided die and got a " << ROLL.Dtwelve() << std::endl;
                   break;
                 case 6:
+                  std::cout << "\033c";
                   std::cout << "\nYou rolled a twenty-sided die and got a " << ROLL.Dtwenty() << std::endl;
                   break;
                 case 7:
+                  std::cout << "\033c";
                   std::cout << "\nYou rolled a hundred-sided die and got a " << ROLL.Donehundred() << std::endl;
                   break;
                 case 0:
+                  std::cout << "\033c";
                   break;
                 default:
+                std::cout << "\033c";
                  std::cout << "Please enter one of the listed options";
                  break;
               }//Dice Roller input end
@@ -253,7 +265,7 @@ int main()
         {//Options sub-menu start
           std::cout << "\n\n<>==========<>==========<>==========<>\n";
             std::cout << "\t\t\t\tOptions\n";
-            std::cout << "1. Input Manual Seed \n(Current Seed: "<< SEEDER.currentSeed <<")\n";
+            std::cout << "1. Input Manual Seed \n(Current Seed: "<< RANDOMCORE.currentSeed <<")\n";
             std::cout << "2. Generate New Seed\n";
             std::cout << "\n0. Return to Main Menu\n";
             std::cout << "<>==========<>==========<>==========<>\n\n";
@@ -265,12 +277,12 @@ int main()
               {//Options input
                 case 1:
                   std::cout << "\033c";
-                  SEEDER.userSeed();
+                  RANDOMCORE.userSeed();
                   break;
                 case 2:
                   std::cout << "\033c";
                   std::cout << "\nNew Seed has been generated\n";
-                  SEEDER.randomSeed();
+                  RANDOMCORE.randomSeed();
                   break;
                 case 0:
                   std::cout << "\033c";

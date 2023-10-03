@@ -1,63 +1,85 @@
-#include "menus.h"
 #include "diceroller.h"
+#include "menus.h"
 
-
-//RandomSetUp class functions
-void RandomSetUp::randomSeed(){
+// RandomSetUp class functions
+void RandomSetUp::randomSeed() {
   currentSeed = static_cast<unsigned int>(time(nullptr));
   mt_rando.seed(currentSeed);
-  //currentSeed = time(NULL);
-  //srand(currentSeed);
 }
 
-void RandomSetUp::userSeed(){
+void RandomSetUp::userSeed() {
   // Prompt for user to input their seed
   std::cout << "\nEnter seed\n";
   //std::getline(std::cin >> std::ws, seedinput);
   std::cin >> seedinput;
 
-  //Turn string into int
+  // Turn string into int
   currentSeed = std::stoi(seedinput);
 
   // Providing the custom seed value
-  srand(currentSeed);
+  mt_rando.seed(currentSeed);
 }
 
+// Dice class methods
 
-//Dice class functions
-int Dice::Dfour(){
-  return rand() % 4 + 1;
+//General dice roller method
+/*
+int Dice::Die(int MIN, int MAX) { 
+  std::uniform_int_distribution<int> diecast(MIN, MAX);
+  return diecast(RANDOMCORE.mt_rando);
 }
 
-int Dice::Dsix(){
-  return rand() % 6 + 1;
+//for loop for multi rolls
+void Dice::ManyDice(int MIN, int MAX, int ROLLS) {
+  std::vector<int> Outcome;
+  for(; ROLLS > 0; ROLLS--){
+    int X = Die(MIN, MAX);
+    Outcome.push_back(X);
+  }
+  std::cout << Outcome << " ";
+}
+*/
+
+int Dice::Dfour() { 
+  std::uniform_int_distribution<int> four(1, 4);
+  return four(RANDOMCORE.mt_rando);
 }
 
-int Dice::Deight(){
-  return rand() % 8 + 1;
+int Dice::Dsix() { 
+  std::uniform_int_distribution<int> six(1, 6);
+  return six(RANDOMCORE.mt_rando);
 }
 
-int Dice::Dten(){
-  return rand() % 10 + 1;
+int Dice::Deight() { 
+  std::uniform_int_distribution<int> eight(1, 8);
+  return eight(RANDOMCORE.mt_rando);
 }
 
-int Dice::Dtwelve(RandomSetUp& NUM){
+int Dice::Dten() { 
+  std::uniform_int_distribution<int> ten(1, 10);
+  return ten(RANDOMCORE.mt_rando);
+}
+
+int Dice::Dtwelve() {
+  std::uniform_int_distribution<int> twelve(1, 12);
+  return twelve(RANDOMCORE.mt_rando); 
+}
+
+int Dice::Dtwenty() { 
   std::uniform_int_distribution<int> twenty(1, 20);
-  int XXX = twenty(NUM.mt_rando);
-  return XXX;
+  return twenty(RANDOMCORE.mt_rando); 
 }
 
-int Dice::Dtwenty(){
-  return rand() % 20 + 1;
+int Dice::Donehundred() {
+  std::uniform_int_distribution<int> onehundred(1, 100);
+  return onehundred(RANDOMCORE.mt_rando); 
 }
-
-int Dice::Donehundred(){
+/*{
   std::uniform_int_distribution<int> hundred(1, 100);
-  int XXX = 99;
-  return XXX;
-}
+  return hundred(NUM.mt_rando);
+}*/
 
-//Multi-Dice Roll
+// Multi-Dice Roll
 
 /*
 pick the die to roll
@@ -67,12 +89,12 @@ how many to roll
 int MultiDiceRoll(){
   int InputforDice;
   int DicePicked = 0;
-  using funky = 
+  using funky =
   std::map<int,> DChoice;
   int Rolls = 0;
   std::vector RollOutcomes;
   for (int i = 0; Rolls; i++){
-    
+
   }
   return RollOutcomes;
 }*/
