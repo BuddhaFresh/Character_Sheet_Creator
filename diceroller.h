@@ -21,6 +21,8 @@ class Dice{
   public:
     int Die(int MIN, int MAX);
     void ManyDice(int MIN, int MAX, int ROLLS);
+    int MultiDice(int MIN, int MAX, int ROLLS);
+
     int Dfour();
     int Dsix();
     int Deight();

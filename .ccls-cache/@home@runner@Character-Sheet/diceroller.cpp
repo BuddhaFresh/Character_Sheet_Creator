@@ -23,22 +23,29 @@ void RandomSetUp::userSeed() {
 // Dice class methods
 
 //General dice roller method
-/*
-int Dice::Die(int MIN, int MAX) { 
+int Dice::Die(int MIN, int MAX){ 
   std::uniform_int_distribution<int> diecast(MIN, MAX);
   return diecast(RANDOMCORE.mt_rando);
 }
 
-//for loop for multi rolls
-void Dice::ManyDice(int MIN, int MAX, int ROLLS) {
+//for loop for multi rolls with vector output
+void Dice::ManyDice(int MIN, int MAX, int ROLLS){
   std::vector<int> Outcome;
-  for(; ROLLS > 0; ROLLS--){
-    int X = Die(MIN, MAX);
-    Outcome.push_back(X);
+  for(int i = 0; i < ROLLS; i++){
+    Outcome.push_back(Die(MIN, MAX));
+    std::cout << Outcome[i] << " ";
   }
-  std::cout << Outcome << " ";
 }
-*/
+
+//for loop for multi rolls that combine results
+//not working... why?
+int Dice::MultiDice(int MIN, int MAX, int ROLLS){
+  int result = 0;
+  for(int i = 0; i < ROLLS; i++){
+    result += Die(MIN, MAX);
+  }
+  return result;
+}
 
 int Dice::Dfour() { 
   std::uniform_int_distribution<int> four(1, 4);

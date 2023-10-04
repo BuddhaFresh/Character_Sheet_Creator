@@ -495,8 +495,8 @@ void BRP_human_base::Professions()
 {
   std::string jobs[] = {"Artist", "Assassin", "Athlete", "Beggar", "Clerk", "Computer Tech", "Crafter", "Criminal", "Detective", "Doctor", "Engineer", "Entertainer", "Explorer", "Farmer", "Gambler", "Herder", "Hunter", "Journalist", "Laborer", "Lawkeeper", "Lawyer", "Mechanic", "Merchant", "Noble", "Occultist", "Pilot", "Politician", "Priest", "Sailor", "Scholar", "Scientist", "Servant", "Shaman", "Slave", "Soldier", "Spy", "Student", "Teacher", "Technician", "Thief", "Tribesperson", "Warrior", "Wizard", "Writer"};
 
-  // Hired = rand() % 44; //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
-  Hired = 0;
+  Hired = rand() % 44; //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
+  // Hired = 0;
 
   Profession = jobs[Hired];
 
@@ -1460,8 +1460,8 @@ void BRP_human_base::fullrandom(){
   PersonalityPick();
   OwnLanguage();
   Professions();
-  PickJobSkills();
-  ProfessionSkillSet();
+  //PickJobSkills();
+  //ProfessionSkillSet();
   //PersonalSkillSet();
 }
 
@@ -1485,10 +1485,10 @@ void BRP_human_base::consoleChar()
   std::cout << "CON " << CON << "\t" << "Stamina roll " << CharacteristicRoll(CON) << "%\t\t" << "CHA " << CHA << "\t" << "Charm roll " << CharacteristicRoll(CHA) << "%" << std::endl;
   std::cout << "DEX " << DEX << "\t" << "Agility roll " << CharacteristicRoll(DEX) << "%\t\t" << "POW " << POW << "\t" << "Luck roll " << CharacteristicRoll(POW) << "%" << std::endl;  
   if (EDUCATION_STAT == true) 
-  {std::cout << "EDU " << EDU << "\t" << "Knoweledge roll " << CharacteristicRoll(EDU) << "%\t\t" << "SIZ " << SIZ << "\t" << "Damage Bonus of " << DamBonus << std::endl;}
+  {std::cout << "EDU " << EDU << "\t" << "Knowledge roll " << CharacteristicRoll(EDU) << "%\t\t" << "SIZ " << SIZ << "\t" << "Damage Bonus of " << DamBonus << std::endl;}
   else
   {std::cout << "SIZ " << SIZ << "\t" << "Damage Bonus of " << DamBonus << std::endl;}
-  std::cout << "HP: " << HP << " with Major Would occuring at " << MW << " HP" << std::endl;
+  std::cout << "HP: " << HP << " with Major Wound occuring at " << MW << " HP" << std::endl;
   std::cout << "\n" << UnitedFeatures <<std::endl;
   std::cout <<"\n"<<" "<< Personality << std::endl;
   std::cout << "\nProfessional Skill Points Pool: "  << ProSkillPtsMAX << "\t\t" << "Personal Skill Points Pool: "  << PerSkillPtsMAX << std::endl;
@@ -1614,7 +1614,7 @@ void BRP_human_base::printChar()
   BRPText << "===========================================================" << std::endl;
   BRPText << "\t\t\tHIT POINTS" << std::endl;
   BRPText << "===========================================================" << std::endl;
-  BRPText << "HP: " << HP << " with Major Would occuring at " << MW << " HP" << std::endl;
+  BRPText << "HP: " << HP << " with Major Wound occuring at " << MW << " HP" << std::endl;
   BRPText << "===========================================================" << std::endl;
   BRPText << "\t\t\tSKILLS" << std::endl;
   BRPText << "===========================================================" << std::endl;

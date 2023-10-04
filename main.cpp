@@ -61,15 +61,11 @@ ROADMAP
 
 //Classes
 RandomSetUp RANDOMCORE;
-//RandomSetUp SEEDER;
 Dice ROLL;
 
 
 int main() 
 {//All menus
-
-
-
   
   //Inputs for menus
   int mainMenuInput;
@@ -122,16 +118,16 @@ int main()
                 std::cout << "\033c";
                 for (int i = 0; i < 5; i++)
                 {
-                 BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
-                BRPChar0.fullrandom();
-                BRPChar0.consoleChar();
+                  BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
+                  BRPChar0.fullrandom();
+                  BRPChar0.consoleChar();
                 }
                 break;
               case 2://temp for testing
                 {
-                std::cout << "\033c";
-                BRP_menu(); 
-                break;
+                  std::cout << "\033c";
+                  BRP_menu(); 
+                  break;
                 }
               case 3://temp for testing
                 {//case 3
@@ -208,6 +204,8 @@ int main()
               std::cout << "5. Roll a D12\n";
               std::cout << "6. Roll a D20\n";
               std::cout << "7. Roll a D100\n";
+              std::cout << "8. Roll many dice\n";
+              std::cout << "9. Combined multi-dice roller\n";
               std::cout << "\n0. Return to Options\n";
               std::cout << "<>++++++++++<>++++++++++<>++++++++++<>\n\n";
       
@@ -218,32 +216,61 @@ int main()
               {//Dice Roller input
                 case 1:
                   std::cout << "\033c";
-                  std::cout << "\nYou rolled a four-sided die and got a " << ROLL.Dfour() << std::endl;
+                  std::cout << "\nYou rolled a four-sided die and got a " << ROLL.Die(1,4) << std::endl;
                   break;
                 case 2:
                   std::cout << "\033c";
-                  std::cout << "\nYou rolled a six-sided die and got a " << ROLL.Dsix() << std::endl;
+                  std::cout << "\nYou rolled a six-sided die and got a " << ROLL.Die(1,6) << std::endl;
                   break;
                 case 3:
                   std::cout << "\033c";
-                  std::cout << "\nYou rolled an eight-sided die and got a " << ROLL.Deight() << std::endl;
+                  std::cout << "\nYou rolled an eight-sided die and got a " << ROLL.Die(1,8) << std::endl;
                   break;
                 case 4:
                   std::cout << "\033c";
-                  std::cout << "\nYou rolled a ten-sided die and got a " << ROLL.Dten() << std::endl;
+                  std::cout << "\nYou rolled a ten-sided die and got a " << ROLL.Die(1,10) << std::endl;
                   break;
                 case 5:
                   std::cout << "\033c";
-                  std::cout << "\nYou rolled a twelve-sided die and got a " << ROLL.Dtwelve() << std::endl;
+                  std::cout << "\nYou rolled a twelve-sided die and got a " << ROLL.Die(1,12) << std::endl;
                   break;
                 case 6:
                   std::cout << "\033c";
-                  std::cout << "\nYou rolled a twenty-sided die and got a " << ROLL.Dtwenty() << std::endl;
+                  std::cout << "\nYou rolled a twenty-sided die and got a " << ROLL.Die(1,20) << std::endl;
                   break;
                 case 7:
                   std::cout << "\033c";
-                  std::cout << "\nYou rolled a hundred-sided die and got a " << ROLL.Donehundred() << std::endl;
+                  std::cout << "\nYou rolled a hundred-sided die and got a " << ROLL.Die(1,100) << std::endl;
                   break;
+                case 8:{
+                  std::cout << "\033c";
+                  int MINinput, MAXinput, ROLLSinput;
+                  std::cout << "Many Dice Result" << std::endl;
+                  std::cout << "Lowest possible result?" << std::endl;
+                  std::cin >> MINinput;
+                  std::cout << "Highest possible result?" << std::endl;
+                  std::cin >> MAXinput;
+                  std::cout << "Finally, how many rolls do you want?" << std::endl;
+                  std::cin >> ROLLSinput;
+                  std::cout << "\nResults from rolling ";
+                  ROLL.ManyDice(MINinput, MAXinput, ROLLSinput);
+                  break;
+                }
+                case 9:{//I do not understand why I need the int total when MultiDice is an int method. Isn't it suppose to return an int when called? Without int total, the method doesn't return anything (not even 0). Program doesn't crash without int result, using cout on int total works, I'm blaming it on goblins and moving on...
+                  std::cout << "\033c";
+                  int MINinput, MAXinput, ROLLSinput;
+                  std::cout << "Combined Multi-roll Result" << std::endl;
+                  std::cout << "Lowest possible result?" << std::endl;
+                  std::cin >> MINinput;
+                  std::cout << "Highest possible result?" << std::endl;
+                  std::cin >> MAXinput;
+                  std::cout << "Finally, how many rolls do you want?" << std::endl;
+                  std::cin >> ROLLSinput;
+                  std::cout << "\n";
+                  int total = ROLL.MultiDice(MINinput, MAXinput, ROLLSinput);
+                  std::cout << total;
+                  break;
+                }
                 case 0:
                   std::cout << "\033c";
                   break;
