@@ -130,6 +130,8 @@ private:
   int SkillRatingMAX;
   int Hired;
 
+  std::vector <std::string> Beliefs;
+
   std::vector <std::string> SkillList;
   std::vector <std::string> Art;
   std::vector <std::string> Craft;

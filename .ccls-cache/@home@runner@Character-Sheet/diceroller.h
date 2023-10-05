@@ -23,6 +23,7 @@ class Dice{
     void ManyDice(int MIN, int MAX, int ROLLS);
     int MultiDice(int MIN, int MAX, int ROLLS);
 
+
     int Dfour();
     int Dsix();
     int Deight();
@@ -30,7 +31,6 @@ class Dice{
     int Dtwelve();
     int Dtwenty();
     int Donehundred();
-
 };
 
 extern RandomSetUp RANDOMCORE;

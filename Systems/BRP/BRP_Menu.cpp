@@ -40,7 +40,7 @@ int BRP_menu()
         }
       case 2:{//multi full random
         std::cout << "Hello!\033c";  
-        std::cout << RANDOMCORE.currentSeed;
+        std::cout << "Not availible";
         break;
         }
       case 3:{//pointbuy

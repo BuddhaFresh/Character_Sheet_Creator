@@ -245,28 +245,30 @@ int main()
                 case 8:{
                   std::cout << "\033c";
                   int MINinput, MAXinput, ROLLSinput;
-                  std::cout << "Many Dice Result" << std::endl;
-                  std::cout << "Lowest possible result?" << std::endl;
+                  std::cout << "Many Dice Roller" << std::endl;
+                  std::cout << "Lowest possible result per roll?" << std::endl;
                   std::cin >> MINinput;
-                  std::cout << "Highest possible result?" << std::endl;
+                  std::cout << "Highest possible result per roll?" << std::endl;
                   std::cin >> MAXinput;
-                  std::cout << "Finally, how many rolls do you want?" << std::endl;
+                  std::cout << "Finally, how many total rolls do you want?" << std::endl;
                   std::cin >> ROLLSinput;
-                  std::cout << "\nResults from rolling ";
+                  std::cout << "\033c";
+                  std::cout << ROLLSinput << " dice with a random range of " << MINinput << " through " << MAXinput << " were rolled. \nHere are the results:\n\n";
                   ROLL.ManyDice(MINinput, MAXinput, ROLLSinput);
                   break;
                 }
                 case 9:{//I do not understand why I need the int total when MultiDice is an int method. Isn't it suppose to return an int when called? Without int total, the method doesn't return anything (not even 0). Program doesn't crash without int result, using cout on int total works, I'm blaming it on goblins and moving on...
                   std::cout << "\033c";
                   int MINinput, MAXinput, ROLLSinput;
-                  std::cout << "Combined Multi-roll Result" << std::endl;
-                  std::cout << "Lowest possible result?" << std::endl;
+                  std::cout << "Combined Multi-roll Roller" << std::endl;
+                  std::cout << "Lowest possible result per roll?" << std::endl;
                   std::cin >> MINinput;
-                  std::cout << "Highest possible result?" << std::endl;
+                  std::cout << "Highest possible result per roll?" << std::endl;
                   std::cin >> MAXinput;
-                  std::cout << "Finally, how many rolls do you want?" << std::endl;
+                  std::cout << "Finally, how many total rolls do you want?" << std::endl;
                   std::cin >> ROLLSinput;
-                  std::cout << "\n";
+                  std::cout << "\033c";
+                  std::cout << ROLLSinput << " dice with a random range of " << MINinput << " through " << MAXinput << " were rolled. \nThe total of all rolls is:\n\n";
                   int total = ROLL.MultiDice(MINinput, MAXinput, ROLLSinput);
                   std::cout << total;
                   break;

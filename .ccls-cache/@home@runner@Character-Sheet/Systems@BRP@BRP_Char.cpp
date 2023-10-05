@@ -32,7 +32,7 @@ int ThreeDSix()
   int x = 0;
   for(int i = 0; i < 3; i++)
   {
-    x += ROLL.Dsix();
+    x += ROLL.Die(1,6);
   }
   return x;
 }
@@ -43,7 +43,7 @@ int TwoDSixPlusSix()
   int x = 0;
   for(int i = 0; i < 2; i++)
   {
-    x += ROLL.Dsix();
+    x += ROLL.Die(1,6);
   }
   return x+6;
 }
@@ -194,7 +194,7 @@ int BRP_human_base::CharacteristicRoll(int r)
 //Will need to expand to allow input from user and modifiers for higher and lower ages
 int BRP_human_base::Born()
 {
-  int startage = 17+ROLL.Dsix();
+  int startage = 17+ROLL.Die(1,6);
   Age = startage;
   return Age;
 }
@@ -330,7 +330,7 @@ std::string BRP_human_base::DistinctiveFeatures()
     for (int i = 0; i < DFs; i++) 
     {
       //"they have " + rand_feature + ". " + next feature...
-      int Type = ROLL.Dten();  
+      int Type = ROLL.Die(1,10);  
   
       std::string Sentence = " They have distinctive " + FeatureTypeTable[Type] + ".";
       UnitedFeatures += Sentence;
@@ -359,10 +359,10 @@ std::string BRP_human_base::DistinctiveFeatures()
     for (int i = 0; i < DFs; i++) 
       {
         //"they have " + rand_feature + ". " + next feature...
-        int Type = rand() % 10;  
+        int Type = ROLL.Die(1,10);  
         int Count = 0;
         
-        //counts how many choices their are in a selected array
+        //counts how many choices there are in a selected array
         while (FeatureArray[Type][Count] != "") 
         {
           Count++;
@@ -495,7 +495,7 @@ void BRP_human_base::Professions()
 {
   std::string jobs[] = {"Artist", "Assassin", "Athlete", "Beggar", "Clerk", "Computer Tech", "Crafter", "Criminal", "Detective", "Doctor", "Engineer", "Entertainer", "Explorer", "Farmer", "Gambler", "Herder", "Hunter", "Journalist", "Laborer", "Lawkeeper", "Lawyer", "Mechanic", "Merchant", "Noble", "Occultist", "Pilot", "Politician", "Priest", "Sailor", "Scholar", "Scientist", "Servant", "Shaman", "Slave", "Soldier", "Spy", "Student", "Teacher", "Technician", "Thief", "Tribesperson", "Warrior", "Wizard", "Writer"};
 
-  Hired = rand() % 44; //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
+  Hired = ROLL.Die(1,44); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
   // Hired = 0;
 
   Profession = jobs[Hired];
@@ -554,7 +554,7 @@ void BRP_human_base::Professions()
   WealthTable["Writer"] = {{ {"Destitute",00}, {"Poor",30}, {"Average",65}, {"Affluent",30}, {"Wealthy",30} }};//43
 
   //Generate a random number for selecting a WealthLevel
-  int Income = rand() % 100;
+  int Income = ROLL.Die(0,99);
 
   //Makes a reference to WealthCategory set to the current Profession
   WealthCategorys& WC = WealthTable[Profession];
@@ -575,7 +575,7 @@ void BRP_human_base::Professions()
 //Determines character's gender 
 std::string BRP_human_base::RandGender()
 {
-  int X = ROLL.Donehundred();
+  int X = ROLL.Die(1,100);
 
   //50% Female, 49% Male, 1% Non-Binary
   if (X == 100) {Gender = "Non-Binary";}
@@ -588,16 +588,16 @@ std::string BRP_human_base::RandGender()
 //Determins character's religion/who they worship
 void BRP_human_base::Faith()
 {
-  std::string Beliefs[] = {"Atheist", "Agnostic", "Ignostic", "Nonreligious", "Secular", "Baha'is", "Buddhist", "Christian", "Confucian", "Hindu", "Muslim", "Jainist", "Jewish", "Shintoists", "Satanist", "Sikh", "Taoist", "Zoroastrian", "Jain", "Polytheistic", "Worshipper of Zeus", "Worshipper of Hera", "Worshipper of Atremis", "Worshipper of Hades", "Worshipper of Posidon", "Worshipper of Cthulhu", "Worshipper of Ra", "Worshipper of Set", "Druid", "Animist", "Worshipper of Bast", "Worshipper of Horus", "Worshipper of Isis", "Worshipper of Khepri", "Worshipper of Anubis", "Worshipper of Odin", "Worshipper of Thor", "Worshipper of Loki", "Worshipper of Yudi", "Worshipper of Lóngshén", "Worshipper of Doumu"};
+  Beliefs = {"Atheist", "Agnostic", "Ignostic",  "Nonreligious", "Secular", "Baha'is", "Buddhist", "Christian", "Confucian", "Hindu", "Muslim", "Jainist", "Jewish", "Shintoists", "Satanist", "Sikh", "Taoist", "Zoroastrian", "Jain", "Polytheistic", "Worshipper of Zeus", "Worshipper of Hera", "Worshipper of Atremis", "Worshipper of Hades", "Worshipper of Posidon", "Worshipper of Cthulhu", "Worshipper of Ra", "Worshipper of Set", "Druid", "Animist", "Worshipper of Bast", "Worshipper of Horus", "Worshipper of Isis", "Worshipper of Khepri", "Worshipper of Anubis", "Worshipper of Odin", "Worshipper of Thor", "Worshipper of Loki", "Worshipper of Yudi", "Worshipper of Lóngshén", "Worshipper of Doumu"};
 
-  int Convert = rand() % sizeof(Beliefs)/sizeof(std::string);
-  Religion = Beliefs[Convert];
+  int Convert = ROLL.Die(0,Beliefs.size()-1);
+  Religion = Beliefs.at(Convert);
 }
 
 //Determines character's hand dominance 
 std::string BRP_human_base::HandDom()
 {
-  int Odds = ROLL.Donehundred();
+  int Odds = ROLL.Die(1,100);
 
   //83% Right-Handed, 13% Left-Handed, 3% Ambidextrous, 1% Cross-Dominant; based on UN data
   if (Odds == 100) {Handedness = "Cross-Dominant";}
@@ -620,6 +620,7 @@ void BRP_human_base::HeightandWeight()
 
   //poor if statement just to use the array. should adjust results based on CON and maybe random chance
   //this is a pretty subjective thing. Maybe just pure random picks within SIZ based boundries
+  //Or, just use the formula from the old Gold Book and give lbs and ft / grams and meters
     //Average outcome
   if (SIZ >= 10 && SIZ <= 13) 
     {Height = HTandWT[0][2], Weight = HTandWT[1][2];}
@@ -1334,14 +1335,15 @@ void BRP_human_base::FillSkillMod()
 //Assign Own Language
 void BRP_human_base::OwnLanguage() 
 {
-  int OwnLang = rand() % Language.size();
+  //int OwnLang = rand() % Language.size();
+  int OwnLang = ROLL.Die(0,Language.size());
   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
 }
 
 //Personality
 void BRP_human_base::PersonalityPick()
 {
-  int pick = ROLL.Dfour();
+  int pick = ROLL.Die(1,4);
   Personality = "";
   switch (pick)
   {//need to add skill points asigning for each case
@@ -1391,7 +1393,7 @@ void BRP_human_base::ProfessionSkillSet(){
     else {
       
       //Assigns 0 to 10 points.
-      int LEARNED = rand() % 11;
+      int LEARNED = ROLL.Die(0,10);
       
       //If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.
       while (LEARNED > CurrentSkillPoints){
@@ -1478,7 +1480,7 @@ void BRP_human_base::consoleChar()
   std::cout << "Starting Age: " << Age << "\t" << "Works as ";
   if(Wealth[0] == 'A'){std::cout << "an ";}else{std::cout << "a ";}; 
   std::cout <<  Wealth << " " << Profession << std::endl;
-  std::cout <<  "Religion: " << Religion << std::endl;
+  std::cout << "Religion: " << Religion << std::endl;
   std::cout << "Gender: " << Gender << "\t" << "Handedness: " << Handedness << std::endl;
   std::cout << "Height: " << Height << "\t" << "Weight: " << Weight << std::endl;
   std::cout << "STR " << STR << "\t" << "Effort roll " << CharacteristicRoll(STR) << "%\t\t\t" << "INT " << INT << "\t" << "Idea roll " << CharacteristicRoll(INT) << "%" << std::endl; 
