@@ -103,9 +103,9 @@ int main()
           {//New Sheet menu 
             std::cout << "\n\n<>----------<>----------<>----------<>\n";
             std::cout << "\t\t\tNew Sheet Menu\n";
-            std::cout << "1. DOJO [Make 5 random BRP chars]\n\n";
-            std::cout << "2. DOJO [BRP menu]\n\n";
-            std::cout << "3. DOJO [make random BRP char rolls]\n";
+            std::cout << "1. Roll Up Many Random BRP Characters\n\n";
+            std::cout << "2. BRP menu [Prototype]\n\n";
+            std::cout << "3. Make a Fully Random BRP Character\n";
             std::cout << "\n0. Return to Main Menu\n";
             std::cout << "<>----------<>----------<>----------<>\n\n";
   
@@ -116,11 +116,16 @@ int main()
             {//New Sheet menu input start
               case 1://temp for testing
                 std::cout << "\033c";
-                for (int i = 0; i < 5; i++)
+                int amounts;
+                std::cout << "How many charcters do you want to make?\n";
+                std::cin >> amounts;
+                std::cout << "\033c";
+                for (int i = 0; i < amounts; i++)
                 {
                   BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
                   BRPChar0.fullrandom();
                   BRPChar0.consoleChar();
+                  std::cout << "\n" <<std::endl;
                 }
                 break;
               case 2://temp for testing

@@ -1,0 +1,33 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: Johnny bravo		Player: Stev
+Culture: Human		Gender: Female
+Handedness: Right-Handed	Height: Tall	Weight: Overweight
+Profession: Technician		Wealth: Affluent
+Gods/Religion: Baha'is
+
+ They have a lean figure. They have a haughty expression.
+MOV: 10		Age: 22
+===========================================================
+			CHARACTERISTICS
+===========================================================
+STR 15	Effort roll 75%			INT 11	Idea roll 55%
+CON 10	Stamina roll 50%		CHA 08	Charm roll 40%
+DEX 14	Agility roll 70%		POW 05	Luck roll 25%
+EDU 15	Knowledge roll 75%	SIZ 16	Damage Bonus of +1D4
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 13 with Major Wound occuring at 6 HP
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 300
+Personal Skill Points Pool: 110
+Appraise (15%)			14%
+COMMUNICATION (-2%)			MENTAL (-1%)			PHYSICAL (0%)			
+MANIPULATION (6%)			PERCEPTION (-1%)			COMBAT (7%)			
+
+
+Seed: 1696644519

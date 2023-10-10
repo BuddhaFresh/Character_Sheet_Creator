@@ -14,35 +14,28 @@
 
 
 //Create folder for character sheets
-void FolderOriginBRP()
-{
+void FolderOriginBRP(){
   std::string foldername = "Characters/BRP";
   int result = mkdir(foldername.c_str(), 0777); //0777 is premissions for the folder, 7 is full permission and the three number posistions at the end are for different kinds of users? 
-  if (result == 0) 
-  {
+  if (result == 0){
     std::cout << "BRP Installed\n";
-  }
-  else {  }
+  }else{  }
 }
 
 //Special Dice Rolls for this system
 //Rolls a 3D6, 3 six-sided dice added together
-int ThreeDSix() 
-{
+int ThreeDSix(){
   int x = 0;
-  for(int i = 0; i < 3; i++)
-  {
+  for(int i = 0; i < 3; i++){
     x += ROLL.Die(1,6);
   }
   return x;
 }
 
 //Rolls a 2D6+6, 2 six-sided dice added together plus 6
-int TwoDSixPlusSix() 
-{ 
+int TwoDSixPlusSix(){ 
   int x = 0;
-  for(int i = 0; i < 2; i++)
-  {
+  for(int i = 0; i < 2; i++){
     x += ROLL.Die(1,6);
   }
   return x+6;
@@ -51,8 +44,7 @@ int TwoDSixPlusSix()
 
 //BRP_human_base class
 //Constructor to hold Characteristics, 
-BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y) 
-{
+BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y){
   STR = a;
   CON = b;
   POW = c;
@@ -311,8 +303,7 @@ std::string BRP_human_base::DistinctiveFeatures()
   else {DFs = 0;} 
 
   //Basic Feature List
-  if (DISTINCTIVE_FEATURES == true && DISTINCTIVE_FEATURES_BASIC == true)
-  {
+  if (DISTINCTIVE_FEATURES == true && DISTINCTIVE_FEATURES_BASIC == true){
     std::map<int, std::string> FeatureTypeTable;
     FeatureTypeTable[0] = "Error";
     FeatureTypeTable[1] = "Hair on head";
@@ -338,8 +329,7 @@ std::string BRP_human_base::DistinctiveFeatures()
   }
   
   //2D array of detailed features
-  if (DISTINCTIVE_FEATURES == true && DISTINCTIVE_FEATURES_BASIC == false)
-  {
+  if (DISTINCTIVE_FEATURES == true && DISTINCTIVE_FEATURES_BASIC == false){
     //More columns can be added for each row, but the 45 max will need to be increasded if total number of columns in a row go beyond it. Random selection counts selected row so no other code needs to be edited. Name and number at the end of each array is the row's type and current number of columns I put in at the time 
     std::string FeatureArray[10][45] = 
     {
@@ -347,11 +337,11 @@ std::string BRP_human_base::DistinctiveFeatures()
       {"arched eyebrows", "a braided beard", "a bushy beard", "a curled and perfumed beard", "an enormous mustachios", "eyebrows that had grown together", "a goatee", "a long beard", "no eyebrows", "sideburns", "strange designs cut in close-trimmed beard", "thick eyebrows"}, //Facial hair 12
       {"a visable birthmark on their face", "black eyes", "blue eyes", "bright eyes", "a broken nose", "broken teeth", "brown eyes", "a deeply tanned face", "a double chin", "earrings on",  "an enormous chin", "even teeth", "an eye patch", "fleshy lips", "a gap in their teeth", "gray eyes", "hairy ears", "high cheekbones", "a hooked nose", "large eyes", "a large nose", "long eyelashes", "jagged teeth", "a nose ring on", "a pale face", "pockmarked skin", "a pointed chin", "pointed teeth", "prominent incisors", "a pug nose", "a round face", "a visable scar on their face", "sensuous lips", "stained teeth", "a tattooed face", "thin lips", "tiny ears", "a turned-up nose", "warts on their face", "a weak chin", "white teeth", "a wide-eyed look", "yellow teeth"}, //Facial feature 43
       {"an adoring expression", "an alluring expression", "an arrogant expression", "a bemused expression", "a bright-eyed expression", "a curious expression", "a cringing expression", "a dour expression", "a drunken expression", "a friendly expression", "a guarded expression", "a haughty expression", "a lecherous expression", "a leering expression", "a meek expression", "a mischievous expression", "a naïve expression", "an outgoing expression", "a piercing expression", "a pleasant expression", "a proud expression", "a seductive expression", "a sneaky expression", "a sneering expression", "a squinting expression"}, //Expression 23
-      {"an ancient style of clothing on", "an armored hat on", "athletic clothing", "no footware and are barefoot", "clothes that leave the wearer too hot or too cold on", "a conical hat on", "clothing that is embroidered with a special emblem", "expensive clothing on", "fashionable clothing on", "fine boots", "wearing clothing for the wrong sex", "formfitting clothes", "clothing that are full of holes", "garish clothes", "gaudy clothes", "ill-fitting clothes", "lots of cheap jewelry", "new clothes", "nightclothes", "little on and are partly nude", "a peaked hat on", "prim clothes on", "rich clothing", "sandals", "satiny clothing", "sexy clothing", "skintight clothes", "sporty clothing", "subdued clothing", "too much ornamentation", "a uniform on", "that is overall utilitarian", "a vulgar style of clothing", "a wide hat on"}, //Clothes 34
+      {"an ancient style of clothing on", "an armored hat on", "athletic clothing", "no footware and are barefoot", "clothes that leave the wearer too cold on", "clothes that leave the wearer too hot on.", "a conical hat on", "clothing that is embroidered with a special emblem", "expensive clothing on", "fashionable clothing on", "fine boots", "wearing clothing for the wrong sex", "formfitting clothes", "clothing that are full of holes", "garish clothes", "gaudy clothes", "ill-fitting clothes", "lots of cheap jewelry", "new clothes", "nightclothes", "little on and are partly nude", "a peaked hat on", "prim clothes on", "rich clothing", "sandals", "satiny clothing", "sexy clothing", "skintight clothes", "sporty clothing", "subdued clothing", "too much ornamentation", "a uniform on", "that is overall utilitarian", "a vulgar style of clothing", "a wide hat on"}, //Clothes 35
       {"an angry bearing", "a casual bearing", "a clumsy bearing", "a confident bearing", "an ethereal bearing", "a fearful bearing", "a graceful bearing", "a humble bearing", "a jaunty bearing", "a languid bearing", "a military bearing", "a nimble bearing", "a plodding bearing", "a pushy bearing", "a reserved bearing", "a slouching bearing", "a sprightly bearing", "a stiff bearing", "a swaggering bearing", "a sensual bearing", "a swaying bearing", "a wary bearing", "a weary bearing", "a yielding bearing"}, //Bearing 24
       {"an accented way of speech", "an affected way of speech", "an aggressive way of speech", "a deep voice", "a demanding way of speech", "a drawling way of speech", "a faint voice", "a hesitant way of speech", "a high-pitched voice", "an imperious way of speech", "a musical voice", "a mumbling way of sppech", "a nasal speech", "a raspy voice", "a sharp way of speech", "a sensual voice", "a shrill voice", "a slow way of speech", "a smooth voice", "a soft-spoken way of speech", "a strong voice", "a throaty way of speech", "an unintelligible way of speech", "a whining voice"}, //Speech 24
       {"a birthmark visible on their arm", "bracelets and other arm jewelry", "bulging biceps", "calloused hands", "deeply tanned arms", "hairless arms", "hairy arms", "knobby elbows", "large knuckles", "a birthmark visible on their hand", "long arms", "long fingernails", "muscular arms", "one arm longer than the other", "one finger missing", "one too many fingers present", "pointed elbows", "pointed fingernails", "powerful arms and hands", "rings on their fingers", "a scar on their hand", "a scar on their arm", "slender amrs", "smooth-skinned hands", "tattooed arms", "tattooed hands", "very hairy arms", "very pale skin on their hands", "very pale skin on their arms"}, //Arms and Hands 29
-      {"a barrel-like like torso", "a belly ring on", "a birthmark visible on their torso", "broad-shoulders", "a curvy figure", "every bone is showing on their body", "a flat stomach", "hairless chect", "a high waist", "a lean figure", "a long torso", "many scars aross their chest", "many scars aross their back", "many scars aross their abdomen", "a muscular figure", "a narrow figure", "no navel", "one nipple missing", "a potbelly", "a prominent scar across their chest", "a prominent scar across their back", "a prominent scar across their abdomen" "a short torso", "a shrunken chest", "a sinewy figure", "a sleek figure", "a slender figure", "a slim-hippedform", "a svelte figure", "a tall figure", "tan lines visible across their chest", "tan lines visible across their back", "tan lines visible across their abdomen", "a tanned torso", "a tattooed chest", "a tattooed back", "a tattooed abdomen","a thick torso", "a thin torso", "a very hairy back", "a very hairy chest", "a very hairy abdomen", "a very pale torso", "a willowy figure"}, //Torso 44
+      {"a barrel-like like torso", "a belly ring on", "a birthmark visible on their torso", "broad-shoulders", "a curvy figure", "every bone is showing on their body", "a flat stomach", "hairless chect", "a high waist", "a lean figure", "a long torso", "many scars aross their chest", "many scars aross their back", "many scars aross their abdomen", "a muscular figure", "a narrow figure", "no navel", "one nipple missing", "a potbelly", "a prominent scar across their chest", "a prominent scar across their back", "a prominent scar across their abdomen" "a short torso", "a shrunken chest", "a sinewy figure", "a sleek figure", "a slender figure", "a slim-hipped form", "a svelte figure", "a tall figure", "tan lines visible across their chest", "tan lines visible across their back", "tan lines visible across their abdomen", "a tanned torso", "a tattooed chest", "a tattooed back", "a tattooed abdomen","a thick torso", "a thin torso", "a very hairy back", "a very hairy chest", "a very hairy abdomen", "a very pale torso", "a willowy figure"}, //Torso 44
       {"a birthmark visible on their foot", "a birthmark visible on their leg", "bulging thighs and calves", "calloused feet", "deeply tanned legs", "deeply tanned feet", "hairless legs", "hairless feet", "hairy legs", "hairy feet", "knobby knees", "a limp in one leg", "many scars aross their legs", "many scars aross their feet", "muscular legs", "one toe missing", "one too many toes present", "a scar on their foot", "a scar on their leg", "burn scars from fire on their leg", "burn scars from fire on their foot", "burn scars from acid on their foot", "burn scars from acid on their leg", "sleek looking legs", "smooth legs", "tanned legs", "tattooed legs", "a toe ring on", "very hairy legs", "very hairy feet", "very long legs", "very pale skin on their legs", "very pale skin on their feet", "very short legs", "weathered skin on their legs", "weathered skin on their feet"} //Legs and Feet 36
   };                          
 
@@ -359,7 +349,7 @@ std::string BRP_human_base::DistinctiveFeatures()
     for (int i = 0; i < DFs; i++) 
       {
         //"they have " + rand_feature + ". " + next feature...
-        int Type = ROLL.Die(1,10);  
+        int Type = ROLL.Die(0,9);  
         int Count = 0;
         
         //counts how many choices there are in a selected array
@@ -371,7 +361,8 @@ std::string BRP_human_base::DistinctiveFeatures()
         //Picks a random choice from the counted array that was selected and adds it to UnitedFeatures
         if (Count > 0) 
         {
-          int Feature = rand() % Count;
+          //int Feature = rand() % Count;
+          int Feature = ROLL.Die(0,Count-1);
           std::string Sentence = " They have " + FeatureArray[Type][Feature] + ".";
           UnitedFeatures += Sentence;
         }
@@ -495,7 +486,8 @@ void BRP_human_base::Professions()
 {
   std::string jobs[] = {"Artist", "Assassin", "Athlete", "Beggar", "Clerk", "Computer Tech", "Crafter", "Criminal", "Detective", "Doctor", "Engineer", "Entertainer", "Explorer", "Farmer", "Gambler", "Herder", "Hunter", "Journalist", "Laborer", "Lawkeeper", "Lawyer", "Mechanic", "Merchant", "Noble", "Occultist", "Pilot", "Politician", "Priest", "Sailor", "Scholar", "Scientist", "Servant", "Shaman", "Slave", "Soldier", "Spy", "Student", "Teacher", "Technician", "Thief", "Tribesperson", "Warrior", "Wizard", "Writer"};
 
-  Hired = ROLL.Die(1,44); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
+  //44 total profession, elements are between 0 and 43
+  Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
   // Hired = 0;
 
   Profession = jobs[Hired];
@@ -1336,7 +1328,7 @@ void BRP_human_base::FillSkillMod()
 void BRP_human_base::OwnLanguage() 
 {
   //int OwnLang = rand() % Language.size();
-  int OwnLang = ROLL.Die(0,Language.size());
+  int OwnLang = ROLL.Die(0,Language.size()-1);
   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
 }
 
@@ -1350,21 +1342,75 @@ void BRP_human_base::PersonalityPick()
   case 1:
     {
     Personality = "They have a brutal personality, thinking first of solving problems by means of physical force and brawn.";
+    SkillTable["Brawl"].SkillMod += 20;
+    SkillTable["Climb"].SkillMod += 20;
+    SkillTable["Dodge"].SkillMod += 20;
+    SkillTable["Grapple"].SkillMod += 20;
+    SkillTable["Insight"].SkillMod += 20;
+    SkillTable["Jump"].SkillMod += 20;
+    SkillTable["Ride0"].SkillMod += 20;//need to pick one Ride
+    SkillTable["Ride1"].SkillMod += 20;
+    SkillTable["Sense"].SkillMod += 20;
+    SkillTable["Stealth"].SkillMod += 20;
+    SkillTable["Swim"].SkillMod += 20;
+    SkillTable["Throw"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;
     break;
     }
   case 2:
     {
     Personality = "They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.";
+    SkillTable["Disguise"].SkillMod += 20;
+    SkillTable["Dodge"].SkillMod += 20;
+    SkillTable["Fine Manipulation"].SkillMod += 20;
+    SkillTable["First Aid"].SkillMod += 20;
+    SkillTable["Navigate"].SkillMod += 20;
+    SkillTable["Pilot0"].SkillMod += 20;//need to pick one Pilot
+    SkillTable["Ride0"].SkillMod += 20;//need to pick one Ride
+    SkillTable["Pilot1"].SkillMod += 20;
+    SkillTable["Ride1"].SkillMod += 20;
+    SkillTable["Slight of Hand"].SkillMod += 20;
+    SkillTable["Stealth"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;
+    //SkillTable["Knowledge"].SkillMod += 20;
+    //SkillTable["Craft"].SkillMod += 20;
     break;
     }
   case 3:
     {
     Personality = "They have a cunning personality, trying first to outsmart an opponent to gain an advantage.";
+    SkillTable["Appraise"].SkillMod += 20;
+    SkillTable["Bargain"].SkillMod += 20;
+    SkillTable["Disguise"].SkillMod += 20;
+    SkillTable["Insight"].SkillMod += 20;
+    SkillTable["Listen"].SkillMod += 20;
+    SkillTable["Research"].SkillMod += 20;
+    SkillTable["Sense"].SkillMod += 20;
+    SkillTable["Spot"].SkillMod += 20;
+    SkillTable["Stealth"].SkillMod += 20;
+    //SkillTable["Technical"].SkillMod += 20; //setting approate
+    //SkillTable["Knowledge"].SkillMod += 20;
+    //SkillTable["Knowledge"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;
     break;
     }
   case 4:
     {
     Personality = "They have a charming personality, enjoying persuading other people to work, while they make the decisions.";
+    SkillTable["Appraise"].SkillMod += 20;
+    SkillTable["Bargain"].SkillMod += 20;
+    SkillTable["Command"].SkillMod += 20;
+    SkillTable["Etiquette"].SkillMod += 20;
+    SkillTable["Fast Talk"].SkillMod += 20;
+    SkillTable["Insight"].SkillMod += 20;
+    SkillTable["Preform"].SkillMod += 20;
+    SkillTable["Persuade"].SkillMod += 20;
+    SkillTable["Language0"].SkillMod += 20;
+    SkillTable["Sense"].SkillMod += 20;
+    SkillTable["Status"].SkillMod += 20;
+    //SkillTable["Language1"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;
     break;
     }
   }
@@ -1458,8 +1504,8 @@ void BRP_human_base::fullrandom(){
   SkillRatingMaximum();
   SkillCategory();
   Skills();
-  FillSkillMod();
   PersonalityPick();
+  FillSkillMod();
   OwnLanguage();
   Professions();
   //PickJobSkills();
@@ -1476,13 +1522,14 @@ void BRP_human_base::freebuild()
 //Prints character sheet to console
 void BRP_human_base::consoleChar()
 {
-  std::cout << "\n" << std::endl;
-  std::cout << "Starting Age: " << Age << "\t" << "Works as ";
-  if(Wealth[0] == 'A'){std::cout << "an ";}else{std::cout << "a ";}; 
-  std::cout <<  Wealth << " " << Profession << std::endl;
-  std::cout << "Religion: " << Religion << std::endl;
-  std::cout << "Gender: " << Gender << "\t" << "Handedness: " << Handedness << std::endl;
+  std::cout << "Culture: " << "Human" << "\t" << "Gender: " << Gender << std::endl;
   std::cout << "Height: " << Height << "\t" << "Weight: " << Weight << std::endl;
+  std::cout << "Wealth: " << Wealth << "\t" << "Profession: " << Profession << std::endl;
+  std::cout << "Religion: " << Religion << "\t" << "Handedness: " << Handedness << std::endl;
+  std::cout << "Move (MOV): " << 10 << "\t" << "Age: " << Age << std::endl;
+  std::cout << "\n" << UnitedFeatures << std::endl;
+  std::cout << "\n" << " " << Personality << std::endl;
+  std::cout << "\n";
   std::cout << "STR " << STR << "\t" << "Effort roll " << CharacteristicRoll(STR) << "%\t\t\t" << "INT " << INT << "\t" << "Idea roll " << CharacteristicRoll(INT) << "%" << std::endl; 
   std::cout << "CON " << CON << "\t" << "Stamina roll " << CharacteristicRoll(CON) << "%\t\t" << "CHA " << CHA << "\t" << "Charm roll " << CharacteristicRoll(CHA) << "%" << std::endl;
   std::cout << "DEX " << DEX << "\t" << "Agility roll " << CharacteristicRoll(DEX) << "%\t\t" << "POW " << POW << "\t" << "Luck roll " << CharacteristicRoll(POW) << "%" << std::endl;  
@@ -1491,9 +1538,8 @@ void BRP_human_base::consoleChar()
   else
   {std::cout << "SIZ " << SIZ << "\t" << "Damage Bonus of " << DamBonus << std::endl;}
   std::cout << "HP: " << HP << " with Major Wound occuring at " << MW << " HP" << std::endl;
-  std::cout << "\n" << UnitedFeatures <<std::endl;
-  std::cout <<"\n"<<" "<< Personality << std::endl;
-  std::cout << "\nProfessional Skill Points Pool: "  << ProSkillPtsMAX << "\t\t" << "Personal Skill Points Pool: "  << PerSkillPtsMAX << std::endl;
+  
+  std::cout << "\nProfessional Skill Points Pool: " << ProSkillPtsMAX << "\t\t" << "Personal Skill Points Pool: " << PerSkillPtsMAX << std::endl;
 
   //START OF SKILLS
   //COMMUNICATION    MENTAL    PHYSICAL

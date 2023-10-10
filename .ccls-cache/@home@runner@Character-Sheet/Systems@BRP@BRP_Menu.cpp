@@ -32,8 +32,7 @@ int BRP_menu()
     {
       case 1:{//full random
         std::cout << "Hello!\033c";
-        BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
-        BRPChar0.PlayerName();
+        BRP_human_base BRPChar0(ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 2)+6,ROLL.MultiDice(1, 6, 2)+6);
         BRPChar0.fullrandom();
         BRPChar0.consoleChar();
         break;
