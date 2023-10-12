@@ -35,3 +35,5 @@ class Dice{
 
 extern RandomSetUp RANDOMCORE;
 extern Dice ROLL;
+
+void DiceRollerMenu();

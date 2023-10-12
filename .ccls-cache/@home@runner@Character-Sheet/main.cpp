@@ -5,8 +5,6 @@
 
 /*
 Need to make a strut for professions!
-Also a strut for the currentSeed
-I also added in <random> to make a "better" pRNG
 */
 
 /*
@@ -38,10 +36,10 @@ ROADMAP
  0.6 Point Buy System Character Creater
  0.7 Free Build Character Creater
    0.7a Maybe I should of started with this and build evertyhing else around it?
-1. Move BRP Menus in BRP.cpp
+1. Move BRP Menus in BRP.cpp [DONE, made it's own cpp file]
  1.1 Have options adjustment menu
- 1.2 Move Dice Roller menu in Diceroller.cpp
-   1.2a Make a multi-dice roller too
+ 1.2 Move Dice Roller menu in Diceroller.cpp [DONE]
+   1.2a Make a multi-dice roller too [DONE]
  1.3 Clean up all headers so every script is modular  
 2. Load from txt file
  2.1 need to make something that reads a code on the bottom that tells it settings for layout 
@@ -70,7 +68,6 @@ int main()
   //Inputs for menus
   int mainMenuInput;
   int optionsMenuInput;
-  int diceMenuInput;
   int newMenuInput;
   int charKeepInput;
 
@@ -80,9 +77,7 @@ int main()
   //Makes a new folder in Characters for any added Systems
   FolderOriginBRP();
   
-  while(true) 
-  {//MAIN MENU
-    //std::cout << "Hello!\033c";
+  while(true){//MAIN MENU
     std::cout << "\n\n<>~~~~~~~~~~<>~~~~~~~~~~<>~~~~~~~~~~<>\n";
     std::cout << "Welcome to Character Sheet Creator\n\t\t\tMain Menu\n";
     std::cout << "1. New Sheet\n";
@@ -95,88 +90,27 @@ int main()
     std::cout << "Please Enter Your Command\n";
     std::cin >> mainMenuInput;
 
-      switch (mainMenuInput)
-      {//Main menu input start    
+      switch (mainMenuInput){//Main menu input start    
         case 1: //New Sheet
           std::cout << "\033c";
-          while(true)
-          {//New Sheet menu 
+          while(true){//New Sheet menu 
             std::cout << "\n\n<>----------<>----------<>----------<>\n";
             std::cout << "\t\t\tNew Sheet Menu\n";
-            std::cout << "1. Roll Up Many Random BRP Characters\n\n";
-            std::cout << "2. BRP menu [Prototype]\n\n";
-            std::cout << "3. Make a Fully Random BRP Character\n";
+            std::cout << "1. Basic Roleplaying, Universal Game Engine\n";
+            
             std::cout << "\n0. Return to Main Menu\n";
             std::cout << "<>----------<>----------<>----------<>\n\n";
   
             std::cout << "Please Enter Your Command\n";
             std::cin >> newMenuInput;
             
-            switch(newMenuInput)
-            {//New Sheet menu input start
-              case 1://temp for testing
+            switch(newMenuInput){//New Sheet menu input start
+              case 1:
                 std::cout << "\033c";
-                int amounts;
-                std::cout << "How many charcters do you want to make?\n";
-                std::cin >> amounts;
-                std::cout << "\033c";
-                for (int i = 0; i < amounts; i++)
-                {
-                  BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
-                  BRPChar0.fullrandom();
-                  BRPChar0.consoleChar();
-                  std::cout << "\n" <<std::endl;
-                }
+                BRP_menu(); 
                 break;
-              case 2://temp for testing
-                {
-                  std::cout << "\033c";
-                  BRP_menu(); 
-                  break;
-                }
-              case 3://temp for testing
-                {//case 3
-                  std::cout << "\033c";
-                  BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
-                  BRPChar0.PlayerName();
-                  BRPChar0.fullrandom();
-                  BRPChar0.consoleChar();
-                  
-                  while(true)
-                  {//save character menu
-                    std::cout << "\n\n<>##########<>##########<>##########<>\n";
-                    std::cout << "\t\tSave this charcater?" << std::endl;
-                    std::cout << "1. Save as txt file" << std::endl;
-                    std::cout << "\n0. Return" << std::endl;
-                    std::cout << "<>##########<>##########<>##########<>\n\n";
-                    std::cin >> charKeepInput;
-                    
-                    switch(charKeepInput)
-                    {//save character input
-                      case 1:
-                        std::cout << "\033c";
-                        BRPChar0.CharName();
-                        BRPChar0.printChar();
-                        break;
-                      case 0:
-                        std::cout << "\033c";
-                        break;
-                      default:
-                        std::cout << "\033c";
-                        std::cout << "\nNot one of the options";
-                        break;
-                    }//save character input end
-                    
-                    if (charKeepInput == 0 || charKeepInput == 1){
-                      std::cout << "\033c";
-                      break;
-                    };
-                    
-                  }//save character menu end
-                  
-                break;
-                  
-                }//case 3 end
+              case 2:
+              case 3:
               default:
                 std::cout << "\033c";
                 std::cout << "Please enter one of the listed options";
@@ -189,8 +123,7 @@ int main()
           }//New Sheet menu end
           break;
           
-        case 2: 
-          {//Load Sheet
+        case 2:{//Load Sheet
           std::cout << "\033c";
           std::cout << "\nLoad Sheet not availible\n\n";
           break;
@@ -198,105 +131,12 @@ int main()
         
         case 3: //Dice Roller
           std::cout << "\033c";
-          while (true)
-            {//Dice Roller menu
-              std::cout << "\n\n<>++++++++++<>++++++++++<>++++++++++<>\n";
-              std::cout << "\t\t\tDice Choices\n";
-              std::cout << "1. Roll a D4\n";
-              std::cout << "2. Roll a D6\n";
-              std::cout << "3. Roll a D8\n";
-              std::cout << "4. Roll a D10\n";
-              std::cout << "5. Roll a D12\n";
-              std::cout << "6. Roll a D20\n";
-              std::cout << "7. Roll a D100\n";
-              std::cout << "8. Roll many dice\n";
-              std::cout << "9. Combined multi-dice roller\n";
-              std::cout << "\n0. Return to Options\n";
-              std::cout << "<>++++++++++<>++++++++++<>++++++++++<>\n\n";
-      
-              std::cout << "Please make your selection\n";
-              std::cin >> diceMenuInput;
-  
-              switch (diceMenuInput)
-              {//Dice Roller input
-                case 1:
-                  std::cout << "\033c";
-                  std::cout << "\nYou rolled a four-sided die and got a " << ROLL.Die(1,4) << std::endl;
-                  break;
-                case 2:
-                  std::cout << "\033c";
-                  std::cout << "\nYou rolled a six-sided die and got a " << ROLL.Die(1,6) << std::endl;
-                  break;
-                case 3:
-                  std::cout << "\033c";
-                  std::cout << "\nYou rolled an eight-sided die and got a " << ROLL.Die(1,8) << std::endl;
-                  break;
-                case 4:
-                  std::cout << "\033c";
-                  std::cout << "\nYou rolled a ten-sided die and got a " << ROLL.Die(1,10) << std::endl;
-                  break;
-                case 5:
-                  std::cout << "\033c";
-                  std::cout << "\nYou rolled a twelve-sided die and got a " << ROLL.Die(1,12) << std::endl;
-                  break;
-                case 6:
-                  std::cout << "\033c";
-                  std::cout << "\nYou rolled a twenty-sided die and got a " << ROLL.Die(1,20) << std::endl;
-                  break;
-                case 7:
-                  std::cout << "\033c";
-                  std::cout << "\nYou rolled a hundred-sided die and got a " << ROLL.Die(1,100) << std::endl;
-                  break;
-                case 8:{
-                  std::cout << "\033c";
-                  int MINinput, MAXinput, ROLLSinput;
-                  std::cout << "Many Dice Roller" << std::endl;
-                  std::cout << "Lowest possible result per roll?" << std::endl;
-                  std::cin >> MINinput;
-                  std::cout << "Highest possible result per roll?" << std::endl;
-                  std::cin >> MAXinput;
-                  std::cout << "Finally, how many total rolls do you want?" << std::endl;
-                  std::cin >> ROLLSinput;
-                  std::cout << "\033c";
-                  std::cout << ROLLSinput << " dice with a random range of " << MINinput << " through " << MAXinput << " were rolled. \nHere are the results:\n\n";
-                  ROLL.ManyDice(MINinput, MAXinput, ROLLSinput);
-                  break;
-                }
-                case 9:{//I do not understand why I need the int total when MultiDice is an int method. Isn't it suppose to return an int when called? Without int total, the method doesn't return anything (not even 0). Program doesn't crash without int result, using cout on int total works, I'm blaming it on goblins and moving on...
-                  std::cout << "\033c";
-                  int MINinput, MAXinput, ROLLSinput;
-                  std::cout << "Combined Multi-roll Roller" << std::endl;
-                  std::cout << "Lowest possible result per roll?" << std::endl;
-                  std::cin >> MINinput;
-                  std::cout << "Highest possible result per roll?" << std::endl;
-                  std::cin >> MAXinput;
-                  std::cout << "Finally, how many total rolls do you want?" << std::endl;
-                  std::cin >> ROLLSinput;
-                  std::cout << "\033c";
-                  std::cout << ROLLSinput << " dice with a random range of " << MINinput << " through " << MAXinput << " were rolled. \nThe total of all rolls is:\n\n";
-                  int total = ROLL.MultiDice(MINinput, MAXinput, ROLLSinput);
-                  std::cout << total;
-                  break;
-                }
-                case 0:
-                  std::cout << "\033c";
-                  break;
-                default:
-                std::cout << "\033c";
-                 std::cout << "Please enter one of the listed options";
-                 break;
-              }//Dice Roller input end
-              if (diceMenuInput == 0){
-                std::cout << "\033c";
-                break;
-              };
-            }//Dice Roller menu end
-            break;
+          DiceRollerMenu();
+          break;
         
         case 4: //Options
         std::cout << "\033c";
-        while (true)  
-        {//Options sub-menu start
+        while (true){//Options sub-menu start
           std::cout << "\n\n<>==========<>==========<>==========<>\n";
             std::cout << "\t\t\t\tOptions\n";
             std::cout << "1. Input Manual Seed \n(Current Seed: "<< RANDOMCORE.currentSeed <<")\n";
@@ -307,8 +147,7 @@ int main()
             std::cout << "Please Enter Your Command\n";
             std::cin >> optionsMenuInput;
           
-            switch (optionsMenuInput)
-              {//Options input
+            switch (optionsMenuInput){//Options input
                 case 1:
                   std::cout << "\033c";
                   RANDOMCORE.userSeed();

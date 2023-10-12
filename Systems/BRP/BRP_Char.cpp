@@ -102,8 +102,7 @@ void BRP_human_base::SettingsSwitches()
 }
 
 //Weapons Table
-void BRP_human_base::Weapons()
-{
+void BRP_human_base::Weapons(){
 /*
   
   WeaponsTable["Weapon Name Key"] = {"Weapon Name","Main Skill","SubSkill",Base,"dmg","Attk","Special","Melee Rng",Missile Rng,"hands",HP,Parry bool,STR,DEX,"Mal",Ammo,"Value",SIZ,"Missile Rate-of-Fire",will need to set up setting codes here};
@@ -154,8 +153,7 @@ void BRP_human_base::Weapons()
 }
 
 //EDU Characteristic
-int BRP_human_base::EDUstat()
-{
+int BRP_human_base::EDUstat(){
   if (EDUCATION_STAT == true)
     {
       EDU = 0;
@@ -169,32 +167,28 @@ int BRP_human_base::EDUstat()
 }
 
 //Experience Bonus
-void BRP_human_base::ExpBonus(int E)
-{
+void BRP_human_base::ExpBonus(int E){
   ExperenceBonus = ceil(E/2);
 }
 
 //Returns a STAT times 5, for a percentage roll
 //This is at standard difficulty
-int BRP_human_base::CharacteristicRoll(int r)
-{
+int BRP_human_base::CharacteristicRoll(int r){
   int CharRoll = r * 5;
   return CharRoll;
 }
 
 //Generates starting age
 //Will need to expand to allow input from user and modifiers for higher and lower ages
-int BRP_human_base::Born()
-{
+int BRP_human_base::Born(){
   int startage = 17+ROLL.Die(1,6);
   Age = startage;
   return Age;
 }
 
 //Calculates Damage Bonus
-std::string BRP_human_base::DamageBonus()
-{
-  int Db = STR + SIZ;
+std::string BRP_human_base::DamageBonus(int T, int Z){
+  int Db = T + Z;
     
   std::map<int, std::string> DamageModifierTable;
   DamageModifierTable[0] = "Error";
@@ -225,32 +219,25 @@ std::string BRP_human_base::DamageBonus()
 }
 
 //Calculates Hit Points
-int BRP_human_base::HitPoints()
-{
-  if(TOTAL_HIT_POINTS == true)
-  {
-    HP = CON+SIZ;
+int BRP_human_base::HitPoints(int C, int Z){
+  if(TOTAL_HIT_POINTS == true){
+    HP = C + Z;
     return HP;
-  }
-  else
-  {
-    HP = ceil((CON + SIZ)/2); 
+  }else{
+    HP = ceil((C + Z)/2); 
     return HP;
   }
 }
 
 //Calculates Major Wounds
-int BRP_human_base::MajorWounds()
-{
-  MW = ceil(HP/2);
+int BRP_human_base::MajorWounds(int H){
+  MW = ceil(H/2);
   return MW;
 }
 
 //Calculates Hit Points by Location
-void BRP_human_base::HPbyLocation(int B)
-{
-  if(HIT_POINTS_PER_LOCATION == true)
-  {
+void BRP_human_base::HPbyLocation(int B){
+  if(HIT_POINTS_PER_LOCATION == true){
     LAH_HP = ceil(B/3); //LAH is Legs, Abdomen, and Head
     Arms_HP = ceil(B/4);
     Chest_HP = ceil(B*0.40); //Chest HP is 4/10 total HP, rounded up
@@ -258,24 +245,18 @@ void BRP_human_base::HPbyLocation(int B)
 }
 
 //Calcualtes Fatigue Points
-int BRP_human_base::FatiguePoints(int A, int B)
-{
-  if (FATIGUE_POINTS == true)
-  {
+int BRP_human_base::FatiguePoints(int A, int B){
+  if (FATIGUE_POINTS == true){
     FatiguePointsMax = A + B;
     return FatiguePointsMax;
-  }
-  else
-  {
+  }else{
     return 0;
   }
 }
 
 //Calculates Sanity Points
-void BRP_human_base::SanityPoints(int G)
-{
-  if(SANITY == true)
-  {
+void BRP_human_base::SanityPoints(int G){
+  if(SANITY == true){
     //Starting Sanity Score
     SanityBase = G*5; 
     //Temporary Insanity Score, rules don't say but I assume it is rounded up.
@@ -289,17 +270,16 @@ void BRP_human_base::SanityPoints(int G)
 }
 
 //Determines character's distinctive features based on CHA
-std::string BRP_human_base::DistinctiveFeatures()
-{
+std::string BRP_human_base::DistinctiveFeatures(int H){
   int DFs;
   std::string W;
 
-  if (CHA <= 3 || CHA >= 17) {DFs = 4;}
-  else if (CHA >= 4 && CHA <= 7) {DFs = 3;}
-  else if (CHA >= 8 && CHA <= 9) {DFs = 2;}
-  else if (CHA >= 10 && CHA <= 11) {DFs = 1;}
-  else if (CHA >= 12 && CHA <= 14) {DFs = 2;}
-  else if (CHA >= 15 && CHA <= 16) {DFs = 3;}
+  if (H <= 3 || H >= 17) {DFs = 4;}
+  else if (H >= 4 && H <= 7) {DFs = 3;}
+  else if (H >= 8 && H <= 9) {DFs = 2;}
+  else if (H >= 10 && H <= 11) {DFs = 1;}
+  else if (H >= 12 && H <= 14) {DFs = 2;}
+  else if (H >= 15 && H <= 16) {DFs = 3;}
   else {DFs = 0;} 
 
   //Basic Feature List
@@ -318,8 +298,7 @@ std::string BRP_human_base::DistinctiveFeatures()
     FeatureTypeTable[10] = "Legs and feet";
 
     //Assigns random basic features
-    for (int i = 0; i < DFs; i++) 
-    {
+    for (int i = 0; i < DFs; i++){
       //"they have " + rand_feature + ". " + next feature...
       int Type = ROLL.Die(1,10);  
   
@@ -346,21 +325,18 @@ std::string BRP_human_base::DistinctiveFeatures()
   };                          
 
     //For loop to get the the full detailed feature discription
-    for (int i = 0; i < DFs; i++) 
-      {
+    for (int i = 0; i < DFs; i++){
         //"they have " + rand_feature + ". " + next feature...
         int Type = ROLL.Die(0,9);  
         int Count = 0;
         
         //counts how many choices there are in a selected array
-        while (FeatureArray[Type][Count] != "") 
-        {
+        while (FeatureArray[Type][Count] != ""){
           Count++;
         }
         
         //Picks a random choice from the counted array that was selected and adds it to UnitedFeatures
-        if (Count > 0) 
-        {
+        if (Count > 0){
           //int Feature = rand() % Count;
           int Feature = ROLL.Die(0,Count-1);
           std::string Sentence = " They have " + FeatureArray[Type][Feature] + ".";
@@ -370,8 +346,7 @@ std::string BRP_human_base::DistinctiveFeatures()
   }
 
   //default if DISTINCTIVE_FEATURES is false, returns a blank space on the sheet
-  else
-  {
+  else{
     UnitedFeatures = "";
   }
   
@@ -379,51 +354,34 @@ std::string BRP_human_base::DistinctiveFeatures()
 }
 
 //Profession skill points
-int BRP_human_base::ProSkillPointsPool()
-{
+int BRP_human_base::ProSkillPointsPool(){
   ProSkillPtsMAX = 0;
   
-  if (POWER_LEVEL == 1) //Heroic game
-  {
-    if (EDUCATION_STAT == true) 
-      {
+  if (POWER_LEVEL == 1){//Heroic game
+    if (EDUCATION_STAT == true){
         ProSkillPtsMAX = EDU*25;
-      }
-    else
-      {
+      }else{
         ProSkillPtsMAX = 325;
       }
   }
-  else if (POWER_LEVEL == 2) //Epic game
-  {
-    if (EDUCATION_STAT == true) 
-      {
+  else if (POWER_LEVEL == 2){//Epic game
+    if (EDUCATION_STAT == true){
         ProSkillPtsMAX = EDU*30;
-      }
-    else
-      {
+      }else{
         ProSkillPtsMAX = 400; 
       }
   }
-  else if (POWER_LEVEL == 3) //Superhuman game
-  {
-    if (EDUCATION_STAT == true) 
-      {
+  else if (POWER_LEVEL == 3){//Superhuman game
+    if (EDUCATION_STAT == true){
         ProSkillPtsMAX = EDU*40;
-      }
-    else
-      {
+      }else{
         ProSkillPtsMAX = 500;
       }
   }
-  else //default for Nomral game
-  {
-    if (EDUCATION_STAT == true) 
-      {
+  else{//default for Nomral game
+    if (EDUCATION_STAT == true){
         ProSkillPtsMAX = EDU*20;
-      }
-    else
-      {
+      }else{
         ProSkillPtsMAX = 250;
       }
   }
@@ -431,24 +389,19 @@ int BRP_human_base::ProSkillPointsPool()
 }
 
 //Set Skill Rating Maximum
-int BRP_human_base::SkillRatingMaximum()
-{
+int BRP_human_base::SkillRatingMaximum(){//could replace if/else with switch
   SkillRatingMAX = 0;
 
-  if (POWER_LEVEL == 1) //Heroic game
-    {
+  if (POWER_LEVEL == 1){//Heroic game
       SkillRatingMAX = 90;
     }
-  else if (POWER_LEVEL == 2) //Epic game
-    {
+  else if (POWER_LEVEL == 2){//Epic game
       SkillRatingMAX = 101;
     }
-  else if (POWER_LEVEL == 3) //Superhuman game
-    {
+  else if (POWER_LEVEL == 3){//Superhuman game
       SkillRatingMAX = 999; //No limit to skill ratings
     }
-  else //default for Nomral game
-    {
+  else{//default for Nomral game
       SkillRatingMAX = 75;
     }
   
@@ -456,34 +409,29 @@ int BRP_human_base::SkillRatingMaximum()
 }
 
 //Personal skill points
-int BRP_human_base::PerSkillPonitsPool()
-{
+int BRP_human_base::PerSkillPonitsPool(){
   PerSkillPtsMAX = 0;
-  if (INCREASED_PERSONAL_SKILL_POINTS == true)
-    {
-      if (POWER_LEVEL == 1) //Heroic game
-        {
+  
+  if (INCREASED_PERSONAL_SKILL_POINTS == true){
+      if (POWER_LEVEL == 1){//Heroic game
           PerSkillPtsMAX = INT*15;
         }
-      else if (POWER_LEVEL == 2) //Epic game
-        {
+      else if (POWER_LEVEL == 2){//Epic game
           PerSkillPtsMAX = INT*20;
         }
-      else if (POWER_LEVEL == 3) //Superhuman game
-        {
+      else if (POWER_LEVEL == 3){//Superhuman game
           PerSkillPtsMAX = INT*25;
         }
-    }
-  else
-    {
-      PerSkillPtsMAX = INT*10; //Default Normal game
-    }
+  }
+  else{//Default Normal game
+    PerSkillPtsMAX = INT*10; 
+  }
+  
   return PerSkillPtsMAX;
 }
 
 //Determines character's profession
-void BRP_human_base::Professions()
-{
+void BRP_human_base::Professions(){
   std::string jobs[] = {"Artist", "Assassin", "Athlete", "Beggar", "Clerk", "Computer Tech", "Crafter", "Criminal", "Detective", "Doctor", "Engineer", "Entertainer", "Explorer", "Farmer", "Gambler", "Herder", "Hunter", "Journalist", "Laborer", "Lawkeeper", "Lawyer", "Mechanic", "Merchant", "Noble", "Occultist", "Pilot", "Politician", "Priest", "Sailor", "Scholar", "Scientist", "Servant", "Shaman", "Slave", "Soldier", "Spy", "Student", "Teacher", "Technician", "Thief", "Tribesperson", "Warrior", "Wizard", "Writer"};
 
   //44 total profession, elements are between 0 and 43
@@ -499,6 +447,7 @@ void BRP_human_base::Professions()
   //Wealth = "Broke";
 
   //Table of profession wealth, int values are weights for chances wealth levels; 00 = never, 99 = always
+  
   std::map<std::string, WealthCategorys> WealthTable;
   WealthTable["Artist"] = {{ {"Destitute",20}, {"Poor",45}, {"Average",45}, {"Affluent",20}, {"Wealthy",20} }};//00
   WealthTable["Assassin"] = {{ {"Destitute",00}, {"Poor",00}, {"Average",50}, {"Affluent",50}, {"Wealthy",00} }};
@@ -553,10 +502,8 @@ void BRP_human_base::Professions()
 
   //This fails if it gets to the end of the Wealth Level options without beign able to pick one
   //I don't get it and need to study and come up with one I know and can work with
-  for (auto& range : WC.range)
-  {
-      if (range.WealthWeight >= Income)
-      {
+  for (auto& range : WC.range){
+      if (range.WealthWeight >= Income){
         Wealth = range.WealthLevel;
         break;
       }
@@ -565,10 +512,8 @@ void BRP_human_base::Professions()
 }
 
 //Determines character's gender 
-std::string BRP_human_base::RandGender()
-{
-  int X = ROLL.Die(1,100);
-
+std::string BRP_human_base::RandGender(int X){
+  
   //50% Female, 49% Male, 1% Non-Binary
   if (X == 100) {Gender = "Non-Binary";}
   else if (X >= 51) {Gender = "Male";}
@@ -578,8 +523,7 @@ std::string BRP_human_base::RandGender()
 }
 
 //Determins character's religion/who they worship
-void BRP_human_base::Faith()
-{
+void BRP_human_base::Faith(){
   Beliefs = {"Atheist", "Agnostic", "Ignostic",  "Nonreligious", "Secular", "Baha'is", "Buddhist", "Christian", "Confucian", "Hindu", "Muslim", "Jainist", "Jewish", "Shintoists", "Satanist", "Sikh", "Taoist", "Zoroastrian", "Jain", "Polytheistic", "Worshipper of Zeus", "Worshipper of Hera", "Worshipper of Atremis", "Worshipper of Hades", "Worshipper of Posidon", "Worshipper of Cthulhu", "Worshipper of Ra", "Worshipper of Set", "Druid", "Animist", "Worshipper of Bast", "Worshipper of Horus", "Worshipper of Isis", "Worshipper of Khepri", "Worshipper of Anubis", "Worshipper of Odin", "Worshipper of Thor", "Worshipper of Loki", "Worshipper of Yudi", "Worshipper of Lóngshén", "Worshipper of Doumu"};
 
   int Convert = ROLL.Die(0,Beliefs.size()-1);
@@ -587,10 +531,8 @@ void BRP_human_base::Faith()
 }
 
 //Determines character's hand dominance 
-std::string BRP_human_base::HandDom()
-{
-  int Odds = ROLL.Die(1,100);
-
+std::string BRP_human_base::HandDom(int Odds){
+  
   //83% Right-Handed, 13% Left-Handed, 3% Ambidextrous, 1% Cross-Dominant; based on UN data
   if (Odds == 100) {Handedness = "Cross-Dominant";}
   else if (Odds >= 97) {Handedness = "Ambidextrous";}
@@ -601,8 +543,7 @@ std::string BRP_human_base::HandDom()
 }
 
 //Determines character's Height and Weight 
-void BRP_human_base::HeightandWeight()
-{
+void BRP_human_base::HeightandWeight(int z){
     //2D-array of height and weight outcomes
     std::string HTandWT[2][5] = 
   {
@@ -614,13 +555,13 @@ void BRP_human_base::HeightandWeight()
   //this is a pretty subjective thing. Maybe just pure random picks within SIZ based boundries
   //Or, just use the formula from the old Gold Book and give lbs and ft / grams and meters
     //Average outcome
-  if (SIZ >= 10 && SIZ <= 13) 
+  if (z >= 10 && z <= 13) 
     {Height = HTandWT[0][2], Weight = HTandWT[1][2];}
     //Low end outcome, Tiny/Frail
-  else if (SIZ < 10) 
+  else if (z < 10) 
     {Height = HTandWT[0][1], Weight = HTandWT[1][1];}
     //High end outcome, Tall/Overweight
-  else if (SIZ >= 14 && SIZ <= 17) 
+  else if (z >= 14 && z <= 17) 
     {Height = HTandWT[0][3], Weight = HTandWT[1][3];}
     //Default outcome, Towering/Obese
   else 
@@ -628,23 +569,18 @@ void BRP_human_base::HeightandWeight()
 }
 
 //Primary Skill Category
-int BRP_human_base::Skill_Category_Primary(int x)
-{
+int BRP_human_base::Skill_Category_Primary(int x){
   //argument x = one STAT, +1 for every point over 10, -1 for every point under 10, 0 at 10
   int P = 0;
-  if (x >= 10)
-   {
+  if (x >= 10){
      int z = x-10;
-     for (int i = 0; i < z; i++)
-     {
+     for (int i = 0; i < z; i++){
        P++;
      }
    }
-  else 
-  {
+  else{
     int z = 10-x;
-     for (int i = 0; i < z; i++)
-     {
+     for (int i = 0; i < z; i++){
        P--;
      }
   }
@@ -652,24 +588,19 @@ int BRP_human_base::Skill_Category_Primary(int x)
 }
 
 //Secondary Skill Category
-int BRP_human_base::Skill_Category_Secondary(int x)
-{
+int BRP_human_base::Skill_Category_Secondary(int x){
   //argument x = one STAT, +1 for every 2 points over 10, -1 for every 2 points under 10, 0 at 10
   int P = 0;
-  if (x >= 10)
-   {
+  if (x >= 10){
      x = x - 10;
      int z = std::floor(x / 2);
-     for (int i = 0; i < z; i++)
-     {
+     for (int i = 0; i < z; i++){
        P++;
      }
    }
-  else 
-  {
+  else{
     int z = std::floor((10-x) / 2);
-     for (int i = 0; i < z; i++)
-     {
+     for (int i = 0; i < z; i++){
        P--;
      }
   }
@@ -677,23 +608,18 @@ int BRP_human_base::Skill_Category_Secondary(int x)
 }
 
 //Negative Skill Category
-int BRP_human_base::Skill_Category_Negative(int x)
-{
+int BRP_human_base::Skill_Category_Negative(int x){
   //argument x = one STAT (SIZ is the only one), -1 for every point over 10, +1 for every point under 10, 0 at 10
   int P = 0;
-  if (x >= 10)
-   {
+  if (x >= 10){
      int z = x-10;
-     for (int i = 0; i < z; i++)
-     {
+     for (int i = 0; i < z; i++){
        P--;
      }
    }
-  else 
-  {
+  else{
     int z = 10-x;
-     for (int i = 0; i < z; i++)
-     {
+     for (int i = 0; i < z; i++){
        P++;
      }
   }
@@ -701,8 +627,7 @@ int BRP_human_base::Skill_Category_Negative(int x)
 }
 
 //Handles the optional Skill Category system, both standard & simple
-void BRP_human_base::SkillCategory()
-{
+void BRP_human_base::SkillCategory(){
 
   //Skill Category variables
   Combat_skillcategory = 0;    
@@ -713,8 +638,7 @@ void BRP_human_base::SkillCategory()
   Physical_skillcategory = 0;
 
   //Standard Skill Category rules
-  if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == false) 
-  {
+  if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == false){
    //Takes a relevant STAT and returns the appropriate value to be added for the Skill Category 
    int A = Skill_Category_Primary(DEX);
    int B = Skill_Category_Primary(INT);
@@ -740,8 +664,7 @@ void BRP_human_base::SkillCategory()
   }
 
   //Simple Skill Category rules
-  if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == true) 
-  {
+  if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == true){
    //Takes a relevant STAT and divides it by 2 rounded up
    int Dx = ceil(DEX/2);
    int Ca = ceil(CHA/2);
@@ -759,18 +682,17 @@ void BRP_human_base::SkillCategory()
 }
 
 //Handles all skills and skill categorys 
-void BRP_human_base::Skills()
-{  
+void BRP_human_base::Skills(int x, int i, int p){  
   //special base values for skills
-  int DodgeBase = DEX*2; //Dodge
-  int FlyBase = ceil(DEX/2); //Fly
+  int DodgeBase = x*2; //Dodge
+  int FlyBase = ceil(x/2); //Fly
   if (WINGED_CHARACTER == true) 
-    {FlyBase = DEX*4;}
-  int GamingBase = INT+POW; //Gaming
-  int Language0Base = INT*5; //Own Language
-  if (EDUCATION_STAT == true && EDU*5 > INT*5)
+    {FlyBase = x*4;}
+  int GamingBase = i+p; //Gaming
+  int Language0Base = i*5; //Own Language
+  if (EDUCATION_STAT == true && EDU*5 > i*5)
     {Language0Base = EDU*5;}
-  int ProjectionBase = DEX*2; //Projection
+  int ProjectionBase = x*2; //Projection
   int PsychotherapyBase = 0; //Psychotherapy
   if (SANITY == true)
     {PsychotherapyBase = 1;}
@@ -1316,31 +1238,24 @@ void BRP_human_base::PersonalSkillSet()
 }*/
 
 //Loop through all skills and add a skill's base value and a skill's category value to the skill's mod value
-void BRP_human_base::FillSkillMod()
-{
-  for (auto& X : SkillTable)
-  {
+void BRP_human_base::FillSkillMod(){
+  for (auto& X : SkillTable){
     X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
   }
 }
 
 //Assign Own Language
-void BRP_human_base::OwnLanguage() 
-{
-  //int OwnLang = rand() % Language.size();
+void BRP_human_base::OwnLanguage(){
   int OwnLang = ROLL.Die(0,Language.size()-1);
   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
 }
 
 //Personality
-void BRP_human_base::PersonalityPick()
-{
-  int pick = ROLL.Die(1,4);
+void BRP_human_base::PersonalityPick(int pick){
   Personality = "";
-  switch (pick)
-  {//need to add skill points asigning for each case
-  case 1:
-    {
+  
+  switch (pick){//need to add skill points asigning for each case
+  case 1:{
     Personality = "They have a brutal personality, thinking first of solving problems by means of physical force and brawn.";
     SkillTable["Brawl"].SkillMod += 20;
     SkillTable["Climb"].SkillMod += 20;
@@ -1356,10 +1271,9 @@ void BRP_human_base::PersonalityPick()
     SkillTable["Throw"].SkillMod += 20;
     //SkillTable["ARMS"].SkillMod += 20;
     //SkillTable["ARMS"].SkillMod += 20;
-    break;
-    }
-  case 2:
-    {
+    break;}
+    
+  case 2:{
     Personality = "They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.";
     SkillTable["Disguise"].SkillMod += 20;
     SkillTable["Dodge"].SkillMod += 20;
@@ -1375,10 +1289,9 @@ void BRP_human_base::PersonalityPick()
     //SkillTable["ARMS"].SkillMod += 20;
     //SkillTable["Knowledge"].SkillMod += 20;
     //SkillTable["Craft"].SkillMod += 20;
-    break;
-    }
-  case 3:
-    {
+    break;}
+    
+  case 3:{
     Personality = "They have a cunning personality, trying first to outsmart an opponent to gain an advantage.";
     SkillTable["Appraise"].SkillMod += 20;
     SkillTable["Bargain"].SkillMod += 20;
@@ -1393,10 +1306,9 @@ void BRP_human_base::PersonalityPick()
     //SkillTable["Knowledge"].SkillMod += 20;
     //SkillTable["Knowledge"].SkillMod += 20;
     //SkillTable["ARMS"].SkillMod += 20;
-    break;
-    }
-  case 4:
-    {
+    break;}
+    
+  case 4:{
     Personality = "They have a charming personality, enjoying persuading other people to work, while they make the decisions.";
     SkillTable["Appraise"].SkillMod += 20;
     SkillTable["Bargain"].SkillMod += 20;
@@ -1411,8 +1323,8 @@ void BRP_human_base::PersonalityPick()
     SkillTable["Status"].SkillMod += 20;
     //SkillTable["Language1"].SkillMod += 20;
     //SkillTable["ARMS"].SkillMod += 20;
-    break;
-    }
+    break;}
+    
   }
 }
 
@@ -1468,15 +1380,13 @@ void BRP_human_base::ProfessionSkillSet(){
 }
 
 //Gets the character's name
-void BRP_human_base::CharName()
-{
+void BRP_human_base::CharName(){
   std::cout << "\nWhat is the character's name?\n";
   std::getline(std::cin >> std::ws, CN); 
 }
 
 //Gets the user's name
-void BRP_human_base::PlayerName()
-{
+void BRP_human_base::PlayerName(){
   std::cout << "\nWhat is your name?\n";
   std::getline(std::cin >> std::ws, PN);
 }
@@ -1488,23 +1398,23 @@ void BRP_human_base::fullrandom(){
   ExpBonus(INT);
   SanityPoints(POW);
   FatiguePoints(STR, CON);
-  HitPoints();
+  HitPoints(CON, SIZ);
   HPbyLocation(HP);
-  MajorWounds();
-  DamageBonus();
+  MajorWounds(HP);
+  DamageBonus(STR, SIZ);
   Weapons();
   Born();
-  RandGender();
-  HandDom();
+  RandGender(ROLL.Die(1,100));
+  HandDom(ROLL.Die(1,100));
   Faith();
-  DistinctiveFeatures();
-  HeightandWeight();
+  DistinctiveFeatures(CHA);
+  HeightandWeight(SIZ);
   ProSkillPointsPool();
   PerSkillPonitsPool();
   SkillRatingMaximum();
   SkillCategory();
-  Skills();
-  PersonalityPick();
+  Skills(DEX, INT, POW);
+  PersonalityPick(ROLL.Die(1,4));
   FillSkillMod();
   OwnLanguage();
   Professions();

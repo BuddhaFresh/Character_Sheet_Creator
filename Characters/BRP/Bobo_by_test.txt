@@ -1,0 +1,34 @@
+0
+===========================================================
+			PERSONAL
+===========================================================
+Name: Bobo		Player: test
+Culture: Human		Gender: Male
+Handedness: Right-Handed	Height: Average	Weight: Average
+Profession: Gambler		Wealth: Poor
+Gods/Religion: Worshipper of Hades
+
+ They have a sneering expression.
+MOV: 10		Age: 22
+===========================================================
+			CHARACTERISTICS
+===========================================================
+STR 13	Effort roll 65%			INT 13	Idea roll 65%
+CON 16	Stamina roll 80%		CHA 11	Charm roll 55%
+DEX 11	Agility roll 55%		POW 13	Luck roll 65%
+EDU 14	Knowledge roll 70%	SIZ 11	Damage Bonus of None
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 13 with Major Wound occuring at 6 HP
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 280
+Personal Skill Points Pool: 130
+Appraise (15%)			39%
+COMMUNICATION (4%)			MENTAL (4%)			PHYSICAL (4%)			
+MANIPULATION (3%)			PERCEPTION (7%)			COMBAT (5%)			
+
+
+Seed: 0
