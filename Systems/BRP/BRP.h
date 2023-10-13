@@ -14,7 +14,15 @@ void FolderOriginBRP();
 int ThreeDSix();
 int TwoDSixPlusSix();
 
+//This struct takes an int argument and makes sure it is at minimum two digits starting with 0.
+struct DD{
+  int value;
+  DD(int val) : value(val) {}
 
+  friend std::ostream& operator<<(std::ostream& os, const DD& cf){
+    return os << std::setw(2) << std::setfill('0') << cf.value;
+  }
+};
 
 //Skill struct
 struct SkillData 
@@ -180,6 +188,7 @@ private:
   int Skill_Category_Primary(int x);
   int Skill_Category_Secondary(int x);
   int Skill_Category_Negative(int x);
+
 
   std::map<std::string, SkillData>SkillTable;
   std::map<std::string, WeaponsData>WeaponsTable;

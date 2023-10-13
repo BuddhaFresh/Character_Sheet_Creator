@@ -1,0 +1,33 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: 0		Player: 1
+Culture: Human		Gender: Female
+Handedness: Right-Handed	Height: Short	Weight: Thin
+Profession: Engineer		Wealth: Affluent
+Gods/Religion: Worshipper of Isis
+
+ They have an enormous chin. They have a wary bearing. They have lots of cheap jewelry. They have arched eyebrows.
+MOV: 10		Age: 21
+===========================================================
+			CHARACTERISTICS
+===========================================================
+STR 13	Effort roll 65%			INT 10	Idea roll 50%
+CON 09	Stamina roll 45%		CHA 17	Charm roll 85%
+DEX 05	Agility roll 25%		POW 07	Luck roll 35%
+EDU 15	Knowledge roll 75%	SIZ 08	Damage Bonus of None
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 8 with Major Wound occuring at 4 HP
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 300
+Personal Skill Points Pool: 100
+Appraise (15%)			14%
+COMMUNICATION (2%)			MENTAL (-1%)			PHYSICAL (-2%)			
+MANIPULATION (-4%)			PERCEPTION (-1%)			COMBAT (-4%)			
+
+
+Seed: 1697219705
