@@ -554,6 +554,7 @@ void BRP_human_base::HeightandWeight(int z){
   //poor if statement just to use the array. should adjust results based on CON and maybe random chance
   //this is a pretty subjective thing. Maybe just pure random picks within SIZ based boundries
   //Or, just use the formula from the old Gold Book and give lbs and ft / grams and meters
+  
     //Average outcome
   if (z >= 10 && z <= 13) 
     {Height = HTandWT[0][2], Weight = HTandWT[1][2];}
@@ -575,14 +576,12 @@ int BRP_human_base::Skill_Category_Primary(int x){
   if (x >= 10){
      int z = x-10;
      for (int i = 0; i < z; i++){
-       P++;
-     }
+       P++;}
    }
   else{
     int z = 10-x;
      for (int i = 0; i < z; i++){
-       P--;
-     }
+       P--;}
   }
   return P;
 }
@@ -595,14 +594,12 @@ int BRP_human_base::Skill_Category_Secondary(int x){
      x = x - 10;
      int z = std::floor(x / 2);
      for (int i = 0; i < z; i++){
-       P++;
-     }
+       P++;}
    }
   else{
     int z = std::floor((10-x) / 2);
      for (int i = 0; i < z; i++){
-       P--;
-     }
+       P--;}
   }
   return P;
 }
@@ -614,14 +611,12 @@ int BRP_human_base::Skill_Category_Negative(int x){
   if (x >= 10){
      int z = x-10;
      for (int i = 0; i < z; i++){
-       P--;
-     }
+       P--;}
    }
   else{
     int z = 10-x;
      for (int i = 0; i < z; i++){
-       P++;
-     }
+       P++;}
   }
   return P;
 }

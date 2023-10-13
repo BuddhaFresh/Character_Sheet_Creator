@@ -20,7 +20,6 @@ void RandomSetUp::userSeed() {//see if I can't turn seedinput into a char array 
   mt_rando.seed(currentSeed);
 }
 
-// Dice class methods
 
 //General dice roller method
 int Dice::Die(int MIN, int MAX){ 

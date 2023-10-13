@@ -5,6 +5,8 @@
 
 /*
 Need to make a strut for professions!
+Maybe weapons as classes?
+Should experiment with Inheritance... break up the BRP_Char.
 */
 
 /*
