@@ -69,6 +69,9 @@ void BRP_human_base::SettingsSwitches()
   TOTAL_HIT_POINTS = false;
   DISTINCTIVE_FEATURES = true;
   DISTINCTIVE_FEATURES_BASIC = false;
+  HEIGHT_AND_WEIGHT_IN_METERS = true;
+  HEIGHT_AND_WEIGHT_IN_IMPERIAL = false;
+    
   /*Setting&Era switches
   Basic?; prehistoric, medieval, modern, future?
   Basic has like 5 options
@@ -542,9 +545,132 @@ std::string BRP_human_base::HandDom(int Odds){
   return Handedness;
 }
 
-//Determines character's Height and Weight 
+//Determines character's Height and Weight, argument is SIZ
 void BRP_human_base::HeightandWeight(int z){
-    //2D-array of height and weight outcomes
+  int ht_raw = 0; //defaults to cm
+  int wt_raw = 0; //defaults to kg
+
+  switch(z){
+    case 1: 
+      ht_raw = ROLL.Die(0, 30);
+      wt_raw = ROLL.Die(0, 10);
+      break;
+    case 2:  
+      ht_raw = ROLL.Die(31, 60);
+      wt_raw = ROLL.Die(5, 20);
+      break;
+    case 3:  
+      ht_raw = ROLL.Die(61, 90);
+      wt_raw = ROLL.Die(10, 30);
+      break;
+    case 4:  
+      ht_raw = ROLL.Die(91, 105);
+      wt_raw = ROLL.Die(16, 40);
+      break;
+    case 5:  
+      ht_raw = ROLL.Die(105, 120);
+      wt_raw = ROLL.Die(21, 50);
+      break;
+    case 6:  
+      ht_raw = ROLL.Die(121, 135);
+      wt_raw = ROLL.Die(26, 60);
+      break;
+    case 7:  
+      ht_raw = ROLL.Die(136, 150);
+      wt_raw = ROLL.Die(31, 70);
+      break;
+    case 8:  
+      ht_raw = ROLL.Die(151, 155);
+      wt_raw = ROLL.Die(36, 73);
+      break;
+    case 9:  
+      ht_raw = ROLL.Die(155, 160);
+      wt_raw = ROLL.Die(39, 82);
+      break;
+    case 10:  
+      ht_raw = ROLL.Die(160, 165);
+      wt_raw = ROLL.Die(41, 91);
+      break;
+    case 11:  
+      ht_raw = ROLL.Die(165, 170);
+      wt_raw = ROLL.Die(43, 100);
+      break;
+    case 12:  
+      ht_raw = ROLL.Die(170, 175);
+      wt_raw = ROLL.Die(46, 109);
+      break;
+    case 13:  
+      ht_raw = ROLL.Die(175, 180);
+      wt_raw = ROLL.Die(50, 118);
+      break;
+    case 14:  
+      ht_raw = ROLL.Die(180, 185);
+      wt_raw = ROLL.Die(55, 127);
+      break;
+    case 15:  
+      ht_raw = ROLL.Die(185, 190);
+      wt_raw = ROLL.Die(59, 136);
+      break;
+    case 16:  
+      ht_raw = ROLL.Die(190, 195);
+      wt_raw = ROLL.Die(64, 146);
+      break;
+    case 17:  
+      ht_raw = ROLL.Die(195, 200);
+      wt_raw = ROLL.Die(68, 155);
+      break;
+    case 18:  
+      ht_raw = ROLL.Die(200, 205);
+      wt_raw = ROLL.Die(73, 164);
+      break;
+    case 19:  
+      ht_raw = ROLL.Die(205, 210);
+      wt_raw = ROLL.Die(82, 173);
+      break;
+    case 20:  
+      ht_raw = ROLL.Die(210, 215);
+      wt_raw = ROLL.Die(90, 182);
+      break;
+    case 21:  
+      ht_raw = ROLL.Die(215, 220);
+      wt_raw = ROLL.Die(100, 191);
+      break;
+    case 22:  
+      ht_raw = ROLL.Die(221, 225);
+      wt_raw = ROLL.Die(106, 220);
+      break;
+    case 23:  
+      ht_raw = ROLL.Die(226, 230);
+      wt_raw = ROLL.Die(111, 230);
+      break;
+    case 24:  
+      ht_raw = ROLL.Die(231, 235);
+      wt_raw = ROLL.Die(116, 240);
+      break;
+    case 25:  
+      ht_raw = ROLL.Die(236, 240);
+      wt_raw = ROLL.Die(121, 250);
+      break;
+    default: break;
+  }
+
+  if (HEIGHT_AND_WEIGHT_IN_METERS == true){
+    double ht_m = ht_raw;
+    Height = std::to_string(ht_m) + "m";
+    double wt_m = wt_raw/100;
+    Weight = std::to_string(wt_raw) + "kg";
+  }
+  else if (HEIGHT_AND_WEIGHT_IN_IMPERIAL == true){
+    //convert cm to in by rounding up
+  }
+  else{//default text based resutls
+    
+  } 
+  
+
+  
+    /*OLD CODE
+    2D-array of height and weight outcomes
     std::string HTandWT[2][5] = 
   {
     {"Tiny","Short","Average","Tall","Towering"},
@@ -567,6 +693,7 @@ void BRP_human_base::HeightandWeight(int z){
     //Default outcome, Towering/Obese
   else 
     {Height = HTandWT[0][4], Weight = HTandWT[1][4];}
+  */
 }
 
 //Primary Skill Category
