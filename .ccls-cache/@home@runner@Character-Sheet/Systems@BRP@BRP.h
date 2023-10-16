@@ -14,11 +14,13 @@ void FolderOriginBRP();
 int ThreeDSix();
 int TwoDSixPlusSix();
 
-//This struct takes an int argument and makes sure it is at minimum two digits starting with 0.
+//This struct takes an int argument and makes sure it is at minimum two digits starting with 0. It is set up to be able to overload the cout lines.
 struct DD{
   int value;
   DD(int val) : value(val) {}
 
+  //friend means it can be used in private methods
+  //operator is for operator overloading. I don't fully grasp it yet.
   friend std::ostream& operator<<(std::ostream& os, const DD& cf){
     return os << std::setw(2) << std::setfill('0') << cf.value;
   }

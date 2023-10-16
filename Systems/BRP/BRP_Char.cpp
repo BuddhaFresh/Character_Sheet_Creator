@@ -41,32 +41,6 @@ int TwoDSixPlusSix(){
   return x+6;
 }
 
-/*
-//Number Format class
-class DoubleNumbersFormat{
-public: 
-  DoubleNumbersFormat(){
-    toggled = true;
-    std::cout << std::setw(2) << std::setfill('0');
-  }
-
-  void DoubleNumbersSwitch(bool toggle){
-    toggled = toggle;
-    if(toggled){
-      std::cout << std::setw(2) << std::setfill('0');
-    }else{
-      std::cout << std::setw(0) << std::setfill(' ');
-    }
-  }
-  
-private: 
-  bool toggled;
-};
-
-DoubleNumbersFormat DoubleDigits;
-*/
-
-
 
 //BRP_human_base class
 //Constructor to hold Characteristics, 
