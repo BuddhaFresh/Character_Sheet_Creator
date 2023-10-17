@@ -6,6 +6,7 @@
 /*
 Need to make a strut for professions!
 Maybe weapons as classes?
+Items as classes can allow for materials composition, condition, and possible unique qualities or identifiers (kind of like my weapon/equipment maker for Iridis)
 Should experiment with Inheritance... break up the BRP_Char.
 */
 

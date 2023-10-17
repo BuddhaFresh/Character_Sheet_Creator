@@ -69,7 +69,7 @@ void BRP_human_base::SettingsSwitches()
   TOTAL_HIT_POINTS = false;
   DISTINCTIVE_FEATURES = true;
   DISTINCTIVE_FEATURES_BASIC = false;
-  HEIGHT_AND_WEIGHT_IN_METERS = true;
+  HEIGHT_AND_WEIGHT_IN_METERS = false;
   HEIGHT_AND_WEIGHT_IN_IMPERIAL = false;
     
   /*Setting&Era switches
@@ -655,45 +655,74 @@ void BRP_human_base::HeightandWeight(int z){
   }
 
   if (HEIGHT_AND_WEIGHT_IN_METERS == true){
-    double ht_m = ht_raw;
-    Height = std::to_string(ht_m) + "m";
-    double wt_m = wt_raw/100;
+    float ht_m = ht_raw * 0.01;
+    Height = std::to_string(ht_m);
+    Height = Height.substr(0, Height.find(".") + 3) + "m";
     Weight = std::to_string(wt_raw) + "kg";
   }
   else if (HEIGHT_AND_WEIGHT_IN_IMPERIAL == true){
-    //convert cm to in by rounding up
+    float ht_ft_in = ht_raw / 30.48;
+    Height = std::to_string(ht_ft_in);
+    Height = Height.substr(0, 1) + "'" + Height.substr(Height.find(".") + 1, 1) + '"';
+    float wt_lbs = (wt_raw * 35.274) / 16;
+    Weight = std::to_string(wt_lbs);
+    Weight = Weight.substr(0, Weight.find(".") + 3) + "lbs";
   }
   else{//default text based resutls
+      std::string HTandWT[2][5] = 
+      {
+        {"Tiny","Short","Average","Tall","Towering"},
+        {"Frail","Thin","Average","Overweight","Obese"}
+      };
     
+    switch(z){
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5: 
+        Height = HTandWT[0][0]; 
+        break;
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+      case 10: 
+        Height = HTandWT[0][1];
+        break;
+      case 11:
+      case 12:
+      case 13:
+      case 14:
+      case 15:
+        Height = HTandWT[0][2];
+        break;
+      case 16:
+      case 17:
+      case 18:
+      case 19:
+      case 20:
+        Height = HTandWT[0][3];
+        break;
+      case 21:
+      case 22:
+      case 23:
+      case 24:
+      case 25:
+        Height = HTandWT[0][4];
+        break;
+      default: 
+        Height = "error";
+    }
+    float bmi = (wt_raw / std::pow((ht_raw * 0.01), 2));
+    
+    if (bmi <= 16.9){Weight = HTandWT[1][0];}
+    else if (bmi >= 17.0 && bmi <= 18.4){Weight = HTandWT[1][1];}
+    else if (bmi >= 18.5 && bmi <= 24.9){Weight = HTandWT[1][2];}
+    else if (bmi >= 25.0 && bmi <= 29.9){Weight = HTandWT[1][3];}
+    else {Weight = HTandWT[1][4];}
   } 
-  
-
-  
-    /*OLD CODE
-    2D-array of height and weight outcomes
-    std::string HTandWT[2][5] = 
-  {
-    {"Tiny","Short","Average","Tall","Towering"},
-    {"Frail","Thin","Average","Overweight","Obese"}
-  };
-
-  //poor if statement just to use the array. should adjust results based on CON and maybe random chance
-  //this is a pretty subjective thing. Maybe just pure random picks within SIZ based boundries
-  //Or, just use the formula from the old Gold Book and give lbs and ft / grams and meters
-  
-    //Average outcome
-  if (z >= 10 && z <= 13) 
-    {Height = HTandWT[0][2], Weight = HTandWT[1][2];}
-    //Low end outcome, Tiny/Frail
-  else if (z < 10) 
-    {Height = HTandWT[0][1], Weight = HTandWT[1][1];}
-    //High end outcome, Tall/Overweight
-  else if (z >= 14 && z <= 17) 
-    {Height = HTandWT[0][3], Weight = HTandWT[1][3];}
-    //Default outcome, Towering/Obese
-  else 
-    {Height = HTandWT[0][4], Weight = HTandWT[1][4];}
-  */
 }
 
 //Primary Skill Category
