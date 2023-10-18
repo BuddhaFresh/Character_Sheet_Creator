@@ -24,13 +24,13 @@ ROADMAP
  0.2 description
    0.2a setup simple features [DONE]
    0.2b put in bool triggers for features [DONE]
-   0.2c Fix Height & Weight; have a toggle for random chance range or Stat base?(CON,APP,CHR,STR,)
+   0.2c Fix Height & Weight; have a toggle for random chance range or Stat base?(CON,APP,CHR,STR,) [DONE]
    0.2d Have descriptions remove and add things from the array based on Gender. Could lead to Cultural and Setting modififyers too
  0.3 page 2
    0.3a powers
    0.3b sanity
    0.3c equipment 
-     0.3cI Just 3 Weapons per? 
+     0.3cI Just 3 Weapons per? [DONE]
    0.3d fatigue
    0.3e power points
    0.3f attack powers?
@@ -83,6 +83,7 @@ int main()
   FolderOriginBRP();
   
   while(true){//MAIN MENU
+
     std::cout << "\n\n<>~~~~~~~~~~<>~~~~~~~~~~<>~~~~~~~~~~<>\n";
     std::cout << "Welcome to Character Sheet Creator\n\t\t\tMain Menu\n";
     std::cout << "1. New Sheet\n";
