@@ -11,9 +11,9 @@ int BRP_menu()
   
   //inputs for menu
   int BRPMainMenuInput;
+  int BRPSettingsInput;
   
-  while (true)
-  {
+  while (true){//Main BRP Menu
     std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
     std::cout << "Basic Roleplaying, Universal Game Engine\n\t\t\tMain Menu\n";
     std::cout << "1. Create Random Character\n";
@@ -29,7 +29,7 @@ int BRP_menu()
     std::cin >> BRPMainMenuInput; 
 
     switch(BRPMainMenuInput)
-    {
+    {//BRP Main Menu Input
       case 1:{//full random
         std::cout << "\033c";
         BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
@@ -97,20 +97,83 @@ int BRP_menu()
         std::cout << "Not availible";
         break;
         }
-      case 5:{//settings
+      case 5:{
         std::cout << "\033c";
-        std::cout << "Not availible";
-        break;
-        }
+        while (true){//BRP Settings Menu
+            std::string EDUstate = (BRP_human_base::stateEDUCATION_STAT() == true) ? "ON" : "OFF";
+            std::string SkillCatstate = "";
+            if (BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == true){SkillCatstate = "SIMPLE";}
+            else if(BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == true){SkillCatstate = "ON";}
+            else{SkillCatstate = "OFF";}
+          
+            std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
+            std::cout << "Basic Roleplaying Character Creation\n\t\t\tOptional Settings\n";
+            std::cout << " 1. DISTINCTIVE_FEATURES [ON/BASIC/OFF]   \n";
+            std::cout << " 2. DISTINCTIVE_FEATURES_BASIC    \n"; //could remove
+            std::cout << " 3. Education (EDU) Characteristics" << std::setw(6) << std::setfill('.') << EDUstate <<"\n";
+            std::cout << " 4. EXPERIENCE_BONUS    \n";
+            std::cout << " 5. FATIGUE_POINTS    \n";
+            std::cout << " 6. HEIGHT_AND_WEIGHT_IN_METERS [METRIC/IMPERIAL/TEXT]   \n"; //rename to "Height and Weight [METRIC/IMPERIAL/TEXT]"
+            std::cout << " 7. HEIGHT_AND_WEIGHT_IN_IMPERIAL    \n"; //could remove
+            std::cout << " 8. HIT_POINTS_PER_LOCATION    \n";
+            std::cout << " 9. INCREASED_PERSONAL_SKILL_POINTS    \n";
+            std::cout << "10. POWER_LEVEL    \n"; //sub menu for entering value? could use it too explain what each level does
+            std::cout << "11. SANITY    \n";
+            std::cout << "12. Skill Catagories [ON/SIMPLE/OFF]" << std::setw(6) << std::setfill('.') << SkillCatstate<< "\n";
+            std::cout << "13. TOTAL_HIT_POINTS    \n";
+            std::cout << "14. WINGED_CHARACTER    \n";
+
+            std::cout << "\n0. Return to Basic Roleplaying Main Menu\n";
+            std::cout << "<>v^v^v^v^v^<>v^v^vv^v^v<>^v^v^v^v^v<>\n\n";
+
+            std::cout << "Please Enter Your Command\n";
+
+            std::cin >> BRPSettingsInput;
+
+          
+          
+          switch (BRPSettingsInput){//Options input
+              case 1:
+                std::cout << "\033c";
+                break;
+              case 2:
+                std::cout << "\033c";
+                break;
+              case 3:{
+                std::cout << "\033c";
+                bool changeEDU = (BRP_human_base::stateEDUCATION_STAT() == true) ? false : true;
+                BRP_human_base::flipEDUCATION_STAT(changeEDU);
+                break;}
+              case 12:
+                std::cout << "\033c";
+                break;
+              case 0:
+                std::cout << "\033c";
+                break;
+              default: 
+                std::cout << "\033c";
+                std::cout << "\nNot an availible command\n";
+                break;
+            }//Options input end
+          if (BRPSettingsInput == 0){
+            std::cout << "\033c";
+            break;
+          }; 
+        }//Options sub-menu end
+      } 
       case 0:{//exit
         std::cout << "\033c";
-        return 0;
+        break;
         }
       default:{//error message
         std::cout << "\033c";
         std::cout << "Not an acceptable input.\nPlease enter only one of the number options in the menu." << std::endl;
         break;
         }
-    }//BRP Main Menu Input
-  }//Main While Loop
-}//All BRP Menus 
+      }//BRP Main Menu Input end
+    if (BRPMainMenuInput == 0){
+      std::cout << "\033c";
+        return 0;
+    }; 
+  }////Main BRP Menu end
+}//All BRP Menus ends

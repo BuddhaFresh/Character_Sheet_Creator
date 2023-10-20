@@ -82,21 +82,21 @@ struct WealthCategorys
 
 class BRP_human_base{
 private:
-  bool EDUCATION_STAT;
-  bool SKILL_CATEGORY;
-  bool SKILL_CATEGORY_SIMPLE;
-  bool WINGED_CHARACTER;
-  bool INCREASED_PERSONAL_SKILL_POINTS;
-  bool SANITY;
-  bool HIT_POINTS_PER_LOCATION;
-  bool FATIGUE_POINTS;
-  bool EXPERIENCE_BONUS;
-  bool TOTAL_HIT_POINTS;
-  bool DISTINCTIVE_FEATURES_BASIC;
-  bool DISTINCTIVE_FEATURES;
-  bool HEIGHT_AND_WEIGHT_IN_METERS;
-  bool HEIGHT_AND_WEIGHT_IN_IMPERIAL;
-  int POWER_LEVEL;
+  static bool EDUCATION_STAT;
+  static bool SKILL_CATEGORY;
+  static bool SKILL_CATEGORY_SIMPLE;
+  // static bool WINGED_CHARACTER;
+  // static bool INCREASED_PERSONAL_SKILL_POINTS;
+  // static bool SANITY;
+  // static bool HIT_POINTS_PER_LOCATION;
+  // static bool FATIGUE_POINTS;
+  // static bool EXPERIENCE_BONUS;
+  // static bool TOTAL_HIT_POINTS;
+  // static bool DISTINCTIVE_FEATURES_BASIC;
+  // static bool DISTINCTIVE_FEATURES;
+  // static bool HEIGHT_AND_WEIGHT_IN_METERS;
+  // static bool HEIGHT_AND_WEIGHT_IN_IMPERIAL;
+  // static int POWER_LEVEL;
 
   int STR;
   int CON;
@@ -206,7 +206,14 @@ public:
   void PlayerName();
   std::string PN;
 
-  void SettingsSwitches();
+  //void SettingsSwitches();
+  static bool stateEDUCATION_STAT() {return EDUCATION_STAT;}
+  static void flipEDUCATION_STAT(bool toggle) {EDUCATION_STAT = toggle;}
+  static bool stateSKILL_CATEGORY() {return SKILL_CATEGORY;}
+  static void flipSKILL_CATEGORY(bool toggle) {SKILL_CATEGORY = toggle;}
+  static bool stateSKILL_CATEGORY_SIMPLE() {return SKILL_CATEGORY_SIMPLE;}
+  static void flipSKILL_CATEGORY_SIMPLE(bool toggle) {SKILL_CATEGORY_SIMPLE = toggle;}
+
   void freebuild();
   void fullrandom();
   void consoleChar();

@@ -42,6 +42,22 @@ int TwoDSixPlusSix(){
 }
 
 
+bool INCREASED_PERSONAL_SKILL_POINTS = false;
+bool WINGED_CHARACTER = false;
+bool SANITY = false;
+bool EXPERIENCE_BONUS = true;
+bool FATIGUE_POINTS = false;
+bool HIT_POINTS_PER_LOCATION = false;
+bool TOTAL_HIT_POINTS = false;
+bool DISTINCTIVE_FEATURES = true;
+bool DISTINCTIVE_FEATURES_BASIC = false;
+bool HEIGHT_AND_WEIGHT_IN_METERS = false;
+bool HEIGHT_AND_WEIGHT_IN_IMPERIAL = false;
+int POWER_LEVEL = 0;
+bool BRP_human_base::EDUCATION_STAT = true;
+bool BRP_human_base::SKILL_CATEGORY = true;
+bool BRP_human_base::SKILL_CATEGORY_SIMPLE = false;
+
 //BRP_human_base class
 //Constructor to hold Characteristics, 
 BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y){
@@ -54,55 +70,43 @@ BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y){
   SIZ = y;
 }
 
-//Optional settings 
-void BRP_human_base::SettingsSwitches()
-{
-  EDUCATION_STAT = true;
-  SKILL_CATEGORY = true;
-  SKILL_CATEGORY_SIMPLE = false;
-  INCREASED_PERSONAL_SKILL_POINTS = false;
-  WINGED_CHARACTER = false;
-  SANITY = false;
-  EXPERIENCE_BONUS = true;
-  FATIGUE_POINTS = false;
-  HIT_POINTS_PER_LOCATION = false;
-  TOTAL_HIT_POINTS = false;
-  DISTINCTIVE_FEATURES = true;
-  DISTINCTIVE_FEATURES_BASIC = false;
-  HEIGHT_AND_WEIGHT_IN_METERS = false;
-  HEIGHT_AND_WEIGHT_IN_IMPERIAL = false;
+// //Optional settings 
+// void BRP_human_base::SettingsSwitches()
+// {
+//   //EDUCATION_STAT = true;
+
     
-  /*Setting&Era switches
-  Basic?; prehistoric, medieval, modern, future?
-  Basic has like 5 options
-  Detailed?; 23 opitions
-    Prehistoric Age                 PH
-    Bronze Age                      BZ
-    Iron Age                        IR
-    High Medieval                   HM
-    High Fantasy                    HF
-    Imperial Asia                   IA
-    Arabian Nights                  AN
-    Enlightenment and Renaissance   ER
-    Age of Exploration              EX
-    Age of Sail                     SA
-    Industrial Age                  ID
-    Victorian Age                   VA
-    Wild West                       WW
-    Pulp Era                        PP
-    Planetary Adventure             PV
-    World War II                    WA
-    Noir                            NR
-    Modern                          MD
-    Super World                     SW
-    Postapocalyptic                 PA
-    Near-Future/Cyberpunk           NF
-    Space Exploration               SE
-    Space Opera                     SO
-    .PH.BZ.IR.HM.HF.IA.AN.ER.EX.SA.ID.VA.WW.PP.PV.WA.NR.MD.SW.PA.NF.SE.SO.
-  */
-  POWER_LEVEL = 0;
-}
+//   /*Setting&Era switches
+//   Basic?; prehistoric, medieval, modern, future?
+//   Basic has like 5 options
+//   Detailed?; 23 opitions
+//     Prehistoric Age                 PH
+//     Bronze Age                      BZ
+//     Iron Age                        IR
+//     High Medieval                   HM
+//     High Fantasy                    HF
+//     Imperial Asia                   IA
+//     Arabian Nights                  AN
+//     Enlightenment and Renaissance   ER
+//     Age of Exploration              EX
+//     Age of Sail                     SA
+//     Industrial Age                  ID
+//     Victorian Age                   VA
+//     Wild West                       WW
+//     Pulp Era                        PP
+//     Planetary Adventure             PV
+//     World War II                    WA
+//     Noir                            NR
+//     Modern                          MD
+//     Super World                     SW
+//     Postapocalyptic                 PA
+//     Near-Future/Cyberpunk           NF
+//     Space Exploration               SE
+//     Space Opera                     SO
+//     .PH.BZ.IR.HM.HF.IA.AN.ER.EX.SA.ID.VA.WW.PP.PV.WA.NR.MD.SW.PA.NF.SE.SO.
+//   */
+//   POWER_LEVEL = 0;
+// }
 
 //Weapons Table
 void BRP_human_base::Weapons(){
@@ -1544,7 +1548,7 @@ void BRP_human_base::PlayerName(){
 
 //Generates a fully randomized character
 void BRP_human_base::fullrandom(){
-  SettingsSwitches();
+  //SettingsSwitches();
   EDUstat();
   ExpBonus(INT);
   SanityPoints(POW);
