@@ -45,16 +45,16 @@ int TwoDSixPlusSix(){
 bool INCREASED_PERSONAL_SKILL_POINTS = false;
 bool WINGED_CHARACTER = false;
 bool SANITY = false;
-bool EXPERIENCE_BONUS = true;
 bool FATIGUE_POINTS = false;
 bool HIT_POINTS_PER_LOCATION = false;
 bool TOTAL_HIT_POINTS = false;
-bool DISTINCTIVE_FEATURES = true;
-bool DISTINCTIVE_FEATURES_BASIC = false;
-bool HEIGHT_AND_WEIGHT_IN_METERS = false;
-bool HEIGHT_AND_WEIGHT_IN_IMPERIAL = false;
 int POWER_LEVEL = 0;
 bool BRP_human_base::EDUCATION_STAT = true;
+bool BRP_human_base::EXPERIENCE_BONUS = true;
+bool BRP_human_base::DISTINCTIVE_FEATURES = true;
+bool BRP_human_base::DISTINCTIVE_FEATURES_BASIC = false;
+bool BRP_human_base::HEIGHT_AND_WEIGHT_IN_METERS = false;
+bool BRP_human_base::HEIGHT_AND_WEIGHT_IN_IMPERIAL = false;
 bool BRP_human_base::SKILL_CATEGORY = true;
 bool BRP_human_base::SKILL_CATEGORY_SIMPLE = false;
 
@@ -315,7 +315,7 @@ std::string BRP_human_base::DistinctiveFeatures(int H){
   }
   
   //2D array of detailed features
-  if (DISTINCTIVE_FEATURES == true && DISTINCTIVE_FEATURES_BASIC == false){
+  else if (DISTINCTIVE_FEATURES == true && DISTINCTIVE_FEATURES_BASIC == false){
     //More columns can be added for each row, but the 45 max will need to be increasded if total number of columns in a row go beyond it. Random selection counts selected row so no other code needs to be edited. Name and number at the end of each array is the row's type and current number of columns I put in at the time 
     std::string FeatureArray[10][45] = 
     {

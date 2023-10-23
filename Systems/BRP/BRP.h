@@ -83,19 +83,19 @@ struct WealthCategorys
 class BRP_human_base{
 private:
   static bool EDUCATION_STAT;
+  static bool EXPERIENCE_BONUS;
+  static bool DISTINCTIVE_FEATURES;
+  static bool DISTINCTIVE_FEATURES_BASIC;
   static bool SKILL_CATEGORY;
   static bool SKILL_CATEGORY_SIMPLE;
+  static bool HEIGHT_AND_WEIGHT_IN_METERS;
+  static bool HEIGHT_AND_WEIGHT_IN_IMPERIAL;
   // static bool WINGED_CHARACTER;
   // static bool INCREASED_PERSONAL_SKILL_POINTS;
   // static bool SANITY;
   // static bool HIT_POINTS_PER_LOCATION;
   // static bool FATIGUE_POINTS;
-  // static bool EXPERIENCE_BONUS;
   // static bool TOTAL_HIT_POINTS;
-  // static bool DISTINCTIVE_FEATURES_BASIC;
-  // static bool DISTINCTIVE_FEATURES;
-  // static bool HEIGHT_AND_WEIGHT_IN_METERS;
-  // static bool HEIGHT_AND_WEIGHT_IN_IMPERIAL;
   // static int POWER_LEVEL;
 
   int STR;
@@ -209,10 +209,24 @@ public:
   //void SettingsSwitches();
   static bool stateEDUCATION_STAT() {return EDUCATION_STAT;}
   static void flipEDUCATION_STAT(bool toggle) {EDUCATION_STAT = toggle;}
+
+  static bool stateEXPERIENCE_BONUS() {return EXPERIENCE_BONUS;}
+  static void flipEXPERIENCE_BONUS(bool toggle) {EXPERIENCE_BONUS = toggle;}
+
+  static bool stateDISTINCTIVE_FEATURES() {return DISTINCTIVE_FEATURES;}
+  static void flipDISTINCTIVE_FEATURES(bool toggle) {DISTINCTIVE_FEATURES = toggle;}
+  static bool stateDISTINCTIVE_FEATURES_BASIC() {return DISTINCTIVE_FEATURES_BASIC;}
+  static void flipDISTINCTIVE_FEATURES_BASIC(bool toggle) {DISTINCTIVE_FEATURES_BASIC = toggle;}
+
   static bool stateSKILL_CATEGORY() {return SKILL_CATEGORY;}
   static void flipSKILL_CATEGORY(bool toggle) {SKILL_CATEGORY = toggle;}
   static bool stateSKILL_CATEGORY_SIMPLE() {return SKILL_CATEGORY_SIMPLE;}
   static void flipSKILL_CATEGORY_SIMPLE(bool toggle) {SKILL_CATEGORY_SIMPLE = toggle;}
+
+  static bool stateHEIGHT_AND_WEIGHT_IN_METERS() {return HEIGHT_AND_WEIGHT_IN_METERS;}
+  static void flipHEIGHT_AND_WEIGHT_IN_METERS(bool toggle) {HEIGHT_AND_WEIGHT_IN_METERS = toggle;}
+  static bool stateHEIGHT_AND_WEIGHT_IN_IMPERIAL() {return HEIGHT_AND_WEIGHT_IN_IMPERIAL;}
+  static void flipHEIGHT_AND_WEIGHT_IN_IMPERIAL(bool toggle) {HEIGHT_AND_WEIGHT_IN_IMPERIAL = toggle;}  
 
   void freebuild();
   void fullrandom();

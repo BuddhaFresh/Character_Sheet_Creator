@@ -100,53 +100,99 @@ int BRP_menu()
       case 5:{
         std::cout << "\033c";
         while (true){//BRP Settings Menu
-            std::string EDUstate = (BRP_human_base::stateEDUCATION_STAT() == true) ? "ON" : "OFF";
-            std::string SkillCatstate = "";
-            if (BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == true){SkillCatstate = "SIMPLE";}
-            else if(BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == true){SkillCatstate = "ON";}
-            else{SkillCatstate = "OFF";}
+          std::string EDUstate = (BRP_human_base::stateEDUCATION_STAT() == true) ? "ON" : "OFF";
+
+          std::string ExperiencePointsstate = (BRP_human_base::stateEXPERIENCE_BONUS() == true) ? "ON" : "OFF";
           
-            std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
-            std::cout << "Basic Roleplaying Character Creation\n\t\t\tOptional Settings\n";
-            std::cout << " 1. DISTINCTIVE_FEATURES [ON/BASIC/OFF]   \n";
-            std::cout << " 2. DISTINCTIVE_FEATURES_BASIC    \n"; //could remove
-            std::cout << " 3. Education (EDU) Characteristics" << std::setw(6) << std::setfill('.') << EDUstate <<"\n";
-            std::cout << " 4. EXPERIENCE_BONUS    \n";
-            std::cout << " 5. FATIGUE_POINTS    \n";
-            std::cout << " 6. HEIGHT_AND_WEIGHT_IN_METERS [METRIC/IMPERIAL/TEXT]   \n"; //rename to "Height and Weight [METRIC/IMPERIAL/TEXT]"
-            std::cout << " 7. HEIGHT_AND_WEIGHT_IN_IMPERIAL    \n"; //could remove
-            std::cout << " 8. HIT_POINTS_PER_LOCATION    \n";
-            std::cout << " 9. INCREASED_PERSONAL_SKILL_POINTS    \n";
-            std::cout << "10. POWER_LEVEL    \n"; //sub menu for entering value? could use it too explain what each level does
-            std::cout << "11. SANITY    \n";
-            std::cout << "12. Skill Catagories [ON/SIMPLE/OFF]" << std::setw(6) << std::setfill('.') << SkillCatstate<< "\n";
-            std::cout << "13. TOTAL_HIT_POINTS    \n";
-            std::cout << "14. WINGED_CHARACTER    \n";
+          std::string DistinctiveFeaturesstate = "";
+          if (BRP_human_base::stateDISTINCTIVE_FEATURES() == true && BRP_human_base::stateDISTINCTIVE_FEATURES_BASIC() == true){DistinctiveFeaturesstate = "BASIC";}
+          else if(BRP_human_base::stateDISTINCTIVE_FEATURES() == true && BRP_human_base::stateDISTINCTIVE_FEATURES_BASIC() == false){DistinctiveFeaturesstate = "ON";}
+          else{DistinctiveFeaturesstate = "OFF";}
 
-            std::cout << "\n0. Return to Basic Roleplaying Main Menu\n";
-            std::cout << "<>v^v^v^v^v^<>v^v^vv^v^v<>^v^v^v^v^v<>\n\n";
+          std::string HeightAndWeightstate = "";
+          if (BRP_human_base::stateHEIGHT_AND_WEIGHT_IN_METERS() == true){HeightAndWeightstate = "METRIC";}
+          else if(BRP_human_base::stateHEIGHT_AND_WEIGHT_IN_IMPERIAL() == true){HeightAndWeightstate = "IMPERIAL";}
+          else{HeightAndWeightstate = "TEXT";}
 
-            std::cout << "Please Enter Your Command\n";
-
-            std::cin >> BRPSettingsInput;
-
+          std::string SkillCatstate = "";
+          if (BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == true){SkillCatstate = "SIMPLE";}
+          else if(BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == false){SkillCatstate = "ON";}
+          else{SkillCatstate = "OFF";}
           
-          
+          std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
+          std::cout << "Basic Roleplaying Character Creation\n\t\t\tOptional Settings\n";
+          std::cout << " 1. Distinctive Features" << std::setw(9) << std::setfill('.') << DistinctiveFeaturesstate << "\n";
+          std::cout << " 2. Education (EDU) Characteristics" << std::setw(9) << std::setfill('.') << EDUstate << "\n";
+          std::cout << " 3. Experience Bonus" << std::setw(9) << std::setfill('.') << ExperiencePointsstate << "\n";
+          std::cout << " 4. FATIGUE_POINTS    \n";
+          std::cout << " 5. Height and Weight" <<  std::setw(9) << std::setfill('.') << HeightAndWeightstate << "\n";
+          std::cout << " 6. HIT_POINTS_PER_LOCATION    \n";
+          std::cout << " 7. INCREASED_PERSONAL_SKILL_POINTS    \n";
+          std::cout << " 8. POWER_LEVEL    \n"; //sub menu for entering value? could use it too explain what each level does
+          std::cout << " 9. SANITY    \n";
+          std::cout << "10. Skill Catagories" << std::setw(9) << std::setfill('.') << SkillCatstate << "\n";
+          std::cout << "11. TOTAL_HIT_POINTS    \n";
+          std::cout << "12. WINGED_CHARACTER    \n";
+
+          std::cout << "\n0. Return to Basic Roleplaying Main Menu\n";
+          std::cout << "<>v^v^v^v^v^<>v^v^vv^v^v<>^v^v^v^v^v<>\n\n";
+
+          std::cout << "Please Enter Your Command\n";
+
+          std::cin >> BRPSettingsInput;
+
           switch (BRPSettingsInput){//Options input
-              case 1:
+              case 1:{//DISTINCTIVE FEATURES        
                 std::cout << "\033c";
-                break;
-              case 2:
-                std::cout << "\033c";
-                break;
-              case 3:{
+  
+                if (BRP_human_base::stateDISTINCTIVE_FEATURES() == true && BRP_human_base::stateDISTINCTIVE_FEATURES_BASIC() == false)
+                  {BRP_human_base::flipDISTINCTIVE_FEATURES(true), BRP_human_base::flipDISTINCTIVE_FEATURES_BASIC(true);} //on to basic
+  
+                else if(BRP_human_base::stateDISTINCTIVE_FEATURES() == true && BRP_human_base::stateDISTINCTIVE_FEATURES_BASIC() == true)
+                  {BRP_human_base::flipDISTINCTIVE_FEATURES(false), BRP_human_base::flipDISTINCTIVE_FEATURES_BASIC(false);} // off
+  
+                else
+                  {BRP_human_base::flipDISTINCTIVE_FEATURES(true), BRP_human_base::flipDISTINCTIVE_FEATURES_BASIC(false);} //off to on
+  
+                break;}
+              case 2:{//EDU
                 std::cout << "\033c";
                 bool changeEDU = (BRP_human_base::stateEDUCATION_STAT() == true) ? false : true;
                 BRP_human_base::flipEDUCATION_STAT(changeEDU);
                 break;}
-              case 12:
+              case 3:{//EXPERIENCE_BONUS
                 std::cout << "\033c";
+                bool changeEXPBONUS = (BRP_human_base::stateEXPERIENCE_BONUS() == true) ? false : true;
+                BRP_human_base::flipEXPERIENCE_BONUS(changeEXPBONUS);
                 break;
+              }
+              case 5:{//HEIGHT_AND_WEIGHT
+                std::cout << "\033c";
+
+                if (BRP_human_base::stateHEIGHT_AND_WEIGHT_IN_METERS() == true && BRP_human_base::stateHEIGHT_AND_WEIGHT_IN_IMPERIAL() == false)
+                  {BRP_human_base::flipHEIGHT_AND_WEIGHT_IN_METERS(false), BRP_human_base::flipHEIGHT_AND_WEIGHT_IN_IMPERIAL(true);} //METRIC to IMPERIAL
+
+                else if(BRP_human_base::stateHEIGHT_AND_WEIGHT_IN_METERS() == false && BRP_human_base::stateHEIGHT_AND_WEIGHT_IN_IMPERIAL() == true)
+                  {BRP_human_base::flipHEIGHT_AND_WEIGHT_IN_METERS(false), BRP_human_base::flipHEIGHT_AND_WEIGHT_IN_IMPERIAL(false);} //IMPERIAL to TEXT
+
+                else
+                  {BRP_human_base::flipHEIGHT_AND_WEIGHT_IN_METERS(true), BRP_human_base::flipHEIGHT_AND_WEIGHT_IN_IMPERIAL(false);} //TEXT to METRIC
+
+                break;
+              }
+              case 10:{//SKILL CATEGORY
+                std::cout << "\033c";
+                
+                if (BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == false)
+                {BRP_human_base::flipSKILL_CATEGORY(true), BRP_human_base::flipSKILL_CATEGORY_SIMPLE(true);}//on to simple
+                  
+                else if(BRP_human_base::stateSKILL_CATEGORY() == true && BRP_human_base::stateSKILL_CATEGORY_SIMPLE() == true)
+                {BRP_human_base::flipSKILL_CATEGORY(false), BRP_human_base::flipSKILL_CATEGORY_SIMPLE(false);}//simple to off
+                  
+                else
+                {BRP_human_base::flipSKILL_CATEGORY(true), BRP_human_base::flipSKILL_CATEGORY_SIMPLE(false);}//off to on
+                
+                break;}
               case 0:
                 std::cout << "\033c";
                 break;
