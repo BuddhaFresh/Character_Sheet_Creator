@@ -86,17 +86,18 @@ private:
   static bool EXPERIENCE_BONUS;
   static bool DISTINCTIVE_FEATURES;
   static bool DISTINCTIVE_FEATURES_BASIC;
-  static bool SKILL_CATEGORY;
-  static bool SKILL_CATEGORY_SIMPLE;
+  static bool FATIGUE_POINTS;
   static bool HEIGHT_AND_WEIGHT_IN_METERS;
   static bool HEIGHT_AND_WEIGHT_IN_IMPERIAL;
-  // static bool WINGED_CHARACTER;
-  // static bool INCREASED_PERSONAL_SKILL_POINTS;
-  // static bool SANITY;
-  // static bool HIT_POINTS_PER_LOCATION;
-  // static bool FATIGUE_POINTS;
-  // static bool TOTAL_HIT_POINTS;
-  // static int POWER_LEVEL;
+  static bool HIT_POINTS_PER_LOCATION;
+  static bool INCREASED_PERSONAL_SKILL_POINTS;
+  static int POWER_LEVEL;
+  static bool SANITY;
+  static bool SKILL_CATEGORY;
+  static bool SKILL_CATEGORY_SIMPLE;
+  static bool TOTAL_HIT_POINTS;
+  static bool WINGED_CHARACTER;
+  
 
   int STR;
   int CON;
@@ -218,15 +219,36 @@ public:
   static bool stateDISTINCTIVE_FEATURES_BASIC() {return DISTINCTIVE_FEATURES_BASIC;}
   static void flipDISTINCTIVE_FEATURES_BASIC(bool toggle) {DISTINCTIVE_FEATURES_BASIC = toggle;}
 
-  static bool stateSKILL_CATEGORY() {return SKILL_CATEGORY;}
-  static void flipSKILL_CATEGORY(bool toggle) {SKILL_CATEGORY = toggle;}
-  static bool stateSKILL_CATEGORY_SIMPLE() {return SKILL_CATEGORY_SIMPLE;}
-  static void flipSKILL_CATEGORY_SIMPLE(bool toggle) {SKILL_CATEGORY_SIMPLE = toggle;}
+  static bool stateFATIGUE_POINTS() {return FATIGUE_POINTS;}
+  static void flipFATIGUE_POINTS(bool toggle) {FATIGUE_POINTS = toggle;}
+
+  static bool stateHIT_POINTS_PER_LOCATION() {return HIT_POINTS_PER_LOCATION;}
+  static void flipHIT_POINTS_PER_LOCATION(bool toggle) {HIT_POINTS_PER_LOCATION = toggle;}
 
   static bool stateHEIGHT_AND_WEIGHT_IN_METERS() {return HEIGHT_AND_WEIGHT_IN_METERS;}
   static void flipHEIGHT_AND_WEIGHT_IN_METERS(bool toggle) {HEIGHT_AND_WEIGHT_IN_METERS = toggle;}
   static bool stateHEIGHT_AND_WEIGHT_IN_IMPERIAL() {return HEIGHT_AND_WEIGHT_IN_IMPERIAL;}
   static void flipHEIGHT_AND_WEIGHT_IN_IMPERIAL(bool toggle) {HEIGHT_AND_WEIGHT_IN_IMPERIAL = toggle;}  
+
+  static bool stateSANITY() {return SANITY;}
+  static void flipSANITY(bool toggle) {SANITY = toggle;}
+
+  static bool stateSKILL_CATEGORY() {return SKILL_CATEGORY;}
+  static void flipSKILL_CATEGORY(bool toggle) {SKILL_CATEGORY = toggle;}
+  static bool stateSKILL_CATEGORY_SIMPLE() {return SKILL_CATEGORY_SIMPLE;}
+  static void flipSKILL_CATEGORY_SIMPLE(bool toggle) {SKILL_CATEGORY_SIMPLE = toggle;}
+
+  static bool stateINCREASED_PERSONAL_SKILL_POINTS() {return INCREASED_PERSONAL_SKILL_POINTS;}
+  static void flipINCREASED_PERSONAL_SKILL_POINTS(bool toggle) {INCREASED_PERSONAL_SKILL_POINTS = toggle;}
+
+  static int statePOWER_LEVEL() {return POWER_LEVEL;}
+  static void flipPOWER_LEVEL(int toggle) {POWER_LEVEL = toggle;}
+
+  static bool stateTOTAL_HIT_POINTS() {return TOTAL_HIT_POINTS;}
+  static void flipTOTAL_HIT_POINTS(bool toggle) {TOTAL_HIT_POINTS = toggle;}
+
+  static bool stateWINGED_CHARACTER() {return WINGED_CHARACTER;}
+  static void flipWINGED_CHARACTER(bool toggle) {WINGED_CHARACTER = toggle;}
 
   void freebuild();
   void fullrandom();
