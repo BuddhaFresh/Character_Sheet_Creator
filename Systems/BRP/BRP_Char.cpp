@@ -42,8 +42,6 @@ int TwoDSixPlusSix(){
 }
 
 
-
-
 int BRP_human_base::POWER_LEVEL = 0;
 bool BRP_human_base::DISTINCTIVE_FEATURES = true;
 bool BRP_human_base::DISTINCTIVE_FEATURES_BASIC = false;
@@ -71,51 +69,43 @@ BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y){
   INT = x;
   SIZ = y;
 }
-
-// //Optional settings 
-// void BRP_human_base::SettingsSwitches()
-// {
-//   //EDUCATION_STAT = true;
-
-    
-//   /*Setting&Era switches
-//   Basic?; prehistoric, medieval, modern, future?
-//   Basic has like 5 options
-//   Detailed?; 23 opitions
-//     Prehistoric Age                 PH
-//     Bronze Age                      BZ
-//     Iron Age                        IR
-//     High Medieval                   HM
-//     High Fantasy                    HF
-//     Imperial Asia                   IA
-//     Arabian Nights                  AN
-//     Enlightenment and Renaissance   ER
-//     Age of Exploration              EX
-//     Age of Sail                     SA
-//     Industrial Age                  ID
-//     Victorian Age                   VA
-//     Wild West                       WW
-//     Pulp Era                        PP
-//     Planetary Adventure             PV
-//     World War II                    WA
-//     Noir                            NR
-//     Modern                          MD
-//     Super World                     SW
-//     Postapocalyptic                 PA
-//     Near-Future/Cyberpunk           NF
-//     Space Exploration               SE
-//     Space Opera                     SO
-//     .PH.BZ.IR.HM.HF.IA.AN.ER.EX.SA.ID.VA.WW.PP.PV.WA.NR.MD.SW.PA.NF.SE.SO.
-//   */
-//   POWER_LEVEL = 0;
-// }
+   
+  /*Setting&Era switches
+  Basic?; prehistoric, medieval, modern, future?
+  Basic has like 5 options
+  Detailed?; 23 opitions
+    Prehistoric Age                 PH
+    Bronze Age                      BZ
+    Iron Age                        IR
+    High Medieval                   HM
+    High Fantasy                    HF
+    Imperial Asia                   IA
+    Arabian Nights                  AN
+    Enlightenment and Renaissance   ER
+    Age of Exploration              EX
+    Age of Sail                     SA
+    Industrial Age                  ID
+    Victorian Age                   VA
+    Wild West                       WW
+    Pulp Era                        PP
+    Planetary Adventure             PV
+    World War II                    WA
+    Noir                            NR
+    Modern                          MD
+    Super World                     SW
+    Postapocalyptic                 PA
+    Near-Future/Cyberpunk           NF
+    Space Exploration               SE
+    Space Opera                     SO
+    .PH.BZ.IR.HM.HF.IA.AN.ER.EX.SA.ID.VA.WW.PP.PV.WA.NR.MD.SW.PA.NF.SE.SO.
+  */
 
 //Weapons Table
 void BRP_human_base::Weapons(){
 /*
-  
   WeaponsTable["Weapon Name Key"] = {"Weapon Name","Main Skill","SubSkill",Base,"dmg","Attk","Special","Melee Rng",Missile Rng,"hands",HP,Parry bool,STR,DEX,"Mal",Ammo,"Value",SIZ,"Missile Rate-of-Fire",will need to set up setting codes here};
 */
+  
   //Melee
   WeaponsTable["Axe, Hand"] = {"Hand Axe","Melee Weapon","Axe",15,"1D6+1+dm","1","Bleeding","Short",0,"1H",12,true,7,9,"-",0,"Cheap",0.5,""};
   WeaponsTable["Club, Heavy"] = {"Heavy Club","Melee Weapon","Club",25,"1D8+dm","1","Crushing","Medium",0,"2H",22,true,9,7,"-",0,"Cheap",0.2,""};
@@ -1546,11 +1536,11 @@ void BRP_human_base::CharName(){
 void BRP_human_base::PlayerName(){
   std::cout << "\nWhat is your name?\n";
   std::getline(std::cin >> std::ws, PN);
+  std::cout << "\n";
 }
 
 //Generates a fully randomized character
 void BRP_human_base::fullrandom(){
-  //SettingsSwitches();
   EDUstat();
   ExpBonus(INT);
   SanityPoints(POW);
@@ -1594,7 +1584,8 @@ void BRP_human_base::consoleChar()
   std::cout << "Culture: " << "Human" << "\t\t" << "Gender: " << Gender << std::endl;
   std::cout << "Height: " << Height << "\t\t" << "Weight: " << Weight << std::endl;
   std::cout << "Wealth: " << Wealth << "\t\t" << "Profession: " << Profession << std::endl;
-  std::cout << "Religion: " << Religion << "\t\t" << "Handedness: " << Handedness << std::endl;
+  std::cout << "Handedness: " << Handedness << std::endl;
+  std::cout << "Religion: " << Religion << std::endl;
   std::cout << "Move (MOV): " << 10 << "\t\t" << "Age: " << Age << std::endl;
   std::cout << "\n" << UnitedFeatures << std::endl;
   std::cout << "\n" << " " << Personality << std::endl;
