@@ -122,10 +122,10 @@ int BRP_menu()
           std::string IncreasedPerSkillPointsstate = (BRP_human_base::stateINCREASED_PERSONAL_SKILL_POINTS() == true) ? "ON" : "OFF";
 
           std::string PowerLevelstate = "";
-          if(BRP_human_base::statePOWER_LEVEL() == 1){PowerLevelstate = "Heroic";}
-          else if(BRP_human_base::statePOWER_LEVEL() == 2){PowerLevelstate = "Epic";}
-          else if(BRP_human_base::statePOWER_LEVEL() == 3){PowerLevelstate = "Superhuman";}
-          else{PowerLevelstate = "Normal";}
+          if(BRP_human_base::statePOWER_LEVEL() == 1){PowerLevelstate = "HEROIC";}
+          else if(BRP_human_base::statePOWER_LEVEL() == 2){PowerLevelstate = "EPIC";}
+          else if(BRP_human_base::statePOWER_LEVEL() == 3){PowerLevelstate = "SUPERHUMAN";}
+          else{PowerLevelstate = "NORMAL";}
 
           std::string Sanitystate = (BRP_human_base::stateSANITY() == true) ? "ON" : "OFF";
           
@@ -139,19 +139,19 @@ int BRP_menu()
           std::string WingedCharacterstate = (BRP_human_base::stateWINGED_CHARACTER() == true) ? "ON" : "OFF";
           
           std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
-          std::cout << "Basic Roleplaying Character Creation\n\t\t\tOptional Settings\n";
+          std::cout << " Basic Roleplaying Character Creation\n\t\tOptional Settings\n";
           std::cout << " 1. Distinctive Features" << std::setw(16) << std::setfill('.') << DistinctiveFeaturesstate << "\n";
           std::cout << " 2. Education (EDU) Characteristics" << std::setw(5) << std::setfill('.') << EDUstate << "\n";
           std::cout << " 3. Experience Bonus" << std::setw(20) << std::setfill('.') << ExperiencePointsstate << "\n";
           std::cout << " 4. Fatigue Points" << std::setw(22) << std::setfill('.') << FatiguePointsstate << "\n";
           std::cout << " 5. Height and Weight" <<  std::setw(19) << std::setfill('.') << HeightAndWeightstate << "\n";
-          std::cout << " 6. Hit Points per Location" << std::setw(9) << std::setfill('.') << HPLocationstate << "\n";
-          std::cout << " 7. Increased Personal Skill Points" << std::setw(9) << std::setfill('.') << IncreasedPerSkillPointsstate << "\n";
-          std::cout << " 8. Set Power Level" << std::setw(15) << std::setfill('.') << PowerLevelstate << "\n";
-          std::cout << " 9. Sanity" << std::setw(9) << std::setfill('.') << Sanitystate << "\n";
-          std::cout << "10. Skill Catagories" << std::setw(9) << std::setfill('.') << SkillCatstate << "\n";
-          std::cout << "11. Total Hit Points" << std::setw(9) << std::setfill('.') << TotalHPstate << "\n";
-          std::cout << "12. Winged Characters" << std::setw(9) << std::setfill('.') << WingedCharacterstate << "\n";
+          std::cout << " 6. Hit Points per Location" << std::setw(13) << std::setfill('.') << HPLocationstate << "\n";
+          std::cout << " 7. Increased Personal Skill Points" << std::setw(5) << std::setfill('.') << IncreasedPerSkillPointsstate << "\n";
+          std::cout << " 8. Set Power Level" << std::setw(21) << std::setfill('.') << PowerLevelstate << "\n";
+          std::cout << " 9. Sanity" << std::setw(30) << std::setfill('.') << Sanitystate << "\n";
+          std::cout << "10. Skill Catagories" << std::setw(20) << std::setfill('.') << SkillCatstate << "\n";
+          std::cout << "11. Total Hit Points" << std::setw(20) << std::setfill('.') << TotalHPstate << "\n";
+          std::cout << "12. Winged Characters" << std::setw(19) << std::setfill('.') << WingedCharacterstate << "\n";
 
           std::cout << "\n0. Return to Basic Roleplaying Main Menu\n";
           std::cout << "<>v^v^v^v^v^<>v^v^vv^v^v<>^v^v^v^v^v<>\n\n";
