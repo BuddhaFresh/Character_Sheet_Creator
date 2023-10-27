@@ -140,14 +140,14 @@ int BRP_menu()
           
           std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
           std::cout << "Basic Roleplaying Character Creation\n\t\t\tOptional Settings\n";
-          std::cout << " 1. Distinctive Features" << std::setw(9) << std::setfill('.') << DistinctiveFeaturesstate << "\n";
-          std::cout << " 2. Education (EDU) Characteristics" << std::setw(9) << std::setfill('.') << EDUstate << "\n";
-          std::cout << " 3. Experience Bonus" << std::setw(9) << std::setfill('.') << ExperiencePointsstate << "\n";
-          std::cout << " 4. Fatigue Points" << std::setw(9) << std::setfill('.') << FatiguePointsstate << "\n";
-          std::cout << " 5. Height and Weight" <<  std::setw(9) << std::setfill('.') << HeightAndWeightstate << "\n";
+          std::cout << " 1. Distinctive Features" << std::setw(16) << std::setfill('.') << DistinctiveFeaturesstate << "\n";
+          std::cout << " 2. Education (EDU) Characteristics" << std::setw(5) << std::setfill('.') << EDUstate << "\n";
+          std::cout << " 3. Experience Bonus" << std::setw(20) << std::setfill('.') << ExperiencePointsstate << "\n";
+          std::cout << " 4. Fatigue Points" << std::setw(22) << std::setfill('.') << FatiguePointsstate << "\n";
+          std::cout << " 5. Height and Weight" <<  std::setw(19) << std::setfill('.') << HeightAndWeightstate << "\n";
           std::cout << " 6. Hit Points per Location" << std::setw(9) << std::setfill('.') << HPLocationstate << "\n";
           std::cout << " 7. Increased Personal Skill Points" << std::setw(9) << std::setfill('.') << IncreasedPerSkillPointsstate << "\n";
-          std::cout << " 8. Set POWER_LEVEL" << std::setw(9) << std::setfill('.') << PowerLevelstate << "\n";
+          std::cout << " 8. Set Power Level" << std::setw(15) << std::setfill('.') << PowerLevelstate << "\n";
           std::cout << " 9. Sanity" << std::setw(9) << std::setfill('.') << Sanitystate << "\n";
           std::cout << "10. Skill Catagories" << std::setw(9) << std::setfill('.') << SkillCatstate << "\n";
           std::cout << "11. Total Hit Points" << std::setw(9) << std::setfill('.') << TotalHPstate << "\n";
@@ -250,14 +250,11 @@ int BRP_menu()
                     }
                     default:{
                       std::cout << "\033c";
-                      std::cout << "Please select one of the avalible";
-                      break;
+                      std::cout << "Please select one of the avalible levels or exit back to the Options Menu.";
+                      //break;
                     }
                   }//Power Level Input end
-                  if (PowerLevelInput == 0){
-                    std::cout << "\033c";
                     break;
-                  };
                 }//Power Level Menu Loop end 
                 break;
               }//Power Level menu CASE 8 end
