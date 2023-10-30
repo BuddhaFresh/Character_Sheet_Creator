@@ -72,6 +72,7 @@ int main()
   
   //Inputs for menus
   int mainMenuInput;
+    
   int optionsMenuInput;
   int newMenuInput;
   int charKeepInput;

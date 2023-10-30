@@ -1581,12 +1581,12 @@ void BRP_human_base::freebuild()
 void BRP_human_base::consoleChar()
 {
   
-  std::cout << "Culture: " << "Human" << "\t\t" << "Gender: " << Gender << std::endl;
-  std::cout << "Height: " << Height << "\t\t" << "Weight: " << Weight << std::endl;
-  std::cout << "Wealth: " << Wealth << "\t\t" << "Profession: " << Profession << std::endl;
+  std::cout << "Culture: " << "Human" << std::setw(4+8) << std::setfill(' ') << "Gender: " << Gender << std::endl;
+  std::cout << "Height: " << Height << std::setw(16+8-Height.length()) << std::setfill(' ') << "Weight: " << Weight << std::endl;
+  std::cout << "Wealth: " << Wealth << std::setw(4+12-Wealth.length()) << std::setfill(' ') << "Profession: " << Profession << std::endl;
   std::cout << "Handedness: " << Handedness << std::endl;
   std::cout << "Religion: " << Religion << std::endl;
-  std::cout << "Move (MOV): " << 10 << "\t\t" << "Age: " << Age << std::endl;
+  std::cout << "Move (MOV): " << 10 << std::setw(4+5) << std::setfill(' ') << "Age: " << Age << std::endl;
   std::cout << "\n" << UnitedFeatures << std::endl;
   std::cout << "\n" << " " << Personality << std::endl;
   std::cout << "\n";
@@ -1603,28 +1603,28 @@ void BRP_human_base::consoleChar()
 
   //START OF SKILLS
   //COMMUNICATION    MENTAL    PHYSICAL
-  std::cout << "COMMUNICATION " << DD(Communication_skillcategory) << "%" << "\t\t\t" << "MENTAL " << DD(Mental_skillcategory) << "%" << "\t\t\t" << "PHYSICAL " << DD(Physical_skillcategory) << "%" << "\t\t\t" << std::endl;
+  std::cout << "COMMUNICATION " << DD(Communication_skillcategory) << "%" << "\t\t\t\t" << "MENTAL " << DD(Mental_skillcategory) << "%" << "\t\t\t\t" << "PHYSICAL " << DD(Physical_skillcategory) << "%" << "\t\t\t" << std::endl;
 
   //Bargain    Appraise    Climb
-  std::cout << SkillTable["Bargain"].SkillName << " (" << DD(SkillTable["Bargain"].SkillBase) << ")" << "\t\t" << DD(SkillTable["Bargain"].SkillMod) << "%" << "\t\t" << SkillTable["Appraise"].SkillName << " (" << DD(SkillTable["Appraise"].SkillBase) << ")" << "\t" << DD(SkillTable["Appraise"].SkillMod) << "%" << "\t\t" << SkillTable["Climb"].SkillName << " (" << DD(SkillTable["Climb"].SkillBase) << ")" << "\t" << DD(SkillTable["Climb"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Bargain"].SkillName << " (" << DD(SkillTable["Bargain"].SkillBase) << ")" << std::setw(12) << std::setfill('.') << "" << DD(SkillTable["Bargain"].SkillMod) << "%" << std::setw(5+8) << std::setfill(' ') << SkillTable["Appraise"].SkillName << " (" << DD(SkillTable["Appraise"].SkillBase) << ")" << "\t" << DD(SkillTable["Appraise"].SkillMod) << "%" << "\t\t" << SkillTable["Climb"].SkillName << " (" << DD(SkillTable["Climb"].SkillBase) << ")" << "\t" << DD(SkillTable["Climb"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Command    First Aid    Drive(subskill0)
-  std::cout << SkillTable["Command"].SkillName << " (" << DD(SkillTable["Command"].SkillBase) << ")" << "\t\t" << DD(SkillTable["Command"].SkillMod) << "%" << "\t\t" << SkillTable["First Aid"].SkillName << " (" << DD(SkillTable["First Aid"].SkillBase) << ")" << "\t" << DD(SkillTable["First Aid"].SkillMod) << "%" << "\t\t" << SkillTable["Drive0"].SkillName << " (" << DD(SkillTable["Drive0"].SkillBase) << ")" << "\t" << DD(SkillTable["Drive0"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Command"].SkillName << " (" << DD(SkillTable["Command"].SkillBase) << ")" << std::setw(12) << std::setfill('.') << "" << DD(SkillTable["Command"].SkillMod) << "%" << std::setw(5+9) << std::setfill(' ') << SkillTable["First Aid"].SkillName << " (" << DD(SkillTable["First Aid"].SkillBase) << ")" << "\t" << DD(SkillTable["First Aid"].SkillMod) << "%" << "\t\t" << SkillTable["Drive0"].SkillName << " (" << DD(SkillTable["Drive0"].SkillBase) << ")" << "\t" << DD(SkillTable["Drive0"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Disguise    Gaming    Drive(subskill1)
-  std::cout << SkillTable["Disguise"].SkillName << " (" << DD(SkillTable["Disguise"].SkillBase) << ")" << "\t" << DD(SkillTable["Disguise"].SkillMod) << "%" << "\t\t" << SkillTable["Gaming"].SkillName << " (" << DD(SkillTable["Gaming"].SkillBase) << ")" << "\t" << DD(SkillTable["Gaming"].SkillMod) << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Disguise"].SkillName << " (" << DD(SkillTable["Disguise"].SkillBase) << ")" << std::setw(11) << std::setfill('.') << "" << DD(SkillTable["Disguise"].SkillMod) << "%" << std::setw(5+6) << std::setfill(' ') << SkillTable["Gaming"].SkillName << " (" << DD(SkillTable["Gaming"].SkillBase) << ")" << "\t" << DD(SkillTable["Gaming"].SkillMod) << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Etiquette    Drive(subskill2)
-  std::cout << SkillTable["Etiquette"].SkillName << " (" << DD(SkillTable["Etiquette"].SkillBase) << ")" << "\t" << DD(SkillTable["Etiquette"].SkillMod) << "%" << "\t\t" << SkillTable["Knowledge0"].SkillName << " (" << DD(SkillTable["Knowledge0"].SkillBase) << ")" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Etiquette"].SkillName << " (" << DD(SkillTable["Etiquette"].SkillBase) << ")" << std::setw(10) << std::setfill('.') << "" << DD(SkillTable["Etiquette"].SkillMod) << "%" << std::setw(5+9) << std::setfill(' ') << SkillTable["Knowledge0"].SkillName << " (" << DD(SkillTable["Knowledge0"].SkillBase) << ")" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Fast Talk    Knowledge(subskill0)    Fly
-  std::cout << SkillTable["Fast Talk"].SkillName << " (" << DD(SkillTable["Fast Talk"].SkillBase) << ")" << "\t" << DD(SkillTable["Fast Talk"].SkillMod) << "%" << "\t\t" << "  " << SkillTable["Knowledge0"].SubSkillName << "\t" << DD(SkillTable["Knowledge0"].SkillMod) << "%" << "\t\t" << SkillTable["Fly"].SkillName << " (" << DD(SkillTable["Fly"].SkillBase) << ")" << "\t" << DD(SkillTable["Fly"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Fast Talk"].SkillName << " (" << DD(SkillTable["Fast Talk"].SkillBase) << ")" << std::setw(10) << std::setfill('.') << "" << DD(SkillTable["Fast Talk"].SkillMod) << "%" << "\t\t" << "  " << SkillTable["Knowledge0"].SubSkillName << "\t" << DD(SkillTable["Knowledge0"].SkillMod) << "%" << "\t\t" << SkillTable["Fly"].SkillName << " (" << DD(SkillTable["Fly"].SkillBase) << ")" << "\t" << DD(SkillTable["Fly"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Knowledge(subskill1)    Hide
-  std::cout << SkillTable["Language0"].SkillName << " (" << DD(SkillTable["Language0"].SkillBase) << ")" << "\t\t" << "  " << SkillTable["Knowledge1"].SubSkillName << "\t" << DD(SkillTable["Knowledge1"].SkillMod) << "%" << "\t\t" << SkillTable["Hide"].SkillName << " (" << DD(SkillTable["Hide"].SkillBase) << ")" << "\t" << DD(SkillTable["Hide"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Language0"].SkillName << " (" << SkillTable["Language0"].SkillBase << ")" << "\t\t" << "  " << SkillTable["Knowledge1"].SubSkillName << "\t" << DD(SkillTable["Knowledge1"].SkillMod) << "%" << "\t\t" << SkillTable["Hide"].SkillName << " (" << DD(SkillTable["Hide"].SkillBase) << ")" << "\t" << DD(SkillTable["Hide"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Language(subskill0)    Knowledge(subskill2)    Jump
-  std::cout << "  " << SkillTable["Language0"].SubSkillName << "\t\t" << DD(SkillTable["Language0"].SkillMod) << "%" << "\t\t" << "  " << SkillTable["Knowledge2"].SubSkillName << "\t" << DD(SkillTable["Knowledge2"].SkillMod) << "%" << "\t\t" << SkillTable["Jump"].SkillName << " (" << DD(SkillTable["Jump"].SkillBase) << ")" << "\t" << DD(SkillTable["Jump"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << "  " << SkillTable["Language0"].SubSkillName << std::setw(22-SkillTable["Language0"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["Language0"].SkillMod) << "%" << "\t\t" << "  " << SkillTable["Knowledge2"].SubSkillName << "\t" << DD(SkillTable["Knowledge2"].SkillMod) << "%" << "\t\t" << SkillTable["Jump"].SkillName << " (" << DD(SkillTable["Jump"].SkillBase) << ")" << "\t" << DD(SkillTable["Jump"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Language(subskill1)    Literacy    Pilot(subskill0)
   std::cout << "  " << SkillTable["Language1"].SubSkillName << "\t\t" << DD(SkillTable["Language1"].SkillMod) << "%" << "\t\t" << SkillTable["Literacy"].SkillName << " (" << DD(SkillTable["Language0"].SkillBase) << ")" << "  " << DD(SkillTable["Language0"].SkillMod) << "%" << "\t\t\t\t" << SkillTable["Pilot0"].SkillName << " (" << DD(SkillTable["Pilot0"].SkillBase) << ")" << "\t" << DD(SkillTable["Pilot0"].SkillMod) << "%" << "\t\t" << std::endl;
@@ -1636,40 +1636,40 @@ void BRP_human_base::consoleChar()
   std::cout << "  " << SkillTable["Language3"].SubSkillName << "\t\t" << DD(SkillTable["Language3"].SkillMod) << "%" << "\t\t" << SkillTable["Psychotherapy"].SkillName << " (" << DD(SkillTable["Psychotherapy"].SkillBase) << ")" << "\t" << DD(SkillTable["Psychotherapy"].SkillMod) << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Preform    Science(subskill0)    Projection
-  std::cout << SkillTable["Preform"].SkillName << " (" << DD(SkillTable["Preform"].SkillBase) << ")" << "\t" << DD(SkillTable["Preform"].SkillMod) << "%" << "\t\t\t\t\t" << SkillTable["Science0"].SkillName << " (" << DD(SkillTable["Science0"].SkillBase) << ")" << "\t" << DD(SkillTable["Science0"].SkillMod) << "%" << "\t\t" << SkillTable["Projection"].SkillName << " (" << DD(SkillTable["Projection"].SkillBase) << ")" << "\t" << DD(SkillTable["Projection"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Preform"].SkillName << " (" << DD(SkillTable["Preform"].SkillBase) << ")" << std::setw(12) << std::setfill('.') << "" << DD(SkillTable["Preform"].SkillMod) << "%" << "\t\t\t\t\t" << SkillTable["Science0"].SkillName << " (" << DD(SkillTable["Science0"].SkillBase) << ")" << "\t" << DD(SkillTable["Science0"].SkillMod) << "%" << "\t\t" << SkillTable["Projection"].SkillName << " (" << DD(SkillTable["Projection"].SkillBase) << ")" << "\t" << DD(SkillTable["Projection"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Persuade    Science(subskill1)    Ride(subskill0)
-  std::cout << SkillTable["Persuade"].SkillName << " (" << DD(SkillTable["Persuade"].SkillBase) << ")" << "\t" << DD(SkillTable["Persuade"].SkillMod) << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["Ride0"].SkillName << " (" << DD(SkillTable["Ride0"].SkillBase) << ")" << "\t" << DD(SkillTable["Ride0"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Persuade"].SkillName << " (" << DD(SkillTable["Persuade"].SkillBase) << ")" << std::setw(11) << std::setfill('.') << "" << DD(SkillTable["Persuade"].SkillMod) << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["Ride0"].SkillName << " (" << DD(SkillTable["Ride0"].SkillBase) << ")" << "\t" << DD(SkillTable["Ride0"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Status    Science(subskill2)    Ride(subskill1)
-  std::cout << SkillTable["Status"].SkillName << " (" << DD(SkillTable["Status"].SkillBase) << ")" << "\t" << DD(SkillTable["Status"].SkillMod) << "%" << "\t\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Status"].SkillName << " (" << DD(SkillTable["Status"].SkillBase) << ")" << std::setw(13) << std::setfill('.') << "" << DD(SkillTable["Status"].SkillMod) << "%" << "\t\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Teach    Science(subskill3)    Stealth
-  std::cout << SkillTable["Teach"].SkillName << " (" << DD(SkillTable["Teach"].SkillBase) << ")" << "\t\t" << DD(SkillTable["Teach"].SkillMod) << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["Stealth"].SkillName << " (" << DD(SkillTable["Stealth"].SkillBase) << ")" << "\t" << DD(SkillTable["Stealth"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Teach"].SkillName << " (" << DD(SkillTable["Teach"].SkillBase) << ")" << std::setw(14) << std::setfill('.') << "" << DD(SkillTable["Teach"].SkillMod) << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["Stealth"].SkillName << " (" << DD(SkillTable["Stealth"].SkillBase) << ")" << "\t" << DD(SkillTable["Stealth"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Strategy    Swim
   std::cout << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t\t" << SkillTable["Strategy"].SkillName << " (" << DD(SkillTable["Strategy"].SkillBase) << ")" << "\t" << DD(SkillTable["Strategy"].SkillMod) << "%" << "\t\t" << SkillTable["Swim"].SkillName << " (" << DD(SkillTable["Swim"].SkillBase) << ")" << "\t" << DD(SkillTable["Swim"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //MANIPULATION    Technical Skill(subskill0)    Throw
-  std::cout << "MANIPULATION (" << DD(Manipulation_skillcategory) << ")" << "\t\t\t" << SkillTable["Technical Skill0"].SkillName << " (" << DD(SkillTable["Technical Skill0"].SkillBase) << ")" << "\t" << DD(SkillTable["Technical Skill0"].SkillMod) << "%" << "\t\t" << SkillTable["Throw"].SkillName << " (" << DD(SkillTable["Throw"].SkillBase) << ")" << "\t" << DD(SkillTable["Throw"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << "MANIPULATION " << DD(Manipulation_skillcategory) << "%" << "\t\t\t" << SkillTable["Technical Skill0"].SkillName << " (" << DD(SkillTable["Technical Skill0"].SkillBase) << ")" << "\t" << DD(SkillTable["Technical Skill0"].SkillMod) << "%" << "\t\t" << SkillTable["Throw"].SkillName << " (" << DD(SkillTable["Throw"].SkillBase) << ")" << "\t" << DD(SkillTable["Throw"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Art(subskill0)    Technical Skill(subskill1)
   std::cout << SkillTable["Art0"].SkillName << " (" << DD(SkillTable["Art0"].SkillBase) << ")" << " " << SkillTable["Art0"].SubSkillName << "\t" << DD(SkillTable["Art0"].SkillMod) << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Art(subskill1)    COMBAT
-  std::cout << "  " << SkillTable["Art1"].SubSkillName << "\t" << DD(SkillTable["Art1"].SkillMod) << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << "COMBAT (" << DD(Combat_skillcategory) << ")" << std::endl;
+  std::cout << "  " << SkillTable["Art1"].SubSkillName << "\t" << DD(SkillTable["Art1"].SkillMod) << "%" << "\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << "COMBAT " << DD(Combat_skillcategory) << "%" << std::endl;
 
   //Craft(subskill0)    Dodge
   std::cout << SkillTable["Craft0"].SkillName << " (" << DD(SkillTable["Craft0"].SkillBase) << ")" << "\t" << DD(SkillTable["Craft0"].SkillMod) << "%" << "\t\t\t\t" << SkillTable["BLANK"].SkillName << " (" << DD(SkillTable["BLANK"].SkillBase) << ")" << "\t" << DD(SkillTable["BLANK"].SkillMod) << "%" << "\t\t" << SkillTable["Dodge"].SkillName << " (" << DD(SkillTable["Dodge"].SkillBase) << ")" << "\t" << DD(SkillTable["Dodge"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Craft(subskill1)    PERCEPTION    Martial Arts
-  std::cout << SkillTable["Craft1"].SkillName << " (" << DD(SkillTable["Craft1"].SkillBase) << ")" << "\t" << DD(SkillTable["Craft1"].SkillMod) << "%" << "\t\t\t" << "PERCEPTION (" << DD(Perception_skillcategory) << ")" << "\t" << "\t\t" << SkillTable["Martial Arts"].SkillName << " (" << DD(SkillTable["Martial Arts"].SkillBase) << ")" << "\t" << DD(SkillTable["Martial Arts"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Craft1"].SkillName << " (" << DD(SkillTable["Craft1"].SkillBase) << ")" << "\t" << DD(SkillTable["Craft1"].SkillMod) << "%" << "\t\t\t" << "PERCEPTION " << DD(Perception_skillcategory) << "%" << "\t" << "\t\t" << SkillTable["Martial Arts"].SkillName << " (" << DD(SkillTable["Martial Arts"].SkillBase) << ")" << "\t" << DD(SkillTable["Martial Arts"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Demolition    Insight
-  std::cout << SkillTable["Demolition"].SkillName << " (" << DD(SkillTable["Demolition"].SkillBase) << ")" << "\t" << DD(SkillTable["Demolition"].SkillMod) << "%" << "\t\t\t" << SkillTable["Insight"].SkillName << " (" << DD(SkillTable["Insight"].SkillBase) << ")" << "\t" << DD(SkillTable["Insight"].SkillMod) << "%" << "\t\t" << "See Weapons below for more Combat skills" << std::endl;
+  std::cout << SkillTable["Demolition"].SkillName << " (" << DD(SkillTable["Demolition"].SkillBase) << ")" << std::setw(9) << std::setfill('.') << "" << DD(SkillTable["Demolition"].SkillMod) << "%" << "\t\t\t" << SkillTable["Insight"].SkillName << " (" << DD(SkillTable["Insight"].SkillBase) << ")" << "\t" << DD(SkillTable["Insight"].SkillMod) << "%" << "\t\t" << "See Weapons below for more Combat skills" << std::endl;
 
   //Fine Manipulation    Listen
-  std::cout << SkillTable["Fine Manipulation"].SkillName << " (" << DD(SkillTable["Fine Manipulation"].SkillBase) << ")" << "\t" << DD(SkillTable["Fine Manipulation"].SkillMod) << "%" << "\t\t\t" << SkillTable["Listen"].SkillName << " (" << DD(SkillTable["Listen"].SkillBase) << ")" << "\t" << DD(SkillTable["Listen"].SkillMod) << "%" << std::endl;
+  std::cout << SkillTable["Fine Manipulation"].SkillName << " (" << DD(SkillTable["Fine Manipulation"].SkillBase) << ")" << std::setw(2) << std::setfill('.') << "" << DD(SkillTable["Fine Manipulation"].SkillMod) << "%" << "\t\t\t" << SkillTable["Listen"].SkillName << " (" << DD(SkillTable["Listen"].SkillBase) << ")" << "\t" << DD(SkillTable["Listen"].SkillMod) << "%" << std::endl;
 
   //Heavy Machine(subskill0)    Navigate    Combat Skill(ARMS0)
   std::cout << SkillTable["Heavy Machine0"].SkillName << " (" << DD(SkillTable["Heavy Machine0"].SkillBase) << ")" << "\t" << DD(SkillTable["Heavy Machine0"].SkillMod) << "%" << "\t\t\t" << SkillTable["Navigate"].SkillName << " (" << DD(SkillTable["Navigate"].SkillBase) << ")" << "\t" << DD(SkillTable["Navigate"].SkillMod) << "%" << "\t\t" << SkillTable["ARMS0"].SkillName << " (" << DD(SkillTable["ARMS0"].SkillBase) << ")" << "\t" << DD(SkillTable["ARMS0"].SkillMod) << "%" << "\t\t" << std::endl;
@@ -1684,7 +1684,7 @@ void BRP_human_base::consoleChar()
   std::cout << SkillTable["Repair1"].SkillName << " (" << DD(SkillTable["Repair1"].SkillBase) << ")" << "\t" << DD(SkillTable["Repair1"].SkillMod) << "%" << "\t\t\t" << SkillTable["Spot"].SkillName << " (" << DD(SkillTable["Spot"].SkillBase) << ")" << "\t" << DD(SkillTable["Spot"].SkillMod) << "%" << "\t\t" << SkillTable["ARMS3"].SkillName << " (" << DD(SkillTable["ARMS3"].SkillBase) << ")" << "\t" << DD(SkillTable["ARMS3"].SkillMod) << "%" << "\t\t" << std::endl;
 
   //Slight of Hand    Track    EXPERENCE BONUS
-  std::cout << SkillTable["Slight of Hand"].SkillName << " (" << DD(SkillTable["Slight of Hand"].SkillBase) << ")" << "\t" << DD(SkillTable["Slight of Hand"].SkillMod) << "%" << "\t\t\t" << SkillTable["Track"].SkillName << " (" << DD(SkillTable["Track"].SkillBase) << ")" << "\t" << DD(SkillTable["Track"].SkillMod) << "%" << "\t\t"; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << DD(ExperenceBonus) << "%"<< std::endl;} else{std::cout << "" << std::endl;}
+  std::cout << SkillTable["Slight of Hand"].SkillName << " (" << DD(SkillTable["Slight of Hand"].SkillBase) << ")" << std::setw(5) << std::setfill('.') << "" << DD(SkillTable["Slight of Hand"].SkillMod) << "%" << "\t\t\t" << SkillTable["Track"].SkillName << " (" << DD(SkillTable["Track"].SkillBase) << ")" << "\t" << DD(SkillTable["Track"].SkillMod) << "%" << "\t\t"; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << DD(ExperenceBonus) << "%"<< std::endl;} else{std::cout << "" << std::endl;}
   //END OF SKILLS
 
   
