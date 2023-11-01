@@ -1,0 +1,58 @@
+===========================================================
+			PERSONAL
+===========================================================
+Culture: Human     Gender: Female
+Height: Average    Weight: Overweight
+Wealth: Poor       Profession: Tribesperson
+Handedness: Right-Handed
+Religion: Worshipper of Yudi
+Move (MOV): 10     Age: 21
+
+ They have very pale skin on their legs. They have a shrunken chest.
+
+ They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.
+
+STR 12	Effort roll 60%			INT 14	Idea roll 70%
+CON 08	Stamina roll 40%		CHA 14	Charm roll 70%
+DEX 12	Agility roll 60%		POW 11	Luck roll 55%
+EDU 15	Knowledge roll 75%		SIZ 13	Damage Bonus of +1D4
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 10 with Major Wound occuring at 05 HP
+===========================================================
+			SKILLS
+===========================================================
+
+Professional Skill Points Pool: 300		Personal Skill Points Pool: 140
+COMMUNICATION 06%				MENTAL 04%						PHYSICAL -1%
+Bargain (05)............11%     Appraise (15)...........19%     Climb (40)..............39%
+Command (05)............11%     First Aid (30)..........54%		Drive (20)............25%
+Disguise (01)...........27%     Gaming (25)..........29%		 (00)	00%
+Etiquette (05)..........11%     Knowledge (00)				 (00)	00%
+Fast Talk (05)..........11%		  	04%		Fly (06)..........05%
+Language (75)		  	04%		Hide (10)..........09%
+  Navajo................81%		  	04%		Jump (25)..........24%
+  		06%		Literacy (75)..........81%				Pilot (01)	20%
+  		06%					Medicine (05)..........09%		 (00)	00%
+  		06%		Psychotherapy (00)..........04%		 (00)	00%
+Preform (05)............11%					Science (01)	05%		Projection (24)	23%		
+Persuade (15)...........21%			 (00)	00%		Ride (05)	31%		
+Status (15).............21%					 (00)	00%		 (00)	00%		
+Teach (10)..............16%			 (00)	00%		Stealth (10)	29%		
+ (00)	00%			Strategy (01)	05%		Swim (25)	24%		
+MANIPULATION 05%			Technical (05)	09%		Throw (25)	24%		
+Art (05) 	10%			 (00)	00%		 (00)	00%		
+  	10%			 (00)	00%		COMBAT 07%
+Craft (05)	10%				 (00)	00%		Dodge (24)	43%		
+Craft (05)	10%			PERCEPTION 03%			Martial Arts (01)	08%		
+Demolition (01).........06%			Insight (05)	08%		See Weapons below for more Combat skills
+Fine Manipulation (05)..30%			Listen (25)	28%
+Heavy Machine (01)	06%			Navigate (10)	33%		 (00)	07%		
+Heavy Machine (01)	06%			Research (25)	28%		 (00)	07%		
+Repair (15)	20%				Sense (10)	13%		 (00)	07%		
+Repair (15)	20%			Spot (25)	28%		 (00)	07%		
+Slight of Hand (05).....30%			Track (10)	13%		EXPERENCE BONUS 07%
+
+
+Seed: 1698781408
