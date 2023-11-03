@@ -1,0 +1,60 @@
+===========================================================
+			PERSONAL
+===========================================================
+Culture: Human     Gender: Female
+Height: Average    Weight: Average
+Wealth: Poor       Profession: Crafter
+Handedness: Right-Handed
+Religion: Worshipper of Hera
+Move (MOV): 10     Age: 22
+
+ They have very long legs. They have a sharp way of speech.
+
+ They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.
+
+STR 09  Effort roll 45%         INT 13  Idea roll 65%
+CON 14  Stamina roll 70%        CHA 08  Charm roll 40%
+DEX 09  Agility roll 45%        POW 14  Luck roll 70%
+EDU 13  Knowledge roll 65%      SIZ 15  Damage Bonus of None
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 14 with Major Wound occuring at 07 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 260		Personal Skill Points Pool: 130
+
+COMMUNICATION 04%               MENTAL 05%                      PHYSICAL -4%
+Bargain (05)............09%     Appraise (15)...........20%     Climb (40)..............36%
+Command (05)............09%     First Aid (30)..........55%     Drive (20) .............20%
+Disguise (01)...........25%     Gaming (27).............32%       ......................01%
+Etiquette (05)..........09%     Knowledge (00)                    ......................20%
+Fast Talk (05)..........09%       ......................05%     Fly (04)................00%
+Language (65)                     ......................05%     Hide (10)...............06%
+  Greek.................69%       ......................05%     Jump (25)...............21%
+  ......................04%     Literacy (65)...........69%     Pilot (01) .............17%
+  ......................04%     Medicine (05)...........10%       ......................17%
+  ......................04%     Psychotherapy (00)......05%       ......................-3%
+Preform (05)............09%     Science (01) ...........06%     Projection (18).........14%
+Persuade (15)...........19%       ......................06%     Ride (05) ..............29%
+Status (15).............19%       ......................06%       ......................29%
+Teach (10)..............14%       ......................06%     Stealth (10)............26%
+                                Strategy (01)...........06%     Swim (25)...............21%
+MANIPULATION 00%                Technical (05) .........10%     Throw (25)..............21%
+Art (05) ...............05%       ......................10%
+  ......................05%       ......................10%     COMBAT 02%
+Craft (05) .............05%                                     Dodge (18)..............34%
+  ......................05%     PERCEPTION 07%                  Martial Arts (01).......03%
+Demolition (01).........01%     Insight (05)............12%     See Weapons below for more Combat skills
+Fine Manipulation (05)..25%     Listen (25).............32%
+Heavy Machine (01)              Navigate (10)...........37%      (00) ..................02%
+  ......................01%     Research (25)...........32%      (00) ..................02%
+Repair (15) ............15%     Sense (10)..............17%      (00) ..................02%
+  ......................15%     Spot (25)...............32%      (00) ..................02%
+Slight of Hand (05).....25%     Track (10)..............17%     EXPERENCE BONUS 06%
+
+
+Seed: 1699041035

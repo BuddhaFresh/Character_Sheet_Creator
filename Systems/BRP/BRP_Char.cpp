@@ -1563,6 +1563,7 @@ void BRP_human_base::fullrandom(){
   //PickJobSkills();
   //ProfessionSkillSet();
   //PersonalSkillSet();
+
 }
 
 //Free build a full character
@@ -1587,13 +1588,13 @@ void BRP_human_base::consoleChar()
   std::cout << "\n" << UnitedFeatures << std::endl;
   std::cout << "\n" << " " << Personality << std::endl;
   std::cout << "\n";
-  std::cout  << "STR " << DD(STR) << "\t" << "Effort roll " << CharacteristicRoll(STR) << "%\t\t\t" << "INT " << DD(INT) << "\t" << "Idea roll " << CharacteristicRoll(INT) << "%" << std::endl; 
-  std::cout << "CON " << DD(CON) << "\t" << "Stamina roll " << CharacteristicRoll(CON) << "%\t\t" << "CHA " << DD(CHA) << "\t" << "Charm roll " << CharacteristicRoll(CHA) << "%" << std::endl;
-  std::cout << "DEX " << DD(DEX) << "\t" << "Agility roll " << CharacteristicRoll(DEX) << "%\t\t" << "POW " << DD(POW) << "\t" << "Luck roll " << CharacteristicRoll(POW) << "%" << std::endl;  
+  std::cout  << "STR " << DD(STR) << std::setw(2) << std::setfill(' ') << "" << "Effort roll " << CharacteristicRoll(STR) << "%" << std::setw(9) << std::setfill(' ') << "" << "INT " << DD(INT) << std::setw(2) << std::setfill(' ') << "" << "Idea roll " << CharacteristicRoll(INT) << "%" << std::endl; 
+  std::cout << "CON " << DD(CON) << std::setw(2) << std::setfill(' ') << "" << "Stamina roll " << CharacteristicRoll(CON) << "%" << std::setw(8) << std::setfill(' ') << "" << "CHA " << DD(CHA) << std::setw(2) << std::setfill(' ') << "" << "Charm roll " << CharacteristicRoll(CHA) << "%" << std::endl;
+  std::cout << "DEX " << DD(DEX) << std::setw(2) << std::setfill(' ') << "" << "Agility roll " << CharacteristicRoll(DEX) << "%" << std::setw(8) << std::setfill(' ') << "" << "POW " << DD(POW) << std::setw(2) << std::setfill(' ') << "" << "Luck roll " << CharacteristicRoll(POW) << "%" << std::endl;  
   if (EDUCATION_STAT == true) 
-  {std::cout << "EDU " << DD(EDU) << "\t" << "Knowledge roll " << CharacteristicRoll(EDU) << "%" << std::setw(10) << std::setfill(' ') << "SIZ " << DD(SIZ) << "\t" << "Damage Bonus of " << DamBonus << "\n" <<  std::endl;}
+  {std::cout << "EDU " << DD(EDU) << std::setw(2) << std::setfill(' ') << "" << "Knowledge roll " << CharacteristicRoll(EDU) << "%" << std::setw(10) << std::setfill(' ') << "SIZ " << DD(SIZ) << std::setw(2) << std::setfill(' ') << "" << "Damage Bonus of " << DamBonus << "\n" <<  std::endl;}
   else
-  {std::cout << "SIZ " << DD(SIZ) << "\t" << "Damage Bonus of " << DamBonus << "\n" << std::endl;}
+  {std::cout << "SIZ " << DD(SIZ) << std::setw(2) << std::setfill(' ') << "" << "Damage Bonus of " << DamBonus << "\n" << std::endl;}
   
   std::cout << "===========================================================" << std::endl;
   std::cout << "\t\t\tHIT POINTS" << std::endl;
@@ -1672,23 +1673,23 @@ void BRP_human_base::consoleChar()
   //Demolition    Insight    TEXT
   std::cout << SkillTable["Demolition"].SkillName << " (" << DD(SkillTable["Demolition"].SkillBase) << ")" << std::setw(9) << std::setfill('.') << "" << DD(SkillTable["Demolition"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Insight"].SkillName << " (" << DD(SkillTable["Insight"].SkillBase) << ")" << std::setw(12) << std::setfill('.') << "" << DD(SkillTable["Insight"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << "See Weapons below for more Combat skills" << std::endl;
 
-  //Fine Manipulation    Listen
+  //Fine Manipulation    Listen    BLANK_SPACE
   std::cout << SkillTable["Fine Manipulation"].SkillName << " (" << DD(SkillTable["Fine Manipulation"].SkillBase) << ")" << std::setw(2) << std::setfill('.') << "" << DD(SkillTable["Fine Manipulation"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Listen"].SkillName << " (" << DD(SkillTable["Listen"].SkillBase) << ")" << std::setw(13) << std::setfill('.') << "" << DD(SkillTable["Listen"].SkillMod) << "%" << std::endl;
 
   //Heavy Machine(name)    Navigate    Combat Skill(ARMS0)
-  std::cout << SkillTable["Heavy Machine"].SkillName << " (" << DD(SkillTable["Heavy Machine"].SkillBase) << ")" << std::setw(14) << std::setfill(' ') << "" << SkillTable["Navigate"].SkillName << " (" << DD(SkillTable["Navigate"].SkillBase) << ")" << std::setw(11) << std::setfill('.') << "" << DD(SkillTable["Navigate"].SkillMod) << "%" << "\t\t" << SkillTable["ARMS0"].SkillName << " (" << DD(SkillTable["ARMS0"].SkillBase) << ")" << "\t" << DD(SkillTable["ARMS0"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Heavy Machine"].SkillName << " (" << DD(SkillTable["Heavy Machine"].SkillBase) << ")" << std::setw(14) << std::setfill(' ') << "" << SkillTable["Navigate"].SkillName << " (" << DD(SkillTable["Navigate"].SkillBase) << ")" << std::setw(11) << std::setfill('.') << "" << DD(SkillTable["Navigate"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS0"].SkillName << " (" << DD(SkillTable["ARMS0"].SkillBase) << ")" << " " << SkillTable["ARMS0"].SubSkillName << std::setw(18-SkillTable["ARMS0"].SkillName.length()-SkillTable["ARMS0"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["ARMS0"].SkillMod) << "%" << std::endl;
 
   //Heavy Machine(subskill0)    Research    Combat Skill(ARMS1)
-  std::cout << "  " << SkillTable["Heavy Machine"].SubSkillName << std::setw(22-SkillTable["Heavy Machine"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["Heavy Machine"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Research"].SkillName << " (" << DD(SkillTable["Research"].SkillBase) << ")" << std::setw(11) << std::setfill('.') << "" << DD(SkillTable["Research"].SkillMod) << "%" << "\t\t" << SkillTable["ARMS1"].SkillName << " (" << DD(SkillTable["ARMS1"].SkillBase) << ")" << "\t" << DD(SkillTable["ARMS1"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << "  " << SkillTable["Heavy Machine"].SubSkillName << std::setw(22-SkillTable["Heavy Machine"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["Heavy Machine"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Research"].SkillName << " (" << DD(SkillTable["Research"].SkillBase) << ")" << std::setw(11) << std::setfill('.') << "" << DD(SkillTable["Research"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS1"].SkillName << " (" << DD(SkillTable["ARMS1"].SkillBase) << ")" << " " << SkillTable["ARMS1"].SubSkillName << std::setw(18-SkillTable["ARMS1"].SkillName.length()-SkillTable["ARMS1"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["ARMS1"].SkillMod) << "%" << std::endl;
 
   //Repair(subskill0)    Sense    Combat Skill(ARMS2)
-  std::cout << SkillTable["Repair0"].SkillName << " (" << DD(SkillTable["Repair0"].SkillBase) << ")" << " " << SkillTable["Repair0"].SubSkillName << std::setw(12-SkillTable["Repair0"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["Repair0"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Sense"].SkillName << " (" << DD(SkillTable["Sense"].SkillBase) << ")" << std::setw(14) << std::setfill('.') << "" << DD(SkillTable["Sense"].SkillMod) << "%" << "\t\t" << SkillTable["ARMS2"].SkillName << " (" << DD(SkillTable["ARMS2"].SkillBase) << ")" << "\t" << DD(SkillTable["ARMS2"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << SkillTable["Repair0"].SkillName << " (" << DD(SkillTable["Repair0"].SkillBase) << ")" << " " << SkillTable["Repair0"].SubSkillName << std::setw(12-SkillTable["Repair0"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["Repair0"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Sense"].SkillName << " (" << DD(SkillTable["Sense"].SkillBase) << ")" << std::setw(14) << std::setfill('.') << "" << DD(SkillTable["Sense"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS2"].SkillName << " (" << DD(SkillTable["ARMS2"].SkillBase) << ")" << " " << SkillTable["ARMS2"].SubSkillName << std::setw(18-SkillTable["ARMS2"].SkillName.length()-SkillTable["ARMS2"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["ARMS2"].SkillMod) << "%" << std::endl;
 
   //Repair(subskill1)    Spot    Combat Skill(ARMS3)
-  std::cout << "  " << SkillTable["Repair1"].SubSkillName << std::setw(22-SkillTable["Repair1"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["Repair1"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Spot"].SkillName << " (" << DD(SkillTable["Spot"].SkillBase) << ")" << std::setw(15) << std::setfill('.') << "" << DD(SkillTable["Spot"].SkillMod) << "%" << "\t\t" << SkillTable["ARMS3"].SkillName << " (" << DD(SkillTable["ARMS3"].SkillBase) << ")" << "\t" << DD(SkillTable["ARMS3"].SkillMod) << "%" << "\t\t" << std::endl;
+  std::cout << "  " << SkillTable["Repair1"].SubSkillName << std::setw(22-SkillTable["Repair1"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["Repair1"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Spot"].SkillName << " (" << DD(SkillTable["Spot"].SkillBase) << ")" << std::setw(15) << std::setfill('.') << "" << DD(SkillTable["Spot"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS3"].SkillName << " (" << DD(SkillTable["ARMS3"].SkillBase) << ")" << " " << SkillTable["ARMS3"].SubSkillName << std::setw(18-SkillTable["ARMS3"].SkillName.length()-SkillTable["ARMS3"].SubSkillName.length()) << std::setfill('.') << "" << DD(SkillTable["ARMS3"].SkillMod) << "%" << std::endl;
 
   //Slight of Hand    Track    EXPERENCE BONUS
-  std::cout << SkillTable["Slight of Hand"].SkillName << " (" << DD(SkillTable["Slight of Hand"].SkillBase) << ")" << std::setw(5) << std::setfill('.') << "" << DD(SkillTable["Slight of Hand"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Track"].SkillName << " (" << DD(SkillTable["Track"].SkillBase) << ")" << std::setw(14) << std::setfill('.') << "" << DD(SkillTable["Track"].SkillMod) << "%" << "\t\t"; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << DD(ExperenceBonus) << "%"<< std::endl;} else{std::cout << "" << std::endl;}
+  std::cout << SkillTable["Slight of Hand"].SkillName << " (" << DD(SkillTable["Slight of Hand"].SkillBase) << ")" << std::setw(5) << std::setfill('.') << "" << DD(SkillTable["Slight of Hand"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Track"].SkillName << " (" << DD(SkillTable["Track"].SkillBase) << ")" << std::setw(14) << std::setfill('.') << "" << DD(SkillTable["Track"].SkillMod) << "%" << std::setw(5) << std::setfill(' ') << ""; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << DD(ExperenceBonus) << "%"<< std::endl;} else{std::cout << "" << std::endl;}
   //END OF SKILLS
 
   
