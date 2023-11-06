@@ -115,6 +115,8 @@ private:
   int Chest_HP;
   int MW;
 
+  int Toolong(int mod);
+
   std::string Religion;
   std::string DamBonus;
   std::string Profession;
