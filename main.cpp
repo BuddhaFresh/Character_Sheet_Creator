@@ -40,7 +40,7 @@ ROADMAP
  0.7 Free Build Character Creater
    0.7a Maybe I should of started with this and build evertyhing else around it?
 1. Move BRP Menus in BRP.cpp [DONE, made it's own cpp file]
- 1.1 Have options adjustment menu
+ 1.1 Have options adjustment menu [DONE]
  1.2 Move Dice Roller menu in Diceroller.cpp [DONE]
    1.2a Make a multi-dice roller too [DONE]
  1.3 Clean up all headers so every script is modular  
@@ -60,8 +60,6 @@ ROADMAP
 */
 
 
-
-
 //Classes
 RandomSetUp RANDOMCORE;
 Dice ROLL;
@@ -69,10 +67,9 @@ Dice ROLL;
 
 int main() 
 {//All menus
-  
+
   //Inputs for menus
   int mainMenuInput;
-    
   int optionsMenuInput;
   int newMenuInput;
   int charKeepInput;
@@ -82,9 +79,12 @@ int main()
 
   //Makes a new folder in Characters for any added Systems
   FolderOriginBRP();
+
+  
   
   while(true){//MAIN MENU
 
+    
     std::cout << "\n\n<>~~~~~~~~~~<>~~~~~~~~~~<>~~~~~~~~~~<>\n";
     std::cout << "Welcome to Character Sheet Creator\n\t\t\tMain Menu\n";
     std::cout << "1. New Sheet\n";

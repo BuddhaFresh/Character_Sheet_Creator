@@ -1,0 +1,60 @@
+===========================================================
+			PERSONAL
+===========================================================
+Culture: Human     Gender: Male
+Height: Average    Weight: Average
+Wealth: Destitute  Profession: Tribesperson
+Handedness: Right-Handed
+Religion: Polytheistic
+Move (MOV): 10     Age: 23
+
+ They have one too many fingers present. They have a flat stomach.
+
+ They have a charming personality, enjoying persuading other people to work, while they make the decisions.
+
+STR 11  Effort roll 55%         INT 10  Idea roll 50%
+CON 12  Stamina roll 60%        CHA 12  Charm roll 60%
+DEX 17  Agility roll 85%        POW 15  Luck roll 75%
+EDU 16  Knowledge roll 80%      SIZ 11  Damage Bonus of None
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 11 with Major Wound occuring at 05 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 320		Personal Skill Points Pool: 100
+
+COMMUNICATION 03%                   MENTAL 02%                          PHYSICAL 07%
+Bargain (05)............28% [ ]     Appraise (15)...........37% [ ]     Climb (40)..............47% [ ]
+Command (05)............28% [ ]     First Aid (30)..........32% [ ]     Drive (20) .............27% [ ]
+Disguise (01)...........04% [ ]     Gaming (25).............27% [ ]       ......................08% [ ]
+Etiquette (05)..........28% [ ]     Knowledge (00)                        ......................27% [ ]
+Fast Talk (05)..........28% [ ]       ......................02% [ ]     Fly (08)................15% [ ]
+Language (80)                         ......................02% [ ]     Hide (10)...............17% [ ]
+  Italian..............103% [ ]       ......................02% [ ]     Jump (25)...............32% [ ]
+  ......................03% [ ]     Literacy (80)..........103% [ ]     Pilot (01) .............08% [ ]
+  ......................03% [ ]     Medicine (05)...........07% [ ]       ......................08% [ ]
+  ......................03% [ ]     Psychotherapy (00)......02% [ ]       ......................08% [ ]
+Preform (05)............28% [ ]     Science (01) ...........03% [ ]     Projection (34).........41% [ ]
+Persuade (15)...........38% [ ]       ......................03% [ ]     Ride (05) ..............08% [ ]
+Status (15).............38% [ ]       ......................03% [ ]       ......................08% [ ]
+Teach (10)..............13% [ ]       ......................03% [ ]     Stealth (10)............17% [ ]
+                                    Strategy (01)...........03% [ ]     Swim (25)...............32% [ ]
+MANIPULATION 07%                    Technical (05) .........07% [ ]     Throw (25)..............32% [ ]
+Art (05) ...............12% [ ]       ......................07% [ ]
+  ......................12% [ ]       ......................07% [ ]     COMBAT 07%
+Craft (05) .............12% [ ]                                         Dodge (34)..............41% [ ]
+  ......................12% [ ]     PERCEPTION 03%                      Martial Arts (01).......08% [ ]
+Demolition (01).........08% [ ]     Insight (05)............28% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)..12% [ ]     Listen (25).............28% [ ]
+Heavy Machine (01)                  Navigate (10)...........13% [ ]      (00) ..................07% [ ]
+  ......................08% [ ]     Research (25)...........28% [ ]      (00) ..................07% [ ]
+Repair (15) ............22% [ ]     Sense (10)..............33% [ ]      (00) ..................07% [ ]
+  ......................22% [ ]     Spot (25)...............28% [ ]      (00) ..................07% [ ]
+Slight of Hand (05).....12% [ ]     Track (10)..............13% [ ]     EXPERENCE BONUS 05%
+
+
+Seed: 1696387725

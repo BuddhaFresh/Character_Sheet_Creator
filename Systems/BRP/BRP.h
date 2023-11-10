@@ -181,6 +181,7 @@ private:
   void HPbyLocation(int B);
   std::string DamageBonus(int T, int Z);
   int HitPoints(int C, int Z);
+  void RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> ProfessionSkills);
   void PickJobSkills();
   int MajorWounds(int H);
   std::string DistinctiveFeatures(int H);

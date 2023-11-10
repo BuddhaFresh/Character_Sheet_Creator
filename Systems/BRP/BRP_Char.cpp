@@ -432,7 +432,7 @@ void BRP_human_base::Professions(){
 
   //44 total profession, elements are between 0 and 43
   Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
-  // Hired = 0;
+  // Hired = 1;
 
   Profession = jobs[Hired];
 
@@ -647,12 +647,15 @@ void BRP_human_base::HeightandWeight(int z){
     default: break;
   }
 
+  //converts raw cm to m in text and kg in text
   if (HEIGHT_AND_WEIGHT_IN_METERS == true){
     float ht_m = ht_raw * 0.01;
     Height = std::to_string(ht_m);
     Height = Height.substr(0, Height.find(".") + 3) + "m";
     Weight = std::to_string(wt_raw) + "kg";
   }
+
+  //converts raw cm and kg into imperial units in text
   else if (HEIGHT_AND_WEIGHT_IN_IMPERIAL == true){
     float ht_ft_in = ht_raw / 30.48;
     Height = std::to_string(ht_ft_in);
@@ -661,7 +664,7 @@ void BRP_human_base::HeightandWeight(int z){
     Weight = std::to_string(wt_lbs);
     Weight = Weight.substr(0, Weight.find(".") + 3) + "lbs";
   }
-  else{//default text based resutls
+  else{//default text based resutls based on BMI
       std::string HTandWT[2][5] = 
       {
         {"Tiny","Short","Average","Tall","Towering"},
@@ -1051,6 +1054,14 @@ void BRP_human_base::Skills(int x, int i, int p){
   Technical = {"Clockwork", "Computers", "Cybernetics", "Electronics", "Robotics", "Sensors", "Siege Engines", "Traps"};
 }
 
+//Picks random skills for professions with random choices
+void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> ProfessionSkills){
+  std::shuffle(ProfessionSkills.begin(), ProfessionSkills.end(), RANDOMCORE.mt_rando);
+  for(int i = 0; i < NumberOfPicks; i++){
+    JOBSKILLS[i] = ProfessionSkills[i];
+  }
+}
+
 //Assigns skills to JOBSKILLS array based on Profession
 void BRP_human_base::PickJobSkills()
 {
@@ -1114,6 +1125,8 @@ void BRP_human_base::PickJobSkills()
     case 1: //Assassin
     {
     //any 5 based on setting:
+      std::vector<std::string> AssassinSkillRando = {"Brawl","Disguise","Drive0","Electronics","Grapple","Firearm0","Fine Manipulation","Martial Arts","Melee Weapon0","Missile Weapon0","Ride","Throw","Track"};
+      RandomProfessionSkillPick(5, AssassinSkillRando);
       //Brawl
       //Disguise
       //Drive
@@ -1143,6 +1156,8 @@ void BRP_human_base::PickJobSkills()
     case 2: //Athlete
     {
     //any 5 based on setting and sport
+      std::vector<std::string> AthleteSkillRando = {"Brawl","First Aid","Grapple","Insight","Listen","Martial Arts","Spot","Ride0","Swim"};
+      RandomProfessionSkillPick(5, AthleteSkillRando);
       //Brawl
       //First Aid
       //Grapple
@@ -1153,81 +1168,139 @@ void BRP_human_base::PickJobSkills()
       //Ride
       //Swim
     //Climb
+    JOBSKILLS[5] = "Climb";
     //Dodge
+    JOBSKILLS[6] = "Dodge";
     //Jump
+    JOBSKILLS[7] = "Jump";
     //Stealth
+    JOBSKILLS[8] = "Stealth";
     //Throw
+    JOBSKILLS[9] = "Throw";
     break;
     }
-    case 3:
+    
+    case 3: //Beggar
+    {
+    //Bargain
+    JOBSKILLS[0] = "Bargain";
+    //Fast Talk
+    JOBSKILLS[1] = "Fast Talk";
+    //Hide
+    JOBSKILLS[2] = "Hide";
+    //Insight
+    JOBSKILLS[3] = "Insight";
+    //Knowledge (Region: local area)
+    JOBSKILLS[4] = "Knowledge0";
+    SkillTable["Knowledge0"].SubSkillName = Knowledge[17];
+    //Listen
+    JOBSKILLS[5] = "Listen";
+    //Persuade
+    JOBSKILLS[6] = "Persuade";
+    //Sleight of Hand
+    JOBSKILLS[7] = "Sleight of Hand";
+    //Spot
+    JOBSKILLS[8] = "Spot";
+    //Stealth
+    JOBSKILLS[9] = "Stealth";
+    break;
+    }
+    
+    case 4: //Clerk
+    {
+    //Bargain
+    JOBSKILLS[0] = "Bargain";
+    //Etiquette
+    JOBSKILLS[1] = "Etiquette";
+    //Knowledge (Accounting)
+    JOBSKILLS[2] = "Knowledge0";
+    SkillTable["Knowledge0"].SubSkillName = Knowledge[1];
+    //Knowledge (Law)
+    JOBSKILLS[3] = "Knowledge1";
+    SkillTable["Knowledge1"].SubSkillName = Knowledge[11];
+    //1 Random Knowledge skill
+    JOBSKILLS[4] = "Knowledge2";
+    while(SkillTable["Knowledge2"].SubSkillName != "Law" && SkillTable["Knowledge2"].SubSkillName != "Accounting"){
+      int K = ROLL.Die(0,Knowledge.size()-1);
+      SkillTable["Knowledge2"].SubSkillName = Knowledge[K];}
+    //Language (Own)
+    JOBSKILLS[5] = "Language0";
+    //Persuade
+    JOBSKILLS[6] = "Persuade";
+    //Research
+    JOBSKILLS[7] = "Research";
+    //Status
+    JOBSKILLS[8] = "Status";
+    //Technical Skill (Computer Use) or Literacy as appropriate by era
+    int COIN = ROLL.Die(0,1);
+    if(COIN == 0){
+      JOBSKILLS[9] = "Literacy";
+    }else{JOBSKILLS[9] = "Technical Skill0";
+         SkillTable["Technical Skill0"].SubSkillName = Technical[1];}
+    break;
+    }
+   
+    case 5: //Computer Tech
     {
     break;
     }
-    case 4:
+    case 6: //Crafter
     {
     break;
     }
-    case 5:
+    case 7: //Criminal
     {
     break;
     }
-    case 6:
+    case 8: //Detective
     {
     break;
     }
-    case 7:
+    case 9: //Doctor
     {
     break;
     }
-    case 8:
-    {
-    break;
-    }
-    case 9:
-    {
-    break;
-    }
-    case 10:
+    case 10: //Engineer
     {
     break;
     } 
-    case 11:
+    case 11: //Entertainer
     {
     break;
     }
-    case 12:
+    case 12: //Explorer
     {
     break;
     }
-    case 13:
+    case 13: //Farmer
     {
     break;
     }
-    case 14:
+    case 14: //Gambler
     {
     break;
     }
-    case 15:
+    case 15: //Herder
     {
     break;
     }
-    case 16:
+    case 16: //Hunter
     {
     break;
     }
-    case 17:
+    case 17: //Journalist
     {
     break;
     }
-    case 18:
+    case 18: //Laborer
     {
     break;
     }
-    case 19:
+    case 19: //Lawkeeper
     {
     break;
     }
-    case 20:
+    case 20: //Lawyer
     {
     break;
     }
@@ -1465,8 +1538,7 @@ void BRP_human_base::PersonalityPick(int pick){
     SkillTable["Status"].SkillMod += 20;
     //SkillTable["Language1"].SkillMod += 20;
     //SkillTable["ARMS"].SkillMod += 20;
-    break;}
-    
+    break;}  
   }
 }
 
@@ -1476,8 +1548,7 @@ void BRP_human_base::ProfessionSkillSet(){
   int CurrentSkillPoints = ProSkillPtsMAX;
 
   //Function ends when all CurrentSkillPoints are used up.
-  while (CurrentSkillPoints > 0)
-  {
+  while (CurrentSkillPoints > 0){
     /*This loops 10 times through the JOBSKILLS array because there are 10 skills for each Profession. 
     If there is a different number skills per profession it is recommended to adjust 10 in the for loop argument by that amount. 
     I could run a check for how long the JOBSKILLS is and make that a veriable so the max JOBSKILL array can be changed without issues*/
@@ -1528,7 +1599,8 @@ void BRP_human_base::CharName(){
 }
 
 //Gets the user's name
-void BRP_human_base::PlayerName(){
+void BRP_human_base::PlayerName()
+{
   std::cout << "\nWhat is your, the player's, name?\n";
   std::getline(std::cin >> std::ws, PN);
   std::cout << "\n";
@@ -1577,7 +1649,6 @@ void BRP_human_base::freebuild()
   ;
 }
 
-  
 //Prints character sheet to console
 void BRP_human_base::consoleChar()
 {
