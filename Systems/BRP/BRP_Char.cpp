@@ -60,7 +60,7 @@ bool BRP_human_base::WINGED_CHARACTER = false;
 
 //BRP_human_base class
 //Constructor to hold Characteristics, 
-BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y){
+BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y, int z){
   STR = a;
   CON = b;
   POW = c;
@@ -68,6 +68,7 @@ BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y){
   CHA = e;
   INT = x;
   SIZ = y;
+  EDU = z;
 }
    
   /*Setting&Era switches
@@ -153,11 +154,9 @@ void BRP_human_base::Weapons(){
 
 //EDU Characteristic
 int BRP_human_base::EDUstat(){
-  if (EDUCATION_STAT == true)
+  if (EDUCATION_STAT == false)
     {
-      EDU = 0;
-      EDU = TwoDSixPlusSix();
-      return EDU;
+      return EDU = 0;
     }else{
       return 0;}
 }

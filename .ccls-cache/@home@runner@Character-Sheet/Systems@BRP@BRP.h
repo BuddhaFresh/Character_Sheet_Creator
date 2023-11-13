@@ -203,14 +203,13 @@ private:
 
 
 public:
-  BRP_human_base(int a, int b, int c, int d, int e, int x, int y);
+  BRP_human_base(int a, int b, int c, int d, int e, int x, int y, int z);
 
   void CharName();
   std::string CN;
   void PlayerName();
   std::string PN;
 
-  //void SettingsSwitches();
   static bool stateEDUCATION_STAT() {return EDUCATION_STAT;}
   static void flipEDUCATION_STAT(bool toggle) {EDUCATION_STAT = toggle;}
 
