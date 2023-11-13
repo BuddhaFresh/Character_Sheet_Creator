@@ -385,21 +385,19 @@ int BRP_human_base::ProSkillPointsPool(){
 }
 
 //Set Skill Rating Maximum
-int BRP_human_base::SkillRatingMaximum(){//could replace if/else with switch
+int BRP_human_base::SkillRatingMaximum(){
   SkillRatingMAX = 0;
 
-  if (POWER_LEVEL == 1){//Heroic game
-      SkillRatingMAX = 90;
-    }
-  else if (POWER_LEVEL == 2){//Epic game
-      SkillRatingMAX = 101;
-    }
-  else if (POWER_LEVEL == 3){//Superhuman game
-      SkillRatingMAX = 999; //No limit to skill ratings
-    }
-  else{//default for Nomral game
-      SkillRatingMAX = 75;
-    }
+  switch(POWER_LEVEL){
+    case 1: //Heroic game
+      {SkillRatingMAX = 90;}
+    case 2: //Epic game
+      {SkillRatingMAX = 101;}
+    case 3: //Superhuman game
+      {SkillRatingMAX = 999;}//No limit to skill ratings
+    default: //default for Nomral game
+      {SkillRatingMAX = 75;}
+  }
   
   return SkillRatingMAX;
 }
@@ -520,7 +518,7 @@ std::string BRP_human_base::RandGender(int X){
 
 //Determins character's religion/who they worship
 void BRP_human_base::Faith(){
-  Beliefs = {"Atheist", "Agnostic", "Ignostic",  "Nonreligious", "Secular", "Baha'is", "Buddhist", "Christian", "Confucian", "Hindu", "Muslim", "Jainist", "Jewish", "Shintoists", "Satanist", "Sikh", "Taoist", "Zoroastrian", "Jain", "Polytheistic", "Worshipper of Zeus", "Worshipper of Hera", "Worshipper of Atremis", "Worshipper of Hades", "Worshipper of Posidon", "Worshipper of Cthulhu", "Worshipper of Ra", "Worshipper of Set", "Druid", "Animist", "Worshipper of Bast", "Worshipper of Horus", "Worshipper of Isis", "Worshipper of Khepri", "Worshipper of Anubis", "Worshipper of Odin", "Worshipper of Thor", "Worshipper of Loki", "Worshipper of Yudi", "Worshipper of Lóngshén", "Worshipper of Doumu"};
+  Beliefs = {"Atheist", "Agnostic", "Ignostic", "Nonreligious", "Secular", "Baha'is", "Buddhist", "Christian", "Confucian", "Hindu", "Muslim", "Jainist", "Jewish", "Shintoists", "Satanist", "Sikh", "Taoist", "Zoroastrian", "Jain", "Polytheistic", "Worshipper of Zeus", "Worshipper of Hera", "Worshipper of Atremis", "Worshipper of Hades", "Worshipper of Posidon", "Worshipper of Cthulhu", "Worshipper of Ra", "Worshipper of Set", "Druid", "Animist", "Worshipper of Bast", "Worshipper of Horus", "Worshipper of Isis", "Worshipper of Khepri", "Worshipper of Anubis", "Worshipper of Odin", "Worshipper of Thor", "Worshipper of Loki", "Worshipper of Yudi", "Worshipper of Lóngshén", "Worshipper of Doumu"};
 
   int Convert = ROLL.Die(0,Beliefs.size()-1);
   Religion = Beliefs.at(Convert);
@@ -1026,11 +1024,11 @@ void BRP_human_base::Skills(int x, int i, int p){
   Knowledge = {"Academic Lore", "Accounting", "Anthropology", "Archaeology", "Art History", "Blasphemous Lore", "Business", "Espionage", "Folklore", "Group (subspecialty)", "History", "Law", "Linguistics", "Literature", "Occult", "Philosophy", "Politics", "Region (subspecialty)", "Religion (subspecialty)", "Streetwise"}; //maybe make another array of subskills for Knowledge
 
   //Knowledge (Group)
-  //std::string KnowledgeGroup[] = {Americans,Chinese,British,Europeans,};
+  //std::string KnowledgeGroup[] = {"Americans","Chinese","British","Europeans",};
   //Knowledge (Region)
-  //std::string KnowledgeRegion[] = {Local, };
+  //std::string KnowledgeRegion[] = {"Local", "Nation", "Country", "Desert", "Plains", "Fields", "Jungles", "Forests", "Swamps", "Mountians"};
   //Knowledge (Religion)
-  //std::string KnowledgeReligion[] = {Judisum, Christianity, Islam, Folk};
+  //std::string KnowledgeReligion[] = {"Judisum", "Christianity", "Islam", "Folk"};
   
   //Languages
   Language = {"Amharic", "Arabic", "Bengali", "Bhojpuri", "Cebuano", "Chinese", "Czech", "Danish", "Dutch", "English", "Estonian", "Farsi", "Finnish", "French", "German", "Greek", "Hausa", "Hindi-Urdu", "Hungarian", "Igbo", "Italian", "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Lolo", "Macedonian", "Malay", "Māori", "Marathi", "Navajo", "Norwegian", "Oromo", "Polish", "Portuguese", "Russian", "Shona", "Sioux", "Slovak", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tai–Kadai", "Tibetan", "Turkic", "Ukrainian", "Vietnamese", "Yoruba", "Yumplatok", "Zulu"};
@@ -1067,7 +1065,7 @@ void BRP_human_base::PickJobSkills()
 {
   switch (Hired) 
   {
-    case 0: //Artist
+    case 0: //Artist NEED TO REDO
     {
       //first random art skill
       int artsubpick = rand() % Art.size();
@@ -1583,10 +1581,7 @@ void BRP_human_base::ProfessionSkillSet(){
       //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
       if (CurrentSkillPoints == 0){
         break;
-      }
-      else{
-        continue;
-      }
+      }else{continue;}
       }
     }
   }
