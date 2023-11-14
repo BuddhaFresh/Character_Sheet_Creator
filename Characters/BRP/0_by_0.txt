@@ -1,0 +1,60 @@
+===========================================================
+			PERSONAL
+===========================================================
+Culture: Human     Gender: Male
+Height: Average    Weight: Obese
+Wealth: Average    Profession: Clerk
+Handedness: Right-Handed
+Religion: Worshipper of Loki
+Move (MOV): 10     Age: 18
+
+ They have a wary bearing. They have a curious expression.
+
+ They have a cunning personality, trying first to outsmart an opponent to gain an advantage.
+
+STR 12  Effort roll 60%         INT 16  Idea roll 80%
+CON 07  Stamina roll 35%        CHA 12  Charm roll 60%
+DEX 09  Agility roll 45%        POW 09  Luck roll 45%
+EDU 11  Knowledge roll 55%      SIZ 13  Damage Bonus of +1D4
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 10 with Major Wound occuring at 05 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 220		Personal Skill Points Pool: 160
+
+COMMUNICATION 07%                   MENTAL 06%                          PHYSICAL -4%
+Bargain (05)............64% [ ]     Appraise (15)...........41% [ ]     Climb (40)..............36% [ ]
+Command (05)............12% [ ]     First Aid (30)..........36% [ ]     Drive (20) .............23% [ ]
+Disguise (01)...........28% [ ]     Gaming (25).............31% [ ]       ......................04% [ ]
+Etiquette (05)..........51% [ ]     Knowledge (00)                        ......................23% [ ]
+Fast Talk (05)..........12% [ ]       Accounting............30% [ ]     Fly (04)................00% [ ]
+Language (80)                         Law...................18% [ ]     Hide (10)...............06% [ ]
+  Sundanese.............87% [ ]       Region (subspecialty).28% [ ]     Jump (25)...............21% [ ]
+  ......................07% [ ]     Literacy (80)...........87% [ ]     Pilot (01) .............-3% [ ]
+  ......................07% [ ]     Medicine (05)...........11% [ ]       ......................-3% [ ]
+  ......................07% [ ]     Psychotherapy (00)......06% [ ]       ......................-3% [ ]
+Preform (05)............12% [ ]     Science (01) ...........07% [ ]     Projection (18).........14% [ ]
+Persuade (15)...........55% [ ]       ......................07% [ ]     Ride (05) ..............12% [ ]
+Status (15).............33% [ ]       ......................07% [ ]       ......................12% [ ]
+Teach (10)..............17% [ ]       ......................07% [ ]     Stealth (10)............26% [ ]
+                                    Strategy (01)...........07% [ ]     Swim (25)...............21% [ ]
+MANIPULATION 03%                    Technical (05) Computers33% [ ]     Throw (25)..............21% [ ]
+Art (05) ...............08% [ ]       ......................11% [ ]
+  ......................08% [ ]       ......................11% [ ]     COMBAT 03%
+Craft (05) .............08% [ ]                                         Dodge (18)..............14% [ ]
+  ......................08% [ ]     PERCEPTION 05%                      Martial Arts (01).......04% [ ]
+Demolition (01).........04% [ ]     Insight (05)............30% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)..08% [ ]     Listen (25).............50% [ ]
+Heavy Machine (01)                  Navigate (10)...........15% [ ]      (00) ..................03% [ ]
+  ......................04% [ ]     Research (25)...........75% [ ]      (00) ..................03% [ ]
+Repair (15) ............18% [ ]     Sense (10)..............35% [ ]      (00) ..................03% [ ]
+  ......................18% [ ]     Spot (25)...............50% [ ]      (00) ..................03% [ ]
+Slight of Hand (05).....08% [ ]     Track (10)..............15% [ ]     EXPERENCE BONUS 08%
+
+
+Seed: 1699993442

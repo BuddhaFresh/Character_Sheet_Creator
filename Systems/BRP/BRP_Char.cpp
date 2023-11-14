@@ -428,8 +428,8 @@ void BRP_human_base::Professions(){
   std::string jobs[] = {"Artist", "Assassin", "Athlete", "Beggar", "Clerk", "Computer Tech", "Crafter", "Criminal", "Detective", "Doctor", "Engineer", "Entertainer", "Explorer", "Farmer", "Gambler", "Herder", "Hunter", "Journalist", "Laborer", "Lawkeeper", "Lawyer", "Mechanic", "Merchant", "Noble", "Occultist", "Pilot", "Politician", "Priest", "Sailor", "Scholar", "Scientist", "Servant", "Shaman", "Slave", "Soldier", "Spy", "Student", "Teacher", "Technician", "Thief", "Tribesperson", "Warrior", "Wizard", "Writer"};
 
   //44 total profession, elements are between 0 and 43
-  Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
-  // Hired = 1;
+  //Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
+  Hired = 4;
 
   Profession = jobs[Hired];
 
@@ -823,6 +823,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   int PsychotherapyBase = 0; //Psychotherapy
   if (SANITY == true)
     {PsychotherapyBase = 1;}
+  int LiteracyBase = 0; //Literacy, need an if statement for modern setting
     
   //map of all skills with; name, subtype, base%, a value to be modifyed, and skill category
   //This still seems too unweildly, especially with subtypes and Bases set by weapons
@@ -882,7 +883,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Language2"] = { "Language", "", 0, 0, Communication_skillcategory};
   SkillTable["Language3"] = { "Language", "", 0, 0, Communication_skillcategory};
   SkillTable["Listen"] = { "Listen", "", 25, 0, Perception_skillcategory};
-  SkillTable["Literacy"] = { "Literacy", "", 0, 0, Mental_skillcategory};
+  SkillTable["Literacy"] = { "Literacy", "", LiteracyBase, 0, Mental_skillcategory};
   SkillTable["Martial Arts"] = { "Martial Arts", "", 1, 0, Combat_skillcategory};
   SkillTable["Medicine"] = { "Medicine", "", 5, 0, Mental_skillcategory};
   SkillTable["Melee Weapon0"] = { "Melee Weapon", "", 0, 0, Combat_skillcategory};
@@ -1018,6 +1019,9 @@ void BRP_human_base::Skills(int x, int i, int p){
   //Preform
   Preform = {"Act", "Conduct Orchestra", "Dance", "Juggle", "Orate", "Play", "Instrument (subspeciality)", "Recite", "Ritual", "Sing"};
 
+  //Preform (Instrument)
+  //Instrument = {"Flute","Guitar","Piano","Drums","Cowbell"};
+
   //Pilot
   Pilot = {"Airplane", "Airship", "Balloon", "Boat", "Helicopter", "Hovercraft", "Jet Aircraft", "Jetpack", "Starship", "Submarine"};
 
@@ -1105,12 +1109,17 @@ void BRP_human_base::PickJobSkills()
     case 1: //Assassin
     {
     //any 5 based on setting:
-      std::vector<std::string> AssassinSkillRando = {"Brawl","Disguise","Drive0","Electronics","Grapple","Firearm0","Fine Manipulation","Martial Arts","Melee Weapon0","Missile Weapon0","Ride","Throw","Track"};
+      std::vector<std::string> AssassinSkillRando = {"Brawl","Disguise","Drive0","Technical Skill0","Grapple","Firearm0","Fine Manipulation","Martial Arts","Melee Weapon0","Missile Weapon0","Ride","Throw","Track"};
       RandomProfessionSkillPick(5, AssassinSkillRando);
+      for (int i = 0; i < AssassinSkillRando.size()-1; i++){
+        if (JOBSKILLS[i] == "Technical Skill0"){
+          SkillTable["Technical Skill0"].SubSkillName = Technical[3];
+        }
+      }
       //Brawl
       //Disguise
       //Drive
-      //Electronics
+      //Technical Skill (Electronics)
       //Grapple
       //Firearm (any)
       //Fine Manipulation
@@ -1200,9 +1209,9 @@ void BRP_human_base::PickJobSkills()
     SkillTable["Knowledge1"].SubSkillName = Knowledge[11];
     //1 Random Knowledge skill
     JOBSKILLS[4] = "Knowledge2";
-    while(SkillTable["Knowledge2"].SubSkillName != "Law" && SkillTable["Knowledge2"].SubSkillName != "Accounting"){
-      int K = ROLL.Die(0,Knowledge.size()-1);
-      SkillTable["Knowledge2"].SubSkillName = Knowledge[K];}
+      SkillTable["Knowledge2"].SubSkillName = Knowledge[ROLL.Die(0,Knowledge.size()-1)];
+    if(SkillTable["Knowledge2"].SubSkillName == "Law" || SkillTable["Knowledge2"].SubSkillName == "Accounting"){
+      SkillTable["Knowledge2"].SubSkillName = Knowledge[ROLL.Die(0,Knowledge.size()-1)];}
     //Language (Own)
     JOBSKILLS[5] = "Language0";
     //Persuade
@@ -1576,8 +1585,7 @@ void BRP_human_base::CharName(){
 }
 
 //Gets the user's name
-void BRP_human_base::PlayerName()
-{
+void BRP_human_base::PlayerName(){
   std::cout << "\nWhat is your, the player's, name?\n";
   std::getline(std::cin >> std::ws, PN);
   std::cout << "\n";
@@ -1627,8 +1635,7 @@ void BRP_human_base::freebuild()
 }
 
 //Prints character sheet to console
-void BRP_human_base::consoleChar()
-{
+void BRP_human_base::consoleChar(){
   std::cout << "===========================================================" << std::endl;
   std::cout << "\t\t\tPERSONAL" << std::endl;
   std::cout << "===========================================================" << std::endl;
@@ -1685,7 +1692,7 @@ void BRP_human_base::consoleChar()
   std::cout << "  " << SkillTable["Language0"].SubSkillName << std::setw(22-SkillTable["Language0"].SubSkillName.length()-Toolong(SkillTable["Language0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Language0"].SkillMod) << "% [ ]" << std::setw(7) << std::setfill(' ') << "  " << SkillTable["Knowledge2"].SubSkillName << std::setw(22-SkillTable["Knowledge2"].SubSkillName.length()-Toolong(SkillTable["Knowledge2"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Knowledge2"].SkillMod) << "% [ ]" << std::setw(9) << std::setfill(' ') << SkillTable["Jump"].SkillName << " (" << DD(SkillTable["Jump"].SkillBase) << ")" << std::setw(15-Toolong(SkillTable["Jump"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Jump"].SkillMod) << "% [ ]" << std::endl;
 
   //Language(subskill1)    Literacy    Pilot(subskill0)
-  std::cout << "  " << SkillTable["Language1"].SubSkillName << std::setw(22-SkillTable["Language1"].SubSkillName.length()-Toolong(SkillTable["Language1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Language1"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Literacy"].SkillName << " (" << DD(SkillTable["Language0"].SkillBase) << ")" << std::setw(11-Toolong(SkillTable["Language0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Language0"].SkillMod) << "% [ ]" << std::setw(10) << std::setfill(' ') << SkillTable["Pilot0"].SkillName << " (" << DD(SkillTable["Pilot0"].SkillBase) << ")" << " " << SkillTable["Pilot0"].SubSkillName << std::setw(13-SkillTable["Pilot0"].SubSkillName.length()-Toolong(SkillTable["Pilot0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Pilot0"].SkillMod) << "% [ ]" << std::endl;
+  std::cout << "  " << SkillTable["Language1"].SubSkillName << std::setw(22-SkillTable["Language1"].SubSkillName.length()-Toolong(SkillTable["Language1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Language1"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Literacy"].SkillName << " (" << DD(SkillTable["Literacy"].SkillBase) << ")" << std::setw(11-Toolong(SkillTable["Literacy"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Literacy"].SkillMod) << "% [ ]" << std::setw(10) << std::setfill(' ') << SkillTable["Pilot0"].SkillName << " (" << DD(SkillTable["Pilot0"].SkillBase) << ")" << " " << SkillTable["Pilot0"].SubSkillName << std::setw(13-SkillTable["Pilot0"].SubSkillName.length()-Toolong(SkillTable["Pilot0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Pilot0"].SkillMod) << "% [ ]" << std::endl;
 
   //Language(subskill2)    Medicine    Pilot(subskill1)
   std::cout << "  " << SkillTable["Language2"].SubSkillName << std::setw(22-SkillTable["Language2"].SubSkillName.length()-Toolong(SkillTable["Language2"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Language2"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Medicine"].SkillName << " (" << DD(SkillTable["Medicine"].SkillBase) << ")" << std::setw(11-Toolong(SkillTable["Medicine"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Medicine"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << "  " << SkillTable["Pilot1"].SubSkillName << std::setw(22-SkillTable["Pilot1"].SubSkillName.length()-Toolong(SkillTable["Pilot1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Pilot1"].SkillMod) << "% [ ]" << std::endl;
