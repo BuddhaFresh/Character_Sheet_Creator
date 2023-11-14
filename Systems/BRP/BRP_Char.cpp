@@ -41,7 +41,7 @@ int TwoDSixPlusSix(){
   return x+6;
 }
 
-
+//default states for optional settings
 int BRP_human_base::POWER_LEVEL = 0;
 bool BRP_human_base::DISTINCTIVE_FEATURES = true;
 bool BRP_human_base::DISTINCTIVE_FEATURES_BASIC = false;
@@ -783,45 +783,28 @@ void BRP_human_base::SkillCategory(){
 
   //Standard Skill Category rules
   if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == false){
-   //Takes a relevant STAT and returns the appropriate value to be added for the Skill Category 
-   int A = Skill_Category_Primary(DEX);
-   int B = Skill_Category_Primary(INT);
-    
-   int E = Skill_Category_Secondary(INT);
-   int F = Skill_Category_Secondary(STR);
-   int G = Skill_Category_Secondary(POW);
-   int J = Skill_Category_Secondary(CHA);
-   int H = Skill_Category_Secondary(CON);
-   int I = 0;
+   int Secondary_Skill_Category_EDU = 0;
    if (EDUCATION_STAT == true) 
-     {int I = Skill_Category_Secondary(EDU);}
-    
-   int Z = Skill_Category_Negative(SIZ);
+     {int Secondary_Skill_Category_EDU = Skill_Category_Secondary(EDU);}
   
    //Mental Skill Category also addes in EDU as a secondary characteristic but ommits it if EDU is not used
-   Combat_skillcategory = (A + B + F);    
-   Communication_skillcategory = (B + G + J);
-   Manipulation_skillcategory = (A + E + F);
-   Mental_skillcategory = (B + G + I);
-   Perception_skillcategory = (B + G + H);
-   Physical_skillcategory = (A + F + H + Z);
+   Combat_skillcategory = (Skill_Category_Primary(DEX) + Skill_Category_Secondary(INT) + Skill_Category_Secondary(STR));    
+   Communication_skillcategory = (Skill_Category_Primary(INT) + Skill_Category_Secondary(POW) + Skill_Category_Secondary(CHA));
+   Manipulation_skillcategory = (Skill_Category_Primary(DEX) + Skill_Category_Secondary(INT) + Skill_Category_Secondary(STR));
+   Mental_skillcategory = (Skill_Category_Primary(INT) + Skill_Category_Secondary(POW) + Secondary_Skill_Category_EDU);
+   Perception_skillcategory = (Skill_Category_Primary(INT) + Skill_Category_Secondary(POW) + Skill_Category_Secondary(CON));
+   Physical_skillcategory = (Skill_Category_Primary(DEX) + Skill_Category_Secondary(STR) + Skill_Category_Secondary(CON) + Skill_Category_Negative(SIZ));
   }
 
   //Simple Skill Category rules
   if (SKILL_CATEGORY == true && SKILL_CATEGORY_SIMPLE == true){
-   //Takes a relevant STAT and divides it by 2 rounded up
-   int Dx = ceil(DEX/2);
-   int Ca = ceil(CHA/2);
-   int It = ceil(INT/2);
-   int Pw = ceil(POW/2);
-   int Sr = ceil(STR/2);
-     
-   Combat_skillcategory = Dx;    
-   Communication_skillcategory = Ca;
-   Manipulation_skillcategory = Dx;
-   Mental_skillcategory = It;
-   Perception_skillcategory = Pw;
-   Physical_skillcategory = Sr;
+   //Takes a relevant STAT and divides it by 2 rounded up 
+   Combat_skillcategory = ceil(DEX/2);    
+   Communication_skillcategory = ceil(CHA/2);
+   Manipulation_skillcategory = ceil(DEX/2);
+   Mental_skillcategory = ceil(INT/2);
+   Perception_skillcategory = ceil(POW/2);
+   Physical_skillcategory = ceil(STR/2);
   } 
 }
 
