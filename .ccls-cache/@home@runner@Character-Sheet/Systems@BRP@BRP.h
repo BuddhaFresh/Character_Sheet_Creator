@@ -153,6 +153,7 @@ private:
   std::vector <std::string> Heavy_Machine;
   std::vector <std::string> Knowledge;
   std::vector <std::string> Language;
+  std::vector <std::string> LanguageComputerCode;
   std::vector <std::string> Pilot;
   std::vector <std::string> Preform;
   std::vector <std::string> Repair;
