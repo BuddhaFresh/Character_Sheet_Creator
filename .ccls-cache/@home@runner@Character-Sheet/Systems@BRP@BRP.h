@@ -162,7 +162,7 @@ private:
   std::vector <std::string> Technical;
 
   std::string JOBSKILLS[10];
-  std::string HOBBYSKILLS[0];
+  std::vector <std::string> HOBBYSKILLS;
 
   void Weapons();
   void FillSkillMod();
@@ -197,6 +197,9 @@ private:
   int Skill_Category_Primary(int x);
   int Skill_Category_Secondary(int x);
   int Skill_Category_Negative(int x);
+
+  void PickHobbySkills();
+  int TEST;
 
 
   std::map<std::string, SkillData>SkillTable;
