@@ -198,8 +198,12 @@ private:
   int Skill_Category_Secondary(int x);
   int Skill_Category_Negative(int x);
 
+  int VectorDupCheck(std::vector<std::string> LIST);
   void PickHobbySkills();
   int TEST;
+  int TESTDUP;
+  int NONSUBNUM;
+  std::vector<std::string> DUPITEMS;
 
 
   std::map<std::string, SkillData>SkillTable;

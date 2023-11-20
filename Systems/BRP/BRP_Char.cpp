@@ -1359,6 +1359,21 @@ void BRP_human_base::PickJobSkills()
   }
 }
 
+//Returns numbers of duplicates in string vector
+int BRP_human_base::VectorDupCheck(std::vector<std::string> LIST){
+  TESTDUP = 0;
+  DUPITEMS = {};
+  for(int i = 1; i < LIST.size(); i++){
+    if(LIST[i-1] == LIST[i]){
+       TESTDUP++;
+       DUPITEMS.push_back(LIST[i-1]);
+      }
+  }
+  return TESTDUP;
+}
+
+
+
 //Assigns skills to HOBBYSKILLS array based on random chance
 void BRP_human_base::PickHobbySkills()
 {
@@ -1372,12 +1387,22 @@ void BRP_human_base::PickHobbySkills()
 
   //vector of skills without any subskills
   std::vector<std::string> NonSubSkills = {"Appraise", "Bargain", "Brawl", "Climb", "Command", "Demolition", "Disguise", "Dodge", "Etiquette", "Fast Talk", "Fine Manipulation", "First Aid", "Fly", "Gaming", "Grapple", "Hide", "Insight", "Jump", "Listen", "Literacy", "Martial Arts", "Medicine", "Navigate", "Parry", "Persuade", "Projection", "Psychotherapy", "Research", "Sense", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Throw", "Track"};
-
-  //need to compare repeating skills in HOBBYSKILLS with nonsubskills and replace the repeats with a new random skill.
   
   //sort alphabetically
   std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
-    /*
+
+  //need to compare repeating skills in HOBBYSKILLS with nonsubskills and replace the repeats with a new random skill.
+
+  VectorDupCheck(HOBBYSKILLS);
+
+  NONSUBNUM = 0;
+  for(int i = 0; i < HOBBYSKILLS.size(); i++){
+    if(DUPITEMS[i] == NonSubSkills[i]){
+      NONSUBNUM++;
+    }
+  }
+  
+  /*
 
    //Picking Personnal Skills and assigns them to the HOBBYSKILL array
   //Number of Personal Skills, between 8 to 10
@@ -1829,10 +1854,23 @@ void BRP_human_base::consoleChar(){
   std::cout << SkillTable["Slight of Hand"].SkillName << " (" << DD(SkillTable["Slight of Hand"].SkillBase) << ")" << std::setw(11-Toolong(SkillTable["Slight of Hand"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Slight of Hand"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Track"].SkillName << " (" << DD(SkillTable["Track"].SkillBase) << ")" << std::setw(20-Toolong(SkillTable["Track"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Track"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << ""; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << DD(ExperenceBonus) << "%"<< std::endl;} else{std::cout << "" << std::endl;}
   //END OF SKILLS
 
-  std::cout << "\n" << TEST << std::endl;
+  std::cout << "\n" << "Total number of Hobby Skills: " << TEST << std::endl;
   for(int i = 0; i < HOBBYSKILLS.size(); i++){
-    std::cout << HOBBYSKILLS[i] << ", ";
+    std::cout << HOBBYSKILLS[i];
+    if(i == HOBBYSKILLS.size()-1){
+      std::cout << ".";}
+    else{std::cout << ", ";}
   }
+  std::cout << "\nNumber of duplications: " << TESTDUP << std::endl;
+  std::cout << "\nNumber of duplicates that don't have SubSkills: " << NONSUBNUM << std::endl;
+  for(int i = 0; i < DUPITEMS.size(); i++){
+    std::cout << DUPITEMS[i];
+    if(i == DUPITEMS.size()-1){
+      std::cout << ".";}
+    else{std::cout << ", ";}
+  }
+  std::cout << "\n";
+  
   
   std::cout << "\n\nSeed: " << RANDOMCORE.currentSeed;
 }
