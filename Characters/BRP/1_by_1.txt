@@ -1,0 +1,67 @@
+===========================================================
+			PERSONAL
+===========================================================
+Culture: Human     Gender: Female
+Height: Average    Weight: Obese
+Wealth: Average    Profession: Computer Tech
+Handedness: Left-Handed
+Religion: Taoist
+Move (MOV): 10     Age: 23
+
+ They have a limp in one leg. They have a yielding bearing.
+
+ They have a charming personality, enjoying persuading other people to work, while they make the decisions.
+
+STR 11  Effort roll 55%         INT 11  Idea roll 55%
+CON 17  Stamina roll 85%        CHA 09  Charm roll 45%
+DEX 16  Agility roll 80%        POW 15  Luck roll 75%
+EDU 14  Knowledge roll 70%      SIZ 15  Damage Bonus of +1D4
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 16 with Major Wound occuring at 08 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 280		Personal Skill Points Pool: 110
+
+COMMUNICATION 03%                         MENTAL 03%                                PHYSICAL 04%
+Bargain (05)..................28% [ ]     Appraise (15).................38% [ ]     Climb (40)....................44% [ ]
+Command (05)..................28% [ ]     First Aid (30)................33% [ ]     Drive (20) ...................26% [ ]
+Disguise (01).................04% [ ]     Gaming (26)...................29% [ ]       ............................07% [ ]
+Etiquette (05)................28% [ ]     Knowledge (00)                              ............................26% [ ]
+Fast Talk (05)................28% [ ]       Academic Lore...............25% [ ]     Fly (08)......................12% [ ]
+Language (70)                               ............................03% [ ]     Hide (10).....................14% [ ]
+  Ukrainian...................93% [ ]       ............................03% [ ]     Jump (25).....................29% [ ]
+  JavaScript..................19% [ ]     Literacy (00).................03% [ ]     Pilot (01) ...................05% [ ]
+  ............................03% [ ]     Medicine (05).................08% [ ]       ............................05% [ ]
+  ............................03% [ ]     Psychotherapy (00)............03% [ ]       ............................05% [ ]
+Preform (05)..................28% [ ]     Science (01) Mathematics......33% [ ]     Projection (32)...............36% [ ]
+Persuade (15).................38% [ ]       ............................04% [ ]     Ride (05) ....................08% [ ]
+Status (15)...................75% [ ]       ............................04% [ ]       ............................08% [ ]
+Teach (10)....................13% [ ]       ............................04% [ ]     Stealth (10)..................14% [ ]
+                                          Strategy (01).................04% [ ]     Swim (25).....................29% [ ]
+MANIPULATION 06%                          Technical (05) Computers......42% [ ]     Throw (25)....................29% [ ]
+Art (05) .....................11% [ ]       ............................08% [ ]
+  ............................11% [ ]       ............................08% [ ]     COMBAT 06%
+Craft (05) Computer Hardware..55% [ ]                                               Dodge (32)....................36% [ ]
+  ............................11% [ ]     PERCEPTION 06%                            Martial Arts (01).............07% [ ]
+Demolition (01)...............07% [ ]     Insight (05)..................31% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)........11% [ ]     Listen (25)...................31% [ ]
+Heavy Machine (01)                        Navigate (10).................16% [ ]      (00) ........................06% [ ]
+  ............................07% [ ]     Research (25).................50% [ ]      (00) ........................06% [ ]
+Repair (15) Electrical........36% [ ]     Sense (10)....................36% [ ]      (00) ........................06% [ ]
+  Electronic..................46% [ ]     Spot (25).....................31% [ ]      (00) ........................06% [ ]
+Slight of Hand (05)...........11% [ ]     Track (10)....................16% [ ]     EXPERENCE BONUS 05%
+
+Total number of Hobby Skills: 10
+Demolition, Energy Weapon, Fast Talk, Firearm, Heavy Machine, Knowledge, Knowledge, Projection, Sleight of Hand, Throw.
+Number of duplications: 1
+
+Number of duplicates that don't have SubSkills: 0
+Knowledge.
+
+
+Seed: 1700516737

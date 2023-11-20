@@ -1043,7 +1043,7 @@ void BRP_human_base::Skills(int x, int i, int p){
 
 //Check if 
 
-//Picks random skills for professions with random choices
+//Picks random skills for professions with random choices of skills and populates JOBSKILLS from 0 to NumberOfPicks.
 void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> ProfessionSkills){
   std::shuffle(ProfessionSkills.begin(), ProfessionSkills.end(), RANDOMCORE.mt_rando);
   for(int i = 0; i < NumberOfPicks; i++){
@@ -1362,17 +1362,35 @@ void BRP_human_base::PickJobSkills()
 //Returns numbers of duplicates in string vector
 int BRP_human_base::VectorDupCheck(std::vector<std::string> LIST){
   TESTDUP = 0;
+  NONSUBNUM = 0;
   DUPITEMS = {};
+  
   for(int i = 1; i < LIST.size(); i++){
     if(LIST[i-1] == LIST[i]){
        TESTDUP++;
        DUPITEMS.push_back(LIST[i-1]);
+      if(IsSkillWithoutSubSkills(LIST[i-1]) == true){
+        NONSUBNUM++;
       }
+    }
   }
   return TESTDUP;
 }
 
-
+bool BRP_human_base::IsSkillWithoutSubSkills(std::string SKILL){
+  //vector of skills without any subskills
+  std::vector<std::string> NonSubSkills = {"Appraise", "Bargain", "Brawl", "Climb", "Command", "Demolition", "Disguise", "Dodge", "Etiquette", "Fast Talk", "Fine Manipulation", "First Aid", "Fly", "Gaming", "Grapple", "Hide", "Insight", "Jump", "Listen", "Literacy", "Martial Arts", "Medicine", "Navigate", "Parry", "Persuade", "Projection", "Psychotherapy", "Research", "Sense", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Throw", "Track"};
+  bool OUTCOME;
+  for(int i = 0; i < NonSubSkills.size(); i++){
+    if(SKILL == NonSubSkills[i]){
+        OUTCOME = true;
+        break;}
+    else{
+        OUTCOME = false;
+        continue;}
+  }
+  return OUTCOME;
+}
 
 //Assigns skills to HOBBYSKILLS array based on random chance
 void BRP_human_base::PickHobbySkills()
@@ -1385,8 +1403,7 @@ void BRP_human_base::PickHobbySkills()
     HOBBYSKILLS.push_back(SkillList[ROLL.Die(0, SkillList.size()-1)]);
   }
 
-  //vector of skills without any subskills
-  std::vector<std::string> NonSubSkills = {"Appraise", "Bargain", "Brawl", "Climb", "Command", "Demolition", "Disguise", "Dodge", "Etiquette", "Fast Talk", "Fine Manipulation", "First Aid", "Fly", "Gaming", "Grapple", "Hide", "Insight", "Jump", "Listen", "Literacy", "Martial Arts", "Medicine", "Navigate", "Parry", "Persuade", "Projection", "Psychotherapy", "Research", "Sense", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Throw", "Track"};
+  
   
   //sort alphabetically
   std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
@@ -1395,12 +1412,7 @@ void BRP_human_base::PickHobbySkills()
 
   VectorDupCheck(HOBBYSKILLS);
 
-  NONSUBNUM = 0;
-  for(int i = 0; i < HOBBYSKILLS.size(); i++){
-    if(DUPITEMS[i] == NonSubSkills[i]){
-      NONSUBNUM++;
-    }
-  }
+
   
   /*
 

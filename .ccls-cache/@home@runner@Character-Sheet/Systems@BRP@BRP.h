@@ -199,6 +199,7 @@ private:
   int Skill_Category_Negative(int x);
 
   int VectorDupCheck(std::vector<std::string> LIST);
+  bool IsSkillWithoutSubSkills(std::string SKILL);
   void PickHobbySkills();
   int TEST;
   int TESTDUP;
