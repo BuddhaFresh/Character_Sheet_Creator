@@ -200,9 +200,11 @@ private:
 
   int VectorDupCheck(std::vector<std::string> LIST);
   bool IsSkillWithoutSubSkills(std::string SKILL);
+  int NumberOfSubSkills(std::string SKILL);
   void PickHobbySkills();
   int TEST;
   int TESTDUP;
+  int SUBNUM;
   int NONSUBNUM;
   std::vector<std::string> DUPITEMS;
 
