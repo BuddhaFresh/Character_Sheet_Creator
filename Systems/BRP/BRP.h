@@ -162,7 +162,7 @@ private:
   std::vector <std::string> Technical;
 
   std::string JOBSKILLS[10];
-  std::vector <std::string> HOBBYSKILLS;
+  std::vector <std::string>HOBBYSKILLS;
 
   void Weapons();
   void FillSkillMod();
@@ -198,9 +198,11 @@ private:
   int Skill_Category_Secondary(int x);
   int Skill_Category_Negative(int x);
 
-  int VectorDupCheck(std::vector<std::string> LIST);
+  bool IsThereADup(std::vector<std::string> LIST);
   bool IsSkillWithoutSubSkills(std::string SKILL);
   int NumberOfSubSkills(std::string SKILL);
+  void MoveItemToEnd(std::vector<std::string> &V_hobby, int target);
+  void RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
   void PickHobbySkills();
   int TEST;
   int TESTDUP;

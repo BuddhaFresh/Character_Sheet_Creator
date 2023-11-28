@@ -1041,8 +1041,6 @@ void BRP_human_base::Skills(int x, int i, int p){
   Technical = {"Clockwork", "Computers", "Cybernetics", "Electronics", "Robotics", "Sensors", "Siege Engines", "Traps"};
 }
 
-//Check if 
-
 //Picks random skills for professions with random choices of skills and populates JOBSKILLS from 0 to NumberOfPicks.
 void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> ProfessionSkills){
   std::shuffle(ProfessionSkills.begin(), ProfessionSkills.end(), RANDOMCORE.mt_rando);
@@ -1390,29 +1388,25 @@ void BRP_human_base::PickJobSkills()
   }
 }
 
-//Returns numbers of duplicates in string vector
-int BRP_human_base::VectorDupCheck(std::vector<std::string> LIST){
-  TESTDUP = 0;
-  NONSUBNUM = 0;
-  SUBNUM = 0;
-  DUPITEMS = {};
-  
+//Returns true if duplicates of non-subskill skills are present
+bool BRP_human_base::IsThereADup(std::vector<std::string> LIST){
+  bool OUTCOME = false;
   for(int i = 1; i < LIST.size(); i++){
     if(LIST[i-1] == LIST[i]){
-       TESTDUP++;
-       DUPITEMS.push_back(LIST[i-1]);
-      if(IsSkillWithoutSubSkills(LIST[i-1]) == true){
-        NONSUBNUM++;
-      }else{SUBNUM += NumberOfSubSkills(LIST[i-1]);}
+      if(IsSkillWithoutSubSkills(LIST[i-1]) != true){
+        OUTCOME = true;
+        break;
+      }else{continue;}
     }
   }
-  return TESTDUP;
+  return OUTCOME;
 }
 
 //checks number of subskills for a given skill
 int BRP_human_base::NumberOfSubSkills(std::string SKILL){
   int AMOUNT = 0;
-  for(int j = 0; j < 9; j++){
+  for(int j = 0; j < 10; j++){
+    //if find() doesn't reach end() of SkillTable, then it found a subskill and increses the count for AMOUNT.
     if(SkillTable.find(SKILL+std::to_string(j)) != SkillTable.end()){
       AMOUNT++;
     }else{break;}
@@ -1420,7 +1414,25 @@ int BRP_human_base::NumberOfSubSkills(std::string SKILL){
   return AMOUNT;
 }
 
+//move element to end
+void BRP_human_base::MoveItemToEnd(std::vector<std::string> &V_hobby, int target){
+  std::rotate(V_hobby.begin()+target, V_hobby.begin()+target+1, V_hobby.end());
+}
 
+//removes duplicate elements from main vector using V_banlist vector
+void BRP_human_base::RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist){
+  int MAINSIZE = V_main.size();
+  while(V_banlist.empty() != true){
+    for(int i = 0; i < MAINSIZE; i++){
+      if(V_main[i] == V_banlist[0]){
+        TESTDUP += 100;
+        V_main.erase(V_main.begin()+i);
+        V_banlist.erase(V_banlist.begin());
+      }
+    }
+  }
+}
+  
 //Takes in a string and returns true if it is a skill without a subskill
 bool BRP_human_base::IsSkillWithoutSubSkills(std::string SKILL){
   //vector of skills without any subskills
@@ -1438,8 +1450,7 @@ bool BRP_human_base::IsSkillWithoutSubSkills(std::string SKILL){
 }
 
 //Assigns skills to HOBBYSKILLS array based on random chance
-void BRP_human_base::PickHobbySkills()
-{
+void BRP_human_base::PickHobbySkills(){
   //random numbre of hobby skills to have
   TEST = ROLL.Die(8, 10);
 
@@ -1447,15 +1458,32 @@ void BRP_human_base::PickHobbySkills()
   for(int i = 0; i < TEST; i++){
     HOBBYSKILLS.push_back(SkillList[ROLL.Die(0, SkillList.size()-1)]);
   }
- 
+
+  
   //sort alphabetically
   std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
+  
+  //VectorDupCheck(HOBBYSKILLS);
+  TESTDUP = 0; //number of duplicates
+  NONSUBNUM = 0; //number of duplicates without subskills
+  SUBNUM = 0; //number of subskills in duplicate skills
+  DUPITEMS = {}; //vector string of duplicates without subskills
+  
+  //Checks for duplicate skills in HOBBYSKILLS
+  for(int i = 1; i < HOBBYSKILLS.size(); i++){
+    if(HOBBYSKILLS[i-1] == HOBBYSKILLS[i]){
+       TESTDUP++;
+      if(IsSkillWithoutSubSkills(HOBBYSKILLS[i-1]) == true){
+        NONSUBNUM++;
+        DUPITEMS.push_back(HOBBYSKILLS[i-1]);
+        //MoveItemToEnd(HOBBYSKILLS, i-1);
+        //HOBBYSKILLS.pop_back();
+      }else{SUBNUM += NumberOfSubSkills(HOBBYSKILLS[i-1]);}
+    }
+  }
 
-  //need to compare repeating skills in HOBBYSKILLS with nonsubskills and replace the repeats with a new random skill.
-
-  VectorDupCheck(HOBBYSKILLS);
-
-
+  RemoveDuplicates(HOBBYSKILLS, DUPITEMS);
+  
   
   /*
 
@@ -1919,6 +1947,8 @@ void BRP_human_base::consoleChar(){
   }
   
   std::cout << "\nNumber of duplications: " << TESTDUP << std::endl;
+  
+  std::cout << "\nNumber of duplicates that don't have SubSkills: " << NONSUBNUM << std::endl;
 
   for(int i = 0; i < DUPITEMS.size(); i++){
     std::cout << DUPITEMS[i];
@@ -1926,9 +1956,7 @@ void BRP_human_base::consoleChar(){
       std::cout << ".\n";}
     else{std::cout << ", ";}
   }
-  
-  std::cout << "\nNumber of duplicates that don't have SubSkills: " << NONSUBNUM << std::endl;
-  
+    
   std::cout << "\nNumber of subskills the duplicate skill(s) have: " << SUBNUM << std::endl;
   
   std::cout << "\n\nSeed: " << RANDOMCORE.currentSeed;
