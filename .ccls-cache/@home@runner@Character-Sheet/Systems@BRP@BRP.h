@@ -199,12 +199,13 @@ private:
   int Skill_Category_Negative(int x);
 
   bool IsThereADup(std::vector<std::string> LIST);
-  bool IsSkillWithoutSubSkills(std::string SKILL);
-  int NumberOfSubSkills(std::string SKILL);
-  void MoveItemToEnd(std::vector<std::string> &V_hobby, int target);
+  bool IsSkillWithoutSubSkills(std::string &SKILL);
+  int NumberOfSubSkills(std::string &SKILL);
   void RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
+  void CheckForDuplicatcates(std::vector<std::string> &V_main);
+  void RefillHobbySkills(std::vector<std::string> &V_main, int &MaxNumberOfSkills);
   void PickHobbySkills();
-  int TEST;
+  int NumberOfHobbySkills;
   int TESTDUP;
   int SUBNUM;
   int NONSUBNUM;

@@ -1388,53 +1388,34 @@ void BRP_human_base::PickJobSkills()
   }
 }
 
-//Returns true if duplicates of non-subskill skills are present
-bool BRP_human_base::IsThereADup(std::vector<std::string> LIST){
-  bool OUTCOME = false;
-  for(int i = 1; i < LIST.size(); i++){
-    if(LIST[i-1] == LIST[i]){
-      if(IsSkillWithoutSubSkills(LIST[i-1]) != true){
-        OUTCOME = true;
-        break;
-      }else{continue;}
-    }
+//Repopulates HOBBYSKILLS after removal of duplicates
+void BRP_human_base::RefillHobbySkills(std::vector<std::string> &V_main, int &MaxNumberOfSkills){
+  int CurrentSize = V_main.size();
+  for(int i = 0; i < MaxNumberOfSkills-CurrentSize; i++){
+    V_main.push_back(SkillList[ROLL.Die(0, SkillList.size()-1)]);
   }
-  return OUTCOME;
 }
 
-//checks number of subskills for a given skill
-int BRP_human_base::NumberOfSubSkills(std::string SKILL){
-  int AMOUNT = 0;
-  for(int j = 0; j < 10; j++){
-    //if find() doesn't reach end() of SkillTable, then it found a subskill and increses the count for AMOUNT.
-    if(SkillTable.find(SKILL+std::to_string(j)) != SkillTable.end()){
-      AMOUNT++;
-    }else{break;}
-  }
-  return AMOUNT;
-}
-
-//move element to end
-void BRP_human_base::MoveItemToEnd(std::vector<std::string> &V_hobby, int target){
-  std::rotate(V_hobby.begin()+target, V_hobby.begin()+target+1, V_hobby.end());
-}
-
-//removes duplicate elements from main vector using V_banlist vector
-void BRP_human_base::RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist){
-  int MAINSIZE = V_main.size();
-  while(V_banlist.empty() != true){
-    for(int i = 0; i < MAINSIZE; i++){
-      if(V_main[i] == V_banlist[0]){
-        TESTDUP += 100;
-        V_main.erase(V_main.begin()+i);
-        V_banlist.erase(V_banlist.begin());
-      }
+//counts number of duplicates for both skilsls with and without subskills in HOBBYSKILLS and fills in DUPITEMS vector
+void BRP_human_base::CheckForDuplicatcates(std::vector<std::string> &V_main){
+  std::unordered_set<std::string> UniqueElements;
+  for (int i = 0; i < V_main.size(); i++) {
+    if(UniqueElements.find(V_main[i]) == UniqueElements.end()){
+      UniqueElements.insert(V_main[i]);
+    } else {
+        TESTDUP++;
+        if (IsSkillWithoutSubSkills(V_main[i])) {
+          NONSUBNUM++;
+          DUPITEMS.push_back(V_main[i]);
+        } else {
+          SUBNUM += NumberOfSubSkills(V_main[i]);
+        }
     }
   }
 }
-  
+
 //Takes in a string and returns true if it is a skill without a subskill
-bool BRP_human_base::IsSkillWithoutSubSkills(std::string SKILL){
+bool BRP_human_base::IsSkillWithoutSubSkills(std::string &SKILL){
   //vector of skills without any subskills
   std::vector<std::string> NonSubSkills = {"Appraise", "Bargain", "Brawl", "Climb", "Command", "Demolition", "Disguise", "Dodge", "Etiquette", "Fast Talk", "Fine Manipulation", "First Aid", "Fly", "Gaming", "Grapple", "Hide", "Insight", "Jump", "Listen", "Literacy", "Martial Arts", "Medicine", "Navigate", "Parry", "Persuade", "Projection", "Psychotherapy", "Research", "Sense", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Throw", "Track"};
   bool OUTCOME;
@@ -1449,41 +1430,75 @@ bool BRP_human_base::IsSkillWithoutSubSkills(std::string SKILL){
   return OUTCOME;
 }
 
+//checks number of subskills for a given skill
+int BRP_human_base::NumberOfSubSkills(std::string &SKILL){
+  int AMOUNT = 0;
+  for(int j = 0; j < 10; j++){
+    //if find() doesn't reach end() of SkillTable, then it found a subskill and increses the count for AMOUNT.
+    if(SkillTable.find(SKILL+std::to_string(j)) != SkillTable.end()){
+      AMOUNT++;
+    }else{break;}
+  }
+  return AMOUNT;
+}
+
+//Returns true if duplicates of non-subskill skills are present
+bool BRP_human_base::IsThereADup(std::vector<std::string> LIST){
+  bool OUTCOME = false;
+  for(int i = 1; i < LIST.size(); i++){
+    if(LIST[i-1] == LIST[i]){
+      if(IsSkillWithoutSubSkills(LIST[i-1]) != true){
+        OUTCOME = true;
+        break;
+      }else{continue;}
+    }
+  }
+  return OUTCOME;
+}
+
+//removes duplicate elements from main vector using V_banlist vector
+void BRP_human_base::RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist){
+  int MAINSIZE = V_main.size();
+  std::vector<std::string> BANLIST = V_banlist;
+  while(BANLIST.empty() != true){
+    for(int i = 0; i < MAINSIZE; i++){
+      if(BANLIST.empty() != true){
+        if(V_main[i] == BANLIST[0]){
+          V_main.erase(V_main.begin()+i);
+          BANLIST.erase(BANLIST.begin());} 
+      }else{break;}
+    }
+  }
+  V_banlist.clear();
+  TESTDUP = 0;
+  NONSUBNUM = 0;
+  SUBNUM = 0;
+}
+
 //Assigns skills to HOBBYSKILLS array based on random chance
 void BRP_human_base::PickHobbySkills(){
-  //random numbre of hobby skills to have
-  TEST = ROLL.Die(8, 10);
-
-  //populate vector with random skills
-  for(int i = 0; i < TEST; i++){
-    HOBBYSKILLS.push_back(SkillList[ROLL.Die(0, SkillList.size()-1)]);
-  }
-
-  
-  //sort alphabetically
-  std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
-  
-  //VectorDupCheck(HOBBYSKILLS);
   TESTDUP = 0; //number of duplicates
   NONSUBNUM = 0; //number of duplicates without subskills
   SUBNUM = 0; //number of subskills in duplicate skills
-  DUPITEMS = {}; //vector string of duplicates without subskills
-  
-  //Checks for duplicate skills in HOBBYSKILLS
-  for(int i = 1; i < HOBBYSKILLS.size(); i++){
-    if(HOBBYSKILLS[i-1] == HOBBYSKILLS[i]){
-       TESTDUP++;
-      if(IsSkillWithoutSubSkills(HOBBYSKILLS[i-1]) == true){
-        NONSUBNUM++;
-        DUPITEMS.push_back(HOBBYSKILLS[i-1]);
-        //MoveItemToEnd(HOBBYSKILLS, i-1);
-        //HOBBYSKILLS.pop_back();
-      }else{SUBNUM += NumberOfSubSkills(HOBBYSKILLS[i-1]);}
-    }
-  }
+  DUPITEMS = {}; //vector containing each duplicate skill to be removed
+      
+  //random numbre of hobby skills to have
+  NumberOfHobbySkills = ROLL.Die(8, 10);
 
-  RemoveDuplicates(HOBBYSKILLS, DUPITEMS);
+  //Populates HOBBYSKILLS and checks for duplicates
+  RefillHobbySkills(HOBBYSKILLS, NumberOfHobbySkills);
+  CheckForDuplicatcates(HOBBYSKILLS);
+
+  //Removes duplicates and replaces them till HOBBYSKILL has no more nun-subskill duplicates
+  while(NONSUBNUM > 0){
+    RemoveDuplicates(HOBBYSKILLS, DUPITEMS);
+    RefillHobbySkills(HOBBYSKILLS, NumberOfHobbySkills);
+    CheckForDuplicatcates(HOBBYSKILLS);
+  }
   
+  //sort alphabetically
+  std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
+
   
   /*
 
@@ -1716,6 +1731,8 @@ void BRP_human_base::PersonalityPick(int pick){
 }
 
 //Randomly assigns skill points to the Profession's Skills
+//REDO THIS METHOD SO IT CAN TAKE JOBSKILLS AND HOBBYSKILL ALONG WITH THEIR SKILLPOINTSMAX
+//MAY NEED TO REDO HOW JOBSKILLS WORKS
 void BRP_human_base::ProfessionSkillSet(){
   //Sets up the Current Skill Points to be spent for the following loop.
   int CurrentSkillPoints = ProSkillPtsMAX;
@@ -1885,8 +1902,8 @@ void BRP_human_base::consoleChar(){
   //Language(subskill3)    Psychotherapy    Pilot(subskill2)
   std::cout << "  " << SkillTable["Language3"].SubSkillName << std::setw(28-SkillTable["Language3"].SubSkillName.length()-Toolong(SkillTable["Language3"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Language3"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Psychotherapy"].SkillName << " (" << DD(SkillTable["Psychotherapy"].SkillBase) << ")" << std::setw(12-Toolong(SkillTable["Psychotherapy"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Psychotherapy"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << "  " << SkillTable["Pilot2"].SubSkillName << std::setw(28-SkillTable["Pilot2"].SubSkillName.length()-Toolong(SkillTable["Pilot2"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Pilot2"].SkillMod) << "% [ ]" << std::endl;
 
-  //Preform    Science(subskill0)    Projection
-  std::cout << SkillTable["Preform"].SkillName << " (" << DD(SkillTable["Preform"].SkillBase) << ")" << std::setw(18-Toolong(SkillTable["Preform"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Preform"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Science0"].SkillName << " (" << DD(SkillTable["Science0"].SkillBase) << ")" << " " << SkillTable["Science0"].SubSkillName << std::setw(17-SkillTable["Science0"].SubSkillName.length()-Toolong(SkillTable["Science0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Science0"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Projection"].SkillName << " (" << DD(SkillTable["Projection"].SkillBase) << ")" << std::setw(15-Toolong(SkillTable["Projection"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Projection"].SkillMod) << "% [ ]" << std::endl;
+  //Preform - NEED TO ADD SUBSKILLS OUTPUT!    Science(subskill0)    Projection
+  std::cout << SkillTable["Preform"].SkillName << " (" << DD(SkillTable["Preform"].SkillBase) << ")" << " " << std::setw(17-Toolong(SkillTable["Preform"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Preform"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Science0"].SkillName << " (" << DD(SkillTable["Science0"].SkillBase) << ")" << " " << SkillTable["Science0"].SubSkillName << std::setw(17-SkillTable["Science0"].SubSkillName.length()-Toolong(SkillTable["Science0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Science0"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Projection"].SkillName << " (" << DD(SkillTable["Projection"].SkillBase) << ")" << std::setw(15-Toolong(SkillTable["Projection"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Projection"].SkillMod) << "% [ ]" << std::endl;
 
   //Persuade    Science(subskill1)    Ride(subskill0)
   std::cout << SkillTable["Persuade"].SkillName << " (" << DD(SkillTable["Persuade"].SkillBase) << ")" << std::setw(17-Toolong(SkillTable["Persuade"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Persuade"].SkillMod) << "% [ ]" << std::setw(7) << std::setfill(' ') << "  " << SkillTable["Science1"].SubSkillName << std::setw(28-SkillTable["Science1"].SubSkillName.length()-Toolong(SkillTable["Science1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Science1"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Ride0"].SkillName << " (" << DD(SkillTable["Ride0"].SkillBase) << ")" << " " << SkillTable["Ride0"].SubSkillName << std::setw(20-SkillTable["Ride0"].SubSkillName.length()-Toolong(SkillTable["Ride0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Ride0"].SkillMod) << "% [ ]" << std::endl;
@@ -1938,7 +1955,7 @@ void BRP_human_base::consoleChar(){
   //END OF SKILLS
 
   //TESTING
-  std::cout << "\n" << "Total number of Hobby Skills: " << TEST << std::endl;
+  std::cout << "\n" << "Total number of Hobby Skills: " << NumberOfHobbySkills << std::endl;
   for(int i = 0; i < HOBBYSKILLS.size(); i++){
     std::cout << HOBBYSKILLS[i];
     if(i == HOBBYSKILLS.size()-1){
