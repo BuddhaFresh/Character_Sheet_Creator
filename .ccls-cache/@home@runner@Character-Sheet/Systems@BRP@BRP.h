@@ -209,6 +209,7 @@ private:
   int TESTDUP;
   int SUBNUM;
   int NONSUBNUM;
+  int SKILLWITHSUBNUM;
   std::vector<std::string> DUPITEMS;
 
 

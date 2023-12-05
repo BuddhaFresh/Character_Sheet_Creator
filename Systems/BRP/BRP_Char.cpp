@@ -1408,11 +1408,26 @@ void BRP_human_base::CheckForDuplicatcates(std::vector<std::string> &V_main){
           NONSUBNUM++;
           DUPITEMS.push_back(V_main[i]);
         } else {
+          SKILLWITHSUBNUM++;
           SUBNUM += NumberOfSubSkills(V_main[i]);
         }
     }
   }
 }
+
+//takes HOBBYSKILLS and checks if there are too many of this skill w/ subskill in HOBBYSKILL
+/*
+void BRP_human_base::CheckForExtraSubSkills(std::vector<std::string> &V_main){
+  std::vector<std::string> ListOfSkills = V_main;
+  //removes NonSubSkills from ListOfSkills
+  for (int i = 0; i < ListOfSkills.size(); i++){
+    if(IsSkillWithoutSubSkills(ListOfSkills[i]) == true){
+      ListOfSkills.erase(ListOfSkills.begin()+i);
+    }else{continue;}
+  }
+  
+}
+*/
 
 //Takes in a string and returns true if it is a skill without a subskill
 bool BRP_human_base::IsSkillWithoutSubSkills(std::string &SKILL){
@@ -1473,12 +1488,14 @@ void BRP_human_base::RemoveDuplicates(std::vector<std::string> &V_main, std::vec
   TESTDUP = 0;
   NONSUBNUM = 0;
   SUBNUM = 0;
+  SKILLWITHSUBNUM = 0;
 }
 
 //Assigns skills to HOBBYSKILLS array based on random chance
 void BRP_human_base::PickHobbySkills(){
   TESTDUP = 0; //number of duplicates
   NONSUBNUM = 0; //number of duplicates without subskills
+  SKILLWITHSUBNUM = 0; //number of duplicate skills with subskills
   SUBNUM = 0; //number of subskills in duplicate skills
   DUPITEMS = {}; //vector containing each duplicate skill to be removed
       
@@ -1511,7 +1528,7 @@ void BRP_human_base::PickHobbySkills(){
 
   //arrays of the results for skills with multiple skill subtypes on the sheet; slots are just spaces on the charater sheet where subskill names can be written
   int twoslot[4] = {1,7,41,43}; //Art,Craft,Repair,Ride
-  int threeslot[5] = {11,26,38,43,54}; //Drive,Knowledge,Pilot,Ride,Technical Skill
+  int threeslot[5] = {11,26,38,54}; //Drive,Knowledge,Pilot,Technical Skill
   int fourslot[2] = {27,44}; //Language,Science
   int combatskillslot[8] = {2,12,16,22,32,33,35,46}; //Artillery,Energy Weapons,Firearms,Heavy Weapons,Melee Weapon,Missile Weapon,Parry,Shield
   //All other skills lack a subskill and can just be added to HOBBYSKILLS.
@@ -1973,7 +1990,9 @@ void BRP_human_base::consoleChar(){
       std::cout << ".\n";}
     else{std::cout << ", ";}
   }
-    
+
+  std::cout << "\nNumber of duplicate skills that have subskills: " << SKILLWITHSUBNUM << std::endl;
+  
   std::cout << "\nNumber of subskills the duplicate skill(s) have: " << SUBNUM << std::endl;
   
   std::cout << "\n\nSeed: " << RANDOMCORE.currentSeed;
