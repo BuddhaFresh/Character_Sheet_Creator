@@ -315,7 +315,7 @@ std::string BRP_human_base::DistinctiveFeatures(int H){
       {"an angry bearing", "a casual bearing", "a clumsy bearing", "a confident bearing", "an ethereal bearing", "a fearful bearing", "a graceful bearing", "a humble bearing", "a jaunty bearing", "a languid bearing", "a military bearing", "a nimble bearing", "a plodding bearing", "a pushy bearing", "a reserved bearing", "a slouching bearing", "a sprightly bearing", "a stiff bearing", "a swaggering bearing", "a sensual bearing", "a swaying bearing", "a wary bearing", "a weary bearing", "a yielding bearing"}, //Bearing 24
       {"an accented way of speech", "an affected way of speech", "an aggressive way of speech", "a deep voice", "a demanding way of speech", "a drawling way of speech", "a faint voice", "a hesitant way of speech", "a high-pitched voice", "an imperious way of speech", "a musical voice", "a mumbling way of sppech", "a nasal speech", "a raspy voice", "a sharp way of speech", "a sensual voice", "a shrill voice", "a slow way of speech", "a smooth voice", "a soft-spoken way of speech", "a strong voice", "a throaty way of speech", "an unintelligible way of speech", "a whining voice"}, //Speech 24
       {"a birthmark visible on their arm", "bracelets and other arm jewelry", "bulging biceps", "calloused hands", "deeply tanned arms", "hairless arms", "hairy arms", "knobby elbows", "large knuckles", "a birthmark visible on their hand", "long arms", "long fingernails", "muscular arms", "one arm longer than the other", "one finger missing", "one too many fingers present", "pointed elbows", "pointed fingernails", "powerful arms and hands", "rings on their fingers", "a scar on their hand", "a scar on their arm", "slender amrs", "smooth-skinned hands", "tattooed arms", "tattooed hands", "very hairy arms", "very pale skin on their hands", "very pale skin on their arms"}, //Arms and Hands 29
-      {"a barrel-like like torso", "a belly ring on", "a birthmark visible on their torso", "broad-shoulders", "a curvy figure", "every bone is showing on their body", "a flat stomach", "hairless chect", "a high waist", "a lean figure", "a long torso", "many scars aross their chest", "many scars aross their back", "many scars aross their abdomen", "a muscular figure", "a narrow figure", "no navel", "one nipple missing", "a potbelly", "a prominent scar across their chest", "a prominent scar across their back", "a prominent scar across their abdomen" "a short torso", "a shrunken chest", "a sinewy figure", "a sleek figure", "a slender figure", "a slim-hipped form", "a svelte figure", "a tall figure", "tan lines visible across their chest", "tan lines visible across their back", "tan lines visible across their abdomen", "a tanned torso", "a tattooed chest", "a tattooed back", "a tattooed abdomen","a thick torso", "a thin torso", "a very hairy back", "a very hairy chest", "a very hairy abdomen", "a very pale torso", "a willowy figure"}, //Torso 44
+      {"a barrel-like like torso", "a belly ring on", "a birthmark visible on their torso", "broad-shoulders", "a curvy figure", "every bone is showing on their body", "a flat stomach", "hairless chect", "a high waist", "a lean figure", "a long torso", "many scars aross their chest", "many scars aross their back", "many scars aross their abdomen", "a muscular figure", "a narrow figure", "no navel", "one nipple missing", "a potbelly", "a prominent scar across their chest", "a prominent scar across their back", "a prominent scar across their abdomen" "a short torso", "a shrunken chest", "a sinewy figure", "a sleek figure", "a slender figure", "a slim-hipped form", "a svelte figure", "a tall figure", "tan lines visible across their chest", "tan lines visible across their back", "tan lines visible across their abdomen", "a tanned torso", "a tattooed chest", "a tattooed back", "a tattooed abdomen", "a thick torso", "a thin torso", "a very hairy back", "a very hairy chest", "a very hairy abdomen", "a very pale torso", "a willowy figure"}, //Torso 44
       {"a birthmark visible on their foot", "a birthmark visible on their leg", "bulging thighs and calves", "calloused feet", "deeply tanned legs", "deeply tanned feet", "hairless legs", "hairless feet", "hairy legs", "hairy feet", "knobby knees", "a limp in one leg", "many scars aross their legs", "many scars aross their feet", "muscular legs", "one toe missing", "one too many toes present", "a scar on their foot", "a scar on their leg", "burn scars from fire on their leg", "burn scars from fire on their foot", "burn scars from acid on their foot", "burn scars from acid on their leg", "sleek looking legs", "smooth legs", "tanned legs", "tattooed legs", "a toe ring on", "very hairy legs", "very hairy feet", "very long legs", "very pale skin on their legs", "very pale skin on their feet", "very short legs", "weathered skin on their legs", "weathered skin on their feet"} //Legs and Feet 36
   };                          
 
@@ -1397,7 +1397,7 @@ void BRP_human_base::RefillHobbySkills(std::vector<std::string> &V_main, int &Ma
 }
 
 //counts number of duplicates for both skilsls with and without subskills in HOBBYSKILLS and fills in DUPITEMS vector
-void BRP_human_base::CheckForDuplicatcates(std::vector<std::string> &V_main){
+void BRP_human_base::CheckForDuplicatcates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist){
   std::unordered_set<std::string> UniqueElements;
   for (int i = 0; i < V_main.size(); i++) {
     if(UniqueElements.find(V_main[i]) == UniqueElements.end()){
@@ -1406,7 +1406,7 @@ void BRP_human_base::CheckForDuplicatcates(std::vector<std::string> &V_main){
         TESTDUP++;
         if (IsSkillWithoutSubSkills(V_main[i])) {
           NONSUBNUM++;
-          DUPITEMS.push_back(V_main[i]);
+            V_banlist.push_back(V_main[i]);
         } else {
           SKILLWITHSUBNUM++;
           SUBNUM += NumberOfSubSkills(V_main[i]);
@@ -1415,19 +1415,53 @@ void BRP_human_base::CheckForDuplicatcates(std::vector<std::string> &V_main){
   }
 }
 
-//takes HOBBYSKILLS and checks if there are too many of this skill w/ subskill in HOBBYSKILL
-/*
-void BRP_human_base::CheckForExtraSubSkills(std::vector<std::string> &V_main){
+//takes HOBBYSKILLS and checks if there are too many skills w/ subskills
+//refine vector down to what is extra and add it to ban list for removal?
+void BRP_human_base::RemoveExtraSubSkills(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist){
+  
   std::vector<std::string> ListOfSkills = V_main;
-  //removes NonSubSkills from ListOfSkills
-  for (int i = 0; i < ListOfSkills.size(); i++){
-    if(IsSkillWithoutSubSkills(ListOfSkills[i]) == true){
-      ListOfSkills.erase(ListOfSkills.begin()+i);
-    }else{continue;}
+  UniqueCounts.clear();
+  SubskillMax.clear();
+  
+  //remove non-subskill skills
+  for(int i = 0; i < V_main.size(); i++){
+    if(IsSkillWithoutSubSkills(V_main[i]) == true){
+      ListOfSkills[i].erase();
+    } else {continue;}
   }
   
+  //count remaining number of skills with subskills
+  //and count how many subskills is in a skill in UniqueCounts
+  for (int a = 0; a < ListOfSkills.size(); a++) {
+    if(ListOfSkills[a] == ""){
+      continue;
+    } else {
+        if(UniqueCounts.find(ListOfSkills[a]) == UniqueCounts.end()){
+          UniqueCounts.insert(std::pair<std::string,int>(ListOfSkills[a],1));
+          SubskillMax.insert(std::pair<std::string,int>(ListOfSkills[a],NumberOfSubSkills(ListOfSkills[a])));
+        } else {UniqueCounts[ListOfSkills[a]]++;}
+      }
+  }
+
+  
+  //check and compare maps then apply to DUPITEMS
+  std::map<std::string,int>::iterator Iuc = UniqueCounts.begin();
+  std::map<std::string,int>::iterator Ism = SubskillMax.begin();
+  while(Iuc != UniqueCounts.end() && Ism != SubskillMax.end()){
+    if(Iuc->second > Ism->second){
+      TOOMANYSUBS = true;
+      int difference = Iuc->second - Ism->second;
+      for(int w = 0; w < difference; w++){
+        V_banlist.push_back(Iuc->first);
+      }
+    }
+    Iuc++;
+    Ism++;
+  }
+  
+  
 }
-*/
+
 
 //Takes in a string and returns true if it is a skill without a subskill
 bool BRP_human_base::IsSkillWithoutSubSkills(std::string &SKILL){
@@ -1489,6 +1523,7 @@ void BRP_human_base::RemoveDuplicates(std::vector<std::string> &V_main, std::vec
   NONSUBNUM = 0;
   SUBNUM = 0;
   SKILLWITHSUBNUM = 0;
+  TOOMANYSUBS = false;
 }
 
 //Assigns skills to HOBBYSKILLS array based on random chance
@@ -1498,126 +1533,28 @@ void BRP_human_base::PickHobbySkills(){
   SKILLWITHSUBNUM = 0; //number of duplicate skills with subskills
   SUBNUM = 0; //number of subskills in duplicate skills
   DUPITEMS = {}; //vector containing each duplicate skill to be removed
+  TOOMANYSUBS = false; //true if the number of skills with subskills is greater then the total number of skills with subskills in the SkillTable
       
   //random numbre of hobby skills to have
   NumberOfHobbySkills = ROLL.Die(8, 10);
-
+ 
   //Populates HOBBYSKILLS and checks for duplicates
   RefillHobbySkills(HOBBYSKILLS, NumberOfHobbySkills);
-  CheckForDuplicatcates(HOBBYSKILLS);
-
+  CheckForDuplicatcates(HOBBYSKILLS, DUPITEMS);
+  RemoveExtraSubSkills(HOBBYSKILLS, DUPITEMS);
+  
   //Removes duplicates and replaces them till HOBBYSKILL has no more nun-subskill duplicates
-  while(NONSUBNUM > 0){
+  while(NONSUBNUM > 0 || TOOMANYSUBS == true){
     RemoveDuplicates(HOBBYSKILLS, DUPITEMS);
     RefillHobbySkills(HOBBYSKILLS, NumberOfHobbySkills);
-    CheckForDuplicatcates(HOBBYSKILLS);
+    CheckForDuplicatcates(HOBBYSKILLS, DUPITEMS);
+    RemoveExtraSubSkills(HOBBYSKILLS, DUPITEMS);
   }
   
   //sort alphabetically
   std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
 
-  
-  /*
-
-   //Picking Personnal Skills and assigns them to the HOBBYSKILL array
-  //Number of Personal Skills, between 8 to 10
-  int TotalPersonalSkillsKnown = rand() % (10 + 1 - 8) + 8;
-
-  //array of strings to hold the Personal Skills
-  HOBBYSKILLS[TotalPersonalSkillsKnown];
-
-  //arrays of the results for skills with multiple skill subtypes on the sheet; slots are just spaces on the charater sheet where subskill names can be written
-  int twoslot[4] = {1,7,41,43}; //Art,Craft,Repair,Ride
-  int threeslot[5] = {11,26,38,54}; //Drive,Knowledge,Pilot,Technical Skill
-  int fourslot[2] = {27,44}; //Language,Science
-  int combatskillslot[8] = {2,12,16,22,32,33,35,46}; //Artillery,Energy Weapons,Firearms,Heavy Weapons,Melee Weapon,Missile Weapon,Parry,Shield
-  //All other skills lack a subskill and can just be added to HOBBYSKILLS.
-
-  //Redo loop to reduce KnownSkillLeft whenever it does 
-  //Loop adding skill names to HOBBYSKILL array also assigns SubSkills when needed
-  for(int i = 0; i < TotalPersonalSkillsKnown; i++)
-  {
-    //Randomlly picked skill from SkillList
-    int SkillPicked = rand() % SkillList.size();
-    
-    //Bools for confirming if the skill picked is one that requires checking subtypes
-    bool SkillwithTwoSlots = std::find(std::begin(twoslot),std::end(twoslot),SkillPicked) != std::end(twoslot);
-    bool SkillwithThreeSlots = std::find(std::begin(threeslot),std::end(threeslot),SkillPicked) != std::end(threeslot);
-    bool SkillwithFourSlots = std::find(std::begin(fourslot),std::end(fourslot),SkillPicked) != std::end(fourslot);
-    bool SkillinCombat = std::find(std::begin(combatskillslot),std::end(combatskillslot),SkillPicked) != std::end(combatskillslot);
-
-    //String making the picked skill into something matching a skill from SkillTable that has subskills
-    std::string SkillSlotZERO = SkillList[SkillPicked] + "0"; //skill0
-    std::string SkillSlotONE = SkillList[SkillPicked] + "1"; //skill1
-    std::string SkillSlotTWO = SkillList[SkillPicked] + "2"; //skill2
-    std::string SkillSlotTHREE = SkillList[SkillPicked] + "3"; //skill3
-
-    //Checks if picked skill is already in HOBBYSKILLS[]
-    //How does this loop effect the one it's in? This also doesn't check for ARMS which have tons of subtypes
-    for (int i = 0; i < TotalPersonalSkillsKnown; i++)
-    {
-      if (HOBBYSKILLS[i] == SkillList[SkillPicked] || HOBBYSKILLS[i] == SkillSlotZERO || HOBBYSKILLS[i] == SkillSlotONE || HOBBYSKILLS[i] == SkillSlotTWO || HOBBYSKILLS[i] == SkillSlotTHREE)
-      {}
-    }
-    
-    //For subskills;  
-    if (SkillwithTwoSlots == true) //Selected skill has 2 slots
-    {
-      int SIT = 0;
-      
-      switch (SIT)
-      {
-        case 0: //Slot 0 used, slot 1 is free
-        {
-          break;
-        }; 
-        case 1: //Slot 0 and 1 are used
-        {
-          break;
-        };
-        default: //Slots 0 and 1 are free
-        {
-          break;
-        };
-      }
-      break;
-      // if (SkillTable[SkillSlotZERO].SubSkillName != "" && SkillTable[SkillSlotONE].SubSkillName != "") //if this skill hasn't been selected yet
-      // {
-      //   HOBBYSKILLS[i] = SkillSlotZERO;
-      // }
-      // else 
-      // {
-      //   int coin = rand() % 1; //Do I increase skill in slot 0 or add new one?
-      //   if (coin == 0)
-      //   {
-      //     SkillTable[SkillSlotZERO].SubSkillName = ""; //Stopped working here till I come up with a better system
-      //     HOBBYSKILLS[i] = SkillSlotZERO;
-      //   }
-      //   else {HOBBYSKILLS[i] = SkillSlotONE;}
-      // }
-    }
-    else if(SkillwithThreeSlots == true) //Selected skill has 3 slots
-    {
-      //no code, need to fill
-      break;
-    }
-    else if(SkillwithFourSlots == true) //Selected skill has 4 slots
-    {
-      //no code, need to fill
-      break;
-    }
-    else if(SkillinCombat == true) //Selected skill is a combat skill
-    {
-      //no code, need to fill
-      break;
-    }
-    else //Selected skill has 1 slot
-    {
-      HOBBYSKILLS[i] = SkillList[SkillPicked];
-      //set up condional for Heavy Machine
-    }
-  }
-  */
+ 
 }
 
 //Randomly assigns skill points to the Character's personnal skills 
@@ -1994,6 +1931,17 @@ void BRP_human_base::consoleChar(){
   std::cout << "\nNumber of duplicate skills that have subskills: " << SKILLWITHSUBNUM << std::endl;
   
   std::cout << "\nNumber of subskills the duplicate skill(s) have: " << SUBNUM << std::endl;
+
+  std::cout << "\nMap of skills with subskills\n ";
+  for(auto itr = UniqueCounts.begin(); itr != UniqueCounts.end(); itr++){
+    std::cout << '\t' << itr->first << "\t\t\t\t" << itr->second << '\n';
+  }
+  
+  std::cout << "\nMap of skills with subskills max\n ";
+  for(auto itr = SubskillMax.begin(); itr != SubskillMax.end(); itr++){
+    std::cout << '\t' << itr->first << "\t\t\t\t" << itr->second << '\n';
+  }
+  
   
   std::cout << "\n\nSeed: " << RANDOMCORE.currentSeed;
 }

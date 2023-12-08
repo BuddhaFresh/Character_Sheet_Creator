@@ -202,15 +202,19 @@ private:
   bool IsSkillWithoutSubSkills(std::string &SKILL);
   int NumberOfSubSkills(std::string &SKILL);
   void RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
-  void CheckForDuplicatcates(std::vector<std::string> &V_main);
+  void CheckForDuplicatcates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
   void RefillHobbySkills(std::vector<std::string> &V_main, int &MaxNumberOfSkills);
+  void RemoveExtraSubSkills(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
   void PickHobbySkills();
   int NumberOfHobbySkills;
   int TESTDUP;
   int SUBNUM;
   int NONSUBNUM;
   int SKILLWITHSUBNUM;
+  bool TOOMANYSUBS;
   std::vector<std::string> DUPITEMS;
+  std::map<std::string, int> UniqueCounts;
+  std::map<std::string, int> SubskillMax;
 
 
   std::map<std::string, SkillData>SkillTable;
