@@ -1532,6 +1532,7 @@ void BRP_human_base::PickHobbySkills(){
   NONSUBNUM = 0; //number of duplicates without subskills
   SKILLWITHSUBNUM = 0; //number of duplicate skills with subskills
   SUBNUM = 0; //number of subskills in duplicate skills
+  HOBBYSKILLS = {}; //vector for character's personnel skill set 
   DUPITEMS = {}; //vector containing each duplicate skill to be removed
   TOOMANYSUBS = false; //true if the number of skills with subskills is greater then the total number of skills with subskills in the SkillTable
       
@@ -1554,6 +1555,25 @@ void BRP_human_base::PickHobbySkills(){
   //sort alphabetically
   std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
 }
+
+//randomly assign subskills from HOBBYSKILLS
+/*
+void RandomSubSkillAssignment(std::vector<std::string> &V_main){
+
+  std::vector<std::string> SUBSTOPOP = V_main;
+
+  //remove non-subskill skills
+  for(int i = 0; i < V_main.size(); i++){
+    if(IsSkillWithoutSubSkills(SUBSTOPOP[i]) == true){
+      SUBSTOPOP[i].erase();
+    } else {continue;}
+  }
+
+  std::sort(SUBSTOPOP.begin(),SUBSTOPOP.end());
+
+  //map with {"skill",#ofskills} or just run through SUBSTOPOP and have each skill be checked (could be more complicated)
+}
+*/
 
 //Randomly assigns skill points to the Character's personnal skills 
 /*
