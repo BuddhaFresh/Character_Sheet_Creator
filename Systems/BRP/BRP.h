@@ -206,6 +206,10 @@ private:
   void RefillHobbySkills(std::vector<std::string> &V_main, int &MaxNumberOfSkills);
   void RemoveExtraSubSkills(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
   void PickHobbySkills();
+  void RandomSubSkillAssignment(std::vector<std::string> &V_main);
+  bool IsSubskillEmpty(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
+  bool SubskillIsInHOBBYSKILLS(std::string &SKILL, std::vector<std::string> &V_main);
+  void NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill);
   int NumberOfHobbySkills;
   int TESTDUP;
   int SUBNUM;
@@ -215,6 +219,7 @@ private:
   std::vector<std::string> DUPITEMS;
   std::map<std::string, int> UniqueCounts;
   std::map<std::string, int> SubskillMax;
+  std::vector<std::string> SUBSTOPOP;
 
 
   std::map<std::string, SkillData>SkillTable;

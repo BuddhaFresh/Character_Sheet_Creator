@@ -1442,7 +1442,6 @@ void BRP_human_base::RemoveExtraSubSkills(std::vector<std::string> &V_main, std:
         } else {UniqueCounts[ListOfSkills[a]]++;}
       }
   }
-
   
   //check and compare maps then apply to DUPITEMS
   std::map<std::string,int>::iterator Iuc = UniqueCounts.begin();
@@ -1457,11 +1456,8 @@ void BRP_human_base::RemoveExtraSubSkills(std::vector<std::string> &V_main, std:
     }
     Iuc++;
     Ism++;
-  }
-  
-  
+  }  
 }
-
 
 //Takes in a string and returns true if it is a skill without a subskill
 bool BRP_human_base::IsSkillWithoutSubSkills(std::string &SKILL){
@@ -1556,24 +1552,70 @@ void BRP_human_base::PickHobbySkills(){
   std::sort(HOBBYSKILLS.begin(),HOBBYSKILLS.end());
 }
 
-//randomly assign subskills from HOBBYSKILLS
-/*
-void RandomSubSkillAssignment(std::vector<std::string> &V_main){
 
-  std::vector<std::string> SUBSTOPOP = V_main;
+//check if subskill is empty
+bool BRP_human_base::IsSubskillEmpty(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST){
+  bool result = false;
+  if(SKILLLIST[SKILL].SubSkillName == ""){
+    result = true;
+  }
+  return result;
+}
 
-  //remove non-subskill skills
+//checks if string is in vector
+bool BRP_human_base::SubskillIsInHOBBYSKILLS(std::string &SKILL, std::vector<std::string> &V_main){
+  bool result = false;
   for(int i = 0; i < V_main.size(); i++){
-    if(IsSkillWithoutSubSkills(SUBSTOPOP[i]) == true){
-      SUBSTOPOP[i].erase();
+    if(SKILL == V_main[i]){
+      result = true;
+      break;
     } else {continue;}
   }
+  return result;
+}
 
-  std::sort(SUBSTOPOP.begin(),SUBSTOPOP.end());
+//Updates the NextFreeSubSkill
+void BRP_human_base::NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill){
+  for(int i = 1; i < AmountOfSubSkills; i++){
+    if(SKILLLIST[SKILL+std::to_string(i)].SubSkillName == ""){
+      FreeSubSkill = SKILL+std::to_string(i);
+      break;
+    }else{continue;}
+  }
+}
+
+//randomly assign subskills from HOBBYSKILLS
+void BRP_human_base::RandomSubSkillAssignment(std::vector<std::string> &V_main){
+
+  int AmountOfSubSkills = 0;
+  std::string NextFreeSubSkill = "";
+
+  for(int i = 0; i < V_main.size(); i++){
+    
+    if(IsSkillWithoutSubSkills(V_main[i]) == false){
+      if(SkillTable[V_main[i]+"0"].SubSkillName == ""){
+        V_main[i] = V_main[i]+"0";
+      } 
+      else
+      {
+        AmountOfSubSkills = NumberOfSubSkills(V_main[i]);
+        
+        NextFreeSubskill(V_main[i], AmountOfSubSkills, SkillTable, NextFreeSubSkill);
+        
+      }
+      
+      
+      
+    } else {continue;}
+    
+  }
+
+  
+
+  //std::sort(SUBSTOPOP.begin(),SUBSTOPOP.end());
 
   //map with {"skill",#ofskills} or just run through SUBSTOPOP and have each skill be checked (could be more complicated)
 }
-*/
 
 //Randomly assigns skill points to the Character's personnal skills 
 /*
@@ -1793,6 +1835,7 @@ void BRP_human_base::fullrandom(){
   PickJobSkills();
   ProfessionSkillSet();
   PickHobbySkills();
+  RandomSubSkillAssignment(HOBBYSKILLS);
   //PersonalSkillSet();
 
 }
@@ -1958,6 +2001,11 @@ void BRP_human_base::consoleChar(){
   std::cout << "\nMap of skills with subskills max\n ";
   for(auto itr = SubskillMax.begin(); itr != SubskillMax.end(); itr++){
     std::cout << '\t' << itr->first << "\t\t\t\t" << itr->second << '\n';
+  }
+
+  std::cout << "\nSubskills to populate"<< "("<< SUBSTOPOP.size() <<")" <<": " << std::endl;
+  for (auto x : SUBSTOPOP){
+    std::cout << x << std::endl;
   }
   
   
