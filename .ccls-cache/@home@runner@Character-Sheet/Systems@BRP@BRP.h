@@ -209,7 +209,10 @@ private:
   void RandomSubSkillAssignment(std::vector<std::string> &V_main);
   bool IsSubskillEmpty(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
   bool SubskillIsInHOBBYSKILLS(std::string &SKILL, std::vector<std::string> &V_main);
-  void NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill);
+  void NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
+  void NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
+  bool IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main);
+  void NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   int NumberOfHobbySkills;
   int TESTDUP;
   int SUBNUM;

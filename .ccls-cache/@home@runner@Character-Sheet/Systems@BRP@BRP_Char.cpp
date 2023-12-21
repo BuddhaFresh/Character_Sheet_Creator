@@ -1533,7 +1533,11 @@ void BRP_human_base::PickHobbySkills(){
   TOOMANYSUBS = false; //true if the number of skills with subskills is greater then the total number of skills with subskills in the SkillTable
       
   //random numbre of hobby skills to have
-  NumberOfHobbySkills = ROLL.Die(8, 10);
+  //NumberOfHobbySkills = ROLL.Die(8, 10);
+
+  //TESTING!
+  NumberOfHobbySkills = 10;
+  HOBBYSKILLS = {"Art", "Art", "First Aid", "Persuade", "Science", "Science", "Research", "Science", "Science", "Demolition"};
  
   //Populates HOBBYSKILLS and checks for duplicates
   RefillHobbySkills(HOBBYSKILLS, NumberOfHobbySkills);
@@ -1574,47 +1578,150 @@ bool BRP_human_base::SubskillIsInHOBBYSKILLS(std::string &SKILL, std::vector<std
   return result;
 }
 
-//Updates the NextFreeSubSkill
-void BRP_human_base::NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill){
-  for(int i = 1; i < AmountOfSubSkills; i++){
-    if(SKILLLIST[SKILL+std::to_string(i)].SubSkillName == ""){
-      FreeSubSkill = SKILL+std::to_string(i);
+//Updates the NextFreeSubSkill that isn't in HOBBYSKILLS
+void BRP_human_base::NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main){
+
+  for(int i = 0; i < AmountOfSubSkills; i++){
+    std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
+    if(SubskillIsInHOBBYSKILLS(SKILL_SUBSKILL, V_main) == true || SKILLLIST[SKILL_SUBSKILL].SubSkillName != ""){
+      continue;
+    }
+    else if(SubskillIsInHOBBYSKILLS(SKILL_SUBSKILL, V_main) != true && SKILLLIST[SKILL_SUBSKILL].SubSkillName == ""){
+      FreeSubSkill = SKILL_SUBSKILL;
       break;
-    }else{continue;}
+    }
+    else {
+      NoFreeSubskillChoice(SKILL, AmountOfSubSkills, FreeSubSkill, V_main);
+      break;
+    }
   }
-}
+  
 
-//randomly assign subskills from HOBBYSKILLS
-void BRP_human_base::RandomSubSkillAssignment(std::vector<std::string> &V_main){
+  /*
+  
 
-  int AmountOfSubSkills = 0;
-  std::string NextFreeSubSkill = "";
 
-  for(int i = 0; i < V_main.size(); i++){
-    
-    if(IsSkillWithoutSubSkills(V_main[i]) == false){
-      if(SkillTable[V_main[i]+"0"].SubSkillName == ""){
-        V_main[i] = V_main[i]+"0";
-      } 
-      else
-      {
-        AmountOfSubSkills = NumberOfSubSkills(V_main[i]);
-        
-        NextFreeSubskill(V_main[i], AmountOfSubSkills, SkillTable, NextFreeSubSkill);
-        
-      }
-      
-      
-      
-    } else {continue;}
-    
+  
+  for(int i = 0; i < AmountOfSubSkills; i++){
+    std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
+    if(SubskillIsInHOBBYSKILLS(SKILL_SUBSKILL, V_main) == true){
+      continue;
+    }
+    else if(SKILLLIST[SKILL_SUBSKILL].SubSkillName != ""){
+      continue;
+    }
+    else {
+      FreeSubSkill = SKILL_SUBSKILL;
+      break;
+    }
   }
 
   
+  
 
-  //std::sort(SUBSTOPOP.begin(),SUBSTOPOP.end());
 
-  //map with {"skill",#ofskills} or just run through SUBSTOPOP and have each skill be checked (could be more complicated)
+  
+  for(int i = 0; i < AmountOfSubSkills; i++){
+    std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
+    if(SKILLLIST[SKILL_SUBSKILL].SubSkillName == "" && SubskillIsInHOBBYSKILLS(SKILL_SUBSKILL, V_main) != true){
+      FreeSubSkill = SKILL_SUBSKILL;
+      break;
+    }else{continue;}
+  }
+  */
+}
+
+//Updates the NextFreeSubSkill that isn't in HOBBYSKILLS with a randomly known skill
+void BRP_human_base::NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main){
+  std::vector<int> SubCANUse = {};
+  
+  for(int i = 0; i < AmountOfSubSkills; i++){
+    std::string SUBSKILLCHECK = SKILL+std::to_string(i);
+    if(SubskillIsInHOBBYSKILLS(SUBSKILLCHECK, V_main) != true){
+      SubCANUse.push_back(i);
+    } else {continue;}
+  }
+
+  if(SubCANUse.size() == 0){
+    
+    NextFreeSubskill(SKILL, AmountOfSubSkills, SKILLLIST, FreeSubSkill, V_main);
+    
+  } else {
+    
+    int SelectedRandomSubSkill = ROLL.Die(0, SubCANUse.size());
+    FreeSubSkill = SKILL+std::to_string(SubCANUse[SelectedRandomSubSkill]);
+    SubCANUse.clear();
+    
+  }
+}
+
+//Updates the NextFreeSubSkill when no free subskill is present
+void BRP_human_base::NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main){
+  for(int i = 0; i < AmountOfSubSkills; i++){
+    std::string SUBSKILLCHECK = SKILL+std::to_string(i);
+    if(SubskillIsInHOBBYSKILLS(SUBSKILLCHECK, V_main) != true){
+      FreeSubSkill = SUBSKILLCHECK;
+      break;
+    } else {continue;}
+  }
+}
+
+//check if there is any available subskills that are also not in HOBBYSKILLS
+bool BRP_human_base::IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main){
+  bool result = false;
+  for(int i = 0; i < AmountOfSubSkills; i++){
+    std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
+    if(SKILLLIST[SKILL_SUBSKILL].SubSkillName == ""){
+      result = true;
+      break;
+    }else{continue;}
+  }
+  return result;  
+}
+
+//randomly assign exact subskills for skills in HOBBYSKILLS
+void BRP_human_base::RandomSubSkillAssignment(std::vector<std::string> &V_main){
+
+  int AmountOfSubSkills = 0;
+  std::string FreeSubSkill = "";
+
+  //loop through HOBBYSKILLS, going through each skill
+  for(int i = 0; i < V_main.size(); i++){
+    //check if skill has a subskill
+    if(IsSkillWithoutSubSkills(V_main[i]) == false){
+      
+      //Skill as 'Skill0' is; BLANK and NOT in HOBBYSKILLS
+      std::string TEMPZERO = V_main[i]+"0";
+      if(SkillTable[TEMPZERO].SubSkillName == "" && SubskillIsInHOBBYSKILLS(TEMPZERO, V_main) == false){
+        V_main[i] = TEMPZERO;
+        
+      }else{//all other situations for subskills
+        
+        AmountOfSubSkills = NumberOfSubSkills(V_main[i]);
+        bool UseKnownSkill = ROLL.Die(0, 1);
+
+        //Skill; has an availible subskill and will use the next availible subskill slot
+        if(IsThereAnyFreeSubskills(V_main[i], AmountOfSubSkills, SkillTable, V_main) == true && UseKnownSkill == false){
+
+          //putting the next free skill subskill slot not in HOBBYSKILLS into HOBBYSKILLS
+          NextFreeSubskill(V_main[i], AmountOfSubSkills, SkillTable, FreeSubSkill, V_main);
+          V_main[i] = FreeSubSkill;
+
+        //Skill; has an availible subskill but will use a random known subskill that isn't already on HOBBYSKILLS
+        }else if(IsThereAnyFreeSubskills(V_main[i], AmountOfSubSkills, SkillTable, V_main) == true && UseKnownSkill == true){
+          
+          NextRandomKnownSubSkill(V_main[i], AmountOfSubSkills, SkillTable, FreeSubSkill, V_main);
+          V_main[i] = FreeSubSkill;        
+          
+        }else{//no empty subskill slots
+
+          NoFreeSubskillChoice(V_main[i], AmountOfSubSkills, FreeSubSkill, V_main);
+          V_main[i] = FreeSubSkill;
+
+        }
+      } 
+    }else{continue;} //skill has no subskills and is ignored
+  }
 }
 
 //Randomly assigns skill points to the Character's personnal skills 

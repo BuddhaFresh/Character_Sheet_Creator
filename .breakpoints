@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "Systems/BRP/BRP_Char.cpp": [
+      {
+        "id": "3a461938-1aa3-4dda-b479-39deac07a405",
+        "line": 1678,
+        "version": 76403,
+        "index": 74785
+      }
+    ]
+  }
 }
