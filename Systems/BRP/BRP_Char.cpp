@@ -429,7 +429,8 @@ void BRP_human_base::Professions(){
 
   //44 total profession, elements are between 0 and 43
   //Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
-  Hired = 6;
+  //Hired = ROLL.Die(0,5);
+  Hired = 1;
 
   Profession = jobs[Hired];
 
@@ -1042,9 +1043,9 @@ void BRP_human_base::Skills(int x, int i, int p){
 }
 
 //Picks random skills for professions with random choices of skills and populates JOBSKILLS from 0 to NumberOfPicks.
-void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> ProfessionSkills){
+void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> &ProfessionSkills){
   std::shuffle(ProfessionSkills.begin(), ProfessionSkills.end(), RANDOMCORE.mt_rando);
-  for(int i = 0; i < NumberOfPicks; i++){
+  for(int i = 0; i < NumberOfPicks-1; i++){
     JOBSKILLS[i] = ProfessionSkills[i];
   }
 }
@@ -1114,9 +1115,10 @@ void BRP_human_base::PickJobSkills()
     //any 5 based on setting:
       std::vector<std::string> AssassinSkillRando = {"Brawl","Disguise","Drive0","Technical Skill0","Grapple","Firearm0","Fine Manipulation","Martial Arts","Melee Weapon0","Missile Weapon0","Ride","Throw","Track"};
       RandomProfessionSkillPick(5, AssassinSkillRando);
-      for (int i = 0; i < AssassinSkillRando.size()-1; i++){
+      for (int i = 0; i < 5; i++){
         if (JOBSKILLS[i] == "Technical Skill0"){
-          SkillTable["Technical Skill0"].SubSkillName = Technical[3];
+          //SkillTable["Technical Skill0"].SubSkillName = Technical[3];
+          SkillTable["Technical Skill0"].SubSkillName = "Electronics";
         }
       }
       //Brawl
@@ -1533,11 +1535,11 @@ void BRP_human_base::PickHobbySkills(){
   TOOMANYSUBS = false; //true if the number of skills with subskills is greater then the total number of skills with subskills in the SkillTable
       
   //random numbre of hobby skills to have
-  //NumberOfHobbySkills = ROLL.Die(8, 10);
+  NumberOfHobbySkills = ROLL.Die(8, 10);
 
   //TESTING!
-  NumberOfHobbySkills = 10;
-  HOBBYSKILLS = {"Art", "Art", "First Aid", "Persuade", "Science", "Science", "Research", "Science", "Science", "Demolition"};
+  //NumberOfHobbySkills = 10;
+  //HOBBYSKILLS = {"Art", "Art", "First Aid", "Persuade", "Science", "Science", "Research", "Science", "Science", "Demolition"};
  
   //Populates HOBBYSKILLS and checks for duplicates
   RefillHobbySkills(HOBBYSKILLS, NumberOfHobbySkills);
@@ -1578,23 +1580,24 @@ bool BRP_human_base::SubskillIsInHOBBYSKILLS(std::string &SKILL, std::vector<std
   return result;
 }
 
-//Updates the NextFreeSubSkill that isn't in HOBBYSKILLS
+//Updates the FreeSubSkill that isn't in HOBBYSKILLS and isn't a known subskill
 void BRP_human_base::NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main){
+  std::vector<int> SubCANUse = {};
 
   for(int i = 0; i < AmountOfSubSkills; i++){
     std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
-    if(SubskillIsInHOBBYSKILLS(SKILL_SUBSKILL, V_main) == true || SKILLLIST[SKILL_SUBSKILL].SubSkillName != ""){
-      continue;
-    }
-    else if(SubskillIsInHOBBYSKILLS(SKILL_SUBSKILL, V_main) != true && SKILLLIST[SKILL_SUBSKILL].SubSkillName == ""){
-      FreeSubSkill = SKILL_SUBSKILL;
+    if(SubskillIsInHOBBYSKILLS(SKILL_SUBSKILL, V_main) != true && SKILLLIST[SKILL_SUBSKILL].SubSkillName == ""){
+      SubCANUse.push_back(i);
       break;
-    }
-    else {
-      NoFreeSubskillChoice(SKILL, AmountOfSubSkills, FreeSubSkill, V_main);
-      break;
-    }
+    }else{continue;}
   }
+      
+  if(SubCANUse.size() != 0){
+    FreeSubSkill = SKILL+std::to_string(SubCANUse.back());
+  }else{
+    NoFreeSubskillChoice(SKILL, AmountOfSubSkills, FreeSubSkill, V_main);
+  }
+  
   
 
   /*
@@ -1637,7 +1640,7 @@ void BRP_human_base::NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSu
   
   for(int i = 0; i < AmountOfSubSkills; i++){
     std::string SUBSKILLCHECK = SKILL+std::to_string(i);
-    if(SubskillIsInHOBBYSKILLS(SUBSKILLCHECK, V_main) != true){
+    if(SubskillIsInHOBBYSKILLS(SUBSKILLCHECK, V_main) != true && SKILLLIST[SUBSKILLCHECK].SubSkillName != ""){
       SubCANUse.push_back(i);
     } else {continue;}
   }
