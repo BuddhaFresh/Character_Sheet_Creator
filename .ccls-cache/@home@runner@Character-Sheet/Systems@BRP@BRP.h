@@ -161,8 +161,9 @@ private:
   std::vector <std::string> Science;
   std::vector <std::string> Technical;
 
-  std::string JOBSKILLS[10];
+  std::vector <std::string>JOBSKILLS;
   std::vector <std::string>HOBBYSKILLS;
+  std::vector <std::string>PERSONALITYSKILLS; 
 
   void Weapons();
   void FillSkillMod();
@@ -174,8 +175,7 @@ private:
   int EDUstat();
   void SkillCategory();
   void Skills(int x, int i, int p);
-  void ProfessionSkillSet();
-  void PersonalSkillSet();
+  void SkillPointSetting(std::vector<std::string> &V_main, int &SkillPointsMax, int &SkillMAX);
   int CharacteristicRoll(int r);
   int Born();
   void OwnLanguage();
@@ -208,11 +208,13 @@ private:
   void PickHobbySkills();
   void RandomSubSkillAssignment(std::vector<std::string> &V_main);
   bool IsSubskillEmpty(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
-  bool SubskillIsInHOBBYSKILLS(std::string &SKILL, std::vector<std::string> &V_main);
+  bool SubskillIsInVector(std::string &SKILL, std::vector<std::string> &V_main);
   void NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   void NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   bool IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main);
   void NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main);
+  bool NumberAtEnd(std::string &SKILL);
+  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST);
   int NumberOfHobbySkills;
   int TESTDUP;
   int SUBNUM;

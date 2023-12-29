@@ -1,24 +1,3 @@
 {
-  "files": {
-    "Systems/BRP/BRP_Char.cpp": [
-      {
-        "id": "440522dd-b386-4e2b-8633-7298297655d3",
-        "line": 427,
-        "version": 77099,
-        "index": 23330
-      },
-      {
-        "id": "1a2d230c-8cf4-4b50-aa9b-1a647817562d",
-        "line": 1118,
-        "version": 77099,
-        "index": 56828
-      },
-      {
-        "id": "3a461938-1aa3-4dda-b479-39deac07a405",
-        "line": 1672,
-        "version": 77099,
-        "index": 74393
-      }
-    ]
-  }
+  "files": {}
 }

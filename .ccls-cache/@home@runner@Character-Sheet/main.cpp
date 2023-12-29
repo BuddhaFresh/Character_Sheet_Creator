@@ -16,10 +16,10 @@ ROADMAP
 0. txt file version complete
  0.1 skills [IN PROGRESS]
    0.1a selecting skills based on profession by random [DONE]
-   0.1b selecting personnel skills by random
+   0.1b selecting personnel skills by random [IN PROGRESS]
    0.1c filter skills based on era/setting
-     0.1cI Eras/Settings need to be picked but expandable
-     0.1cII Adjust what kind of equipment can be generated
+     0.1cI Eras/Settings need to be picked but expandable (inheritance?)
+     0.1cII Adjust what kind of equipment can be generated (inheritance?)
      0.1cIII Adjust what kind of skills can be selected (maybe a tag system?)
  0.2 description
    0.2a setup simple features [DONE]
