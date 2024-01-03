@@ -200,7 +200,7 @@ private:
 
   bool IsThereADup(std::vector<std::string> LIST);
   bool IsSkillWithoutSubSkills(std::string &SKILL);
-  int NumberOfSubSkills(std::string &SKILL);
+  int NumberOfSubSkills(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
   void RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
   void CheckForDuplicatcates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
   void RefillHobbySkills(std::vector<std::string> &V_main, int &MaxNumberOfSkills);
@@ -215,6 +215,7 @@ private:
   void NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   bool NumberAtEnd(std::string &SKILL);
   void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST);
+  bool IsSkillACombatSkill(std::string &SKILL);
   int NumberOfHobbySkills;
   int TESTDUP;
   int SUBNUM;

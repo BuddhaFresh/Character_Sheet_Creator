@@ -990,8 +990,7 @@ void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<st
 }
 
 //Assigns skills to JOBSKILLS array based on Profession
-void BRP_human_base::PickJobSkills()
-{
+void BRP_human_base::PickJobSkills(){
   switch (Hired) 
   {
     case 0: //Artist
@@ -1390,7 +1389,7 @@ void BRP_human_base::CheckForDuplicatcates(std::vector<std::string> &V_main, std
             V_banlist.push_back(V_main[i]);
         } else {
           SKILLWITHSUBNUM++;
-          SUBNUM += NumberOfSubSkills(V_main[i]);
+          SUBNUM += NumberOfSubSkills(V_main[i], SkillTable);
         }
     }
   }
@@ -1418,7 +1417,7 @@ void BRP_human_base::RemoveExtraSubSkills(std::vector<std::string> &V_main, std:
     } else {
         if(UniqueCounts.find(ListOfSkills[a]) == UniqueCounts.end()){
           UniqueCounts.insert(std::pair<std::string,int>(ListOfSkills[a],1));
-          SubskillMax.insert(std::pair<std::string,int>(ListOfSkills[a],NumberOfSubSkills(ListOfSkills[a])));
+          SubskillMax.insert(std::pair<std::string,int>(ListOfSkills[a],NumberOfSubSkills(ListOfSkills[a], SkillTable)));
         } else {UniqueCounts[ListOfSkills[a]]++;}
       }
   }
@@ -1456,11 +1455,11 @@ bool BRP_human_base::IsSkillWithoutSubSkills(std::string &SKILL){
 }
 
 //checks number of subskills for a given skill
-int BRP_human_base::NumberOfSubSkills(std::string &SKILL){
+int BRP_human_base::NumberOfSubSkills(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST){
   int AMOUNT = 0;
-  for(int j = 0; j < 10; j++){
+  for(int j = 0; j < SKILLLIST.size(); j++){
     //if find() doesn't reach end() of SkillTable, then it found a subskill and increses the count for AMOUNT.
-    if(SkillTable.find(SKILL+std::to_string(j)) != SkillTable.end()){
+    if(SKILLLIST.find(SKILL+std::to_string(j)) != SKILLLIST.end()){
       AMOUNT++;
     }else{break;}
   }
@@ -1647,7 +1646,7 @@ void BRP_human_base::RandomSubSkillAssignment(std::vector<std::string> &V_main){
         
       }else{//all other situations for subskills
         
-        AmountOfSubSkills = NumberOfSubSkills(V_main[i]);
+        AmountOfSubSkills = NumberOfSubSkills(V_main[i], SkillTable);
         bool UseKnownSkill = ROLL.Die(0, 1);
 
         //Skill; has an availible subskill and will use the next availible subskill slot
@@ -1676,15 +1675,94 @@ void BRP_human_base::RandomSubSkillAssignment(std::vector<std::string> &V_main){
   //loop through vector of skill to assign 
 }
 
+//check if the skill is a Combat Skill
+bool BRP_human_base::IsSkillACombatSkill(std::string &SKILL){
+  bool result = false;
+  std::vector<std::string> CombatSkills = {"Artillery", "Brawl", "Energy Weapon", "Firearm", "Grapple", "Heavy Weapon", "Martial Arts", "Melee Weapon", "Missile Weapon", "Parry", "Shield"};
+  for(int i = 0; i < CombatSkills.size(); i++){
+    if(SKILL.find(CombatSkills[i]) == true){
+      result = true;
+      break;
+    }else{continue;}
+  }
+  return result;
+}
+
 //randomly assigns subskills with an availible name; "Art0":"Painting", etc
 void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST){
   //loop through each skill in vector
   for(int i = 0; i < V_main.size(); i++){
+    std::cout << "\n" << V_main[i];
     //skip skills without subskills and already filled in subskills
-    if(IsSkillWithoutSubSkills(V_main[i]) == false || IsSubskillEmpty(V_main[i], SKILLLIST) == true){
-      //code
-    }else{continue;}
-  };
+
+
+    if(IsSubskillEmpty(V_main[i], SKILLLIST) != true || IsSkillWithoutSubSkills(V_main[i]) == true){
+      std::cout << "\nSkipped\n";
+       continue;
+    }else{
+      int SkillType = 9;
+      std::STRING ggg = "ARMS";
+
+      if(V_main[i].find(ggg) == true){
+        SkillType = 0;
+      }
+      else if(IsSkillACombatSkill(V_main[i]) == true){
+        SkillType = 1;
+      }
+      else{
+        SkillType = 2;
+      }
+
+      switch(SkillType){
+        case 0: {
+          std::cout << "\n 0. ARMS in vector\n";
+          break;}
+        case 1:  {
+          std::cout << "\n 1. Combat Skill in vector\n";
+          break;}
+        case 2: {
+          std::cout << "\n 2. Normal Skill with Subskill\n";
+          break;}
+        default: {
+          std::cout << "\n Error in RandomSubSkillSelection\n";
+          break;}
+      }
+    }
+
+
+    /*
+    if(IsSubskillEmpty(V_main[i], SKILLLIST) == true){
+      //needs to; sort between ARMS(which get replaced as Combat Skills), Combat Skills (which don't have subskills set up yet), regular skills with subskills (which have vectors I can draw from mostly, some neeed special vectors like Knowledge (Group):Americans, etc)
+      
+      if(IsSkillWithoutSubSkills(V_main[i]) == false){
+        int SkillType;
+
+        if(V_main[i].find("ARMS") == true){SkillType = 0;}
+        else if(IsSkillACombatSkill(V_main[i]) == true){SkillType = 1;}
+        else{SkillType = 2;}
+
+        switch(SkillType){
+          case 0: {
+            std::cout << "\n 0. ARMS in vector\n";
+            break;}
+          case 1:  {
+            std::cout << "\n 1. Combat Skill in vector\n";
+            break;}
+          case 2: {
+            std::cout << "\n 2. Normal Skill with Subskill\n";
+            break;}
+          default: {
+            std::cout << "\n Error in RandomSubSkillSelection\n";
+            break;}
+        }
+      }else{std::cout << "\nSkipped, subskill not empty\n";
+           continue;}
+      
+    }else{
+      std::cout << "\nSkipped, no subskills\n";
+      continue;}
+    */
+  };//for loop
 }
 
 //Loop through all skills and adds the skill's base value and a skill's category value to the skill's mod value
@@ -1871,6 +1949,7 @@ void BRP_human_base::fullrandom(){
   RandomSubSkillAssignment(HOBBYSKILLS);
   SkillPointSetting(HOBBYSKILLS, PerSkillPtsMAX, SkillRatingMAX);
   RandomSubSkillAssignment(PERSONALITYSKILLS);
+  RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable);
 }
 
 //Adjust length of spacing for charcter sheet if skill is over 99%
