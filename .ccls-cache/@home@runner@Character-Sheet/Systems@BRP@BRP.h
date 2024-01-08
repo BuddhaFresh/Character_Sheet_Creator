@@ -117,7 +117,7 @@ private:
 
   int Toolong(int mod);
 
-  std::string Religion;
+  std::string Convert;
   std::string DamBonus;
   std::string Profession;
   std::string Wealth;  
@@ -150,6 +150,7 @@ private:
   std::vector <std::string> SkillList;
   std::vector <std::string> Art;
   std::vector <std::string> Craft;
+  std::vector <std::string> Drive;
   std::vector <std::string> Heavy_Machine;
   std::vector <std::string> Knowledge;
   std::vector <std::string> Language;
@@ -159,7 +160,11 @@ private:
   std::vector <std::string> Repair;
   std::vector <std::string> Ride;
   std::vector <std::string> Science;
-  std::vector <std::string> Technical;
+  std::vector <std::string> Technical_Skill;
+  std::vector <std::string> Instrument;
+  std::vector <std::string> Group;
+  std::vector <std::string> Region;
+  std::vector <std::string> Religion;
 
   std::vector <std::string>JOBSKILLS;
   std::vector <std::string>HOBBYSKILLS;
@@ -214,8 +219,11 @@ private:
   bool IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main);
   void NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   bool NumberAtEnd(std::string &SKILL);
-  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST);
+  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST);
   bool IsSkillACombatSkill(std::string &SKILL);
+  bool IsSubSkillAlreadyUsed(std::string &SKILL, std::string &SUBSKILLTOCHECK, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST);
+  void SubSpecialtySelection(std::string &SKILL, std::string &RAWSUBSKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::map <std::string, std::vector<std::string>> &SUBSKILLLIST);
+
   int NumberOfHobbySkills;
   int TESTDUP;
   int SUBNUM;
@@ -227,9 +235,9 @@ private:
   std::map<std::string, int> SubskillMax;
   std::vector<std::string> SUBSTOPOP;
 
-
   std::map<std::string, SkillData>SkillTable;
   std::map<std::string, WeaponsData>WeaponsTable;
+  std::map<std::string, std::vector<std::string>>SubSkillTable;
 
 
 public:

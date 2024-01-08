@@ -1,0 +1,6 @@
+1704405340
+seed for double tech_skill Computer
+TESTING FOR RandomSubSkillSelection() while loop
+
+1704479880
+1704488871
