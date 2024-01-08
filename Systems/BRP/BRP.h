@@ -180,7 +180,7 @@ private:
   int EDUstat();
   void SkillCategory();
   void Skills(int x, int i, int p);
-  void SkillPointSetting(std::vector<std::string> &V_main, int &SkillPointsMax, int &SkillMAX);
+  void SkillPointSetting(std::vector<std::string> &V_main, std::map<std::string, SkillData>&SKILLLIST, int &SkillPointsMax, int &SkillMAX);
   int CharacteristicRoll(int r);
   int Born();
   void OwnLanguage();

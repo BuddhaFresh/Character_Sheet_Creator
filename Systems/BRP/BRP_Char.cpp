@@ -1860,7 +1860,7 @@ void BRP_human_base::PersonalityPick(int pick){
   switch (pick){//need to add skill points asigning for each case
   case 1:{
     Personality = "They have a brutal personality, thinking first of solving problems by means of physical force and brawn.";
-    SkillTable["Brawl"].SkillMod += 20;
+    /*SkillTable["Brawl"].SkillMod += 20;
     SkillTable["Climb"].SkillMod += 20;
     SkillTable["Dodge"].SkillMod += 20;
     SkillTable["Grapple"].SkillMod += 20;
@@ -1872,13 +1872,13 @@ void BRP_human_base::PersonalityPick(int pick){
     SkillTable["Swim"].SkillMod += 20;
     SkillTable["Throw"].SkillMod += 20;
     //SkillTable["ARMS"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;*/
     PERSONALITYSKILLS = {"Brawl", "Climb", "Dodge", "Grapple", "Insight", "Jump", "Sense", "Stealth", "Swim", "Throw", "Ride", "ARMS", "ARMS"};
     break;}
     
   case 2:{
     Personality = "They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.";
-    SkillTable["Disguise"].SkillMod += 20;
+    /*SkillTable["Disguise"].SkillMod += 20;
     SkillTable["Dodge"].SkillMod += 20;
     SkillTable["Fine Manipulation"].SkillMod += 20;
     SkillTable["First Aid"].SkillMod += 20;
@@ -1891,13 +1891,13 @@ void BRP_human_base::PersonalityPick(int pick){
     SkillTable["Stealth"].SkillMod += 20;
     //SkillTable["ARMS"].SkillMod += 20;
     //SkillTable["Knowledge"].SkillMod += 20;
-    //SkillTable["Craft"].SkillMod += 20;
+    //SkillTable["Craft"].SkillMod += 20;*/
     PERSONALITYSKILLS = {"Disguise", "Dodge", "Fine Manipulation", "First Aid", "Navigate", "Sleight of Hand", "Stealth", "Pilot", "Ride", "ARMS", "Knowledge", "Craft"};
     break;}
     
   case 3:{
     Personality = "They have a cunning personality, trying first to outsmart an opponent to gain an advantage.";
-    SkillTable["Appraise"].SkillMod += 20;
+    /*SkillTable["Appraise"].SkillMod += 20;
     SkillTable["Bargain"].SkillMod += 20;
     SkillTable["Disguise"].SkillMod += 20;
     SkillTable["Insight"].SkillMod += 20;
@@ -1909,13 +1909,13 @@ void BRP_human_base::PersonalityPick(int pick){
     //SkillTable["Technical"].SkillMod += 20; //setting approate
     //SkillTable["Knowledge"].SkillMod += 20;
     //SkillTable["Knowledge"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;*/
     PERSONALITYSKILLS = {"Appraise", "Bargain", "Disguise", "Insight", "Listen", "Research", "Sense", "Spot", "Stealth", "Technical Skill", "Knowledge", "Knowledge", "ARMS"};
     break;}
     
   case 4:{
     Personality = "They have a charming personality, enjoying persuading other people to work, while they make the decisions.";
-    SkillTable["Appraise"].SkillMod += 20;
+    /*SkillTable["Appraise"].SkillMod += 20;
     SkillTable["Bargain"].SkillMod += 20;
     SkillTable["Command"].SkillMod += 20;
     SkillTable["Etiquette"].SkillMod += 20;
@@ -1927,52 +1927,62 @@ void BRP_human_base::PersonalityPick(int pick){
     SkillTable["Sense"].SkillMod += 20;
     SkillTable["Status"].SkillMod += 20;
     //SkillTable["Language1"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;
+    //SkillTable["ARMS"].SkillMod += 20;*/
     PERSONALITYSKILLS = {"Appraise", "Bargain", "Command", "Etiquette", "Fast Talk", "Insight", "Preform", "Persuade", "Language0", "Language", "Sense", "Status", "ARMS"};
     break;}  
   }
 }
 
 //Randomly assigns skill points to skills in a given vector
-void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, int &SkillPointPool, int &SkillMAX){
+void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::map<std::string, SkillData>&SKILLLIST, int &SkillPointPool, int &SkillMAX){
   //Sets up the Current Skill Points to be spent for the following loop.
   int CurrentSkillPoints = SkillPointPool;
 
-  //Function ends when all CurrentSkillPoints are used up.
-  while (CurrentSkillPoints > 0){
-    //Loops through vector
-    for (int i = 0; i < V_main.size(); i++){
-    
-    //Gets the name of the skill to be increased.
-    std::string ROLE = V_main.at(i);
-      
-    //Skip any skill already at max rating.
-    if (SkillTable[ROLE].SkillMod >= SkillMAX){
-      continue;
+  if(V_main == PERSONALITYSKILLS){
+    CurrentSkillPoints = 20;
+    for(int i = 0; i < V_main.size(); i++){
+      std::string SKILLfromVECTOR = V_main.at(i);
+      SKILLLIST[SKILLfromVECTOR].SkillMod += CurrentSkillPoints;
     }
-    else {
-      
-      //Assigns 0 to 10 points.
-      int LEARNED = ROLL.Die(0,10);
-      
-      /*If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.*/
-      while (LEARNED > CurrentSkillPoints){
-        LEARNED--;
+    
+    
+  }else{
+    //Function ends when all CurrentSkillPoints are used up.
+    while (CurrentSkillPoints > 0){
+      //Loops through vector
+      for (int i = 0; i < V_main.size(); i++){
+
+      //Gets the name of the skill to be increased.
+      std::string ROLE = V_main.at(i);
+
+      //Skip any skill already at max rating.
+      if (SKILLLIST[ROLE].SkillMod >= SkillMAX){
+        continue;
       }
-      
-      //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
-      while (SkillTable[ROLE].SkillMod + LEARNED > SkillMAX){
-        LEARNED--;
-      }
-      
-      //Add and remove points to the skill and from the CurrentSkillPoints availible.
-      SkillTable[ROLE].SkillMod += LEARNED; 
-      CurrentSkillPoints -= LEARNED;
-      
-      //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
-      if (CurrentSkillPoints == 0){
-        break;
-      }else{continue;}
+      else {
+
+        //Assigns 0 to 10 points.
+        int LEARNED = ROLL.Die(0,10);
+
+        /*If the Current Skill Points are less then what was rolled, this reduces the LEARNED points to what is left in the CurrentSkillPoints.*/
+        while (LEARNED > CurrentSkillPoints){
+          LEARNED--;
+        }
+
+        //If LEARNED will bring the current skill above the max, just reduce the points down till it hits the max.
+        while (SKILLLIST[ROLE].SkillMod + LEARNED > SkillMAX){
+          LEARNED--;
+        }
+
+        //Add and remove points to the skill and from the CurrentSkillPoints availible.
+          SKILLLIST[ROLE].SkillMod += LEARNED; 
+        CurrentSkillPoints -= LEARNED;
+
+        //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
+        if (CurrentSkillPoints == 0){
+          break;
+        }else{continue;}
+        }
       }
     }
   }
@@ -2015,21 +2025,17 @@ void BRP_human_base::fullrandom(){
   Skills(DEX, INT, POW);
   OwnLanguage();
   FillSkillMod();
-  
   PersonalityPick(ROLL.Die(1,4));
-
-
   Professions();
   PickJobSkills();
-  SkillPointSetting(JOBSKILLS, ProSkillPtsMAX, SkillRatingMAX);
-  
   PickHobbySkills();
   RandomSubSkillAssignment(HOBBYSKILLS);
   RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable);
-  SkillPointSetting(HOBBYSKILLS, PerSkillPtsMAX, SkillRatingMAX);
-  
   RandomSubSkillAssignment(PERSONALITYSKILLS);
   RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable);
+  SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
+  SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
+  SkillPointSetting(PERSONALITYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
 }
 
 //Adjust length of spacing for charcter sheet if skill is over 99%
