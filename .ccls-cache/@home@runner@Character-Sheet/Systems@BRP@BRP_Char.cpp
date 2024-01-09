@@ -1481,7 +1481,7 @@ void BRP_human_base::RemoveExtraSubSkills(std::vector<std::string> &V_main, std:
 //Takes in a string and returns true if it is a skill without a subskill
 bool BRP_human_base::IsSkillWithoutSubSkills(std::string &SKILL){
   //vector of skills without any subskills
-  std::vector<std::string> NonSubSkills = {"Appraise", "Bargain", "Brawl", "Climb", "Command", "Demolition", "Disguise", "Dodge", "Etiquette", "Fast Talk", "Fine Manipulation", "First Aid", "Fly", "Gaming", "Grapple", "Hide", "Insight", "Jump", "Listen", "Literacy", "Martial Arts", "Medicine", "Navigate", "Parry", "Persuade", "Projection", "Psychotherapy", "Research", "Sense", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Throw", "Track"};
+  std::vector<std::string> NonSubSkills = {"Appraise", "Bargain", "Brawl", "Climb", "Command", "Demolition", "Disguise", "Dodge", "Etiquette", "Fast Talk", "Fine Manipulation", "First Aid", "Fly", "Gaming", "Grapple", "Hide", "Insight", "Jump", "Listen", "Literacy", "Martial Arts", "Medicine", "Navigate", "Persuade", "Projection", "Psychotherapy", "Research", "Sense", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Throw", "Track"};
   bool OUTCOME;
   for(int i = 0; i < NonSubSkills.size(); i++){
     if(SKILL == NonSubSkills[i]){
@@ -1787,24 +1787,18 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
     }else{
       int SkillType = 9;
 
-      if(V_main[i].find("ARMS") != std::string::npos){
+      if(IsSkillACombatSkill(V_main[i]) == true){
         SkillType = 0;
       }
-      else if(IsSkillACombatSkill(V_main[i]) == true){
-        SkillType = 1;
-      }
       else{
-        SkillType = 2;
+        SkillType = 1;
       }
       
       switch(SkillType){
-        case 0: {
-          std::cout << "\n 0. ARMS in vector\n"; //testing
-          break;}
-        case 1:  {
+        case 0:  {
           std::cout << "\n 1. Combat Skill in vector\n"; //testing
           break;}
-        case 2: {
+        case 1: {
           std::cout << "\n 2. Normal Skill with Subskill\n"; //testing
 
           std::string TEMPNAME = V_main[i];
@@ -1852,83 +1846,49 @@ void BRP_human_base::OwnLanguage(){
   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
 }
 
+//Generate a random combat skill
+std::string BRP_human_base::RandomCombatSkill(std::vector<std::string> &ALLSKILLS){
+  std::string iknowkungfu = "";
+  while(IsSkillACombatSkill(iknowkungfu) != true){
+    iknowkungfu = ALLSKILLS.at(ROLL.Die(0, ALLSKILLS.size()-1));
+  }
+  return iknowkungfu;
+}
+
 //Personality
 void BRP_human_base::PersonalityPick(int pick){
   Personality = "";
   PERSONALITYSKILLS = {};
   
-  switch (pick){//need to add skill points asigning for each case
+  switch (pick){
   case 1:{
     Personality = "They have a brutal personality, thinking first of solving problems by means of physical force and brawn.";
-    /*SkillTable["Brawl"].SkillMod += 20;
-    SkillTable["Climb"].SkillMod += 20;
-    SkillTable["Dodge"].SkillMod += 20;
-    SkillTable["Grapple"].SkillMod += 20;
-    SkillTable["Insight"].SkillMod += 20;
-    SkillTable["Jump"].SkillMod += 20;
-    SkillTable["Ride0"].SkillMod += 20;//need to pick one Ride
-    SkillTable["Sense"].SkillMod += 20;
-    SkillTable["Stealth"].SkillMod += 20;
-    SkillTable["Swim"].SkillMod += 20;
-    SkillTable["Throw"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;*/
-    PERSONALITYSKILLS = {"Brawl", "Climb", "Dodge", "Grapple", "Insight", "Jump", "Sense", "Stealth", "Swim", "Throw", "Ride", "ARMS", "ARMS"};
+    PERSONALITYSKILLS = {"Brawl", "Climb", "Dodge", "Grapple", "Insight", "Jump", "Sense", "Stealth", "Swim", "Throw", "Ride"};
+    for(int i = 0; i < 2; i++){
+      std::string TEMP = "";
+      while(TEMP == "" || SubskillIsInVector(TEMP, PERSONALITYSKILLS) == true){
+        TEMP = RandomCombatSkill(SkillList);
+      }
+      PERSONALITYSKILLS.push_back(TEMP);
+    }
     break;}
     
   case 2:{
     Personality = "They have a skilled personality, beliving that technique, craft, and expertise are the secrets of success.";
-    /*SkillTable["Disguise"].SkillMod += 20;
-    SkillTable["Dodge"].SkillMod += 20;
-    SkillTable["Fine Manipulation"].SkillMod += 20;
-    SkillTable["First Aid"].SkillMod += 20;
-    SkillTable["Navigate"].SkillMod += 20;
-    SkillTable["Pilot0"].SkillMod += 20;//need to pick one Pilot
-    SkillTable["Ride0"].SkillMod += 20;//need to pick one Ride
-    SkillTable["Pilot1"].SkillMod += 20;
-    SkillTable["Ride1"].SkillMod += 20;
-    SkillTable["Sleight of Hand"].SkillMod += 20;
-    SkillTable["Stealth"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;
-    //SkillTable["Knowledge"].SkillMod += 20;
-    //SkillTable["Craft"].SkillMod += 20;*/
-    PERSONALITYSKILLS = {"Disguise", "Dodge", "Fine Manipulation", "First Aid", "Navigate", "Sleight of Hand", "Stealth", "Pilot", "Ride", "ARMS", "Knowledge", "Craft"};
+    PERSONALITYSKILLS = {"Appraise", "Disguise", "Dodge", "Fine Manipulation", "First Aid", "Navigate", "Sleight of Hand", "Stealth", "Pilot", "Ride", "Knowledge", "Craft"};
+    PERSONALITYSKILLS.push_back(RandomCombatSkill(SkillList));
     break;}
     
   case 3:{
     Personality = "They have a cunning personality, trying first to outsmart an opponent to gain an advantage.";
-    /*SkillTable["Appraise"].SkillMod += 20;
-    SkillTable["Bargain"].SkillMod += 20;
-    SkillTable["Disguise"].SkillMod += 20;
-    SkillTable["Insight"].SkillMod += 20;
-    SkillTable["Listen"].SkillMod += 20;
-    SkillTable["Research"].SkillMod += 20;
-    SkillTable["Sense"].SkillMod += 20;
-    SkillTable["Spot"].SkillMod += 20;
-    SkillTable["Stealth"].SkillMod += 20;
-    //SkillTable["Technical"].SkillMod += 20; //setting approate
-    //SkillTable["Knowledge"].SkillMod += 20;
-    //SkillTable["Knowledge"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;*/
-    PERSONALITYSKILLS = {"Appraise", "Bargain", "Disguise", "Insight", "Listen", "Research", "Sense", "Spot", "Stealth", "Technical Skill", "Knowledge", "Knowledge", "ARMS"};
+    PERSONALITYSKILLS = {"Appraise", "Bargain", "Disguise", "Insight", "Listen", "Research", "Sense", "Spot", "Stealth", "Technical Skill", "Knowledge", "Knowledge"};
+    PERSONALITYSKILLS.push_back(RandomCombatSkill(SkillList));
     break;}
     
   case 4:{
     Personality = "They have a charming personality, enjoying persuading other people to work, while they make the decisions.";
-    /*SkillTable["Appraise"].SkillMod += 20;
-    SkillTable["Bargain"].SkillMod += 20;
-    SkillTable["Command"].SkillMod += 20;
-    SkillTable["Etiquette"].SkillMod += 20;
-    SkillTable["Fast Talk"].SkillMod += 20;
-    SkillTable["Insight"].SkillMod += 20;
-    SkillTable["Preform"].SkillMod += 20;
-    SkillTable["Persuade"].SkillMod += 20;
-    SkillTable["Language0"].SkillMod += 20;
-    SkillTable["Sense"].SkillMod += 20;
-    SkillTable["Status"].SkillMod += 20;
-    //SkillTable["Language1"].SkillMod += 20;
-    //SkillTable["ARMS"].SkillMod += 20;*/
-    PERSONALITYSKILLS = {"Appraise", "Bargain", "Command", "Etiquette", "Fast Talk", "Insight", "Preform", "Persuade", "Language0", "Language", "Sense", "Status", "ARMS"};
+    PERSONALITYSKILLS = {"Appraise", "Bargain", "Command", "Etiquette", "Fast Talk", "Insight", "Preform", "Persuade", "Language0", "Language", "Sense", "Status"};
+    PERSONALITYSKILLS.push_back(RandomCombatSkill(SkillList));
     break;}  
   }
 }
@@ -2028,11 +1988,15 @@ void BRP_human_base::fullrandom(){
   PersonalityPick(ROLL.Die(1,4));
   Professions();
   PickJobSkills();
+  
   PickHobbySkills();
+  
   RandomSubSkillAssignment(HOBBYSKILLS);
   RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable);
+  
   RandomSubSkillAssignment(PERSONALITYSKILLS);
   RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable);
+  
   SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
   SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
   SkillPointSetting(PERSONALITYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);

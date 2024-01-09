@@ -1,60 +1,61 @@
 ===========================================================
 			PERSONAL
 ===========================================================
+Name: Player: 
 Culture: Human     Gender: Female
-Height: Average    Weight: Obese
-Wealth: Destitute  Profession: Beggar
+Height: Tall       Weight: Overweight
+Wealth: Poor       Profession: Crafter
 Handedness: Right-Handed
-Religion: Worshipper of Anubis
-Move (MOV): 10     Age: 20
+Religion: Baha'is
+Move (MOV): 10     Age: 22
 
- They have a reserved bearing. They have clothing that are full of holes.
+ They have smooth-skinned hands. They have an unintelligible way of speech.
 
- They have a cunning personality, trying first to outsmart an opponent to gain an advantage.
+ They have a brutal personality, thinking first of solving problems by means of physical force and brawn.
 
-STR 11  Effort roll 55%         INT 12  Idea roll 60%
-CON 16  Stamina roll 80%        CHA 14  Charm roll 70%
-DEX 14  Agility roll 70%        POW 15  Luck roll 75%
-EDU 11  Knowledge roll 55%      SIZ 14  Damage Bonus of +1D4
+STR 14  Effort roll 70%         INT 16  Idea roll 80%
+CON 08  Stamina roll 40%        CHA 08  Charm roll 40%
+DEX 09  Agility roll 45%        POW 16  Luck roll 80%
+EDU 09  Knowledge roll 45%      SIZ 17  Damage Bonus of +1D4
 
 ===========================================================
 			HIT POINTS
 ===========================================================
-HP: 15 with Major Wound occuring at 07 HP
+HP: 12 with Major Wound occuring at 06 HP
 
 ===========================================================
 			SKILLS
 ===========================================================
-Professional Skill Points Pool: 220		Personal Skill Points Pool: 120
+Professional Skill Points Pool: 180		Personal Skill Points Pool: 160
 
-COMMUNICATION 06%                         MENTAL 04%                                PHYSICAL 03%
-Bargain (05)..................64% [ ]     Appraise (15).................39% [ ]     Climb (40)....................43% [ ]
-Command (05)..................21% [ ]     First Aid (30)................34% [ ]     Drive (20) ...................25% [ ]
-Disguise (01).................27% [ ]     Gaming (27)...................31% [ ]       ............................06% [ ]
-Etiquette (05)................11% [ ]     Knowledge (00)                              ............................25% [ ]
-Fast Talk (05)................36% [ ]       Region (Local)..............32% [ ]     Fly (07)......................10% [ ]
-Language (60)                               Archaeology.................04% [ ]     Hide (10).....................35% [ ]
-  Igbo........................66% [ ]       Accounting..................04% [ ]     Jump (25).....................28% [ ]
-  ............................16% [ ]     Literacy (00).................04% [ ]     Pilot (01) ...................04% [ ]
-  ............................06% [ ]     Medicine (05).................09% [ ]       ............................04% [ ]
-  ............................06% [ ]     Psychotherapy (00)............04% [ ]       ............................04% [ ]
-Preform (05) .................11% [ ]     Science (01) .................24% [ ]     Projection (28)...............31% [ ]
-Persuade (15).................32% [ ]       ............................05% [ ]     Ride (05) ....................22% [ ]
-Status (15)...................35% [ ]       ............................05% [ ]       ............................11% [ ]
-Teach (10)....................16% [ ]       ............................05% [ ]     Stealth (10)..................64% [ ]
-                                          Strategy (01).................05% [ ]     Swim (25).....................43% [ ]
-MANIPULATION 05%                          Technical (05) Computers......09% [ ]     Throw (25)....................28% [ ]
-Art (05) .....................10% [ ]       ............................09% [ ]
-  ............................10% [ ]       ............................09% [ ]     COMBAT 05%
-Craft (05) ...................10% [ ]                                               Dodge (28)....................48% [ ]
-  ............................10% [ ]     PERCEPTION 07%                            Martial Arts (01).............06% [ ]
-Demolition (01)...............06% [ ]     Insight (05)..................49% [ ]     See Weapons below for more Combat skills
-Fine Manipulation (05)........10% [ ]     Listen (25)...................75% [ ]
-Heavy Machine (01)                        Navigate (10).................17% [ ]      (00) ........................05% [ ]
-  ............................06% [ ]     Research (25).................52% [ ]      (00) ........................05% [ ]
-Repair (15) ..................20% [ ]     Sense (10)....................37% [ ]      (00) ........................05% [ ]
-  ............................20% [ ]     Spot (25).....................63% [ ]      (00) ........................05% [ ]
-Sleight of Hand (05)..........29% [ ]     Track (10)....................17% [ ]     EXPERENCE BONUS 06%
+COMMUNICATION 08%                         MENTAL 09%                                PHYSICAL -7%
+Bargain (05)..................29% [ ]     Appraise (15).................36% [ ]     Climb (40)....................53% [ ]
+Command (05)..................13% [ ]     First Aid (30)................39% [ ]     Drive (20) Dogsled............38% [ ]
+Disguise (01).................09% [ ]     Gaming (32)...................41% [ ]       ............................05% [ ]
+Etiquette (05)................13% [ ]     Knowledge (00)                              ............................24% [ ]
+Fast Talk (05)................13% [ ]       ............................09% [ ]     Fly (04)......................-3% [ ]
+Language (80)                               ............................09% [ ]     Hide (10).....................03% [ ]
+  Lithuanian..................88% [ ]       ............................09% [ ]     Jump (25).....................59% [ ]
+  ............................08% [ ]     Literacy (00).................09% [ ]     Pilot (01) ...................-6% [ ]
+  ............................08% [ ]     Medicine (05).................14% [ ]       ............................-6% [ ]
+  ............................08% [ ]     Psychotherapy (00)............09% [ ]       ............................-6% [ ]
+Preform (05) .................13% [ ]     Science (01) .................10% [ ]     Projection (18)...............11% [ ]
+Persuade (15).................23% [ ]       ............................10% [ ]     Ride (05) Mule................33% [ ]
+Status (15)...................28% [ ]       ............................10% [ ]       ............................13% [ ]
+Teach (10)....................18% [ ]       ............................10% [ ]     Stealth (10)..................23% [ ]
+                                          Strategy (01).................10% [ ]     Swim (25).....................38% [ ]
+MANIPULATION 04%                          Technical (05) ...............14% [ ]     Throw (25)....................38% [ ]
+Art (05) Digital Art..........37% [ ]       ............................14% [ ]
+  ............................09% [ ]       ............................14% [ ]     COMBAT 04%
+Craft (05) Ceramics...........35% [ ]                                               Dodge (18)....................62% [ ]
+  Carpentry...................35% [ ]     PERCEPTION 08%                            Martial Arts (01).............05% [ ]
+Demolition (01)...............05% [ ]     Insight (05)..................33% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)........09% [ ]     Listen (25)...................60% [ ]
+Heavy Machine (01)                        Navigate (10).................18% [ ]      (00) ........................04% [ ]
+  Armored Vehicles............27% [ ]     Research (25).................70% [ ]      (00) ........................04% [ ]
+Repair (15) Electronics.......34% [ ]     Sense (10)....................47% [ ]      (00) ........................04% [ ]
+  ............................19% [ ]     Spot (25).....................48% [ ]      (00) ........................04% [ ]
+Sleight of Hand (05)..........21% [ ]     Track (10)....................18% [ ]     EXPERENCE BONUS 08%
 ===========================================================
 		WEAPONS
 ===========================================================
@@ -62,13 +63,13 @@ Weapon Type	%	Damage	Range	Attacks	Lengths	Hand	HP
  
 
 Total number of Job Skills: 10
-Bargain, Fast Talk, Hide, Insight, Knowledge0, Listen, Persuade, Sleight of Hand, Spot, Stealth.
+Appraise, Art0, Bargain, Craft0, Craft1, Heavy Machine, Repair0, Research, Spot, Status.
 
 Total number of Hobby Skills: 8
-Command, Dodge, Language1, Missile Weapon0, Ride0, Science0, Status, Swim.
+Dodge, Drive0, Heavy Machine0, Jump, Listen, Research, Sense, Sleight of Hand.
 
 Total number of Personality Skills: 13
-ARMS0, Appraise, Bargain, Disguise, Insight, Knowledge1, Knowledge2, Listen, Research, Sense, Spot, Stealth, Technical Skill0.
+Brawl, Climb, Dodge, Grapple, Heavy Weapon0, Heavy Weapon1, Insight, Jump, Ride0, Sense, Stealth, Swim, Throw.
 
 
-Seed: 1704575561
+Seed: 1704824959

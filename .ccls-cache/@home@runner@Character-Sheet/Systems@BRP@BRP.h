@@ -192,6 +192,7 @@ private:
   int MajorWounds(int H);
   std::string DistinctiveFeatures(int H);
   void Professions();
+  std::string RandomCombatSkill(std::vector<std::string> &ALLSKILLS);
   void PersonalityPick(int pick);
   std::string RandGender(int X);
   std::string HandDom(int Odds);
