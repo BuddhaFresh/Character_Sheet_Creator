@@ -165,6 +165,7 @@ private:
   std::vector <std::string> Group;
   std::vector <std::string> Region;
   std::vector <std::string> Religion;
+  std::vector <std::string> Artillery;
 
   std::vector <std::string>JOBSKILLS;
   std::vector <std::string>HOBBYSKILLS;

@@ -150,6 +150,12 @@ void BRP_human_base::Weapons(){
   WeaponsTable["Pistol, Disintegrator"] = {"Disintegrator Pistol","Energy Weapon","Pistol",05,"3D4+1","1","-","",10,"1H",12,false,7,5,"96-00",10,"Expensive",1.0,""};
   WeaponsTable["Rifle, Plasma"] = {"Plasma Rifle","Energy Weapon","Rifle",10,"2D10+4","1","Impaling","",70,"2H",18,false,9,7,"98-00",16,"Expensive",2.0,""};
   WeaponsTable["Rifle, Electromagnetic Pulse"] = {"Electromagnetic Pulse Rifle","Energy Weapon","Rifle",25,"3D8 vs. tech","1","-","",75,"2H",18,false,7,5,"98-00",12,"Average",2.0,""};
+
+  //Shields
+  WeaponsTable["Primitive"] = {"Primitive","Shield","Primitive",10,"1D2+dm","1","Knockback","Melee Rng",0,"",10,false,5,7,"",0,"Cheap",2.0,""};
+  WeaponsTable["Round"] = {"Round","Shield","Round",15,"1D3+dm","1","Knockback","Melee Rng",0,"",20,false,9,9,"",0,"Average",4.0,""};
+  WeaponsTable["Riot Shield"] = {"Riot Shield","Shield","Riot Shield",15,"1D3+dm","1","Knockback","Melee Rng",0,"",16,false,9,9,"",0,"Expensive",3.0,""};
+  WeaponsTable["Energy Shield"] = {"Energy Shield","Shield","Energy Shield",20,"1D2+dm","1","Knockback","Melee Rng",0,"",25,false,3,3,"",0,"Expensive",1.0,""};
 }
 
 //EDU Characteristic
@@ -829,12 +835,12 @@ void BRP_human_base::Skills(int x, int i, int p){
   //This still seems too unweildly, especially with subtypes and Bases set by weapons
   //Should Each type also have skill category assigned too it as well?
   //ARMS are slots for all combat and weapon skills.  
-  SkillTable["ARMS0"] = { "", "", 0, 0, Combat_skillcategory};
-  SkillTable["ARMS1"] = { "", "", 0, 0, Combat_skillcategory};
-  SkillTable["ARMS2"] = { "", "", 0, 0, Combat_skillcategory};
-  SkillTable["ARMS3"] = { "", "", 0, 0, Combat_skillcategory};
-  SkillTable["ARMS4"] = { "", "", 0, 0, Combat_skillcategory};
-  SkillTable["ARMS5"] = { "", "", 0, 0, Combat_skillcategory};
+  SkillTable["ARMS0"] = { "", "", 0, 0, 0};
+  SkillTable["ARMS1"] = { "", "", 0, 0, 0};
+  SkillTable["ARMS2"] = { "", "", 0, 0, 0};
+  SkillTable["ARMS3"] = { "", "", 0, 0, 0};
+  SkillTable["ARMS4"] = { "", "", 0, 0, 0};
+  SkillTable["ARMS5"] = { "", "", 0, 0, 0};
   SkillTable["BLANK"] = { "", "", 0, 0, 0};
   SkillTable["Appraise"] = { "Appraise", "", 15, 0, Mental_skillcategory};
   SkillTable["Art0"] = { "Art", "", 5, 0, Manipulation_skillcategory};
@@ -949,11 +955,11 @@ void BRP_human_base::Skills(int x, int i, int p){
   Knowledge = {"Academic Lore", "Accounting", "Anthropology", "Archaeology", "Art History", "Blasphemous Lore", "Business", "Espionage", "Folklore", "Group (subspecialty)", "History", "Law", "Linguistics", "Literature", "Occult", "Philosophy", "Politics", "Region (subspecialty)", "Religion (subspecialty)", "Streetwise"}; 
   
   //Knowledge (Group)
-  Group = {"Americans","Chinese","British","Europeans"};
+  Group = {"British", "Europeans", "Americans", "Chinese", "Indians", "Russians", "Brazilians", "Mexicans", "Nigerians", "Japanese", "Indonesians", "Pakistanis", "Bangladeshis", "Filipinos", "Egyptians", "Ethiopians", "Vietnamese", "DR Congolese", "Turkish", "Iranians", "German", "Thais", "United Kingdom", "French", "Italians", "South Africans", "Tanzanians", "Kenyan", "South Koreans", "Myanmar", "Colombians", "Argentina", "Algerians", "Canada", "Ukraine", "Iraqis", "Afghans", "Poland", "Moroccans", "Saudi Arabians", "Uzbekistanis", "Peruvians", "Angolans", "Malaysians", "Mozambicans", "Ghanaians", "Yemenis", "Nepalese", "Venezuelans", "Ivory Coast", "Cameroonians", "North Koreans", "Netherlands", "Australia", "Niger", "Sudanese", "Malians", "Chile", "Kazakhstani", "Ecuadoreans", "Burkina Faso", "Belgium", "Cubans", "Guatemalans", "Azerbaijanis", "Hondurans", "United Arab Emirates", "Tunisia", "Bolivians", "Czechs", "Dominicans", "Portuguese", "Swiss", "Guineans", "Israelis", "Cambodians", "Jordanians", "Tajikistanis", "Haitians", "Paraguayans", "Lebanese", "Libyans", "Palestinians", "El Salvadorians", "Nicaraguans", "Kyrgyzstanis", "Turkmenistanis", "Singaporeans", "Laotians", "New Zealanders", "Panamanians", "Uruguayans", "Kuwaitis", "Jamaicans", "Latvians", "Cyprus"};
   //Knowledge (Region)
   Region = {"Local", "Nation", "Country", "Desert", "Plains", "Fields", "Jungles", "Forests", "Swamps", "Mountians"};
   //Knowledge (Religion)
-  Religion = {"Judisum", "Christianity", "Islam", "Folk"};
+  Religion = {"Christianity", "Islam", "Hinduism", "Buddhism", "Judaism", "Sikhism", "Bahá'í Faith", "Jainism", "Shinto", "Taoism", "Zoroastrianism", "Confucianism", "Rastafari", "Cao Dai", "Tenrikyo", "Falun Gong", "Druze", "Bön", "Shamanism", "Wicca", "Hellenism", "Raelism", "Unitarian Universalism", "Scientology", "New Age"};
   
   //Languages
   Language = {"Amharic", "Arabic", "Bengali", "Bhojpuri", "Cebuano", "Chinese", "Czech", "Danish", "Dutch", "English", "Estonian", "Farsi", "Finnish", "French", "German", "Greek", "Hausa", "Hindi-Urdu", "Hungarian", "Igbo", "Italian", "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Lolo", "Macedonian", "Malay", "Māori", "Marathi", "Navajo", "Norwegian", "Oromo", "Polish", "Portuguese", "Russian", "Shona", "Sioux", "Slovak", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tai–Kadai", "Tibetan", "Turkic", "Ukrainian", "Vietnamese", "Yoruba", "Yumplatok", "Zulu"};
@@ -981,6 +987,9 @@ void BRP_human_base::Skills(int x, int i, int p){
 
   //Technical
   Technical_Skill = {"Clockwork", "Computers", "Cybernetics", "Electronics", "Robotics", "Sensors", "Siege Engines", "Traps"};
+
+  //Artillery Classes
+  Artillery = {"Cannon", "Launcher", "Mounted Gun", "Siege Engine", "Missile", "Turret"};
 
   //Map of None-Combat Skills to Subskill vectors and Subskill subspecialities to their respective vectors
   SubSkillTable["Art0"] = {Art};
@@ -1669,7 +1678,7 @@ bool BRP_human_base::NumberAtEnd(std::string &SKILL){
   return result;
 }
 
-//randomly assigns a skill with subskills an appropriate SkillTable name; "Skill Name0", etc 
+//randomly assigns a skill with subskills an appropriate SkillTable name; "Skill Name0", etc
 void BRP_human_base::RandomSubSkillAssignment(std::vector<std::string> &V_main){
 
   int AmountOfSubSkills = 0;
@@ -1780,28 +1789,34 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
     std::cout << "\n" << V_main[i]; //testing
     //skip skills without subskills and already filled in subskills
 
-
     if(IsSubskillEmpty(V_main[i], SKILLLIST) != true || IsSkillWithoutSubSkills(V_main[i]) == true){
       std::cout << "\nSkipped\n"; //testing
        continue;
     }else{
-      int SkillType = 9;
+      std::string TEMPNAME = V_main[i];
+      int SkillType = 9; //remove
 
       if(IsSkillACombatSkill(V_main[i]) == true){
-        SkillType = 0;
+        SkillType = 0; //remove
       }
       else{
-        SkillType = 1;
+        SkillType = 1; //remove
       }
       
-      switch(SkillType){
+      switch(SkillType){ //remove, don't need switch for only two options
         case 0:  {
           std::cout << "\n 1. Combat Skill in vector\n"; //testing
+          TEMPNAME.pop_back();
+          std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
+          
+          //need to assign subskill from weaponstable, including shields
+          //artilliery uses it's own vector for subskill
+          //add subskills to combatskill that need them and then add the combat skills to a COMBATSKILLS vector for later use
+          
           break;}
         case 1: {
           std::cout << "\n 2. Normal Skill with Subskill\n"; //testing
 
-          std::string TEMPNAME = V_main[i];
           TEMPNAME.pop_back();
           std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
           
