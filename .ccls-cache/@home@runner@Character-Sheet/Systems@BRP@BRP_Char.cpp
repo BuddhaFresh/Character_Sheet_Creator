@@ -955,11 +955,11 @@ void BRP_human_base::Skills(int x, int i, int p){
   Knowledge = {"Academic Lore", "Accounting", "Anthropology", "Archaeology", "Art History", "Blasphemous Lore", "Business", "Espionage", "Folklore", "Group (subspecialty)", "History", "Law", "Linguistics", "Literature", "Occult", "Philosophy", "Politics", "Region (subspecialty)", "Religion (subspecialty)", "Streetwise"}; 
   
   //Knowledge (Group)
-  Group = {"British", "Europeans", "Americans", "Chinese", "Indians", "Russians", "Brazilians", "Mexicans", "Nigerians", "Japanese", "Indonesians", "Pakistanis", "Bangladeshis", "Filipinos", "Egyptians", "Ethiopians", "Vietnamese", "DR Congolese", "Turkish", "Iranians", "German", "Thais", "United Kingdom", "French", "Italians", "South Africans", "Tanzanians", "Kenyan", "South Koreans", "Myanmar", "Colombians", "Argentina", "Algerians", "Canada", "Ukraine", "Iraqis", "Afghans", "Poland", "Moroccans", "Saudi Arabians", "Uzbekistanis", "Peruvians", "Angolans", "Malaysians", "Mozambicans", "Ghanaians", "Yemenis", "Nepalese", "Venezuelans", "Ivory Coast", "Cameroonians", "North Koreans", "Netherlands", "Australia", "Niger", "Sudanese", "Malians", "Chile", "Kazakhstani", "Ecuadoreans", "Burkina Faso", "Belgium", "Cubans", "Guatemalans", "Azerbaijanis", "Hondurans", "United Arab Emirates", "Tunisia", "Bolivians", "Czechs", "Dominicans", "Portuguese", "Swiss", "Guineans", "Israelis", "Cambodians", "Jordanians", "Tajikistanis", "Haitians", "Paraguayans", "Lebanese", "Libyans", "Palestinians", "El Salvadorians", "Nicaraguans", "Kyrgyzstanis", "Turkmenistanis", "Singaporeans", "Laotians", "New Zealanders", "Panamanians", "Uruguayans", "Kuwaitis", "Jamaicans", "Latvians", "Cyprus"};
+  Group = {"Afghans", "Algerians", "Americans", "Angolans", "Argentines", "Australians", "Azerbaijanis", "Bangladeshis", "Belgians", "Bolivians", "Brazilians", "British", "Burkinabè", "Cambodians", "Cameroonians", "Canadians", "Chinese", "Chileans", "Colombians", "Cubans", "Czechs", "DR Congolese", "Dominicans", "Egyptians", "El Salvadorians", "Emiratis", "Ethiopians", "Europeans", "Filipinos", "French", "Germans", "Ghanaians", "Guatemalans", "Guineans", "Haitians", "Hondurans", "Indians", "Indonesians", "Iranians", "Iraqis", "Irish", "Italians", "Japanese", "Jamaicans", "Jordanians", "Kazakhstani", "Kenyan", "Kuwaitis", "Kyrgyzstanis", "Laotians", "Latvians", "Lebanese", "Libyans", "Malaysians", "Malians", "Mexicans", "Moroccans", "Mozambicans", "Myanma", "Nepalese", "Netherlands", "New Zealanders", "Nicaraguans", "Nigeriens", "Nigerians", "North Koreans", "Pakistanis", "Palestinians", "Panamanians", "Paraguayans", "Peruvians", "Poles", "Portuguese", "Russians", "Saudi Arabians", "Scots", "Singaporeans", "Sudanese", "Saudis", "South Africans", "South Koreans", "Spanish", "Swiss", "Tajikistanis", "Tanzanians", "Thai", "Turkmenistanis", "Turkish", "Tunisia", "Ukrainians", "Uruguayans", "Uzbekistanis", "Venezuelans", "Vietnamese", "Yemenis"};
   //Knowledge (Region)
-  Region = {"Local", "Nation", "Country", "Desert", "Plains", "Fields", "Jungles", "Forests", "Swamps", "Mountians"};
+  Region = {"Local", "Nation", "Country", "Desert", "Plains", "Fields", "Jungles", "Forests", "Swamps", "Mountians", "The City", "The Village", "The Town"};
   //Knowledge (Religion)
-  Religion = {"Christianity", "Islam", "Hinduism", "Buddhism", "Judaism", "Sikhism", "Bahá'í Faith", "Jainism", "Shinto", "Taoism", "Zoroastrianism", "Confucianism", "Rastafari", "Cao Dai", "Tenrikyo", "Falun Gong", "Druze", "Bön", "Shamanism", "Wicca", "Hellenism", "Raelism", "Unitarian Universalism", "Scientology", "New Age"};
+  Religion = {"Christianity", "Islam", "Hinduism", "Buddhism", "Judaism", "Sikhism", "Bahá'í Faith", "Jainism", "Shinto", "Taoism", "Zoroastrianism", "Confucianism", "Rastafari", "Cao Dai", "Tenrikyo", "Falun Gong", "Druze", "Bön", "Shamanism", "Wicca", "Hellenism", "Raelism", "Unitarian Universalism", "New Age"};
   
   //Languages
   Language = {"Amharic", "Arabic", "Bengali", "Bhojpuri", "Cebuano", "Chinese", "Czech", "Danish", "Dutch", "English", "Estonian", "Farsi", "Finnish", "French", "German", "Greek", "Hausa", "Hindi-Urdu", "Hungarian", "Igbo", "Italian", "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Lolo", "Macedonian", "Malay", "Māori", "Marathi", "Navajo", "Norwegian", "Oromo", "Polish", "Portuguese", "Russian", "Shona", "Sioux", "Slovak", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tai–Kadai", "Tibetan", "Turkic", "Ukrainian", "Vietnamese", "Yoruba", "Yumplatok", "Zulu"};
@@ -1253,7 +1253,10 @@ void BRP_human_base::PickJobSkills(){
     std::vector<std::string> ComputerTechSkillRando = {"Accounting","Hide","Knowledge0"};
     RandomProfessionSkillPick(1, ComputerTechSkillRando);
     if (JOBSKILLS[0] == "Knowledge0"){
-      SkillTable["Knowledge0"].SubSkillName = Knowledge[11];}
+      SkillTable["Knowledge0"].SubSkillName = "Law";}
+    if (JOBSKILLS[0] == "Accounting"){
+      JOBSKILLS[0] = "Knowledge0";
+      SkillTable["Knowledge0"].SubSkillName = "Accounting";}
       
     //Craft (Computer Hardware or Code)
     JOBSKILLS.push_back("Craft0");
@@ -1306,7 +1309,7 @@ void BRP_human_base::PickJobSkills(){
       //Repair (Electronics)
       //Repair (Mechanical)
       //Heavy Machine
-    std::vector<std::string> CrafterSkillRando = {"Fine Manipulation", "Repair", "Repair", "Repair", "Heavy Machine"};
+    std::vector<std::string> CrafterSkillRando = {"Fine Manipulation", "Repair", "Repair", "Repair", "Heavy Machine0"};
     RandomProfessionSkillPick(2, CrafterSkillRando);
     std::vector<std::string> CrafterRandomRepairSubSkills = {"Electrtical", "Electronics", "Mechanical"};
     if(JOBSKILLS.at(0) == "Repair" && JOBSKILLS.at(1) == "Repair"){
@@ -1787,13 +1790,20 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
   //loop through each skill in vector
   for(int i = 0; i < V_main.size(); i++){
     std::cout << "\n" << V_main[i]; //testing
+    std::string TEMPNAME = V_main[i];
+    TEMPNAME.pop_back();
+    std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
+    int SubSkillCount = NumberOfSubSkills(TEMPNAME, SKILLLIST);
+    std::cout << "\n Number of Sub Skills: "<< SubSkillCount <<"\n"; //testing
+    
     //skip skills without subskills and already filled in subskills
 
     if(IsSubskillEmpty(V_main[i], SKILLLIST) != true || IsSkillWithoutSubSkills(V_main[i]) == true){
       std::cout << "\nSkipped\n"; //testing
+      SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
        continue;
     }else{
-      std::string TEMPNAME = V_main[i];
+      
       int SkillType = 9; //remove
 
       if(IsSkillACombatSkill(V_main[i]) == true){
@@ -1806,8 +1816,7 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
       switch(SkillType){ //remove, don't need switch for only two options
         case 0:  {
           std::cout << "\n 1. Combat Skill in vector\n"; //testing
-          TEMPNAME.pop_back();
-          std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
+          
           
           //need to assign subskill from weaponstable, including shields
           //artilliery uses it's own vector for subskill
@@ -1816,12 +1825,6 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
           break;}
         case 1: {
           std::cout << "\n 2. Normal Skill with Subskill\n"; //testing
-
-          TEMPNAME.pop_back();
-          std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
-          
-          int SubSkillCount = NumberOfSubSkills(TEMPNAME, SKILLLIST);
-          std::cout << "\n Number of Sub Skills: "<< SubSkillCount <<"\n"; //testing
 
           //This is ugly but basically it assigns a random subskill to the selected skill from the vector  
           //MAP_of_SKILLS["Skill Name"].SubSkillName = MAP_of_SUBSKILL_vectors["Skill Name"][random number between 0 and the size of the Skill Name vector -1]
@@ -2005,6 +2008,9 @@ void BRP_human_base::fullrandom(){
   PickJobSkills();
   
   PickHobbySkills();
+
+  RandomSubSkillAssignment(JOBSKILLS);
+  RandomSubSkillSelection(JOBSKILLS, SkillTable, SubSkillTable);
   
   RandomSubSkillAssignment(HOBBYSKILLS);
   RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable);
