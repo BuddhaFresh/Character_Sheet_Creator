@@ -955,7 +955,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   Knowledge = {"Academic Lore", "Accounting", "Anthropology", "Archaeology", "Art History", "Blasphemous Lore", "Business", "Espionage", "Folklore", "Group (subspecialty)", "History", "Law", "Linguistics", "Literature", "Occult", "Philosophy", "Politics", "Region (subspecialty)", "Religion (subspecialty)", "Streetwise"}; 
   
   //Knowledge (Group)
-  Group = {"Afghans", "Algerians", "Americans", "Angolans", "Argentines", "Australians", "Azerbaijanis", "Bangladeshis", "Belgians", "Bolivians", "Brazilians", "British", "Burkinabè", "Cambodians", "Cameroonians", "Canadians", "Chinese", "Chileans", "Colombians", "Cubans", "Czechs", "DR Congolese", "Dominicans", "Egyptians", "El Salvadorians", "Emiratis", "Ethiopians", "Europeans", "Filipinos", "French", "Germans", "Ghanaians", "Guatemalans", "Guineans", "Haitians", "Hondurans", "Indians", "Indonesians", "Iranians", "Iraqis", "Irish", "Italians", "Japanese", "Jamaicans", "Jordanians", "Kazakhstani", "Kenyan", "Kuwaitis", "Kyrgyzstanis", "Laotians", "Latvians", "Lebanese", "Libyans", "Malaysians", "Malians", "Mexicans", "Moroccans", "Mozambicans", "Myanma", "Nepalese", "Netherlands", "New Zealanders", "Nicaraguans", "Nigeriens", "Nigerians", "North Koreans", "Pakistanis", "Palestinians", "Panamanians", "Paraguayans", "Peruvians", "Poles", "Portuguese", "Russians", "Saudi Arabians", "Scots", "Singaporeans", "Sudanese", "Saudis", "South Africans", "South Koreans", "Spanish", "Swiss", "Tajikistanis", "Tanzanians", "Thai", "Turkmenistanis", "Turkish", "Tunisia", "Ukrainians", "Uruguayans", "Uzbekistanis", "Venezuelans", "Vietnamese", "Yemenis"};
+  Group = {"Afghans", "Algerians", "Americans", "Angolans", "Argentines", "Australians", "Azerbaijanis", "Bangladeshis", "Belgians", "Bolivians", "Brazilians", "British", "Burkinabè", "Cambodians", "Cameroonians", "Canadians", "Chinese", "Chileans", "Colombians", "Cubans", "Czechs", "DR Congolese", "Dominicans", "Egyptians", "El Salvadorians", "Emiratis", "Ethiopians", "Europeans", "Filipinos", "French", "Germans", "Ghanaians", "Guatemalans", "Guineans", "Haitians", "Hondurans", "Indians", "Indonesians", "Iranians", "Iraqis", "Irish", "Italians", "Japanese", "Jamaicans", "Jordanians", "Kazakhstani", "Kenyans", "Kuwaitis", "Kyrgyzstanis", "Laotians", "Latvians", "Lebanese", "Libyans", "Malaysians", "Malians", "Mexicans", "Moroccans", "Mozambicans", "Myanma", "Nepalese", "Netherlands", "New Zealanders", "Nicaraguans", "Nigeriens", "Nigerians", "North Koreans", "Pakistanis", "Palestinians", "Panamanians", "Paraguayans", "Peruvians", "Poles", "Portuguese", "Russians", "Saudi Arabians", "Scots", "Singaporeans", "Sudanese", "Saudis", "South Africans", "South Koreans", "Spanish", "Swiss", "Tajikistanis", "Tanzanians", "Thai", "Turkmenistanis", "Turkish", "Tunisia", "Ukrainians", "Uruguayans", "Uzbekistanis", "Venezuelans", "Vietnamese", "Yemenis"};
   //Knowledge (Region)
   Region = {"Local", "Nation", "Country", "Desert", "Plains", "Fields", "Jungles", "Forests", "Swamps", "Mountians", "The City", "The Village", "The Town"};
   //Knowledge (Religion)
@@ -1593,9 +1593,9 @@ bool BRP_human_base::IsSubskillEmpty(std::string &SKILL, std::map<std::string, S
 }
 
 //checks if string is in vector 
-bool BRP_human_base::SubskillIsInVector(std::string &SKILL, std::vector<std::string> &V_main){
+bool BRP_human_base::IsStringInVector(std::string &SKILL, std::vector<std::string> &V_main){
   bool result = false;
-  for(int i = 0; i < V_main.size()-1; i++){
+  for(int i = 0; i < V_main.size(); i++){
     if(SKILL == V_main[i]){
       result = true;
       break;
@@ -1610,7 +1610,7 @@ void BRP_human_base::NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills
 
   for(int i = 0; i < AmountOfSubSkills; i++){
     std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
-    if(SubskillIsInVector(SKILL_SUBSKILL, V_main) != true && SKILLLIST[SKILL_SUBSKILL].SubSkillName == ""){
+    if(IsStringInVector(SKILL_SUBSKILL, V_main) != true && SKILLLIST[SKILL_SUBSKILL].SubSkillName == ""){
       SubCANUse.push_back(i);
       break;
     }else{continue;}
@@ -1630,7 +1630,7 @@ void BRP_human_base::NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSu
   
   for(int i = 0; i < AmountOfSubSkills; i++){
     std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
-    if(SubskillIsInVector(SKILL_SUBSKILL, V_main) == false && IsSubskillEmpty(SKILL_SUBSKILL, SKILLLIST) == false){
+    if(IsStringInVector(SKILL_SUBSKILL, V_main) == false && IsSubskillEmpty(SKILL_SUBSKILL, SKILLLIST) == false){
       SubCANUse.push_back(i);
     } else {continue;}
   }
@@ -1652,7 +1652,7 @@ void BRP_human_base::NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSu
 void BRP_human_base::NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main){
   for(int i = 0; i < AmountOfSubSkills; i++){
     std::string SKILL_SUBSKILL = SKILL+std::to_string(i);
-    if(SubskillIsInVector(SKILL_SUBSKILL, V_main) != true){
+    if(IsStringInVector(SKILL_SUBSKILL, V_main) != true){
       FreeSubSkill = SKILL_SUBSKILL;
       break;
     } else {continue;}
@@ -1693,7 +1693,7 @@ void BRP_human_base::RandomSubSkillAssignment(std::vector<std::string> &V_main){
       
       //Skill as 'Skill0' is; BLANK and NOT in HOBBYSKILLS
       std::string TEMPZERO = V_main[i]+"0";
-      if(IsSubskillEmpty(TEMPZERO, SkillTable) == true && SubskillIsInVector(TEMPZERO, V_main) == false){
+      if(IsSubskillEmpty(TEMPZERO, SkillTable) == true && IsStringInVector(TEMPZERO, V_main) == false){
         V_main[i] = TEMPZERO;
         
       }else{//all other situations for subskills
@@ -1785,6 +1785,23 @@ void BRP_human_base::SubSpecialtySelection(std::string &SKILL, std::string &RAWS
   }
 }
 
+//adds combat skills from vector into the COMBATSKILLS vector, removing repeats
+void BRP_human_base::FillCOMBATSKILLS(std::vector<std::string> &V_main, std::vector<std::string> &V_combat){
+  std::vector<std::string> DontNeed = {"Brawl", "Grapple", "Martial Arts"};
+  for(int i = 0; i < V_main.size(); i++){
+    
+    if(IsSkillACombatSkill(V_main[i]) == true && IsStringInVector(V_main[i], DontNeed) != true){
+      while(IsStringInVector(V_main[i],V_combat) != true){
+        V_combat.push_back(V_main[i]);
+      }
+      std::cout << "\n Added " << V_main[i] << " to COMBATSKILLS vector\n"; //testing
+    }else{
+      std::cout << "\n Didn't need " << V_main[i] << " in COMBATSKILLS \n"; //testing
+      continue;}
+    
+  }
+}
+
 //randomly assigns subskills with an availible name; "Art0":"Painting", etc
 void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST){
   //loop through each skill in vector
@@ -1792,60 +1809,41 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
     std::cout << "\n" << V_main[i]; //testing
     std::string TEMPNAME = V_main[i];
     TEMPNAME.pop_back();
-    std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
     int SubSkillCount = NumberOfSubSkills(TEMPNAME, SKILLLIST);
-    std::cout << "\n Number of Sub Skills: "<< SubSkillCount <<"\n"; //testing
-    
     //skip skills without subskills and already filled in subskills
 
     if(IsSubskillEmpty(V_main[i], SKILLLIST) != true || IsSkillWithoutSubSkills(V_main[i]) == true){
       std::cout << "\nSkipped\n"; //testing
       SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
-       continue;
+      continue;
     }else{
-      
-      int SkillType = 9; //remove
-
       if(IsSkillACombatSkill(V_main[i]) == true){
-        SkillType = 0; //remove
+      std::cout << "\n 1. Combat Skill in vector\n"; //testing
+
+      //need to assign subskill from weaponstable, including shields
+      //artilliery uses it's own vector for subskill
+          
       }
       else{
-        SkillType = 1; //remove
-      }
-      
-      switch(SkillType){ //remove, don't need switch for only two options
-        case 0:  {
-          std::cout << "\n 1. Combat Skill in vector\n"; //testing
-          
-          
-          //need to assign subskill from weaponstable, including shields
-          //artilliery uses it's own vector for subskill
-          //add subskills to combatskill that need them and then add the combat skills to a COMBATSKILLS vector for later use
-          
-          break;}
-        case 1: {
-          std::cout << "\n 2. Normal Skill with Subskill\n"; //testing
+        std::cout << "\n 2. Normal Skill with Subskill\n"; //testing
+        std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
+        std::cout << "\n Number of Sub Skills: "<< SubSkillCount <<"\n"; //testing
 
-          //This is ugly but basically it assigns a random subskill to the selected skill from the vector  
-          //MAP_of_SKILLS["Skill Name"].SubSkillName = MAP_of_SUBSKILL_vectors["Skill Name"][random number between 0 and the size of the Skill Name vector -1]
-          
+        //This is ugly but basically it assigns a random subskill to the selected skill from the vector  
+        //MAP_of_SKILLS["Skill Name"].SubSkillName = MAP_of_SUBSKILL_vectors["Skill Name"][random number between 0 and the size of the Skill Name vector -1]
+
+        SKILLLIST[V_main[i]].SubSkillName = SUBSKILLLIST[V_main[i]][ROLL.Die(0, SUBSKILLLIST[V_main[i]].size()-1)];
+        std::cout << "\n First Rolled Result: "<< SKILLLIST[V_main[i]].SubSkillName <<"\n"; //testing
+
+        SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
+
+        while(IsSubSkillAlreadyUsed(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST) == true){
           SKILLLIST[V_main[i]].SubSkillName = SUBSKILLLIST[V_main[i]][ROLL.Die(0, SUBSKILLLIST[V_main[i]].size()-1)];
-          std::cout << "\n First Rolled Result: "<< SKILLLIST[V_main[i]].SubSkillName <<"\n"; //testing
-
           SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
-          
-          while(IsSubSkillAlreadyUsed(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST) == true){
-            SKILLLIST[V_main[i]].SubSkillName = SUBSKILLLIST[V_main[i]][ROLL.Die(0, SUBSKILLLIST[V_main[i]].size()-1)];
-            SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
-            std::cout << "..."<< SKILLLIST[V_main[i]].SubSkillName <<"?\n"; //testing
-          }
+          std::cout << "..."<< SKILLLIST[V_main[i]].SubSkillName <<"?\n"; //testing
+        }
 
-          std::cout << "\n Final Rolled Result: "<< SKILLLIST[V_main[i]].SubSkillName <<"\n"; //testing
-
-          break;}
-        default: {
-          std::cout << "\n Error in RandomSubSkillSelection\n";
-          break;}
+        std::cout << "\n Final Rolled Result: "<< SKILLLIST[V_main[i]].SubSkillName <<"\n"; //testing
       }
     }
   };
@@ -1884,7 +1882,7 @@ void BRP_human_base::PersonalityPick(int pick){
     PERSONALITYSKILLS = {"Brawl", "Climb", "Dodge", "Grapple", "Insight", "Jump", "Sense", "Stealth", "Swim", "Throw", "Ride"};
     for(int i = 0; i < 2; i++){
       std::string TEMP = "";
-      while(TEMP == "" || SubskillIsInVector(TEMP, PERSONALITYSKILLS) == true){
+      while(TEMP == "" || IsStringInVector(TEMP, PERSONALITYSKILLS) == true){
         TEMP = RandomCombatSkill(SkillList);
       }
       PERSONALITYSKILLS.push_back(TEMP);
@@ -2003,24 +2001,33 @@ void BRP_human_base::fullrandom(){
   Skills(DEX, INT, POW);
   OwnLanguage();
   FillSkillMod();
-  PersonalityPick(ROLL.Die(1,4));
+  
   Professions();
   PickJobSkills();
-  
   PickHobbySkills();
-
+  PersonalityPick(ROLL.Die(1,4));
+  
   RandomSubSkillAssignment(JOBSKILLS);
   RandomSubSkillSelection(JOBSKILLS, SkillTable, SubSkillTable);
+  FillCOMBATSKILLS(JOBSKILLS, COMBATSKILLS);
+  SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
   
   RandomSubSkillAssignment(HOBBYSKILLS);
   RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable);
+  FillCOMBATSKILLS(HOBBYSKILLS, COMBATSKILLS);
+  SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
   
   RandomSubSkillAssignment(PERSONALITYSKILLS);
   RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable);
-  
-  SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
-  SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
+  FillCOMBATSKILLS(PERSONALITYSKILLS, COMBATSKILLS);
   SkillPointSetting(PERSONALITYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
+  
+ 
+
+
+  
+  
+  
 }
 
 //Adjust length of spacing for charcter sheet if skill is over 99%
@@ -2158,7 +2165,6 @@ void BRP_human_base::consoleChar(){
   std::cout << "===========================================================" << std::endl;
   std::cout << "Weapon Type" << "\t" << "%" << "\t" << "Damage" << "\t" << "Range" << "\t" << "Attacks" << "\t" << "Lengths" << "\t" << "Hand" << "\t" << "HP" << "\t" << std::endl;
   std::cout << " " << std::endl;
-
   
  
   std::cout << "\n" << "Total number of Job Skills: " << JOBSKILLS.size() << std::endl; //testing
@@ -2185,6 +2191,16 @@ void BRP_human_base::consoleChar(){
   for(int i = 0; i < PERSONALITYSKILLS.size(); i++){
     std::cout << PERSONALITYSKILLS[i];
     if(i == PERSONALITYSKILLS.size()-1){
+      std::cout << ".\n";}
+    else{std::cout << ", ";}
+  }
+
+  
+  std::cout << "\n" << "Total number of Comabt Skills: " << COMBATSKILLS.size() << std::endl; //testing
+  std::sort(COMBATSKILLS.begin(),COMBATSKILLS.end());
+  for(int i = 0; i < COMBATSKILLS.size(); i++){
+    std::cout << COMBATSKILLS[i];
+    if(i == COMBATSKILLS.size()-1){
       std::cout << ".\n";}
     else{std::cout << ", ";}
   }

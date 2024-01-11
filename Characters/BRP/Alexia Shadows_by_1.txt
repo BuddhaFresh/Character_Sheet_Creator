@@ -1,0 +1,78 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: Player: 
+Culture: Human     Gender: Female
+Height: Average    Weight: Average
+Wealth: Average    Profession: Assassin
+Handedness: Right-Handed
+Religion: Confucian
+Move (MOV): 10     Age: 20
+
+ They have sleek looking legs. They have new clothes.
+
+ They have a cunning personality, trying first to outsmart an opponent to gain an advantage.
+
+STR 11  Effort roll 55%         INT 16  Idea roll 80%
+CON 13  Stamina roll 65%        CHA 08  Charm roll 40%
+DEX 11  Agility roll 55%        POW 13  Luck roll 65%
+EDU 13  Knowledge roll 65%      SIZ 14  Damage Bonus of +1D4
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 13 with Major Wound occuring at 06 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 260		Personal Skill Points Pool: 160
+
+COMMUNICATION 06%                         MENTAL 07%                                PHYSICAL -2%
+Bargain (05)..................31% [ ]     Appraise (15).................67% [ ]     Climb (40)....................38% [ ]
+Command (05)..................11% [ ]     First Aid (30)................37% [ ]     Drive (20) ...................24% [ ]
+Disguise (01).................27% [ ]     Gaming (29)...................36% [ ]       ............................05% [ ]
+Etiquette (05)................11% [ ]     Knowledge (00)                              ............................24% [ ]
+Fast Talk (05)................11% [ ]       Group (Americans)...........27% [ ]     Fly (05)......................18% [ ]
+Language (80)                               Folklore....................27% [ ]     Hide (10).....................29% [ ]
+  Greek.......................86% [ ]       ............................07% [ ]     Jump (25).....................23% [ ]
+  ............................06% [ ]     Literacy (00).................07% [ ]     Pilot (01) ...................-1% [ ]
+  ............................06% [ ]     Medicine (05).................12% [ ]       ............................-1% [ ]
+  ............................06% [ ]     Psychotherapy (00)............07% [ ]       ............................-1% [ ]
+Preform (05) .................11% [ ]     Science (01) .................08% [ ]     Projection (22)...............20% [ ]
+Persuade (15).................21% [ ]       ............................08% [ ]     Ride (05) ....................11% [ ]
+Status (15)...................43% [ ]       ............................08% [ ]       ............................11% [ ]
+Teach (10)....................16% [ ]       ............................08% [ ]     Stealth (10)..................46% [ ]
+                                          Strategy (01).................08% [ ]     Swim (25).....................23% [ ]
+MANIPULATION 04%                          Technical (05) Electronics....32% [ ]     Throw (25)....................64% [ ]
+Art (05) .....................09% [ ]       ............................12% [ ]
+  ............................09% [ ]       ............................12% [ ]     COMBAT 04%
+Craft (05) ...................09% [ ]                                               Dodge (22)....................56% [ ]
+  ............................09% [ ]     PERCEPTION 08%                            Martial Arts (01).............30% [ ]
+Demolition (01)...............35% [ ]     Insight (05)..................33% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)........38% [ ]     Listen (25)...................95% [ ]
+Heavy Machine (01)                        Navigate (10).................18% [ ]      (00) ........................00% [ ]
+  ............................05% [ ]     Research (25).................53% [ ]      (00) ........................00% [ ]
+Repair (15) ..................19% [ ]     Sense (10)....................38% [ ]      (00) ........................00% [ ]
+  ............................19% [ ]     Spot (25).....................76% [ ]      (00) ........................00% [ ]
+Sleight of Hand (05)..........24% [ ]     Track (10)....................18% [ ]     EXPERENCE BONUS 08%
+===========================================================
+		WEAPONS
+===========================================================
+Weapon Type	%	Damage	Range	Attacks	Lengths	Hand	HP	
+ 
+
+Total number of Job Skills: 10
+Dodge, Fine Manipulation, Firearm0, Hide, Listen, Martial Arts, Missile Weapon0, Spot, Stealth, Throw.
+
+Total number of Hobby Skills: 8
+Appraise, Demolition, Energy Weapon0, Fly, Listen, Missile Weapon0, Sleight of Hand, Status.
+
+Total number of Personality Skills: 13
+Appraise, Bargain, Disguise, Insight, Knowledge0, Knowledge1, Listen, Research, Sense, Shield0, Spot, Stealth, Technical Skill0.
+
+Total number of Comabt Skills: 5
+Energy Weapon0, Firearm0, Missile Weapon0, Missile Weapon0, Shield0.
+
+
+Seed: 1704945474

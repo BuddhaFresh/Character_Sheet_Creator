@@ -170,6 +170,7 @@ private:
   std::vector <std::string>JOBSKILLS;
   std::vector <std::string>HOBBYSKILLS;
   std::vector <std::string>PERSONALITYSKILLS; 
+  std::vector <std::string>COMBATSKILLS;
 
   void Weapons();
   void FillSkillMod();
@@ -215,7 +216,7 @@ private:
   void PickHobbySkills();
   void RandomSubSkillAssignment(std::vector<std::string> &V_main);
   bool IsSubskillEmpty(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
-  bool SubskillIsInVector(std::string &SKILL, std::vector<std::string> &V_main);
+  bool IsStringInVector(std::string &SKILL, std::vector<std::string> &V_main);
   void NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   void NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   bool IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main);
@@ -225,6 +226,7 @@ private:
   bool IsSkillACombatSkill(std::string &SKILL);
   bool IsSubSkillAlreadyUsed(std::string &SKILL, std::string &SUBSKILLTOCHECK, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST);
   void SubSpecialtySelection(std::string &SKILL, std::string &RAWSUBSKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::map <std::string, std::vector<std::string>> &SUBSKILLLIST);
+  void FillCOMBATSKILLS(std::vector<std::string> &V_main, std::vector<std::string> &V_combat);
 
   int NumberOfHobbySkills;
   int TESTDUP;
