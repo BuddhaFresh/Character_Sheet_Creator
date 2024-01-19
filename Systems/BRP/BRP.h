@@ -58,6 +58,7 @@ struct WeaponsData
   std::string Value;
   float WeaponSIZ;
   std::string MissileRateOfFire;
+  int WeaponSkillMod;
   //std::string IDs;
 };
 
@@ -222,11 +223,15 @@ private:
   bool IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main);
   void NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   bool NumberAtEnd(std::string &SKILL);
-  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST);
+  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST, std::map<std::string, WeaponsData>&WEAPONSLIST, std::vector<std::string> &V_artillery);
   bool IsSkillACombatSkill(std::string &SKILL);
   bool IsSubSkillAlreadyUsed(std::string &SKILL, std::string &SUBSKILLTOCHECK, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST);
   void SubSpecialtySelection(std::string &SKILL, std::string &RAWSUBSKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::map <std::string, std::vector<std::string>> &SUBSKILLLIST);
   void FillCOMBATSKILLS(std::vector<std::string> &V_main, std::vector<std::string> &V_combat);
+  void OnlyUniqueStringsIn(std::vector<std::string> &V_main);
+  void MoveCombatSkillsToCOMBAT(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST);
+  void RandomCombatSelecting(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST);
+  void COMBATSkillModtoARMSSkillMod(std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST);
 
   int NumberOfHobbySkills;
   int TESTDUP;

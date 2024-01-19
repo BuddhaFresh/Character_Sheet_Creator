@@ -104,58 +104,83 @@ BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y, 
 //Weapons Table
 void BRP_human_base::Weapons(){
 /*
-  WeaponsTable["Weapon Name Key"] = {"Weapon Name","Main Skill","SubSkill",Base,"dmg","Attk","Special","Melee Rng",Missile Rng,"hands",HP,Parry bool,STR,DEX,"Mal",Ammo,"Value",SIZ,"Missile Rate-of-Fire",will need to set up setting codes here};
+  WeaponsTable["Weapon Name Key"] = {"Weapon Name","Main Skill","SubSkill",Base,"dmg","Attk","Special","Melee Rng",Missile Rng,"hands",HP,Parry bool,STR,DEX,"Mal",Ammo,"Value",SIZ,"Missile Rate-of-Fire",WeaponSkillMod,will need to set up setting codes here};
 */
+
+  //ARMS are weapons slots on sheet
+  WeaponsTable["ARMS0"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["ARMS1"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["ARMS2"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["ARMS3"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["ARMS4"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["ARMSShield"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["ARMSArmor0"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["ARMSArmor1"] = {"","","",0,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
   
   //Melee
-  WeaponsTable["Axe, Hand"] = {"Hand Axe","Melee Weapon","Axe",15,"1D6+1+dm","1","Bleeding","Short",0,"1H",12,true,7,9,"-",0,"Cheap",0.5,""};
-  WeaponsTable["Club, Heavy"] = {"Heavy Club","Melee Weapon","Club",25,"1D8+dm","1","Crushing","Medium",0,"2H",22,true,9,7,"-",0,"Cheap",0.2,""};
-  WeaponsTable["Knife"] = {"Knife","Melee Weapon","Dagger",25,"1D3+1+dm","1","Impaling","Short",0,"1H",15,true,4,4,"-",0,"",02,""};
-  WeaponsTable["Spear, Long"] = {"Long Spear","Melee Weapon","Spear",15,"1D10+1+dm","1","Impaling","Long",0,"2H",15,true,11,9,"-",0,"Cheap",2.0,""};
-  WeaponsTable["Blackjack"] = {"Blackjack","Melee Weapon","Hand",25,"1D8+dm","1","Crushing","Short",0,"1H",10,false,7,7,"-",0,"Inexpensive",0.2,""};
-  WeaponsTable["Pike"] = {"Pike","Melee Weapon","Polearm",15,"1D10+2+dm","1","Impaling","Long",0,"2H",15,true,11,7,"-",0,"Inexpensive",3.5,""};
-  WeaponsTable["Staff, Quarter-"] = {"Quarter-Staff","Melee Weapon","Staff",25,"1D8+dm","1","Crushing","All",0,"2H",20,true,9,9,"-",0,"Cheap",1.5,""};
-  WeaponsTable["Sword, Short"] = {"Short Sword","Melee Weapon","Sword",15,"1D6+1+dm","1","Impaling","Medium",0,"1H",20,true,5,5,"-",0,"Cheap",1.0,""};
-  WeaponsTable["Brass Knuckles"] = {"Brass Knuckles","Melee Weapon","Brawl",SkillTable["Brawl"].SkillMod,"+2","1","Crushing","Short",0,"1H",18,false,5,0,"-",0,"Cheap",0.1,""};
-  WeaponsTable["Chainsaw"] = {"Chainsaw","Melee Weapon","Improvised",20,"2D8","1","Bleeding","Medium",0,"2H",20,false,11,11,"97-00",0,"Average",8.0,""}; 
-  WeaponsTable["Knife, Switchblade"] = {"Switchblade Knife","Melee Weapon","Dagger",25,"1D4+dm","1","Impaling","Short",0,"1H",7,false,0,5,"99-00",0,"Cheap",0.1,""}; 
-  WeaponsTable["Taser, Contact"] = {"Contact Taser","Melee Weapon","Other",SkillTable["Brawl"].SkillMod,"Stunning","1","","Short",0,"1H",7,false,5,7,"97-00",0,"Expensive",0.3,""};
-  WeaponsTable["Axe, Vibro-"] = {"Vibro-Axe","Melee Weapon","Polearm",10,"2D8+4+dm","1","Bleeding","Medium",0,"2H",20,true,11,5,"98-00",0,"Average",3.0,""};
-  WeaponsTable["Knife, Vibro-"] = {"Vibro-Knife","Melee Weapon","Dagger",25,"2D4+2+dm","1","Bleeding","Short",0,"1H",16,true,7,7,"99-00",0,"Average",0.5,""};
-  WeaponsTable["Lance, Stun"] = {"Stun Lance","Melee Weapon","Staff",15,"1D6+dm+stun","1","Knockback","Long",0,"2H",18,true,9,5,"98-00",0,"Average",2.5,""};
-  WeaponsTable["Sword, Monofilament"] = {"Monofilament Sword","Melee Weapon","Sword",20,"3D12","1","Bleeding","Medium",0,"1H",12,false,5,15,"91-00",0,"Expensive",0.5,""};
+  WeaponsTable["Axe, Hand"] = {"Hand Axe","Melee Weapon","Axe",15,"1D6+1+dm","1","Bleeding","Short",0,"1H",12,true,7,9,"-",0,"Cheap",0.5,"",0};
+  WeaponsTable["Club, Heavy"] = {"Heavy Club","Melee Weapon","Club",25,"1D8+dm","1","Crushing","Medium",0,"2H",22,true,9,7,"-",0,"Cheap",0.2,"",0};
+  WeaponsTable["Knife"] = {"Knife","Melee Weapon","Dagger",25,"1D3+1+dm","1","Impaling","Short",0,"1H",15,true,4,4,"-",0,"",02,"",0};
+  WeaponsTable["Spear, Long"] = {"Long Spear","Melee Weapon","Spear",15,"1D10+1+dm","1","Impaling","Long",0,"2H",15,true,11,9,"-",0,"Cheap",2.0,"",0};
+  WeaponsTable["Blackjack"] = {"Blackjack","Melee Weapon","Hand",25,"1D8+dm","1","Crushing","Short",0,"1H",10,false,7,7,"-",0,"Inexpensive",0.2,"",0};
+  WeaponsTable["Pike"] = {"Pike","Melee Weapon","Polearm",15,"1D10+2+dm","1","Impaling","Long",0,"2H",15,true,11,7,"-",0,"Inexpensive",3.5,"",0};
+  WeaponsTable["Staff, Quarter-"] = {"Quarter-Staff","Melee Weapon","Staff",25,"1D8+dm","1","Crushing","All",0,"2H",20,true,9,9,"-",0,"Cheap",1.5,"",0};
+  WeaponsTable["Sword, Short"] = {"Short Sword","Melee Weapon","Sword",15,"1D6+1+dm","1","Impaling","Medium",0,"1H",20,true,5,5,"-",0,"Cheap",1.0,"",0};
+  WeaponsTable["Brass Knuckles"] = {"Brass Knuckles","Melee Weapon","Brawl",SkillTable["Brawl"].SkillMod,"+2","1","Crushing","Short",0,"1H",18,false,5,0,"-",0,"Cheap",0.1,"",0};
+  WeaponsTable["Chainsaw"] = {"Chainsaw","Melee Weapon","Improvised",20,"2D8","1","Bleeding","Medium",0,"2H",20,false,11,11,"97-00",0,"Average",8.0,"",0}; 
+  WeaponsTable["Knife, Switchblade"] = {"Switchblade Knife","Melee Weapon","Dagger",25,"1D4+dm","1","Impaling","Short",0,"1H",7,false,0,5,"99-00",0,"Cheap",0.1,"",0}; 
+  WeaponsTable["Taser, Contact"] = {"Contact Taser","Melee Weapon","Other",SkillTable["Brawl"].SkillMod,"Stunning","1","","Short",0,"1H",7,false,5,7,"97-00",0,"Expensive",0.3,"",0};
+  WeaponsTable["Axe, Vibro-"] = {"Vibro-Axe","Melee Weapon","Polearm",10,"2D8+4+dm","1","Bleeding","Medium",0,"2H",20,true,11,5,"98-00",0,"Average",3.0,"",0};
+  WeaponsTable["Knife, Vibro-"] = {"Vibro-Knife","Melee Weapon","Dagger",25,"2D4+2+dm","1","Bleeding","Short",0,"1H",16,true,7,7,"99-00",0,"Average",0.5,"",0};
+  WeaponsTable["Lance, Stun"] = {"Stun Lance","Melee Weapon","Staff",15,"1D6+dm+stun","1","Knockback","Long",0,"2H",18,true,9,5,"98-00",0,"Average",2.5,"",0};
+  WeaponsTable["Sword, Monofilament"] = {"Monofilament Sword","Melee Weapon","Sword",20,"3D12","1","Bleeding","Medium",0,"1H",12,false,5,15,"91-00",0,"Expensive",0.5,"",0};
 
   //Missile
-  WeaponsTable["Blowgun"] = {"Blowgun","Missile Weapon","Blowgun",10,"1D3","1","Impaling","",30,"2H",4,false,0,11,"-",0,"Cheap",0.5,"1/CR"};
-  WeaponsTable["Bow, Self"] = {"Self Bow","Missile Weapon","Bow",10,"1D6+1+1/2dm","1","Impaling","",80,"2H",6,false,9,9,"-",0,"Cheap",0.5,"1/CR"};
-  WeaponsTable["Javelin"] = {"Javelin","Missile Weapon","Javelin",15,"1D6+1/2dm","1","Impaling","",25,"1H",10,false,9,9,"-",0,"Cheap",1.5,"1/CR"};
-  WeaponsTable["Sling"] = {"Sling","Missile Weapon","Sling",05,"1D8+1/2dm","1","Crushing","",80,"1H",2,false,7,11,"-",0,"Cheap",01,"1/CR"};
-  WeaponsTable["Arbalest"] = {"Arbalest","Missile Weapon","Crossbow",15,"2D6+4","1/3","Impaling","",90,"2H",14,false,11,9,"93-00",0,"Average",10.0,"1/4CR"};
-  WeaponsTable["Bow, Composite"] = {"Composite Bow","Missile Weapon","Bow",05,"1D8+1+1/2dm","1","Impaling","",120,"2H",12,false,13,9,"-",0,"Average",0.5,"1/CR"};
-  WeaponsTable["Crossbow, Medium"] = {"Medium Crossbow","Missile Weapon","Crossbow",25,"2D4+2","1/2","Impaling","",50,"2H",14,false,11,7,"95-00",0,"Average",5.0,"1/2CR"};
-  WeaponsTable["Shuriken"] = {"Shuriken","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR"};
+  WeaponsTable["Blowgun"] = {"Blowgun","Missile Weapon","Blowgun",10,"1D3","1","Impaling","",30,"2H",4,false,0,11,"-",0,"Cheap",0.5,"1/CR",0};
+  WeaponsTable["Bow, Self"] = {"Self Bow","Missile Weapon","Bow",10,"1D6+1+1/2dm","1","Impaling","",80,"2H",6,false,9,9,"-",0,"Cheap",0.5,"1/CR",0};
+  WeaponsTable["Javelin"] = {"Javelin","Missile Weapon","Javelin",15,"1D6+1/2dm","1","Impaling","",25,"1H",10,false,9,9,"-",0,"Cheap",1.5,"1/CR",0};
+  WeaponsTable["Sling"] = {"Sling","Missile Weapon","Sling",05,"1D8+1/2dm","1","Crushing","",80,"1H",2,false,7,11,"-",0,"Cheap",01,"1/CR",0};
+  WeaponsTable["Arbalest"] = {"Arbalest","Missile Weapon","Crossbow",15,"2D6+4","1/3","Impaling","",90,"2H",14,false,11,9,"93-00",0,"Average",10.0,"1/4CR",0};
+  WeaponsTable["Bow, Composite"] = {"Composite Bow","Missile Weapon","Bow",05,"1D8+1+1/2dm","1","Impaling","",120,"2H",12,false,13,9,"-",0,"Average",0.5,"1/CR",0};
+  WeaponsTable["Crossbow, Medium"] = {"Medium Crossbow","Missile Weapon","Crossbow",25,"2D4+2","1/2","Impaling","",50,"2H",14,false,11,7,"95-00",0,"Average",5.0,"1/2CR",0};
+  WeaponsTable["Shuriken"] = {"Shuriken","Missile Weapon","Missile",10,"1D3+1/2dm","2","Impaling","",20,"1H",5,false,0,13,"-",0,"Cheap",0.1,"1/CR",0};
 
   //Firearm
-  WeaponsTable["Pistol, Flintlock"] = {"Flintlock Pistol","Firearm","Pistol",20,"1D6+1","1/4","Impaling","",10,"1H",8,false,7,5,"95-00",1,"Average",1.0,"1/2CR"};
-  WeaponsTable["Revolver, Light"] = {"Light Revolver","Firearm","Revolver",20,"1D6","2","Impaling","",10,"1H",6,false,5,5,"00",6,"Average",0.7,"1/CR"};
-  WeaponsTable["Rifle, Sniper"] = {"Sniper Rifle","Firearm","Rifle",20,"2D10+4","1","Impaling","",250,"2H",10,false,12,7,"98-00",11,"Expensive",4.0,"1/CR"};
-  WeaponsTable["Shotgun, Sawn-off"] = {"Sawn-off Shotgun","Firearm","Shotgun",30,"4D6/1D6","1 or 2","Impaling","",20,"1H",14,false,9,5,"00",2,"Average",2.0,"1 or 2/CR"};
+  WeaponsTable["Pistol, Flintlock"] = {"Flintlock Pistol","Firearm","Pistol",20,"1D6+1","1/4","Impaling","",10,"1H",8,false,7,5,"95-00",1,"Average",1.0,"1/2CR",0};
+  WeaponsTable["Revolver, Light"] = {"Light Revolver","Firearm","Revolver",20,"1D6","2","Impaling","",10,"1H",6,false,5,5,"00",6,"Average",0.7,"1/CR",0};
+  WeaponsTable["Rifle, Sniper"] = {"Sniper Rifle","Firearm","Rifle",20,"2D10+4","1","Impaling","",250,"2H",10,false,12,7,"98-00",11,"Expensive",4.0,"1/CR",0};
+  WeaponsTable["Shotgun, Sawn-off"] = {"Sawn-off Shotgun","Firearm","Shotgun",30,"4D6/1D6","1 or 2","Impaling","",20,"1H",14,false,9,5,"00",2,"Average",2.0,"1 or 2/CR",0};
 
   //Heavy Weapon
-  WeaponsTable["Gun, Machine"] = {"Machine Gun","Heavy Weapon","Machine Gun",15,"2D6+4","1, 3, or brust","Impaling","",90,"2H",11,false,9,5,"00",40,"Expensive",3.0,"1 or 3/CR or 1/CR"};
-  WeaponsTable["Gun, Mini-"] = {"Mini-Gun","Heavy Weapon","Machine Gun",15,"2D6+4","3","Impaling","",400,"2H",14,false,16,12,"98-00",4000,"Expensive",6.0,"1/CR"};
+  WeaponsTable["Gun, Machine"] = {"Machine Gun","Heavy Weapon","Machine Gun",15,"2D6+4","1, 3, or brust","Impaling","",90,"2H",11,false,9,5,"00",40,"Expensive",3.0,"1 or 3/CR or 1/CR",0};
+  WeaponsTable["Gun, Mini-"] = {"Mini-Gun","Heavy Weapon","Machine Gun",15,"2D6+4","3","Impaling","",400,"2H",14,false,16,12,"98-00",4000,"Expensive",6.0,"1/CR",0};
  
   //Energy Missile
-  WeaponsTable["Pistol, Laser"] = {"Laser Pistol","Energy Weapon","Pistol",20,"1D8","3","Impaling","",20,"1H",14,false,5,5,"99-00",20,"Average",1.0,""};
-  WeaponsTable["Pistol, Disintegrator"] = {"Disintegrator Pistol","Energy Weapon","Pistol",05,"3D4+1","1","-","",10,"1H",12,false,7,5,"96-00",10,"Expensive",1.0,""};
-  WeaponsTable["Rifle, Plasma"] = {"Plasma Rifle","Energy Weapon","Rifle",10,"2D10+4","1","Impaling","",70,"2H",18,false,9,7,"98-00",16,"Expensive",2.0,""};
-  WeaponsTable["Rifle, Electromagnetic Pulse"] = {"Electromagnetic Pulse Rifle","Energy Weapon","Rifle",25,"3D8 vs. tech","1","-","",75,"2H",18,false,7,5,"98-00",12,"Average",2.0,""};
+  WeaponsTable["Pistol, Laser"] = {"Laser Pistol","Energy Weapon","Pistol",20,"1D8","3","Impaling","",20,"1H",14,false,5,5,"99-00",20,"Average",1.0,"",0};
+  WeaponsTable["Pistol, Disintegrator"] = {"Disintegrator Pistol","Energy Weapon","Pistol",05,"3D4+1","1","-","",10,"1H",12,false,7,5,"96-00",10,"Expensive",1.0,"",0};
+  WeaponsTable["Rifle, Plasma"] = {"Plasma Rifle","Energy Weapon","Rifle",10,"2D10+4","1","Impaling","",70,"2H",18,false,9,7,"98-00",16,"Expensive",2.0,"",0};
+  WeaponsTable["Rifle, Electromagnetic Pulse"] = {"Electromagnetic Pulse Rifle","Energy Weapon","Rifle",25,"3D8 vs. tech","1","-","",75,"2H",18,false,7,5,"98-00",12,"Average",2.0,"",0};
+  /*
+    WeaponsTable["Weapon Name Key"] = {"Weapon Name","Main Skill","SubSkill",Base,"dmg","Attk","Special","Melee Rng",Missile Rng,"hands",HP,Parry bool,STR,DEX,"Mal",Ammo,"Value",SIZ,"Missile Rate-of-Fire",will need to set up setting codes here};
+  */
+  //Artillery (I only need; name, skill, subtype, and base. Artillery weapons are never part of a character's equipment)
+  WeaponsTable["Catapult"] = {"Catapult","Artillery","Siege Engine",10,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Trebuchet"] = {"Trebuchet","Artillery","Siege Engine",05,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Ballista"] = {"Ballista","Artillery","Siege Engine",05,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Cannon"] = {"Cannon","Artillery","Cannon",01,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Torpedo"] = {"Torpedo","Artillery","Missile",01,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Turret, Machinegun"] = {"Machinegun Turret","Artillery","Turret",05,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Howitzer"] = {"Howitzer","Artillery","Cannon",01,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Turret, Laser"] = {"Laser Turret","Artillery","Turret",05,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Turret, Missile"] = {"Missile Turret","Artillery","Turret",01,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Cannon, Energy"] = {"Energy Cannon","Artillery","Cannon",01,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
+  WeaponsTable["Gun, Rail-"] = {"Rail Gun","Artillery","Mounted Gun",01,"","","","",0,"",0,false,0,0,"",0,"",0,"",0};
 
   //Shields
-  WeaponsTable["Primitive"] = {"Primitive","Shield","Primitive",10,"1D2+dm","1","Knockback","Melee Rng",0,"",10,false,5,7,"",0,"Cheap",2.0,""};
-  WeaponsTable["Round"] = {"Round","Shield","Round",15,"1D3+dm","1","Knockback","Melee Rng",0,"",20,false,9,9,"",0,"Average",4.0,""};
-  WeaponsTable["Riot Shield"] = {"Riot Shield","Shield","Riot Shield",15,"1D3+dm","1","Knockback","Melee Rng",0,"",16,false,9,9,"",0,"Expensive",3.0,""};
-  WeaponsTable["Energy Shield"] = {"Energy Shield","Shield","Energy Shield",20,"1D2+dm","1","Knockback","Melee Rng",0,"",25,false,3,3,"",0,"Expensive",1.0,""};
+  WeaponsTable["Primitive"] = {"Primitive","Shield","Primitive",10,"1D2+dm","1","Knockback","Melee Rng",0,"",10,false,5,7,"",0,"Cheap",2.0,"",0};
+  WeaponsTable["Round"] = {"Round","Shield","Round",15,"1D3+dm","1","Knockback","Melee Rng",0,"",20,false,9,9,"",0,"Average",4.0,"",0};
+  WeaponsTable["Riot Shield"] = {"Riot Shield","Shield","Riot Shield",15,"1D3+dm","1","Knockback","Melee Rng",0,"",16,false,9,9,"",0,"Expensive",3.0,"",0};
+  WeaponsTable["Energy Shield"] = {"Energy Shield","Shield","Energy Shield",20,"1D2+dm","1","Knockback","Melee Rng",0,"",25,false,3,3,"",0,"Expensive",1.0,"",0};
 }
 
 //EDU Characteristic
@@ -834,17 +859,16 @@ void BRP_human_base::Skills(int x, int i, int p){
   //map of all skills with; name, subtype, base%, a value to be modifyed, and skill category
   //This still seems too unweildly, especially with subtypes and Bases set by weapons
   //Should Each type also have skill category assigned too it as well?
-  //ARMS are slots for all combat and weapon skills.  
-  SkillTable["ARMS0"] = { "", "", 0, 0, 0};
-  SkillTable["ARMS1"] = { "", "", 0, 0, 0};
-  SkillTable["ARMS2"] = { "", "", 0, 0, 0};
-  SkillTable["ARMS3"] = { "", "", 0, 0, 0};
-  SkillTable["ARMS4"] = { "", "", 0, 0, 0};
-  SkillTable["ARMS5"] = { "", "", 0, 0, 0};
+  //COMBAT are slots for all combat and weapon skills. 
+  SkillTable["COMBAT0"] = { "", "", 0, 0, 0};
+  SkillTable["COMBAT1"] = { "", "", 0, 0, 0};
+  SkillTable["COMBAT2"] = { "", "", 0, 0, 0};
+  SkillTable["COMBAT3"] = { "", "", 0, 0, 0};
+  SkillTable["COMBAT4"] = { "", "", 0, 0, 0};
   SkillTable["BLANK"] = { "", "", 0, 0, 0};
   SkillTable["Appraise"] = { "Appraise", "", 15, 0, Mental_skillcategory};
   SkillTable["Art0"] = { "Art", "", 5, 0, Manipulation_skillcategory};
-  SkillTable["Art1"] = { "Art", "", 5, 0, Manipulation_skillcategory};//10
+  SkillTable["Art1"] = { "Art", "", 5, 0, Manipulation_skillcategory};
   SkillTable["Artillery0"] = { "Artillery", "", 0, 0, Combat_skillcategory};
   SkillTable["Artillery1"] = { "Artillery", "", 0, 0, Combat_skillcategory};
   SkillTable["Artillery2"] = { "Artillery", "", 0, 0, Combat_skillcategory};
@@ -854,7 +878,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Command"] = { "Command", "", 5, 0, Communication_skillcategory};
   SkillTable["Craft0"] = { "Craft", "", 5, 0, Manipulation_skillcategory};
   SkillTable["Craft1"] = { "Craft", "", 5, 0, Manipulation_skillcategory};
-  SkillTable["Demolition"] = { "Demolition", "", 1, 0, Manipulation_skillcategory};//20
+  SkillTable["Demolition"] = { "Demolition", "", 1, 0, Manipulation_skillcategory};
   SkillTable["Disguise"] = { "Disguise", "", 1, 0, Communication_skillcategory};
   SkillTable["Dodge"] = { "Dodge", "", DodgeBase, 0, Physical_skillcategory};
   SkillTable["Drive0"] = { "Drive", "", 20, 0, Manipulation_skillcategory};
@@ -864,7 +888,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Energy Weapon0"] = { "Energy Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Energy Weapon1"] = { "Energy Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Energy Weapon2"] = { "Energy Weapon", "", 0, 0, Combat_skillcategory};
-  SkillTable["Etiquette"] = { "Etiquette", "", 5, 0, Communication_skillcategory};//30
+  SkillTable["Etiquette"] = { "Etiquette", "", 5, 0, Communication_skillcategory};
   SkillTable["Fast Talk"] = { "Fast Talk", "", 5, 0, Communication_skillcategory};
   SkillTable["Fine Manipulation"] = { "Fine Manipulation", "", 5, 0, Manipulation_skillcategory};
   SkillTable["Firearm0"] = { "Firearm", "", 0, 0, Combat_skillcategory};
@@ -874,7 +898,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Fly"] = { "Fly", "", FlyBase, 0, Physical_skillcategory};
   SkillTable["Gaming"] = { "Gaming", "", GamingBase, 0, Mental_skillcategory};
   SkillTable["Grapple"] = { "Grapple", "", 25, 0, Combat_skillcategory};
-  SkillTable["Heavy Machine0"] = { "Heavy Machine", "", 1, 0, Manipulation_skillcategory};//40
+  SkillTable["Heavy Machine0"] = { "Heavy Machine", "", 1, 0, Manipulation_skillcategory};
   SkillTable["Heavy Weapon0"] = { "Heavy Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Heavy Weapon1"] = { "Heavy Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Heavy Weapon2"] = { "Heavy Weapon", "", 0, 0, Combat_skillcategory};
@@ -884,7 +908,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Knowledge0"] = { "Knowledge", "", 0, 0, Mental_skillcategory};
   SkillTable["Knowledge1"] = { "Knowledge", "", 0, 0, Mental_skillcategory};
   SkillTable["Knowledge2"] = { "Knowledge", "", 0, 0, Mental_skillcategory};
-  SkillTable["Language0"] = { "Language", "", Language0Base, 0, Communication_skillcategory};//50
+  SkillTable["Language0"] = { "Language", "", Language0Base, 0, Communication_skillcategory};
   SkillTable["Language1"] = { "Language", "", 0, 0, Communication_skillcategory};
   SkillTable["Language2"] = { "Language", "", 0, 0, Communication_skillcategory};
   SkillTable["Language3"] = { "Language", "", 0, 0, Communication_skillcategory};
@@ -894,7 +918,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Medicine"] = { "Medicine", "", 5, 0, Mental_skillcategory};
   SkillTable["Melee Weapon0"] = { "Melee Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Melee Weapon1"] = { "Melee Weapon", "", 0, 0, Combat_skillcategory};
-  SkillTable["Melee Weapon2"] = { "Melee Weapon", "", 0, 0, Combat_skillcategory};//60
+  SkillTable["Melee Weapon2"] = { "Melee Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Missile Weapon0"] = { "Missile Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Missile Weapon1"] = { "Missile Weapon", "", 0, 0, Combat_skillcategory};
   SkillTable["Missile Weapon2"] = { "Missile Weapon", "", 0, 0, Combat_skillcategory};
@@ -904,7 +928,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Parry2"] = { "Parry", "", 0, 0, Combat_skillcategory};
   SkillTable["Preform0"] = { "Preform", "", 5, 0, Communication_skillcategory};
   SkillTable["Persuade"] = { "Persuade", "", 15, 0, Communication_skillcategory};
-  SkillTable["Pilot0"] = { "Pilot", "", 1, 0, Physical_skillcategory};//70
+  SkillTable["Pilot0"] = { "Pilot", "", 1, 0, Physical_skillcategory};
   SkillTable["Pilot1"] = { "Pilot", "", 1, 0, Physical_skillcategory};
   SkillTable["Pilot2"] = { "Pilot", "", 1, 0, Physical_skillcategory};
   SkillTable["Projection"] = { "Projection", "", ProjectionBase, 0, Physical_skillcategory};
@@ -914,17 +938,16 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Research"] = { "Research", "", 25, 0, Perception_skillcategory};
   SkillTable["Ride0"] = { "Ride", "", 5, 0, Communication_skillcategory};
   SkillTable["Ride1"] = { "Ride", "", 5, 0, Communication_skillcategory};
-  SkillTable["Ride2"] = { "Ride", "", 5, 0, Communication_skillcategory};//80
+  SkillTable["Ride2"] = { "Ride", "", 5, 0, Communication_skillcategory};
   SkillTable["Science0"] = { "Science", "", 1, 0, Mental_skillcategory};
   SkillTable["Science1"] = { "Science", "", 1, 0, Mental_skillcategory};
   SkillTable["Science2"] = { "Science", "", 1, 0, Mental_skillcategory};
   SkillTable["Science3"] = { "Science", "", 1, 0, Mental_skillcategory};
   SkillTable["Sense"] = { "Sense", "", 10, 0, Perception_skillcategory};
   SkillTable["Shield0"] = { "Shield", "", 0, 0, Combat_skillcategory};
-  SkillTable["Shield1"] = { "Shield", "", 0, 0, Combat_skillcategory};
   SkillTable["Sleight of Hand"] = { "Sleight of Hand", "", 5, 0, Manipulation_skillcategory};
   SkillTable["Spot"] = { "Spot", "", 25, 0, Perception_skillcategory};
-  SkillTable["Status"] = { "Status", "", 15, 0, Communication_skillcategory};//90
+  SkillTable["Status"] = { "Status", "", 15, 0, Communication_skillcategory};
   SkillTable["Stealth"] = { "Stealth", "", 10, 0, Physical_skillcategory};
   SkillTable["Strategy"] = { "Strategy", "", 1, 0, Mental_skillcategory};
   SkillTable["Swim"] = { "Swim", "", 25, 0, Physical_skillcategory};
@@ -933,7 +956,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   SkillTable["Technical Skill1"] = { "Technical", "", 5, 0, Mental_skillcategory};
   SkillTable["Technical Skill2"] = { "Technical", "", 5, 0, Mental_skillcategory};
   SkillTable["Throw"] = { "Throw", "", 25, 0, Physical_skillcategory};
-  SkillTable["Track"] = { "Track", "", 10, 0, Perception_skillcategory};//99
+  SkillTable["Track"] = { "Track", "", 10, 0, Perception_skillcategory};
 
   //A vector of all Skill names.
   SkillList = {"Appraise", "Art", "Artillery", "Bargain", "Brawl", "Climb", "Command", "Craft", "Demolition", "Disguise", "Dodge", "Drive", "Energy Weapon", "Etiquette", "Fast Talk", "Fine Manipulation", "Firearm", "First Aid", "Fly", "Gaming", "Grapple", "Heavy Machine", "Heavy Weapon", "Hide", "Insight", "Jump", "Knowledge", "Language", "Listen", "Literacy", "Martial Arts", "Medicine", "Melee Weapon", "Missile Weapon", "Navigate", "Parry", "Perform", "Persuade", "Pilot", "Projection", "Psychotherapy", "Repair", "Research", "Ride", "Science", "Sense", "Shield", "Sleight of Hand", "Spot", "Status", "Stealth", "Strategy", "Swim", "Teach", "Technical Skill", "Throw", "Track"};
@@ -962,7 +985,7 @@ void BRP_human_base::Skills(int x, int i, int p){
   Religion = {"Christianity", "Islam", "Hinduism", "Buddhism", "Judaism", "Sikhism", "Bahá'í Faith", "Jainism", "Shinto", "Taoism", "Zoroastrianism", "Confucianism", "Rastafari", "Cao Dai", "Tenrikyo", "Falun Gong", "Druze", "Bön", "Shamanism", "Wicca", "Hellenism", "Raelism", "Unitarian Universalism", "New Age"};
   
   //Languages
-  Language = {"Amharic", "Arabic", "Bengali", "Bhojpuri", "Cebuano", "Chinese", "Czech", "Danish", "Dutch", "English", "Estonian", "Farsi", "Finnish", "French", "German", "Greek", "Hausa", "Hindi-Urdu", "Hungarian", "Igbo", "Italian", "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Lolo", "Macedonian", "Malay", "Māori", "Marathi", "Navajo", "Norwegian", "Oromo", "Polish", "Portuguese", "Russian", "Shona", "Sioux", "Slovak", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tai–Kadai", "Tibetan", "Turkic", "Ukrainian", "Vietnamese", "Yoruba", "Yumplatok", "Zulu"};
+  Language = {"Amharic", "Arabic", "Bengali", "Bhojpuri", "Cebuano", "Chinese", "Czech", "Danish", "Dutch", "English", "Estonian", "Farsi", "Finnish", "French", "German", "Greek", "Hausa", "Hindi-Urdu", "Hungarian", "Igbo", "Italian", "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Lolo", "Macedonian", "Malay", "Māori", "Marathi", "Navajo", "Norwegian", "Oromo", "Polish", "Portuguese", "Russian", "Shona", "Sioux", "Slovak", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tai-Kadai", "Tibetan", "Turkic", "Ukrainian", "Vietnamese", "Yoruba", "Yumplatok", "Zulu"};
 
   //Languages, Computer Code
   LanguageComputerCode = {"Assembly", "BASIC", "C", "C#", "C++", "COBOL", "Delphi", "Fortran", "Java", "JavaScript", "Lua", "Python", "Ruby", "Scratch", "SQL"};
@@ -1770,22 +1793,17 @@ void BRP_human_base::SubSpecialtySelection(std::string &SKILL, std::string &RAWS
     //has subspecial
     std::string SUBSPECIALTYforVECTOR = RAWSUBSKILL;
     SUBSPECIALTYforVECTOR = SUBSPECIALTYforVECTOR.erase(SUBSPECIALTYforVECTOR.find(pos),SUBSPECIALTYforVECTOR.length() - SUBSPECIALTYforVECTOR.find(pos));
-    std::cout << "\n" << SUBSPECIALTYforVECTOR << "\n"; //testing
 
     std::vector <std::string> V_temp = SUBSKILLLIST[SUBSPECIALTYforVECTOR];
     int V_temp_size = V_temp.size()-1;
     
     std::string SUBSPECIALTY = SUBSKILLLIST[SUBSPECIALTYforVECTOR][ROLL.Die(0, V_temp_size)];
-    std::cout << "\n" << SUBSPECIALTY << "\n"; //testing
     
-    RAWSUBSKILL.replace(RAWSUBSKILL.find(pos)+2, RAWSUBSKILL.length() - RAWSUBSKILL.find(pos) - 3, SUBSPECIALTY);
-    std::cout << "\n" << RAWSUBSKILL << "\n"; //testing
-    
-    
+    RAWSUBSKILL.replace(RAWSUBSKILL.find(pos)+2, RAWSUBSKILL.length() - RAWSUBSKILL.find(pos) - 3, SUBSPECIALTY); 
   }
 }
 
-//adds combat skills from vector into the COMBATSKILLS vector, removing repeats
+//adds combat skills from a given vector into the COMBATSKILLS vector, removing repeats and keeping only skills with subskills
 void BRP_human_base::FillCOMBATSKILLS(std::vector<std::string> &V_main, std::vector<std::string> &V_combat){
   std::vector<std::string> DontNeed = {"Brawl", "Grapple", "Martial Arts"};
   for(int i = 0; i < V_main.size(); i++){
@@ -1794,56 +1812,88 @@ void BRP_human_base::FillCOMBATSKILLS(std::vector<std::string> &V_main, std::vec
       while(IsStringInVector(V_main[i],V_combat) != true){
         V_combat.push_back(V_main[i]);
       }
-      std::cout << "\n Added " << V_main[i] << " to COMBATSKILLS vector\n"; //testing
-    }else{
-      std::cout << "\n Didn't need " << V_main[i] << " in COMBATSKILLS \n"; //testing
-      continue;}
-    
+    }else{continue;}
+  }
+}
+
+//removes duplicate strings in the provided vector
+void BRP_human_base::OnlyUniqueStringsIn(std::vector<std::string> &V_main){
+  int vectorsize = V_main.size();
+  std::sort(V_main.begin(),V_main.end());
+  std::vector <std::string> BANLIST = {};
+  
+  //Put duplicate strings in BANLIST
+  for(int i = 1; i < vectorsize; i++){
+    if(V_main.at(i-1) == V_main.at(i)){
+      BANLIST.push_back(V_main.at(i));
+    }else{continue;}
+  }  
+  //remove strings that from V_main that match BANLIST
+  while(BANLIST.size() != 0){
+    for(int z = 0; z < vectorsize; z++){
+      if(BANLIST.size() != 0){
+        if(V_main.at(z) == BANLIST.back()){
+          V_main.erase(V_main.begin()+z,V_main.begin()+z+1);
+          BANLIST.pop_back();
+          break;}
+      }else{break;}
+      
+    }
   }
 }
 
 //randomly assigns subskills with an availible name; "Art0":"Painting", etc
-void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST){
+void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>> &SUBSKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST, std::vector<std::string> &V_artillery){
   //loop through each skill in vector
   for(int i = 0; i < V_main.size(); i++){
-    std::cout << "\n" << V_main[i]; //testing
     std::string TEMPNAME = V_main[i];
     TEMPNAME.pop_back();
     int SubSkillCount = NumberOfSubSkills(TEMPNAME, SKILLLIST);
     //skip skills without subskills and already filled in subskills
 
     if(IsSubskillEmpty(V_main[i], SKILLLIST) != true || IsSkillWithoutSubSkills(V_main[i]) == true){
-      std::cout << "\nSkipped\n"; //testing
       SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
       continue;
     }else{
       if(IsSkillACombatSkill(V_main[i]) == true){
-      std::cout << "\n 1. Combat Skill in vector\n"; //testing
-
-      //need to assign subskill from weaponstable, including shields
-      //artilliery uses it's own vector for subskill
+        std::vector <std::string> SubTypeOptions = {};
+        std::map<std::string, WeaponsData>::iterator iWL;
+        
+        if(TEMPNAME == "fruitloops"){ //testing
+          SKILLLIST[V_main[i]].SubSkillName = V_artillery.at(ROLL.Die(0,V_artillery.size()-1));
+          //SKILLLIST[V_main[i]].SkillBase = NEED TO ADD ARTILLERY IN WEAPONSTABLE FOR THE SKILL BASE
           
-      }
-      else{
-        std::cout << "\n 2. Normal Skill with Subskill\n"; //testing
-        std::cout << "\n TEMPNAME: "<< TEMPNAME <<"\n"; //testing
-        std::cout << "\n Number of Sub Skills: "<< SubSkillCount <<"\n"; //testing
-
+        }else if(TEMPNAME == "Parry"){
+          for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
+            if(iWL->second.Parry == true){
+              SubTypeOptions.push_back(iWL->second.WeaponSkillSubType);}
+          } 
+          OnlyUniqueStringsIn(SubTypeOptions);
+          int RandomParrySubTypePick = ROLL.Die(0, SubTypeOptions.size()-1);
+          SKILLLIST[V_main[i]].SubSkillName = SubTypeOptions.at(RandomParrySubTypePick);
+          
+        }else{
+          for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
+            if(TEMPNAME == iWL->second.WeaponSkillName){
+                SubTypeOptions.push_back(iWL->second.WeaponSkillSubType);
+            }else{continue;}
+          }
+          OnlyUniqueStringsIn(SubTypeOptions);
+          SKILLLIST[V_main[i]].SubSkillName = SubTypeOptions.at(ROLL.Die(0, SubTypeOptions.size()-1));
+          
+        }
+      }else{
         //This is ugly but basically it assigns a random subskill to the selected skill from the vector  
         //MAP_of_SKILLS["Skill Name"].SubSkillName = MAP_of_SUBSKILL_vectors["Skill Name"][random number between 0 and the size of the Skill Name vector -1]
 
         SKILLLIST[V_main[i]].SubSkillName = SUBSKILLLIST[V_main[i]][ROLL.Die(0, SUBSKILLLIST[V_main[i]].size()-1)];
-        std::cout << "\n First Rolled Result: "<< SKILLLIST[V_main[i]].SubSkillName <<"\n"; //testing
 
         SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
 
         while(IsSubSkillAlreadyUsed(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST) == true){
           SKILLLIST[V_main[i]].SubSkillName = SUBSKILLLIST[V_main[i]][ROLL.Die(0, SUBSKILLLIST[V_main[i]].size()-1)];
           SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
-          std::cout << "..."<< SKILLLIST[V_main[i]].SubSkillName <<"?\n"; //testing
         }
-
-        std::cout << "\n Final Rolled Result: "<< SKILLLIST[V_main[i]].SubSkillName <<"\n"; //testing
       }
     }
   };
@@ -1851,15 +1901,18 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
 
 //Loop through all skills and adds the skill's base value and a skill's category value to the skill's mod value
 void BRP_human_base::FillSkillMod(){
+  std::cout << "\n\n  &$&_FILLING SKILL MODS_&$&  \n\n"; //testing
   for (auto& X : SkillTable){
     X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
+    std::cout << " >" << X.first << " (" << X.second.SkillBase << ") + " << "Catagory of "<< X.second.SkillCat << " came out to "<< X.second.SkillMod << "\n"; //testing
   }
 }
 
-//Assign Own Language
+//Assigns a random Own Language into Language0
 void BRP_human_base::OwnLanguage(){
   int OwnLang = ROLL.Die(0,Language.size()-1);
   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
+  std::cout << "\n\nNumber of characters in " << Language.at(OwnLang) << " is "<< SkillTable["Language0"].SubSkillName.length() <<"\n\n"; //testing
 }
 
 //Generate a random combat skill
@@ -1871,7 +1924,7 @@ std::string BRP_human_base::RandomCombatSkill(std::vector<std::string> &ALLSKILL
   return iknowkungfu;
 }
 
-//Personality
+//Takes a number and selects a Personality and fills the PERSONALITYSKILLS vector
 void BRP_human_base::PersonalityPick(int pick){
   Personality = "";
   PERSONALITYSKILLS = {};
@@ -1912,6 +1965,7 @@ void BRP_human_base::PersonalityPick(int pick){
 //Randomly assigns skill points to skills in a given vector
 void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::map<std::string, SkillData>&SKILLLIST, int &SkillPointPool, int &SkillMAX){
   //Sets up the Current Skill Points to be spent for the following loop.
+  std::cout << "\n===SkillPointsSetting START===\n"; //testing
   int CurrentSkillPoints = SkillPointPool;
 
   if(V_main == PERSONALITYSKILLS){
@@ -1919,6 +1973,7 @@ void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::ma
     for(int i = 0; i < V_main.size(); i++){
       std::string SKILLfromVECTOR = V_main.at(i);
       SKILLLIST[SKILLfromVECTOR].SkillMod += CurrentSkillPoints;
+      std::cout << "\n PP " << SKILLfromVECTOR << " gets "<< CurrentSkillPoints <<" Personality Points\n"; //testing
     }
     
     
@@ -1951,8 +2006,14 @@ void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::ma
         }
 
         //Add and remove points to the skill and from the CurrentSkillPoints availible.
-          SKILLLIST[ROLE].SkillMod += LEARNED; 
+        SKILLLIST[ROLE].SkillMod += LEARNED; 
         CurrentSkillPoints -= LEARNED;
+        if(V_main == HOBBYSKILLS){
+          std::cout << "\n HP " << ROLE << " gets "<< LEARNED <<" Personal Points\n"; //testing
+        }else{
+          std::cout << "\n JP " << ROLE << " gets "<< LEARNED <<" Professional Points\n"; //testing
+        }
+        
 
         //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
         if (CurrentSkillPoints == 0){
@@ -1962,6 +2023,149 @@ void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::ma
       }
     }
   }
+  std::cout << "\n===SkillPointsSetting END===\n"; //testing
+}
+
+//Randomly selects a weapon and adds it to ARMS slot and weapon's base chance to the character's combat skill chance 
+void BRP_human_base::RandomCombatSelecting(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST){
+  std::vector <std::string> ApprovedWeaponsKeys = {};
+  std::map<std::string, WeaponsData>::iterator iWL;
+  int ARMSposistion = 0;
+  std::cout << "Combat vecter size is: " << V_combat.size() << "\n\n"; //testing
+  
+  for(int i = 0; i < V_combat.size(); i++){
+    std::cout << "\n### START OF LOOP " << i << " ###\n\n"; //testing
+    std::string CombatSkillToCheck = V_combat.at(i);
+    CombatSkillToCheck.pop_back();
+    std::cout << "Weapons for: " << CombatSkillToCheck << " (" << SKILLLIST[V_combat.at(i)].SubSkillName << ")" << "\n"; //testing
+    std::cout << "ARMSposistion is " << ARMSposistion << "\n"; //testing
+
+    //fill ApprovedWeaponsKeys
+    for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
+      if(CombatSkillToCheck == "Parry"){
+        if(SKILLLIST[V_combat.at(i)].SubSkillName == iWL->second.WeaponSkillSubType){
+          ApprovedWeaponsKeys.push_back(iWL->first);
+          std::cout << "\tParry with " << iWL->first << "\n"; //testing
+        }
+      }else{
+        if(CombatSkillToCheck == iWL->second.WeaponSkillName && SKILLLIST[V_combat.at(i)].SubSkillName == iWL->second.WeaponSkillSubType){
+          ApprovedWeaponsKeys.push_back(iWL->first);
+          std::cout << "\t" << iWL->first << "\n"; //testing
+        }else{continue;}
+      }
+    }
+
+    std::cout << "Approved Weapon List amount: " << ApprovedWeaponsKeys.size() << "\n"; //testing
+    //reduce ApprovedWeaponsKeys down to one random option
+    while(ApprovedWeaponsKeys.size() != 1){
+      int removed = ROLL.Die(0, ApprovedWeaponsKeys.size()-1);
+      std::cout << "\t REMOVING " << ApprovedWeaponsKeys.at(removed) << " !!!\n"; //testing
+      ApprovedWeaponsKeys.erase(ApprovedWeaponsKeys.begin()+removed);
+    }
+    
+    std::cout << ApprovedWeaponsKeys.at(0) << "\n"; //testing
+    //code for ApprovedWeaponsKeys
+    if(CombatSkillToCheck == "Shield"){
+      SKILLLIST[V_combat.at(i)].SkillBase = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponSkillBase;
+      WEAPONSLIST["ARMSShield"].WeaponName = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponName;
+      WEAPONSLIST["ARMSShield"].WeaponDMG = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponDMG;
+      WEAPONSLIST["ARMSShield"].WeaponHP = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponHP;
+      WEAPONSLIST["ARMSShield"].WeaponSkillBase = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponSkillBase;
+      
+    }else if(CombatSkillToCheck == "Artillery"){
+      SKILLLIST[V_combat.at(i)].SkillBase = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponSkillBase;
+      ApprovedWeaponsKeys.clear();
+      //this might just make blank spaces, perhaps have a new vector of non-arriliery and shield.
+      
+    }else{
+      SKILLLIST[V_combat.at(i)].SkillBase = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponSkillBase;
+      WEAPONSLIST["ARMS"+std::to_string(ARMSposistion)].WeaponName = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponName;
+      WEAPONSLIST["ARMS"+std::to_string(ARMSposistion)].WeaponSkillBase = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponSkillBase;
+      WEAPONSLIST["ARMS"+std::to_string(ARMSposistion)].WeaponDMG = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponDMG;
+      WEAPONSLIST["ARMS"+std::to_string(ARMSposistion)].MeleeRng = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].MeleeRng;
+      WEAPONSLIST["ARMS"+std::to_string(ARMSposistion)].WeaponAttk = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponAttk;
+      WEAPONSLIST["ARMS"+std::to_string(ARMSposistion)].WeaponHands = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponHands;
+      WEAPONSLIST["ARMS"+std::to_string(ARMSposistion)].WeaponHP = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponHP;
+      ARMSposistion++;
+      //no idea what to do for range, might just put a auto blank space. Or add a new field in the Weaponsdata struct
+    }
+    
+    ApprovedWeaponsKeys.clear();
+
+    std::cout << "\n### END OF LOOP " << i << " ###\n\n"; //testing
+  }
+}
+
+//Move SkillMod from SkillTable[COMBAT#](that arn't shields or artilery) to WeaponTable[ARMS#]
+
+void BRP_human_base::COMBATSkillModtoARMSSkillMod(std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST){
+  std::map<std::string, SkillData>::iterator iSL;
+  std::map<std::string, WeaponsData>::iterator iWL;
+  std::vector<std::string> AcceptableCombatKeys = {};
+  int combatnumber = 0;
+  int armsnumber = 0;
+    for(iSL = SKILLLIST.begin(); iSL != SKILLLIST.end(); iSL++){
+    std::string Combatkey = "COMBAT" + std::to_string(combatnumber);
+      if(iSL->first == Combatkey){
+        if(iSL->second.SkillName != "Shield" && iSL->second.SkillName != "Artillery" && iSL->second.SkillName != ""){
+          std::cout << "\n" << Combatkey << "   IT WORKS!\n";
+          std::cout << "\n" << iSL->second.SkillName <<"\n";
+          std::cout << "\n" << iSL->second.SubSkillName <<"\n";
+          std::cout << "\n" << iSL->second.SkillMod <<"\n";
+          AcceptableCombatKeys.push_back(Combatkey);
+          //iWL->second.WeaponSkillMod = iSL->second.SkillMod;
+          //std::cout << "\n WeaponSkillMod: " << iWL->second.WeaponSkillMod <<"\n";
+          combatnumber++;
+          iWL++;
+        }else{
+          combatnumber++;
+          continue;
+        }
+      }
+    }
+  for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
+    std::string Armskey = "ARMS" + std::to_string(armsnumber);
+    if(iWL->first == Armskey){
+      if(iWL->second.WeaponName != ""){
+        //iWL->second.WeaponSkillMod = SKILLLIST[AcceptableCombatKeys.at(armsnumber)].SkillMod;
+        std::cout << "\nYAY this works?\n";
+        std::cout << "\n Armskey: "<< Armskey <<"\n";
+        std::cout << "\n" << "SkillTable Skillmod: "<< SKILLLIST[AcceptableCombatKeys.at(armsnumber)].SkillMod <<"\n";
+        std::cout << "\n Current ARMS Mod: " << iWL->second.WeaponSkillMod <<"\n";
+        iWL->second.WeaponSkillMod = SKILLLIST[AcceptableCombatKeys.at(armsnumber)].SkillMod;
+        armsnumber++;
+      }
+    }else{
+      armsnumber++;
+      continue;
+    }
+  }
+  //run method AFTER FillSkillMod()
+}
+
+
+//Moves COMBATSKILLS skill values to Combat skills in SkillTable
+void BRP_human_base::MoveCombatSkillsToCOMBAT(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST){
+  std::cout << "\n\nMoveCombatSkillsToCOMBAT Begins\n\n"; //testing  
+  std::cout << "\nAdding skills from V_COMABT to COMBAT# in Skilltable\n\n"; //testing
+  
+  for(int q = 0; q < V_combat.size(); q++){
+
+    std::cout << "\n@@@ START OF LOOP " << q << " @@@\n\n"; //testing
+    std::string Combatkey = "COMBAT" + std::to_string(q);
+    std::cout << "\nAdding the following to " << Combatkey << ";\n"; //testing
+    SKILLLIST[Combatkey].SkillName = SKILLLIST[V_combat.at(q)].SkillName;
+    std::cout << "\tSkillName: " << SKILLLIST[V_combat.at(q)].SkillName << ",\n"; //testing
+    SKILLLIST[Combatkey].SubSkillName = SKILLLIST[V_combat.at(q)].SubSkillName;
+    std::cout << "\tSubSkillName: " << SKILLLIST[V_combat.at(q)].SubSkillName << ",\n"; //testing
+    SKILLLIST[Combatkey].SkillBase = SKILLLIST[V_combat.at(q)].SkillBase;
+    std::cout << "\tSkillBase: " << SKILLLIST[V_combat.at(q)].SkillBase << ",\n"; //testing
+    SKILLLIST[Combatkey].SkillMod = SKILLLIST[V_combat.at(q)].SkillMod;
+    std::cout << "\tSkillMod: " << SKILLLIST[V_combat.at(q)].SkillMod << ".\n"; //testing
+    std::cout << "\n@@@ END OF LOOP " << q << " @@@\n\n"; //testing
+
+  }
+  std::cout << "\n\nMoveCombatSkillsToCOMBAT Ends\n\n"; //testing
 }
 
 //Gets the character's name
@@ -2000,33 +2204,34 @@ void BRP_human_base::fullrandom(){
   SkillCategory();
   Skills(DEX, INT, POW);
   OwnLanguage();
-  FillSkillMod();
-  
   Professions();
   PickJobSkills();
   PickHobbySkills();
   PersonalityPick(ROLL.Die(1,4));
-  
+
+
   RandomSubSkillAssignment(JOBSKILLS);
-  RandomSubSkillSelection(JOBSKILLS, SkillTable, SubSkillTable);
-  FillCOMBATSKILLS(JOBSKILLS, COMBATSKILLS);
-  SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
-  
+  RandomSubSkillSelection(JOBSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
   RandomSubSkillAssignment(HOBBYSKILLS);
-  RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable);
-  FillCOMBATSKILLS(HOBBYSKILLS, COMBATSKILLS);
-  SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
-  
+  RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
   RandomSubSkillAssignment(PERSONALITYSKILLS);
-  RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable);
+  RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
+  
+  FillCOMBATSKILLS(JOBSKILLS, COMBATSKILLS);
+  FillCOMBATSKILLS(HOBBYSKILLS, COMBATSKILLS);
   FillCOMBATSKILLS(PERSONALITYSKILLS, COMBATSKILLS);
+
+  RandomCombatSelecting(COMBATSKILLS, SkillTable, WeaponsTable);
+  
+  FillSkillMod(); 
+  
+  
+  SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
+  SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
   SkillPointSetting(PERSONALITYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
   
- 
-
-
-  
-  
+  MoveCombatSkillsToCOMBAT(COMBATSKILLS, SkillTable);
+  COMBATSkillModtoARMSSkillMod(SkillTable, WeaponsTable);
   
 }
 
@@ -2144,28 +2349,52 @@ void BRP_human_base::consoleChar(){
   //Fine Manipulation    Listen    BLANK_SPACE
   std::cout << SkillTable["Fine Manipulation"].SkillName << " (" << DD(SkillTable["Fine Manipulation"].SkillBase) << ")" << std::setw(8-Toolong(SkillTable["Fine Manipulation"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Fine Manipulation"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Listen"].SkillName << " (" << DD(SkillTable["Listen"].SkillBase) << ")" << std::setw(19-Toolong(SkillTable["Listen"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Listen"].SkillMod) << "% [ ]" << std::endl;
 
-  //Heavy Machine(name)    Navigate    Combat Skill(ARMS0)
-  std::cout << SkillTable["Heavy Machine0"].SkillName << " (" << DD(SkillTable["Heavy Machine0"].SkillBase) << ")" << std::setw(24) << std::setfill(' ') << "" << SkillTable["Navigate"].SkillName << " (" << DD(SkillTable["Navigate"].SkillBase) << ")" << std::setw(17-Toolong(SkillTable["Navigate"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Navigate"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS0"].SkillName << " (" << DD(SkillTable["ARMS0"].SkillBase) << ")" << " " << SkillTable["ARMS0"].SubSkillName << std::setw(24-SkillTable["ARMS0"].SkillName.length()-SkillTable["ARMS0"].SubSkillName.length()-Toolong(SkillTable["ARMS0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["ARMS0"].SkillMod) << "% [ ]" << std::endl;
+  //Heavy Machine(name)    Navigate    Combat Skill(COMBAT0)
+  std::cout << SkillTable["Heavy Machine0"].SkillName << " (" << DD(SkillTable["Heavy Machine0"].SkillBase) << ")" << std::setw(24) << std::setfill(' ') << "" << SkillTable["Navigate"].SkillName << " (" << DD(SkillTable["Navigate"].SkillBase) << ")" << std::setw(17-Toolong(SkillTable["Navigate"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Navigate"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["COMBAT0"].SkillName << " (" << DD(SkillTable["COMBAT0"].SkillBase) << ")" << " " << SkillTable["COMBAT0"].SubSkillName << std::setw(24-SkillTable["COMBAT0"].SkillName.length()-SkillTable["COMBAT0"].SubSkillName.length()-Toolong(SkillTable["COMBAT0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["COMBAT0"].SkillMod) << "% [ ]" << std::endl;
 
-  //Heavy Machine(subskill0)    Research    Combat Skill(ARMS1)
-  std::cout << "  " << SkillTable["Heavy Machine0"].SubSkillName << std::setw(28-SkillTable["Heavy Machine0"].SubSkillName.length()-Toolong(SkillTable["Heavy Machine0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Heavy Machine0"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Research"].SkillName << " (" << DD(SkillTable["Research"].SkillBase) << ")" << std::setw(17-Toolong(SkillTable["Research"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Research"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS1"].SkillName << " (" << DD(SkillTable["ARMS1"].SkillBase) << ")" << " " << SkillTable["ARMS1"].SubSkillName << std::setw(24-SkillTable["ARMS1"].SkillName.length()-SkillTable["ARMS1"].SubSkillName.length()-Toolong(SkillTable["ARMS1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["ARMS1"].SkillMod) << "% [ ]" << std::endl;
+  //Heavy Machine(subskill0)    Research    Combat Skill(COMBAT1)
+  std::cout << "  " << SkillTable["Heavy Machine0"].SubSkillName << std::setw(28-SkillTable["Heavy Machine0"].SubSkillName.length()-Toolong(SkillTable["Heavy Machine0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Heavy Machine0"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Research"].SkillName << " (" << DD(SkillTable["Research"].SkillBase) << ")" << std::setw(17-Toolong(SkillTable["Research"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Research"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["COMBAT1"].SkillName << " (" << DD(SkillTable["COMBAT1"].SkillBase) << ")" << " " << SkillTable["COMBAT1"].SubSkillName << std::setw(24-SkillTable["COMBAT1"].SkillName.length()-SkillTable["COMBAT1"].SubSkillName.length()-Toolong(SkillTable["COMBAT1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["COMBAT1"].SkillMod) << "% [ ]" << std::endl;
 
-  //Repair(subskill0)    Sense    Combat Skill(ARMS2)
-  std::cout << SkillTable["Repair0"].SkillName << " (" << DD(SkillTable["Repair0"].SkillBase) << ")" << " " << SkillTable["Repair0"].SubSkillName << std::setw(18-SkillTable["Repair0"].SubSkillName.length()-Toolong(SkillTable["Repair0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Repair0"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Sense"].SkillName << " (" << DD(SkillTable["Sense"].SkillBase) << ")" << std::setw(20-Toolong(SkillTable["Sense"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Sense"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS2"].SkillName << " (" << DD(SkillTable["ARMS2"].SkillBase) << ")" << " " << SkillTable["ARMS2"].SubSkillName << std::setw(24-SkillTable["ARMS2"].SkillName.length()-SkillTable["ARMS2"].SubSkillName.length()-Toolong(SkillTable["ARMS2"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["ARMS2"].SkillMod) << "% [ ]" << std::endl;
+  //Repair(subskill0)    Sense    Combat Skill(COMBAT2)
+  std::cout << SkillTable["Repair0"].SkillName << " (" << DD(SkillTable["Repair0"].SkillBase) << ")" << " " << SkillTable["Repair0"].SubSkillName << std::setw(18-SkillTable["Repair0"].SubSkillName.length()-Toolong(SkillTable["Repair0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Repair0"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Sense"].SkillName << " (" << DD(SkillTable["Sense"].SkillBase) << ")" << std::setw(20-Toolong(SkillTable["Sense"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Sense"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["COMBAT2"].SkillName << " (" << DD(SkillTable["COMBAT2"].SkillBase) << ")" << " " << SkillTable["COMBAT2"].SubSkillName << std::setw(24-SkillTable["COMBAT2"].SkillName.length()-SkillTable["COMBAT2"].SubSkillName.length()-Toolong(SkillTable["COMBAT2"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["COMBAT2"].SkillMod) << "% [ ]" << std::endl;
 
-  //Repair(subskill1)    Spot    Combat Skill(ARMS3)
-  std::cout << "  " << SkillTable["Repair1"].SubSkillName << std::setw(28-SkillTable["Repair1"].SubSkillName.length()-Toolong(SkillTable["Repair1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Repair1"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Spot"].SkillName << " (" << DD(SkillTable["Spot"].SkillBase) << ")" << std::setw(21-Toolong(SkillTable["Spot"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Spot"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["ARMS3"].SkillName << " (" << DD(SkillTable["ARMS3"].SkillBase) << ")" << " " << SkillTable["ARMS3"].SubSkillName << std::setw(24-SkillTable["ARMS3"].SkillName.length()-SkillTable["ARMS3"].SubSkillName.length()-Toolong(SkillTable["ARMS3"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["ARMS3"].SkillMod) << "% [ ]" << std::endl;
+  //Repair(subskill1)    Spot    Combat Skill(COMBAT3)
+  std::cout << "  " << SkillTable["Repair1"].SubSkillName << std::setw(28-SkillTable["Repair1"].SubSkillName.length()-Toolong(SkillTable["Repair1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Repair1"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Spot"].SkillName << " (" << DD(SkillTable["Spot"].SkillBase) << ")" << std::setw(21-Toolong(SkillTable["Spot"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Spot"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["COMBAT3"].SkillName << " (" << DD(SkillTable["COMBAT3"].SkillBase) << ")" << " " << SkillTable["COMBAT3"].SubSkillName << std::setw(24-SkillTable["COMBAT3"].SkillName.length()-SkillTable["COMBAT3"].SubSkillName.length()-Toolong(SkillTable["COMBAT3"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["COMBAT3"].SkillMod) << "% [ ]" << std::endl;
 
-  //Sleight of Hand    Track    EXPERENCE BONUS
-  std::cout << SkillTable["Sleight of Hand"].SkillName << " (" << DD(SkillTable["Sleight of Hand"].SkillBase) << ")" << std::setw(10-Toolong(SkillTable["Sleight of Hand"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Sleight of Hand"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Track"].SkillName << " (" << DD(SkillTable["Track"].SkillBase) << ")" << std::setw(20-Toolong(SkillTable["Track"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Track"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << ""; if(EXPERIENCE_BONUS == true){std::cout << "EXPERENCE BONUS " << DD(ExperenceBonus) << "%"<< std::endl;} else{std::cout << "" << std::endl;}
+  //Sleight of Hand    Track    Combat Skill(COMBAT4)
+  std::cout << SkillTable["Sleight of Hand"].SkillName << " (" << DD(SkillTable["Sleight of Hand"].SkillBase) << ")" << std::setw(10-Toolong(SkillTable["Sleight of Hand"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Sleight of Hand"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["Track"].SkillName << " (" << DD(SkillTable["Track"].SkillBase) << ")" << std::setw(20-Toolong(SkillTable["Track"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Track"].SkillMod) << "% [ ]" << std::setw(5) << std::setfill(' ') << "" << SkillTable["COMBAT4"].SkillName << " (" << DD(SkillTable["COMBAT4"].SkillBase) << ")" << " " << SkillTable["COMBAT4"].SubSkillName << std::setw(24-SkillTable["COMBAT4"].SkillName.length()-SkillTable["COMBAT4"].SubSkillName.length()-Toolong(SkillTable["COMBAT4"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["COMBAT4"].SkillMod) << "% [ ]" << std::endl; 
+
+  //EXPERENCE BONUS
+  if(EXPERIENCE_BONUS == true){std::cout << std::setw(100) << std::setfill(' ') << "EXPERENCE BONUS " << DD(ExperenceBonus) << "%"<< std::endl;} else{std::cout << "" << std::endl;}
   //END OF SKILLS
-  
-  std::cout << "===========================================================" << std::endl;
+
+  //WEAPONS
+  std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
   std::cout << "\t\tWEAPONS" << std::endl;
-  std::cout << "===========================================================" << std::endl;
-  std::cout << "Weapon Type" << "\t" << "%" << "\t" << "Damage" << "\t" << "Range" << "\t" << "Attacks" << "\t" << "Lengths" << "\t" << "Hand" << "\t" << "HP" << "\t" << std::endl;
+  std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+  //Weapon Type  %  Damage  Range  Attacks  Lengths  Hand  HP
+  std::cout << "Weapon Type" << "\t\t\t\t" << "%" << "\t\t" << "Damage" << "\t\t" << "Range" << "\t" << "Attacks" << "\t" << "Lengths" << "\t" << "Hand" << "\t" << "HP" << std::endl;
+  std::cout << WeaponsTable["ARMS0"].WeaponName << " (" << WeaponsTable["ARMS0"].WeaponSkillBase << ")" << "\t\t\t" << WeaponsTable["ARMS0"].WeaponSkillMod << "%" << "\t" << WeaponsTable["ARMS0"].WeaponDMG << "\t" << WeaponsTable["ARMS0"].MissileRng << "\t" << WeaponsTable["ARMS0"].WeaponAttk << "\t" << WeaponsTable["ARMS0"].MissileRng<<WeaponsTable["ARMS0"].MeleeRng << "\t" << WeaponsTable["ARMS0"].WeaponHands << "\t" << WeaponsTable["ARMS0"].WeaponHP << "\t" << std::endl;
+  std::cout << WeaponsTable["ARMS1"].WeaponName << " (" << WeaponsTable["ARMS1"].WeaponSkillBase << ")" << "\t\t\t" << WeaponsTable["ARMS1"].WeaponSkillMod << "%" << "\t" << WeaponsTable["ARMS1"].WeaponDMG << "\t" << WeaponsTable["ARMS1"].MissileRng << "\t" << WeaponsTable["ARMS1"].WeaponAttk << "\t" << WeaponsTable["ARMS1"].MissileRng<<WeaponsTable["ARMS1"].MeleeRng << "\t" << WeaponsTable["ARMS1"].WeaponHands << "\t" << WeaponsTable["ARMS1"].WeaponHP << "\t" << std::endl;
+  std::cout << WeaponsTable["ARMS2"].WeaponName << " (" << WeaponsTable["ARMS2"].WeaponSkillBase << ")" << "\t\t\t" << WeaponsTable["ARMS2"].WeaponSkillMod << "%" << "\t" << WeaponsTable["ARMS2"].WeaponDMG << "\t" << WeaponsTable["ARMS2"].MissileRng << "\t" << WeaponsTable["ARMS2"].WeaponAttk << "\t" << WeaponsTable["ARMS2"].MissileRng<<WeaponsTable["ARMS2"].MeleeRng << "\t" << WeaponsTable["ARMS2"].WeaponHands << "\t" << WeaponsTable["ARMS2"].WeaponHP << "\t" << std::endl;
+  std::cout << WeaponsTable["ARMS3"].WeaponName << " (" << WeaponsTable["ARMS3"].WeaponSkillBase << ")" << "\t\t\t" << WeaponsTable["ARMS3"].WeaponSkillMod << "%" << "\t" << WeaponsTable["ARMS3"].WeaponDMG << "\t" << WeaponsTable["ARMS3"].MissileRng << "\t" << WeaponsTable["ARMS3"].WeaponAttk << "\t" << WeaponsTable["ARMS3"].MissileRng<<WeaponsTable["ARMS3"].MeleeRng << "\t" << WeaponsTable["ARMS3"].WeaponHands << "\t" << WeaponsTable["ARMS3"].WeaponHP << "\t" << std::endl;
+  std::cout << WeaponsTable["ARMS4"].WeaponName << " (" << WeaponsTable["ARMS4"].WeaponSkillBase << ")" << "\t\t\t" << WeaponsTable["ARMS4"].WeaponSkillMod << "%" << "\t" << WeaponsTable["ARMS4"].WeaponDMG << "\t" << WeaponsTable["ARMS4"].MissileRng << "\t" << WeaponsTable["ARMS4"].WeaponAttk << "\t" << WeaponsTable["ARMS4"].MissileRng<<WeaponsTable["ARMS4"].MeleeRng << "\t" << WeaponsTable["ARMS4"].WeaponHands << "\t" << WeaponsTable["ARMS4"].WeaponHP << "\t" << std::endl;
+  std::cout << WeaponsTable["ARMS5"].WeaponName << " (" << WeaponsTable["ARMS5"].WeaponSkillBase << ")" << "\t\t\t" << WeaponsTable["ARMS5"].WeaponSkillMod << "%" << "\t" << WeaponsTable["ARMS5"].WeaponDMG << "\t" << WeaponsTable["ARMS5"].MissileRng << "\t" << WeaponsTable["ARMS5"].WeaponAttk << "\t" << WeaponsTable["ARMS5"].MissileRng<<WeaponsTable["ARMS5"].MeleeRng << "\t" << WeaponsTable["ARMS5"].WeaponHands << "\t" << WeaponsTable["ARMS5"].WeaponHP << "\t" << std::endl;
+  std::cout << SkillTable["Brawl"].SkillName << " (" << SkillTable["Brawl"].SkillBase << ")" << "\t\t\t" << SkillTable["Brawl"].SkillMod << "%" << "\t" << "1D3+dm" << "\t" << "touch" << "\t" << 1 << "\t" << "close" << "\t" << "1h" << "\t" << "-" << " [ ]" << std::endl;
+  std::cout << SkillTable["Grapple"].SkillName << " (" << SkillTable["Grapple"].SkillBase << ")" << "\t\t\t" << SkillTable["Grapple"].SkillMod << "%" << "\t" << "..." << "\t" << "touch" << "\t" << 1 << "\t" << "close" << "\t" << "2h" << "\t" << "-" << " [ ]" << "\n" << std::endl;
+
+  //ARMOR
+  //Armor  Armor Value
+  std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+  std::cout << "\t\tARMOR" << std::endl;
+  std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+  std::cout << "Armor" << '\t' <<  "Armor Value" << std::endl;
   std::cout << " " << std::endl;
-  
+  std::cout << " " << std::endl;
+  //Shield  %  DAMAGE  HP
+  std::cout << "Shield" << '\t' << "%" << '\t' << "Damage" << '\t' << "HP" << std::endl;
+  std::cout << WeaponsTable["ARMSShield"].WeaponName << '\t' << SkillTable["Shield0"].SkillMod << '%' << '\t' << WeaponsTable["ARMSShield"].WeaponDMG << '\t' << WeaponsTable["ARMSShield"].WeaponHP << std::endl;
+  std::cout << "Combat Notes " << std::endl;
  
   std::cout << "\n" << "Total number of Job Skills: " << JOBSKILLS.size() << std::endl; //testing
   std::sort(JOBSKILLS.begin(), JOBSKILLS.end());
