@@ -58,6 +58,7 @@ struct WeaponsData
   std::string Value;
   float WeaponSIZ;
   std::string MissileRateOfFire;
+  int WeaponSkillMod;
   //std::string IDs;
 };
 
@@ -117,7 +118,7 @@ private:
 
   int Toolong(int mod);
 
-  std::string Religion;
+  std::string Convert;
   std::string DamBonus;
   std::string Profession;
   std::string Wealth;  
@@ -150,18 +151,27 @@ private:
   std::vector <std::string> SkillList;
   std::vector <std::string> Art;
   std::vector <std::string> Craft;
+  std::vector <std::string> Drive;
   std::vector <std::string> Heavy_Machine;
   std::vector <std::string> Knowledge;
   std::vector <std::string> Language;
+  std::vector <std::string> LanguageComputerCode;
   std::vector <std::string> Pilot;
   std::vector <std::string> Preform;
   std::vector <std::string> Repair;
   std::vector <std::string> Ride;
   std::vector <std::string> Science;
-  std::vector <std::string> Technical;
+  std::vector <std::string> Technical_Skill;
+  std::vector <std::string> Instrument;
+  std::vector <std::string> Group;
+  std::vector <std::string> Region;
+  std::vector <std::string> Religion;
+  std::vector <std::string> Artillery;
 
-  std::string JOBSKILLS[10];
-  std::string HOBBYSKILLS[0];
+  std::vector <std::string>JOBSKILLS;
+  std::vector <std::string>HOBBYSKILLS;
+  std::vector <std::string>PERSONALITYSKILLS; 
+  std::vector <std::string>COMBATSKILLS;
 
   void Weapons();
   void FillSkillMod();
@@ -173,19 +183,19 @@ private:
   int EDUstat();
   void SkillCategory();
   void Skills(int x, int i, int p);
-  void ProfessionSkillSet();
-  void PersonalSkillSet();
+  void SkillPointSetting(std::vector<std::string> &V_main, std::map<std::string, SkillData>&SKILLLIST, int &SkillPointsMax, int &SkillMAX);
   int CharacteristicRoll(int r);
   int Born();
   void OwnLanguage();
   void HPbyLocation(int B);
   std::string DamageBonus(int T, int Z);
   int HitPoints(int C, int Z);
-  void RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> ProfessionSkills);
+  void RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> &ProfessionSkills);
   void PickJobSkills();
   int MajorWounds(int H);
   std::string DistinctiveFeatures(int H);
   void Professions();
+  std::string RandomCombatSkill(std::vector<std::string> &ALLSKILLS);
   void PersonalityPick(int pick);
   std::string RandGender(int X);
   std::string HandDom(int Odds);
@@ -197,20 +207,56 @@ private:
   int Skill_Category_Secondary(int x);
   int Skill_Category_Negative(int x);
 
+  bool IsThereADup(std::vector<std::string> LIST);
+  bool IsSkillWithoutSubSkills(std::string &SKILL);
+  int NumberOfSubSkills(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
+  void RemoveDuplicates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
+  void CheckForDuplicatcates(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
+  void RefillHobbySkills(std::vector<std::string> &V_main, int &MaxNumberOfSkills);
+  void RemoveExtraSubSkills(std::vector<std::string> &V_main, std::vector<std::string> &V_banlist);
+  void PickHobbySkills();
+  void RandomSubSkillAssignment(std::vector<std::string> &V_main);
+  bool IsSubskillEmpty(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
+  bool IsStringInVector(std::string &SKILL, std::vector<std::string> &V_main);
+  void NextFreeSubskill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
+  void NextRandomKnownSubSkill(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::string &FreeSubSkill, std::vector<std::string> &V_main);
+  bool IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main);
+  void NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main);
+  bool NumberAtEnd(std::string &SKILL);
+  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST, std::map<std::string, WeaponsData>&WEAPONSLIST, std::vector<std::string> &V_artillery);
+  bool IsSkillACombatSkill(std::string &SKILL);
+  bool IsSubSkillAlreadyUsed(std::string &SKILL, std::string &SUBSKILLTOCHECK, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST);
+  void SubSpecialtySelection(std::string &SKILL, std::string &RAWSUBSKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::map <std::string, std::vector<std::string>> &SUBSKILLLIST);
+  void FillCOMBATSKILLS(std::vector<std::string> &V_main, std::vector<std::string> &V_combat);
+  void OnlyUniqueStringsIn(std::vector<std::string> &V_main);
+  void MoveCombatSkillsToCOMBAT(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST);
+  void RandomCombatSelecting(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST);
+  void COMBATSkillModtoARMSSkillMod(std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST);
+
+  int NumberOfHobbySkills;
+  int TESTDUP;
+  int SUBNUM;
+  int NONSUBNUM;
+  int SKILLWITHSUBNUM;
+  bool TOOMANYSUBS;
+  std::vector<std::string> DUPITEMS;
+  std::map<std::string, int> UniqueCounts;
+  std::map<std::string, int> SubskillMax;
+  std::vector<std::string> SUBSTOPOP;
 
   std::map<std::string, SkillData>SkillTable;
   std::map<std::string, WeaponsData>WeaponsTable;
+  std::map<std::string, std::vector<std::string>>SubSkillTable;
 
 
 public:
-  BRP_human_base(int a, int b, int c, int d, int e, int x, int y);
+  BRP_human_base(int a, int b, int c, int d, int e, int x, int y, int z);
 
   void CharName();
   std::string CN;
   void PlayerName();
   std::string PN;
 
-  //void SettingsSwitches();
   static bool stateEDUCATION_STAT() {return EDUCATION_STAT;}
   static void flipEDUCATION_STAT(bool toggle) {EDUCATION_STAT = toggle;}
 

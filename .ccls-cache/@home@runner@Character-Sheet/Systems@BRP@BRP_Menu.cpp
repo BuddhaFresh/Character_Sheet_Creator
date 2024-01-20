@@ -16,6 +16,7 @@ int BRP_menu()
   while (true){//Main BRP Menu
     std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
     std::cout << "Basic Roleplaying, Universal Game Engine\n\t\t\tMain Menu\n";
+    std::cout << "X. Create Character, Standard\n";
     std::cout << "1. Create Random Character\n";
     std::cout << "2. Create Multiple Random Charcters\n";
     std::cout << "3. Create Character, Point-Buy System\n";
@@ -32,7 +33,7 @@ int BRP_menu()
     {//BRP Main Menu Input
       case 1:{//full random
         std::cout << "\033c";
-        BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
+        BRP_human_base BRPChar0(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
         BRPChar0.PlayerName();
         BRPChar0.fullrandom();
         BRPChar0.consoleChar();
@@ -80,7 +81,7 @@ int BRP_menu()
         std::cin >> amounts;
         std::cout << "\033c";
         for (int i = 0; i < amounts; i++){
-          BRP_human_base BRPChar0(ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 2)+6,ROLL.MultiDice(1, 6, 2)+6);
+          BRP_human_base BRPChar0(ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 3),ROLL.MultiDice(1, 6, 2)+6,ROLL.MultiDice(1, 6, 2)+6,ROLL.MultiDice(1, 6, 2)+6);
           BRPChar0.fullrandom();
           BRPChar0.consoleChar();
           std::cout << "\n" <<std::endl;
@@ -302,6 +303,23 @@ int BRP_menu()
           }; 
         }//Options sub-menu end
       } 
+      case 6:{//placeholder for standard
+        std::cout << "\033c";
+        /*
+          Overview of current options settings
+            allow chance to edit and come back to this menu
+          get player name
+          get character name
+          menu for stats
+            allow input for each stat
+            allow for random roll per stat
+            redo any before using stats for objet
+          show calculated stats
+          
+        */
+        std::cout << "Not availible";
+        break;
+      }
       case 0:{//exit
         std::cout << "\033c";
         break;
