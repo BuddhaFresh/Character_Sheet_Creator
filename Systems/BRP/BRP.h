@@ -168,10 +168,10 @@ private:
   std::vector <std::string> Religion;
   std::vector <std::string> Artillery;
 
-  std::vector <std::string>JOBSKILLS;
-  std::vector <std::string>HOBBYSKILLS;
-  std::vector <std::string>PERSONALITYSKILLS; 
-  std::vector <std::string>COMBATSKILLS;
+  std::vector <std::string> JOBSKILLS;
+  std::vector <std::string> HOBBYSKILLS;
+  std::vector <std::string> PERSONALITYSKILLS; 
+  std::vector <std::string> COMBATSKILLS;
 
   void Weapons();
   void FillSkillMod();

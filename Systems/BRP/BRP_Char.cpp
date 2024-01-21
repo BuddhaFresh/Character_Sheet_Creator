@@ -1859,11 +1859,7 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
         std::vector <std::string> SubTypeOptions = {};
         std::map<std::string, WeaponsData>::iterator iWL;
         
-        if(TEMPNAME == "fruitloops"){ //testing
-          SKILLLIST[V_main[i]].SubSkillName = V_artillery.at(ROLL.Die(0,V_artillery.size()-1));
-          //SKILLLIST[V_main[i]].SkillBase = NEED TO ADD ARTILLERY IN WEAPONSTABLE FOR THE SKILL BASE
-          
-        }else if(TEMPNAME == "Parry"){
+        if(TEMPNAME == "Parry"){
           for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
             if(iWL->second.Parry == true){
               SubTypeOptions.push_back(iWL->second.WeaponSkillSubType);}
@@ -1901,10 +1897,8 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
 
 //Loop through all skills and adds the skill's base value and a skill's category value to the skill's mod value
 void BRP_human_base::FillSkillMod(){
-  std::cout << "\n\n  &$&_FILLING SKILL MODS_&$&  \n\n"; //testing
   for (auto& X : SkillTable){
     X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
-    std::cout << " >" << X.first << " (" << X.second.SkillBase << ") + " << "Catagory of "<< X.second.SkillCat << " came out to "<< X.second.SkillMod << "\n"; //testing
   }
 }
 
@@ -1965,7 +1959,6 @@ void BRP_human_base::PersonalityPick(int pick){
 //Randomly assigns skill points to skills in a given vector
 void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::map<std::string, SkillData>&SKILLLIST, int &SkillPointPool, int &SkillMAX){
   //Sets up the Current Skill Points to be spent for the following loop.
-  std::cout << "\n===SkillPointsSetting START===\n"; //testing
   int CurrentSkillPoints = SkillPointPool;
 
   if(V_main == PERSONALITYSKILLS){
@@ -1973,7 +1966,6 @@ void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::ma
     for(int i = 0; i < V_main.size(); i++){
       std::string SKILLfromVECTOR = V_main.at(i);
       SKILLLIST[SKILLfromVECTOR].SkillMod += CurrentSkillPoints;
-      std::cout << "\n PP " << SKILLfromVECTOR << " gets "<< CurrentSkillPoints <<" Personality Points\n"; //testing
     }
     
     
@@ -2008,11 +2000,6 @@ void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::ma
         //Add and remove points to the skill and from the CurrentSkillPoints availible.
         SKILLLIST[ROLE].SkillMod += LEARNED; 
         CurrentSkillPoints -= LEARNED;
-        if(V_main == HOBBYSKILLS){
-          std::cout << "\n HP " << ROLE << " gets "<< LEARNED <<" Personal Points\n"; //testing
-        }else{
-          std::cout << "\n JP " << ROLE << " gets "<< LEARNED <<" Professional Points\n"; //testing
-        }
         
 
         //Ends the loop if all the current skill points are spent, the while loop should be false and end as well.
@@ -2023,7 +2010,6 @@ void BRP_human_base::SkillPointSetting(std::vector<std::string> &V_main, std::ma
       }
     }
   }
-  std::cout << "\n===SkillPointsSetting END===\n"; //testing
 }
 
 //Randomly selects a weapon and adds it to ARMS slot and weapon's base chance to the character's combat skill chance 
@@ -2031,39 +2017,30 @@ void BRP_human_base::RandomCombatSelecting(std::vector<std::string> &V_combat, s
   std::vector <std::string> ApprovedWeaponsKeys = {};
   std::map<std::string, WeaponsData>::iterator iWL;
   int ARMSposistion = 0;
-  std::cout << "Combat vecter size is: " << V_combat.size() << "\n\n"; //testing
   
   for(int i = 0; i < V_combat.size(); i++){
-    std::cout << "\n### START OF LOOP " << i << " ###\n\n"; //testing
     std::string CombatSkillToCheck = V_combat.at(i);
     CombatSkillToCheck.pop_back();
-    std::cout << "Weapons for: " << CombatSkillToCheck << " (" << SKILLLIST[V_combat.at(i)].SubSkillName << ")" << "\n"; //testing
-    std::cout << "ARMSposistion is " << ARMSposistion << "\n"; //testing
 
     //fill ApprovedWeaponsKeys
     for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
       if(CombatSkillToCheck == "Parry"){
         if(SKILLLIST[V_combat.at(i)].SubSkillName == iWL->second.WeaponSkillSubType){
           ApprovedWeaponsKeys.push_back(iWL->first);
-          std::cout << "\tParry with " << iWL->first << "\n"; //testing
         }
       }else{
         if(CombatSkillToCheck == iWL->second.WeaponSkillName && SKILLLIST[V_combat.at(i)].SubSkillName == iWL->second.WeaponSkillSubType){
           ApprovedWeaponsKeys.push_back(iWL->first);
-          std::cout << "\t" << iWL->first << "\n"; //testing
         }else{continue;}
       }
     }
 
-    std::cout << "Approved Weapon List amount: " << ApprovedWeaponsKeys.size() << "\n"; //testing
     //reduce ApprovedWeaponsKeys down to one random option
     while(ApprovedWeaponsKeys.size() != 1){
       int removed = ROLL.Die(0, ApprovedWeaponsKeys.size()-1);
-      std::cout << "\t REMOVING " << ApprovedWeaponsKeys.at(removed) << " !!!\n"; //testing
       ApprovedWeaponsKeys.erase(ApprovedWeaponsKeys.begin()+removed);
     }
     
-    std::cout << ApprovedWeaponsKeys.at(0) << "\n"; //testing
     //code for ApprovedWeaponsKeys
     if(CombatSkillToCheck == "Shield"){
       SKILLLIST[V_combat.at(i)].SkillBase = WEAPONSLIST[ApprovedWeaponsKeys.at(0)].WeaponSkillBase;
@@ -2092,46 +2069,35 @@ void BRP_human_base::RandomCombatSelecting(std::vector<std::string> &V_combat, s
     
     ApprovedWeaponsKeys.clear();
 
-    std::cout << "\n### END OF LOOP " << i << " ###\n\n"; //testing
   }
 }
 
 //Move SkillMod from SkillTable[COMBAT#](that arn't shields or artilery) to WeaponTable[ARMS#]
-
 void BRP_human_base::COMBATSkillModtoARMSSkillMod(std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST){
   std::map<std::string, SkillData>::iterator iSL;
   std::map<std::string, WeaponsData>::iterator iWL;
   std::vector<std::string> AcceptableCombatKeys = {};
   int combatnumber = 0;
   int armsnumber = 0;
-    for(iSL = SKILLLIST.begin(); iSL != SKILLLIST.end(); iSL++){
-    std::string Combatkey = "COMBAT" + std::to_string(combatnumber);
-      if(iSL->first == Combatkey){
-        if(iSL->second.SkillName != "Shield" && iSL->second.SkillName != "Artillery" && iSL->second.SkillName != ""){
-          std::cout << "\n" << Combatkey << "   IT WORKS!\n";
-          std::cout << "\n" << iSL->second.SkillName <<"\n";
-          std::cout << "\n" << iSL->second.SubSkillName <<"\n";
-          std::cout << "\n" << iSL->second.SkillMod <<"\n";
-          AcceptableCombatKeys.push_back(Combatkey);
-          //iWL->second.WeaponSkillMod = iSL->second.SkillMod;
-          //std::cout << "\n WeaponSkillMod: " << iWL->second.WeaponSkillMod <<"\n";
-          combatnumber++;
-          iWL++;
-        }else{
-          combatnumber++;
-          continue;
-        }
+  
+  for(iSL = SKILLLIST.begin(); iSL != SKILLLIST.end(); iSL++){
+  std::string Combatkey = "COMBAT" + std::to_string(combatnumber);
+    if(iSL->first == Combatkey){
+      if(iSL->second.SkillName != "Shield" && iSL->second.SkillName != "Artillery" && iSL->second.SkillName != ""){
+        AcceptableCombatKeys.push_back(Combatkey);
+        combatnumber++;
+        iWL++;
+      }else{
+        combatnumber++;
+        continue;
       }
     }
+  }
+  
   for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
     std::string Armskey = "ARMS" + std::to_string(armsnumber);
     if(iWL->first == Armskey){
       if(iWL->second.WeaponName != ""){
-        //iWL->second.WeaponSkillMod = SKILLLIST[AcceptableCombatKeys.at(armsnumber)].SkillMod;
-        std::cout << "\nYAY this works?\n";
-        std::cout << "\n Armskey: "<< Armskey <<"\n";
-        std::cout << "\n" << "SkillTable Skillmod: "<< SKILLLIST[AcceptableCombatKeys.at(armsnumber)].SkillMod <<"\n";
-        std::cout << "\n Current ARMS Mod: " << iWL->second.WeaponSkillMod <<"\n";
         iWL->second.WeaponSkillMod = SKILLLIST[AcceptableCombatKeys.at(armsnumber)].SkillMod;
         armsnumber++;
       }
@@ -2140,32 +2106,21 @@ void BRP_human_base::COMBATSkillModtoARMSSkillMod(std::map<std::string, SkillDat
       continue;
     }
   }
-  //run method AFTER FillSkillMod()
 }
 
 
 //Moves COMBATSKILLS skill values to Combat skills in SkillTable
 void BRP_human_base::MoveCombatSkillsToCOMBAT(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST){
-  std::cout << "\n\nMoveCombatSkillsToCOMBAT Begins\n\n"; //testing  
-  std::cout << "\nAdding skills from V_COMABT to COMBAT# in Skilltable\n\n"; //testing
   
   for(int q = 0; q < V_combat.size(); q++){
 
-    std::cout << "\n@@@ START OF LOOP " << q << " @@@\n\n"; //testing
     std::string Combatkey = "COMBAT" + std::to_string(q);
-    std::cout << "\nAdding the following to " << Combatkey << ";\n"; //testing
     SKILLLIST[Combatkey].SkillName = SKILLLIST[V_combat.at(q)].SkillName;
-    std::cout << "\tSkillName: " << SKILLLIST[V_combat.at(q)].SkillName << ",\n"; //testing
     SKILLLIST[Combatkey].SubSkillName = SKILLLIST[V_combat.at(q)].SubSkillName;
-    std::cout << "\tSubSkillName: " << SKILLLIST[V_combat.at(q)].SubSkillName << ",\n"; //testing
     SKILLLIST[Combatkey].SkillBase = SKILLLIST[V_combat.at(q)].SkillBase;
-    std::cout << "\tSkillBase: " << SKILLLIST[V_combat.at(q)].SkillBase << ",\n"; //testing
     SKILLLIST[Combatkey].SkillMod = SKILLLIST[V_combat.at(q)].SkillMod;
-    std::cout << "\tSkillMod: " << SKILLLIST[V_combat.at(q)].SkillMod << ".\n"; //testing
-    std::cout << "\n@@@ END OF LOOP " << q << " @@@\n\n"; //testing
 
   }
-  std::cout << "\n\nMoveCombatSkillsToCOMBAT Ends\n\n"; //testing
 }
 
 //Gets the character's name
@@ -2208,31 +2163,22 @@ void BRP_human_base::fullrandom(){
   PickJobSkills();
   PickHobbySkills();
   PersonalityPick(ROLL.Die(1,4));
-
-
   RandomSubSkillAssignment(JOBSKILLS);
   RandomSubSkillSelection(JOBSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
   RandomSubSkillAssignment(HOBBYSKILLS);
   RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
   RandomSubSkillAssignment(PERSONALITYSKILLS);
   RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
-  
   FillCOMBATSKILLS(JOBSKILLS, COMBATSKILLS);
   FillCOMBATSKILLS(HOBBYSKILLS, COMBATSKILLS);
   FillCOMBATSKILLS(PERSONALITYSKILLS, COMBATSKILLS);
-
   RandomCombatSelecting(COMBATSKILLS, SkillTable, WeaponsTable);
-  
   FillSkillMod(); 
-  
-  
   SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
   SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
   SkillPointSetting(PERSONALITYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
-  
   MoveCombatSkillsToCOMBAT(COMBATSKILLS, SkillTable);
   COMBATSkillModtoARMSSkillMod(SkillTable, WeaponsTable);
-  
 }
 
 //Adjust length of spacing for charcter sheet if skill is over 99%
@@ -2395,7 +2341,9 @@ void BRP_human_base::consoleChar(){
   std::cout << "Shield" << '\t' << "%" << '\t' << "Damage" << '\t' << "HP" << std::endl;
   std::cout << WeaponsTable["ARMSShield"].WeaponName << '\t' << SkillTable["Shield0"].SkillMod << '%' << '\t' << WeaponsTable["ARMSShield"].WeaponDMG << '\t' << WeaponsTable["ARMSShield"].WeaponHP << std::endl;
   std::cout << "Combat Notes " << std::endl;
- 
+
+  //END OF PAGE 1
+  
   std::cout << "\n" << "Total number of Job Skills: " << JOBSKILLS.size() << std::endl; //testing
   std::sort(JOBSKILLS.begin(), JOBSKILLS.end());
   for(int i = 0; i < JOBSKILLS.size(); i++){
