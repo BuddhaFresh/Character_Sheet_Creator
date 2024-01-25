@@ -82,6 +82,11 @@ struct WealthCategorys
 
 
 class BRP_human_base{
+protected:
+  virtual void Skills(int x, int i, int p);
+  std::vector <std::string> Language;
+  std::map<std::string, SkillData>SkillTable;
+
 private:
   static bool EDUCATION_STAT;
   static bool EXPERIENCE_BONUS;
@@ -154,7 +159,7 @@ private:
   std::vector <std::string> Drive;
   std::vector <std::string> Heavy_Machine;
   std::vector <std::string> Knowledge;
-  std::vector <std::string> Language;
+  
   std::vector <std::string> LanguageComputerCode;
   std::vector <std::string> Pilot;
   std::vector <std::string> Preform;
@@ -182,11 +187,11 @@ private:
   void SanityPoints(int G);
   int EDUstat();
   void SkillCategory();
-  void Skills(int x, int i, int p);
+    
   void SkillPointSetting(std::vector<std::string> &V_main, std::map<std::string, SkillData>&SKILLLIST, int &SkillPointsMax, int &SkillMAX);
   int CharacteristicRoll(int r);
   int Born();
-  void OwnLanguage();
+    virtual void OwnLanguage();
   void HPbyLocation(int B);
   std::string DamageBonus(int T, int Z);
   int HitPoints(int C, int Z);
@@ -244,7 +249,7 @@ private:
   std::map<std::string, int> SubskillMax;
   std::vector<std::string> SUBSTOPOP;
 
-  std::map<std::string, SkillData>SkillTable;
+  
   std::map<std::string, WeaponsData>WeaponsTable;
   std::map<std::string, std::vector<std::string>>SubSkillTable;
 
@@ -303,4 +308,14 @@ public:
   void fullrandom();
   void consoleChar();
   void printChar();
+};
+
+class BRP_human_AncientEra : public BRP_human_base {
+  public:
+    BRP_human_AncientEra(int a, int b, int c, int d, int e, int x, int y, int z);
+    std::vector<std::string>Language = {"Ug-Ugh", "Ogga-Booga", "Bam-Bam", "Yaba-Daba", "Zug-Zug", "Chi-Chi"};
+
+  private:
+  //void OwnLanguage() override;
+  //void Skills(int x, int i, int p) override;
 };

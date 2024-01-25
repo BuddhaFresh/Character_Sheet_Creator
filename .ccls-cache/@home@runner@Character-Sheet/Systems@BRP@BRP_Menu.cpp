@@ -16,7 +16,7 @@ int BRP_menu()
   while (true){//Main BRP Menu
     std::cout << "\n\n<>^v^v^v^v^v<>^v^v^^v^v^<>v^v^v^v^v^<>\n";
     std::cout << "Basic Roleplaying, Universal Game Engine\n\t\t\tMain Menu\n";
-    std::cout << "X. Create Character, Standard\n";
+    std::cout << "6. [testing: ancient past character]Create Character, Standard\n";
     std::cout << "1. Create Random Character\n";
     std::cout << "2. Create Multiple Random Charcters\n";
     std::cout << "3. Create Character, Point-Buy System\n";
@@ -305,6 +305,10 @@ int BRP_menu()
       } 
       case 6:{//placeholder for standard
         std::cout << "\033c";
+        BRP_human_AncientEra BRPAnceintperson0(10,10,10,10,10,12,12,12);
+        BRPAnceintperson0.fullrandom();
+        BRPAnceintperson0.consoleChar();
+        
         /*
           Overview of current options settings
             allow chance to edit and come back to this menu
@@ -317,7 +321,7 @@ int BRP_menu()
           show calculated stats
           
         */
-        std::cout << "Not availible";
+        //std::cout << "Not availible";
         break;
       }
       case 0:{//exit

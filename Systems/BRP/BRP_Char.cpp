@@ -840,21 +840,22 @@ void BRP_human_base::SkillCategory(){
 }
 
 //Stores all skills, subskills, and generates base skill values 
-void BRP_human_base::Skills(int x, int i, int p){  
+void BRP_human_base::Skills(int stat_dex, int stat_int, int stat_pow){  
   //special base values for skills
-  int DodgeBase = x*2; //Dodge
-  int FlyBase = ceil(x/2); //Fly
+  int DodgeBase = stat_dex*2; //Dodge
+  int FlyBase = ceil(stat_dex/2); //Fly
   if (WINGED_CHARACTER == true) 
-    {FlyBase = x*4;}
-  int GamingBase = i+p; //Gaming
-  int Language0Base = i*5; //Own Language
-  if (EDUCATION_STAT == true && EDU*5 > i*5)
+    {FlyBase = stat_dex*4;}
+  int GamingBase = stat_int+stat_pow; //Gaming
+  int Language0Base = stat_int*5; //Own Language
+  if (EDUCATION_STAT == true && EDU*5 > stat_int*5)
     {Language0Base = EDU*5;}
-  int ProjectionBase = x*2; //Projection
+  int ProjectionBase = stat_dex*2; //Projection
   int PsychotherapyBase = 0; //Psychotherapy
   if (SANITY == true)
     {PsychotherapyBase = 1;}
   int LiteracyBase = 0; //Literacy, need an if statement for modern setting
+  //int DriveBase = 1; or 20, depends on setting and what is driven in that era
     
   //map of all skills with; name, subtype, base%, a value to be modifyed, and skill category
   //This still seems too unweildly, especially with subtypes and Bases set by weapons
@@ -2072,42 +2073,40 @@ void BRP_human_base::RandomCombatSelecting(std::vector<std::string> &V_combat, s
   }
 }
 
-//Move SkillMod from SkillTable[COMBAT#](that arn't shields or artilery) to WeaponTable[ARMS#]
+//Move SkillMod from SkillTable[COMBAT#](that arn't shields, artilery, parry, or blank) to WeaponTable[ARMS#]
 void BRP_human_base::COMBATSkillModtoARMSSkillMod(std::map<std::string, SkillData>&SKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST){
   std::map<std::string, SkillData>::iterator iSL;
   std::map<std::string, WeaponsData>::iterator iWL;
   std::vector<std::string> AcceptableCombatKeys = {};
-  int combatnumber = 0;
-  int armsnumber = 0;
-  
+  int skilltableamount = 0;
+
+  //gets total amount of elements from SKILLLIST next loops
   for(iSL = SKILLLIST.begin(); iSL != SKILLLIST.end(); iSL++){
-  std::string Combatkey = "COMBAT" + std::to_string(combatnumber);
-    if(iSL->first == Combatkey){
-      if(iSL->second.SkillName != "Shield" && iSL->second.SkillName != "Artillery" && iSL->second.SkillName != ""){
-        AcceptableCombatKeys.push_back(Combatkey);
-        combatnumber++;
-        iWL++;
-      }else{
-        combatnumber++;
-        continue;
+    skilltableamount++;}
+
+  //pick combat skill keys that can be armed and add them to AcceptableCombatKeys vector
+  for(int a = 0; a < skilltableamount; a++){
+    std::string Combatkey = "COMBAT" + std::to_string(a);
+    if((SKILLLIST.find(Combatkey) == SKILLLIST.end())){
+      break;
+    }else{
+      if(SKILLLIST[Combatkey].SkillName != "Shield" && SKILLLIST[Combatkey].SkillName != "Artillery" && SKILLLIST[Combatkey].SkillName != "" && SKILLLIST[Combatkey].SkillName != "Parry"){
+          AcceptableCombatKeys.push_back(Combatkey);
+          continue;
+        }else{continue;}
       }
     }
-  }
-  
-  for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
-    std::string Armskey = "ARMS" + std::to_string(armsnumber);
-    if(iWL->first == Armskey){
-      if(iWL->second.WeaponName != ""){
-        iWL->second.WeaponSkillMod = SKILLLIST[AcceptableCombatKeys.at(armsnumber)].SkillMod;
-        armsnumber++;
-      }
+
+  //Update mod of ARMS in Weaponslist with the mods from AcceptableCombatKeys
+  for(int b = 0; b < AcceptableCombatKeys.size(); b++){
+    std::string Armskey = "ARMS" + std::to_string(b);
+    if((WEAPONSLIST.find(Armskey) == WEAPONSLIST.end())){
+      break;
     }else{
-      armsnumber++;
-      continue;
+      WEAPONSLIST[Armskey].WeaponSkillMod = SKILLLIST[AcceptableCombatKeys.at(b)].SkillMod;
     }
   }
 }
-
 
 //Moves COMBATSKILLS skill values to Combat skills in SkillTable
 void BRP_human_base::MoveCombatSkillsToCOMBAT(std::vector<std::string> &V_combat, std::map<std::string, SkillData>&SKILLLIST){
@@ -2399,4 +2398,14 @@ void BRP_human_base::printChar(){
   consoleChar();
 
   std::cout.rdbuf(original);
+}
+
+BRP_human_AncientEra::BRP_human_AncientEra(int a, int b, int c, int d, int e, int x, int y, int z) : BRP_human_base(a,b,c,d,e,x,y,z){ 
+  
+  //BRP_human_AncientEra::OwnLanguage();
+  // {
+  //   int OwnLang = ROLL.Die(0,Language.size()-1);
+  //   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
+  //   std::cout << "\n\nNumber of characters in " << Language.at(OwnLang) << " is "<< SkillTable["Language0"].SubSkillName.length() <<"\n\n"; //testing
+  // }
 }
