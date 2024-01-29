@@ -60,7 +60,7 @@ bool BRP_human_base::WINGED_CHARACTER = false;
 
 //BRP_human_base class
 //Constructor to hold Characteristics, 
-BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y, int z){
+BRP_human_base::BRP_human_base( int a,  int b,  int c,  int d,  int e,  int x,  int y,  int z){
   STR = a;
   CON = b;
   POW = c;
@@ -71,7 +71,7 @@ BRP_human_base::BRP_human_base(int a, int b, int c, int d, int e, int x, int y, 
   EDU = z;
 }
    
-  /*Setting&Era switches
+ /*Setting&Era switches
   Basic?; prehistoric, medieval, modern, future?
   Basic has like 5 options
   Detailed?; 23 opitions
@@ -993,9 +993,9 @@ void BRP_human_base::Skills(int stat_dex, int stat_int, int stat_pow){
 
   //Preform
   Preform = {"Act", "Conduct Orchestra", "Dance", "Juggle", "Orate", "Play", "Instrument (subspeciality)", "Recite", "Ritual", "Sing"};
-
+  
   //Preform (Instrument)
-  Instrument = {"Flute","Guitar","Piano","Drums","Cowbell"};
+  Instrument = {"Accordion", "Bagpipes", "Banjo", "Bassoon", "Cello", "Clarinet", "Cowbell", "Didgeridoo", "Drums", "Flute", "French Horn", "Guitar", "Harp", "Mandolin", "Oboe", "Piano", "Saxophone", "Sitar", "Steel Drum", "Trombone", "Trumpet", "Ukulele", "Viola", "Violin", "Xylophone"};
 
   //Pilot
   Pilot = {"Airplane", "Airship", "Balloon", "Boat", "Helicopter", "Hovercraft", "Jet Aircraft", "Jetpack", "Starship", "Submarine"};
@@ -1004,7 +1004,7 @@ void BRP_human_base::Skills(int stat_dex, int stat_int, int stat_pow){
   Repair = {"Electrical", "Electronic", "Engineering", "Hydroelectric", "Mechanical", "Structural", "Quantum"};
 
   //Ride
-  Ride = {"Bull", "Camel", "Cattle", "Donkey", "Elephant", "Horse", "Llama", "Mule", "Ostrich", "Water Buffalo", "Yak"};
+  Ride = {"Alpaca", "Camel", "Donkey", "Dromedary", "Elephant", "Horse", "Llama", "Mule", "Ox", "Pony", "Reindeer", "Water Buffalo", "Water Ox", "Yak", "Zebra"};
 
   //Science
   Science = {"Alchemy", "Astronomy", "Behavioral Science", "Biology", "Botany", "Chemistry", "Cryptography", "Genetics", "Geology", "Mathematics", "Meteorology", "Natural History", "Pharmacology", "Physics", "Planetology", "Psychology", "Quantum Mechanics", "Xenobiology", "Zoology"};
@@ -1012,9 +1012,7 @@ void BRP_human_base::Skills(int stat_dex, int stat_int, int stat_pow){
   //Technical
   Technical_Skill = {"Clockwork", "Computers", "Cybernetics", "Electronics", "Robotics", "Sensors", "Siege Engines", "Traps"};
 
-  //Artillery Classes
-  Artillery = {"Cannon", "Launcher", "Mounted Gun", "Siege Engine", "Missile", "Turret"};
-
+  
   //Map of None-Combat Skills to Subskill vectors and Subskill subspecialities to their respective vectors
   SubSkillTable["Art0"] = {Art};
   SubSkillTable["Art1"] = {Art};
@@ -2196,7 +2194,7 @@ void BRP_human_base::consoleChar(){
   std::cout << "===========================================================" << std::endl;
   std::cout << "\t\t\tPERSONAL" << std::endl;
   std::cout << "===========================================================" << std::endl;
-  std::cout << "Name: " << "Player: " << std::endl;
+  std::cout << "Name: " <<  std::setw(13) << std::setfill(' ') << "Player: " << std::endl;
   std::cout << "Culture: " << "Human" << std::setw(13) << std::setfill(' ') << "Gender: " << Gender << std::endl;
   std::cout << "Height: " << Height << std::setw(19-Height.length()) << std::setfill(' ') << "Weight: " << Weight << std::endl;
   std::cout << "Wealth: " << Wealth << std::setw(23-Wealth.length()) << std::setfill(' ') << "Profession: " << Profession << std::endl;
@@ -2243,7 +2241,7 @@ void BRP_human_base::consoleChar(){
   //Fast Talk    Knowledge(subskill0)    Fly
   std::cout << SkillTable["Fast Talk"].SkillName << " (" << DD(SkillTable["Fast Talk"].SkillBase) << ")" << std::setw(16-Toolong(SkillTable["Fast Talk"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Fast Talk"].SkillMod) << "% [ ]" << std::setw(7) << std::setfill(' ') << "  " << SkillTable["Knowledge0"].SubSkillName << std::setw(28-SkillTable["Knowledge0"].SubSkillName.length()-Toolong(SkillTable["Knowledge0"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Knowledge0"].SkillMod) << "% [ ]" << std::setw(8) << std::setfill(' ') << SkillTable["Fly"].SkillName << " (" << DD(SkillTable["Fly"].SkillBase) << ")" << std::setw(22-Toolong(SkillTable["Fly"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Fly"].SkillMod) << "% [ ]" << std::endl;
 
-  //Lanugae(name)    Knowledge(subskill1)    Hide
+  //Language(name)    Knowledge(subskill1)    Hide
   std::cout << SkillTable["Language0"].SkillName << " (" << SkillTable["Language0"].SkillBase << ")" << std::setw(29) << std::setfill(' ') << "" << "  " << SkillTable["Knowledge1"].SubSkillName << std::setw(28-SkillTable["Knowledge1"].SubSkillName.length()-Toolong(SkillTable["Knowledge1"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Knowledge1"].SkillMod) << "% [ ]" << std::setw(9) << std::setfill(' ') << SkillTable["Hide"].SkillName << " (" << DD(SkillTable["Hide"].SkillBase) << ")" << std::setw(21-Toolong(SkillTable["Hide"].SkillMod)) << std::setfill('.') << "" << DD(SkillTable["Hide"].SkillMod) << "% [ ]" << std::endl;
 
   //Language(subskill0)    Knowledge(subskill2)    Jump
@@ -2342,7 +2340,7 @@ void BRP_human_base::consoleChar(){
   std::cout << "Combat Notes " << std::endl;
 
   //END OF PAGE 1
-  
+  /*
   std::cout << "\n" << "Total number of Job Skills: " << JOBSKILLS.size() << std::endl; //testing
   std::sort(JOBSKILLS.begin(), JOBSKILLS.end());
   for(int i = 0; i < JOBSKILLS.size(); i++){
@@ -2380,7 +2378,7 @@ void BRP_human_base::consoleChar(){
       std::cout << ".\n";}
     else{std::cout << ", ";}
   }
-  
+  */
   
   std::cout << "\n\nSeed: " << RANDOMCORE.currentSeed;
 }
@@ -2399,13 +2397,16 @@ void BRP_human_base::printChar(){
 
   std::cout.rdbuf(original);
 }
-
+/*
 BRP_human_AncientEra::BRP_human_AncientEra(int a, int b, int c, int d, int e, int x, int y, int z) : BRP_human_base(a,b,c,d,e,x,y,z){ 
   
-  //BRP_human_AncientEra::OwnLanguage();
-  // {
-  //   int OwnLang = ROLL.Die(0,Language.size()-1);
-  //   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
-  //   std::cout << "\n\nNumber of characters in " << Language.at(OwnLang) << " is "<< SkillTable["Language0"].SubSkillName.length() <<"\n\n"; //testing
-  // }
-}
+  OwnLanguage();
+  {
+    std::vector<std::string>AncientLanguage = {"Ug-Ugh", "Ogga-Booga", "Bam-Bam", "Yaba-Daba", "Zug-Zug", "Chi-Chi"};
+    
+    int OwnLang = ROLL.Die(0,AncientLanguage.size()-1);
+    SkillTable["Language0"].SubSkillName = AncientLanguage.at(OwnLang);
+    std::cout << "\n\nNumber of characters in " << AncientLanguage.at(OwnLang) << " is "<< SkillTable["Language0"].SubSkillName.length() <<"\n\n"; //testing
+  }
+  
+}*/

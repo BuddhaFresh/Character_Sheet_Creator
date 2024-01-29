@@ -1,5 +1,6 @@
 #include "BRP_Menu.h"
 #include "BRP.h"
+#include "BRP_Era.h"
 #include "../../diceroller.h"
 #include "../../menus.h"
 
@@ -304,13 +305,16 @@ int BRP_menu()
         }//Options sub-menu end
       } 
       case 6:{//placeholder for standard
-        std::cout << "\033c";
-        BRP_human_AncientEra BRPAnceintperson0(10,10,10,10,10,12,12,12);
-        BRPAnceintperson0.fullrandom();
-        BRPAnceintperson0.consoleChar();
+        //std::cout << "\033c";
         
-        /*
-          Overview of current options settings
+        BRP_human_base* test = new BRP_human_AncientEra(10,10,10,10,10,10,10,10);
+        test->fullrandom();
+        //test->OwnLanguage();
+        test->consoleChar();
+
+        delete test;
+        
+        /* Overview of current options settings
             allow chance to edit and come back to this menu
           get player name
           get character name

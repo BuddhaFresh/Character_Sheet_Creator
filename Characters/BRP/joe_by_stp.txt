@@ -1,0 +1,96 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: Player: 
+Culture: Human     Gender: Male
+Height: 5'9"       Weight: 213.84lbs
+Wealth: Affluent   Profession: Computer Tech
+Handedness: Right-Handed
+Religion: Jainist
+Move (MOV): 10     Age: 20
+
+ They have very long legs.
+
+ They have a cunning personality, trying first to outsmart an opponent to gain an advantage.
+
+STR 15  Effort roll 75%         INT 09  Idea roll 45%
+CON 06  Stamina roll 30%        CHA 10  Charm roll 50%
+DEX 12  Agility roll 60%        POW 08  Luck roll 40%
+EDU 18  Knowledge roll 90%      SIZ 14  Damage Bonus of +1D4
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 10 with Major Wound occuring at 05 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 360		Personal Skill Points Pool: 90
+
+COMMUNICATION -2%                         MENTAL -2%                                PHYSICAL -2%
+Bargain (05)..................23% [ ]     Appraise (15).................33% [ ]     Climb (40)....................38% [ ]
+Command (05)..................03% [ ]     First Aid (30)................28% [ ]     Drive (20) ...................24% [ ]
+Disguise (01).................19% [ ]     Gaming (17)...................15% [ ]       ............................05% [ ]
+Etiquette (05)................03% [ ]     Knowledge (00)                              ............................24% [ ]
+Fast Talk (05)................03% [ ]       Law.........................57% [ ]     Fly (06)......................04% [ ]
+Language (90)                               Academic Lore...............57% [ ]     Hide (10).....................08% [ ]
+  Amharic.....................88% [ ]       Occult......................16% [ ]     Jump (25).....................23% [ ]
+  Delphi......................35% [ ]     Literacy (00).................-2% [ ]     Pilot (01) ...................-1% [ ]
+  ............................-2% [ ]     Medicine (05).................03% [ ]       ............................-1% [ ]
+  ............................-2% [ ]     Psychotherapy (00)............-2% [ ]       ............................-1% [ ]
+Preform (05) .................03% [ ]     Science (01) Mathematics......43% [ ]     Projection (24)...............22% [ ]
+Persuade (15).................13% [ ]       ............................-1% [ ]     Ride (05) ....................03% [ ]
+Status (15)...................33% [ ]       ............................-1% [ ]       ............................03% [ ]
+Teach (10)....................08% [ ]       ............................-1% [ ]     Stealth (10)..................28% [ ]
+                                          Strategy (01).................-1% [ ]     Swim (25).....................23% [ ]
+MANIPULATION 04%                          Technical (05) Computers......39% [ ]     Throw (25)....................36% [ ]
+Art (05) .....................09% [ ]       Traps.......................23% [ ]
+  ............................09% [ ]       ............................03% [ ]     COMBAT 04%
+Craft (05) Computer Hardware..45% [ ]                                               Dodge (24)....................22% [ ]
+  ............................09% [ ]     PERCEPTION -4%                            Martial Arts (01).............05% [ ]
+Demolition (01)...............05% [ ]     Insight (05)..................21% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)........09% [ ]     Listen (25)...................41% [ ]
+Heavy Machine (01)                        Navigate (10).................20% [ ]     Artillery (05) Turret.........24% [ ]
+  ............................05% [ ]     Research (25).................79% [ ]     Firearm (20) Pistol...........31% [ ]
+Repair (15) Electrical........51% [ ]     Sense (10)....................26% [ ]     Missile Weapon (15) Javelin...23% [ ]
+  Electronic..................58% [ ]     Spot (25).....................41% [ ]     Missile Weapon (10) Missile...22% [ ]
+Sleight of Hand (05)..........20% [ ]     Track (10)....................06% [ ]     Melee Weapon (25) Club........49% [ ]
+                                                                                    EXPERENCE BONUS 04%
+===========================================================
+		WEAPONS
+===========================================================
+Weapon Type				%		Damage		Range	Attacks	Lengths	Hand	HP
+Flintlock Pistol (20)			31%	1D6+1	0	1/4	0	1H	8	
+Javelin (15)			23%	1D6+1/2dm	0	1	0	1H	10	
+Shuriken (10)			22%	1D3+1/2dm	0	2	0	1H	5	
+Heavy Club (25)			49%	1D8+dm	0	1	0Medium	2H	22	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+Brawl (25)			29%	1D3+dm	touch	1	close	1h	- [ ]
+Grapple (25)			29%	...	touch	1	close	2h	- [ ]
+
+===========================================================
+		ARMOR
+===========================================================
+Armor	Armor Value
+ 
+ 
+Shield	%	Damage	HP
+	4%		0
+Combat Notes 
+
+Total number of Job Skills: 10
+Craft0, Knowledge0, Knowledge1, Language1, Repair0, Repair1, Research, Science0, Status, Technical Skill0.
+
+Total number of Hobby Skills: 9
+Artillery0, Firearm0, Knowledge2, Missile Weapon0, Missile Weapon1, Navigate, Sleight of Hand, Technical Skill0, Throw.
+
+Total number of Personality Skills: 13
+Appraise, Bargain, Disguise, Insight, Knowledge0, Knowledge1, Listen, Melee Weapon0, Research, Sense, Spot, Stealth, Technical Skill1.
+
+Total number of Comabt Skills: 5
+Artillery0, Firearm0, Melee Weapon0, Missile Weapon0, Missile Weapon1.
+
+
+Seed: 1706391541

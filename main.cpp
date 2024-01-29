@@ -16,8 +16,8 @@ ROADMAP
 0. txt file version complete
  0.1 skills [IN PROGRESS]
    0.1a selecting skills based on profession by random [DONE]
-   0.1b selecting personnel skills by random [IN PROGRESS]
-   0.1c filter skills based on era/setting
+   0.1b selecting personnel skills by random [DONE]
+   0.1c filter skills based on era/setting [IN PROGRESS]
      0.1cI Eras/Settings need to be picked but expandable (inheritance?)
      0.1cII Adjust what kind of equipment can be generated (inheritance?)
      0.1cIII Adjust what kind of skills can be selected (maybe a tag system?)
@@ -26,16 +26,16 @@ ROADMAP
    0.2b put in bool triggers for features [DONE]
    0.2c Fix Height & Weight; have a toggle for random chance range or Stat base?(CON,APP,CHR,STR,) [DONE]
    0.2d Have descriptions remove and add things from the array based on Gender. Could lead to Cultural and Setting modififyers too
- 0.3 page 2
-   0.3a powers
-   0.3b sanity
-   0.3c equipment 
+ 0.3 page 2 [skipping]
+   0.3a powers [skipping]
+   0.3b sanity [skipping]
+   0.3c equipment [skipping]
      0.3cI Just 3 Weapons per? [DONE]
-   0.3d fatigue
-   0.3e power points
-   0.3f attack powers?
+   0.3d fatigue [skipping]
+   0.3e power points [skipping]
+   0.3f attack powers? [skipping]
  0.4 hit location [DONE]
- 0.5 armor
+ 0.5 armor [skipping]
  0.6 Point Buy System Character Creater
  0.7 Free Build Character Creater
    0.7a Maybe I should of started with this and build evertyhing else around it?

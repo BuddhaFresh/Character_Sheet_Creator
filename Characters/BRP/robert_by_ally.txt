@@ -1,0 +1,96 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: Player: 
+Culture: Human     Gender: Male
+Height: Average    Weight: Obese
+Wealth: Average    Profession: Clerk
+Handedness: Right-Handed
+Religion: Worshipper of Yudi
+Move (MOV): 10     Age: 20
+
+ They have a haughty expression. They have a deep voice. They have athletic clothing.
+
+ They have a cunning personality, trying first to outsmart an opponent to gain an advantage.
+
+STR 10  Effort roll 50%         INT 14  Idea roll 70%
+CON 13  Stamina roll 65%        CHA 07  Charm roll 35%
+DEX 10  Agility roll 50%        POW 09  Luck roll 45%
+EDU 10  Knowledge roll 50%      SIZ 14  Damage Bonus of None
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 13 with Major Wound occuring at 06 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 200		Personal Skill Points Pool: 140
+
+COMMUNICATION 03%                         MENTAL 04%                                PHYSICAL -3%
+Bargain (05)..................50% [ ]     Appraise (15).................39% [ ]     Climb (40)....................37% [ ]
+Command (05)..................31% [ ]     First Aid (30)................46% [ ]     Drive (20) Chariot............43% [ ]
+Disguise (01).................35% [ ]     Gaming (23)...................27% [ ]       ............................03% [ ]
+Etiquette (05)................40% [ ]     Knowledge (00)                              ............................22% [ ]
+Fast Talk (05)................08% [ ]       Accounting..................40% [ ]     Fly (05)......................02% [ ]
+Language (70)                               Law.........................49% [ ]     Hide (10).....................07% [ ]
+  Polish......................75% [ ]       Anthropology................24% [ ]     Jump (25).....................22% [ ]
+  ............................03% [ ]     Literacy (00).................53% [ ]     Pilot (01) ...................-2% [ ]
+  ............................03% [ ]     Medicine (05).................09% [ ]       ............................-2% [ ]
+  ............................03% [ ]     Psychotherapy (00)............23% [ ]       ............................-2% [ ]
+Preform (05) .................08% [ ]     Science (01) .................05% [ ]     Projection (20)...............17% [ ]
+Persuade (15).................31% [ ]       ............................05% [ ]     Ride (05) ....................08% [ ]
+Status (15)...................36% [ ]       ............................05% [ ]       ............................08% [ ]
+Teach (10)....................13% [ ]       ............................05% [ ]     Stealth (10)..................27% [ ]
+                                          Strategy (01).................05% [ ]     Swim (25).....................22% [ ]
+MANIPULATION 02%                          Technical (05) Traps..........29% [ ]     Throw (25)....................22% [ ]
+Art (05) .....................07% [ ]       ............................09% [ ]
+  ............................07% [ ]       ............................09% [ ]     COMBAT 02%
+Craft (05) ...................07% [ ]                                               Dodge (20)....................17% [ ]
+  ............................07% [ ]     PERCEPTION 05%                            Martial Arts (01).............03% [ ]
+Demolition (01)...............03% [ ]     Insight (05)..................30% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)........07% [ ]     Listen (25)...................50% [ ]
+Heavy Machine (01)                        Navigate (10).................32% [ ]     Energy Weapon (05) Pistol.....27% [ ]
+  ............................03% [ ]     Research (25).................77% [ ]      (00) ........................00% [ ]
+Repair (15) ..................17% [ ]     Sense (10)....................48% [ ]      (00) ........................00% [ ]
+  ............................17% [ ]     Spot (25).....................50% [ ]      (00) ........................00% [ ]
+Sleight of Hand (05)..........07% [ ]     Track (10)....................15% [ ]      (00) ........................00% [ ]
+                                                                                    EXPERENCE BONUS 07%
+===========================================================
+		WEAPONS
+===========================================================
+Weapon Type				%		Damage		Range	Attacks	Lengths	Hand	HP
+Disintegrator Pistol (5)			27%	3D4+1	0	1	0	1H	12	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+Brawl (25)			27%	1D3+dm	touch	1	close	1h	- [ ]
+Grapple (25)			27%	...	touch	1	close	2h	- [ ]
+
+===========================================================
+		ARMOR
+===========================================================
+Armor	Armor Value
+ 
+ 
+Shield	%	Damage	HP
+	2%		0
+Combat Notes 
+
+Total number of Job Skills: 10
+Bargain, Etiquette, Knowledge0, Knowledge1, Knowledge2, Language0, Literacy, Persuade, Research, Status.
+
+Total number of Hobby Skills: 8
+Command, Disguise, Drive0, First Aid, Literacy, Navigate, Psychotherapy, Sense.
+
+Total number of Personality Skills: 13
+Appraise, Bargain, Disguise, Energy Weapon0, Insight, Knowledge0, Knowledge1, Listen, Research, Sense, Spot, Stealth, Technical Skill0.
+
+Total number of Comabt Skills: 1
+Energy Weapon0.
+
+
+Seed: 1706391541

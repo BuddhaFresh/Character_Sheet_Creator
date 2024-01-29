@@ -1,0 +1,96 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name: Player: 
+Culture: Human     Gender: Male
+Height: Tall       Weight: Obese
+Wealth: Affluent   Profession: Athlete
+Handedness: Right-Handed
+Religion: Zoroastrian
+Move (MOV): 10     Age: 21
+
+ They have many scars aross their legs. They have a toe ring on.
+
+ They have a brutal personality, thinking first of solving problems by means of physical force and brawn.
+
+STR 12  Effort roll 60%         INT 11  Idea roll 55%
+CON 13  Stamina roll 65%        CHA 09  Charm roll 45%
+DEX 10  Agility roll 50%        POW 13  Luck roll 65%
+EDU 17  Knowledge roll 85%      SIZ 17  Damage Bonus of +1D4
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 15 with Major Wound occuring at 07 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 340		Personal Skill Points Pool: 110
+
+COMMUNICATION 02%                         MENTAL 02%                                PHYSICAL -5%
+Bargain (05)..................07% [ ]     Appraise (15).................17% [ ]     Climb (40)....................95% [ ]
+Command (05)..................07% [ ]     First Aid (30)................65% [ ]     Drive (20) Motorcycle.........32% [ ]
+Disguise (01).................03% [ ]     Gaming (24)...................32% [ ]       ............................02% [ ]
+Etiquette (05)................26% [ ]     Knowledge (00)                              ............................21% [ ]
+Fast Talk (05)................20% [ ]       ............................02% [ ]     Fly (05)......................00% [ ]
+Language (85)                               ............................02% [ ]     Hide (10).....................05% [ ]
+  German......................87% [ ]       ............................02% [ ]     Jump (25).....................61% [ ]
+  ............................02% [ ]     Literacy (00).................02% [ ]     Pilot (01) ...................-4% [ ]
+  ............................02% [ ]     Medicine (05).................07% [ ]       ............................-4% [ ]
+  ............................02% [ ]     Psychotherapy (00)............17% [ ]       ............................-4% [ ]
+Preform (05) .................07% [ ]     Science (01) .................03% [ ]     Projection (20)...............15% [ ]
+Persuade (15).................17% [ ]       ............................03% [ ]     Ride (05) Mule................43% [ ]
+Status (15)...................17% [ ]       ............................03% [ ]       Horse.......................27% [ ]
+Teach (10)....................12% [ ]       ............................03% [ ]     Stealth (10)..................73% [ ]
+                                          Strategy (01).................03% [ ]     Swim (25).....................40% [ ]
+MANIPULATION 01%                          Technical (05) ...............07% [ ]     Throw (25)....................73% [ ]
+Art (05) .....................06% [ ]       ............................07% [ ]
+  ............................06% [ ]       ............................07% [ ]     COMBAT 01%
+Craft (05) Metallurgy.........23% [ ]                                               Dodge (20)....................76% [ ]
+  Leatherworking..............19% [ ]     PERCEPTION 03%                            Martial Arts (01).............32% [ ]
+Demolition (01)...............02% [ ]     Insight (05)..................28% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)........06% [ ]     Listen (25)...................62% [ ]
+Heavy Machine (01)                        Navigate (10).................13% [ ]     Firearm (20) Rifle............41% [ ]
+  ............................02% [ ]     Research (25).................28% [ ]     Heavy Weapon (15) Machine Gun.36% [ ]
+Repair (15) ..................16% [ ]     Sense (10)....................37% [ ]      (00) ........................00% [ ]
+  ............................16% [ ]     Spot (25).....................64% [ ]      (00) ........................00% [ ]
+Sleight of Hand (05)..........06% [ ]     Track (10)....................13% [ ]      (00) ........................00% [ ]
+                                                                                    EXPERENCE BONUS 05%
+===========================================================
+		WEAPONS
+===========================================================
+Weapon Type				%		Damage		Range	Attacks	Lengths	Hand	HP
+Sniper Rifle (20)			41%	2D10+4	0	1	0	2H	10	
+Mini-Gun (15)			36%	2D6+4	0	3	0	2H	14	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+Brawl (25)			46%	1D3+dm	touch	1	close	1h	- [ ]
+Grapple (25)			46%	...	touch	1	close	2h	- [ ]
+
+===========================================================
+		ARMOR
+===========================================================
+Armor	Armor Value
+ 
+ 
+Shield	%	Damage	HP
+	1%		0
+Combat Notes 
+
+Total number of Job Skills: 10
+Climb, Dodge, First Aid, Jump, Listen, Martial Arts, Ride0, Spot, Stealth, Throw.
+
+Total number of Hobby Skills: 9
+Climb, Craft0, Craft1, Drive0, Etiquette, Fast Talk, Gaming, Psychotherapy, Sense.
+
+Total number of Personality Skills: 13
+Brawl, Climb, Dodge, Firearm0, Grapple, Heavy Weapon0, Insight, Jump, Ride1, Sense, Stealth, Swim, Throw.
+
+Total number of Comabt Skills: 2
+Firearm0, Heavy Weapon0.
+
+
+Seed: 1706391541
