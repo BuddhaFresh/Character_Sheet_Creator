@@ -83,12 +83,31 @@ struct WealthCategorys
 
 class BRP_human_base{
 protected:
-  virtual void Skills(int x, int i, int p);
+  virtual void Skills(int stat_dex, int stat_int, int stat_pow);
   
-  std::vector <std::string> Language;
   std::map<std::string, SkillData>SkillTable;
+  std::map<std::string, std::vector<std::string>>SubSkillTable;
+  std::vector <std::string> Beliefs;
+  std::vector <std::string> SkillList;
+  std::vector <std::string> Art;
+  std::vector <std::string> Craft;
+  std::vector <std::string> Drive;
+  std::vector <std::string> Heavy_Machine;
+  std::vector <std::string> Knowledge;
+  std::vector <std::string> Language;
+  std::vector <std::string> LanguageComputerCode;
+  std::vector <std::string> Pilot;
+  std::vector <std::string> Preform;
+  std::vector <std::string> Repair;
+  std::vector <std::string> Ride;
+  std::vector <std::string> Science;
+  std::vector <std::string> Technical_Skill;
+  std::vector <std::string> Instrument;
+  std::vector <std::string> Group;
+  std::vector <std::string> Region;
+  std::vector <std::string> Religion;
+  std::vector <std::string> Artillery;
 
-private:
   static bool EDUCATION_STAT;
   static bool EXPERIENCE_BONUS;
   static bool DISTINCTIVE_FEATURES;
@@ -104,7 +123,6 @@ private:
   static bool SKILL_CATEGORY_SIMPLE;
   static bool TOTAL_HIT_POINTS;
   static bool WINGED_CHARACTER;
-  
 
   int STR;
   int CON;
@@ -122,8 +140,19 @@ private:
   int Chest_HP;
   int MW;
 
-  int Toolong(int mod);
+  int Combat_skillcategory;
+  int Communication_skillcategory;
+  int Manipulation_skillcategory;
+  int Mental_skillcategory;
+  int Perception_skillcategory;
+  int Physical_skillcategory;
+  int ExperenceBonus;
+  int FatiguePointsMax;
+  int SanityBase;
+  
+private:
 
+  int Toolong(int mod);
   std::string Convert;
   std::string DamBonus;
   std::string Profession;
@@ -135,16 +164,6 @@ private:
   std::string Weight;
   std::string Personality;
 
-  int Combat_skillcategory;
-  int Communication_skillcategory;
-  int Manipulation_skillcategory;
-  int Mental_skillcategory;
-  int Perception_skillcategory;
-  int Physical_skillcategory;
-  int ExperenceBonus;
-  int FatiguePointsMax;
-  int SanityBase;
-
   int TIS;
   int SanityThreshold;
   int ProSkillPtsMAX;
@@ -152,27 +171,7 @@ private:
   int SkillRatingMAX;
   int Hired;
 
-  std::vector <std::string> Beliefs;
-
-  std::vector <std::string> SkillList;
-  std::vector <std::string> Art;
-  std::vector <std::string> Craft;
-  std::vector <std::string> Drive;
-  std::vector <std::string> Heavy_Machine;
-  std::vector <std::string> Knowledge;
   
-  std::vector <std::string> LanguageComputerCode;
-  std::vector <std::string> Pilot;
-  std::vector <std::string> Preform;
-  std::vector <std::string> Repair;
-  std::vector <std::string> Ride;
-  std::vector <std::string> Science;
-  std::vector <std::string> Technical_Skill;
-  std::vector <std::string> Instrument;
-  std::vector <std::string> Group;
-  std::vector <std::string> Region;
-  std::vector <std::string> Religion;
-  std::vector <std::string> Artillery;
 
   std::vector <std::string> JOBSKILLS;
   std::vector <std::string> HOBBYSKILLS;
@@ -180,7 +179,7 @@ private:
   std::vector <std::string> COMBATSKILLS;
 
   void Weapons();
-  void FillSkillMod();
+  void FillSkillMod(std::map<std::string, SkillData> &SKILLLIST);
   void Faith();
   
   void ExpBonus(int E);
@@ -212,7 +211,7 @@ private:
   int Skill_Category_Primary(int x);
   int Skill_Category_Secondary(int x);
   int Skill_Category_Negative(int x);
-
+  void OwnLanguage(int OwnLang);
   bool IsThereADup(std::vector<std::string> LIST);
   bool IsSkillWithoutSubSkills(std::string &SKILL);
   int NumberOfSubSkills(std::string &SKILL, std::map<std::string, SkillData> &SKILLLIST);
@@ -229,7 +228,7 @@ private:
   bool IsThereAnyFreeSubskills(std::string &SKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::vector<std::string> &V_main);
   void NoFreeSubskillChoice(std::string &SKILL, int &AmountOfSubSkills, std::string &FreeSubSkill, std::vector<std::string> &V_main);
   bool NumberAtEnd(std::string &SKILL);
-  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST, std::map<std::string, WeaponsData>&WEAPONSLIST, std::vector<std::string> &V_artillery);
+  void RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>>&SUBSKILLLIST, std::map<std::string, WeaponsData>&WEAPONSLIST);
   bool IsSkillACombatSkill(std::string &SKILL);
   bool IsSubSkillAlreadyUsed(std::string &SKILL, std::string &SUBSKILLTOCHECK, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST);
   void SubSpecialtySelection(std::string &SKILL, std::string &RAWSUBSKILL, int &AmountOfSubSkills, std::map<std::string, SkillData> &SKILLLIST, std::map <std::string, std::vector<std::string>> &SUBSKILLLIST);
@@ -252,13 +251,12 @@ private:
 
   
   std::map<std::string, WeaponsData>WeaponsTable;
-  std::map<std::string, std::vector<std::string>>SubSkillTable;
+  
 
 
 public:
   BRP_human_base(int a, int b, int c, int d, int e, int x, int y, int z);
 
-  
 
   void CharName();
   std::string CN;
@@ -307,20 +305,8 @@ public:
   static bool stateWINGED_CHARACTER() {return WINGED_CHARACTER;}
   static void flipWINGED_CHARACTER(bool toggle) {WINGED_CHARACTER = toggle;}
 
-  virtual void OwnLanguage();
   void freebuild();
   void fullrandom();
   void consoleChar();
   void printChar();
 };
-/*
-class BRP_human_AncientEra : public BRP_human_base {
-  public:
-    BRP_human_AncientEra(int a, int b, int c, int d, int e, int x, int y, int z);
-    void OwnLanguage() override;
-    //std::vector<std::string>AncientLanguage = {"Ug-Ugh", "Ogga-Booga", "Bam-Bam", "Yaba-Daba", "Zug-Zug", "Chi-Chi"};
-
-  //private:
-  
-  //void Skills(int x, int i, int p) override;
-};*/

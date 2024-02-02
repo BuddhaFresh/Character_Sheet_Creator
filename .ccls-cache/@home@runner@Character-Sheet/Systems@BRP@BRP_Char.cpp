@@ -460,7 +460,7 @@ void BRP_human_base::Professions(){
 
   //44 total profession, elements are between 0 and 43
   //Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
-  Hired = ROLL.Die(0,6);
+  Hired = ROLL.Die(0,8);
 
   Profession = jobs[Hired];
 
@@ -1187,7 +1187,7 @@ void BRP_human_base::PickJobSkills(){
     //Throw
     JOBSKILLS.push_back("Throw");
     break;
-    }
+    }//
     
     case 3: //Beggar
     {
@@ -1381,10 +1381,105 @@ void BRP_human_base::PickJobSkills(){
     
     case 7: //Criminal
     {
+      //pick any 6 based on setting and racket
+        //Appraise
+        //Brawl
+        //Climb
+        //Fast Talk
+        //Fine Manipulation
+        //Firearm (any)
+        //Gaming
+        //Grapple
+        //Insight
+        //Jump
+        //Knowledge (Law)
+        //Listen
+        //Martial Arts
+        //Melee Weapons (any, usually knives or clubs)
+        //Persuade
+        //Spot
+        //Throw
+      std::vector<std::string> CriminalSkillRando = {"Appraise", "Brawl", "Climb", "Fast Talk", "Fine Manipulation", "Firearm0", "Gaming", "Grapple", "Insight", "Jump", "Knowledge0", "Listen", "Martial Arts", "Melee Weapons0", "Persuade", "Spot", "Throw"};
+      RandomProfessionSkillPick(6,CriminalSkillRando);
+      for(int i = 0; i < JOBSKILLS.size(); i++){
+        if(JOBSKILLS.at(i) == "Knowledge0"){
+          SkillTable["Knowledge0"].SubSkillName = "Law";
+        }else if(JOBSKILLS.at(i) == "Melee Weapons0"){
+          int Chance = ROLL.Die(1, 10);
+          if(Chance <= 4){
+            SkillTable["Melee Weapons0"].SubSkillName = "Dagger";
+          }else if(Chance >= 5 and Chance <= 8){
+            SkillTable["Melee Weapons0"].SubSkillName = "Club";
+          }else{continue;}
+        }else{continue;}
+      }
+
+      //Drive or Ride
+      int coin = ROLL.Die(0, 1);
+      if(coin == 1){
+        JOBSKILLS.push_back("Drive0");
+      }else{JOBSKILLS.push_back("Ride0");}
+      
+      //Bargain
+      JOBSKILLS.push_back("Bargain");
+      
+      //Hide
+      JOBSKILLS.push_back("Hide");
+      
+      //Stealth
+      JOBSKILLS.push_back("Stealth");
     break;
     }
+    
     case 8: //Detective
     {
+      //Firearm (Handgun)
+      JOBSKILLS.push_back("Firearm0");
+      int coin = ROLL.Die(0, 1);
+      if(coin == 1){
+        SkillTable["Firearm0"].SubSkillName = "Pistol";}
+      else{SkillTable["Firearm0"].SubSkillName = "Revolver";}
+      
+      //Knowledge (Law)
+      JOBSKILLS.push_back("Knowledge0");
+      SkillTable["Knowledge0"].SubSkillName = "Law";
+      
+      //pick any 4 as appropriate to setting and concept
+        //Art
+        //Brawl
+        //Disguise
+        //Dodge
+        //Drive
+        //Fast Talk
+        //Firearm (any)
+        //Grapple
+        //Hide
+        //Insight
+        //Knowledge (any)
+        //Language (other)
+        //Language (own)
+        //Medicine
+        //Ride
+        //Science (any)
+        //Technical (Computer Use)
+        //Stealth
+        //Track
+      std::vector<std::string> DetectiveSkillRando = {"Art0", "Brawl", "Disguise", "Dodge", "Drive0", "Fast Talk", "Firearm1", "Grapple", "Hide", "Insight", "Knowledge1", "Language1", "Language0", "Medicine", "Ride", "Science0", "Technical Skill0", "Stealth", "Track"};
+      RandomProfessionSkillPick(4,DetectiveSkillRando);
+      if(IsStringInVector(DetectiveSkillRando.at(17), JOBSKILLS) == true){SkillTable["Technical Skill0"].SubSkillName = "Computer Use";}
+      
+      //Listen
+      JOBSKILLS.push_back("Listen");
+      
+      //Persuade
+      JOBSKILLS.push_back("Persuade");
+      
+      //Spot
+      JOBSKILLS.push_back("Spot");
+      
+      //Research
+      JOBSKILLS.push_back("Research");
+ 
     break;
     }
     case 9: //Doctor
@@ -1806,7 +1901,6 @@ void BRP_human_base::SubSpecialtySelection(std::string &SKILL, std::string &RAWS
 void BRP_human_base::FillCOMBATSKILLS(std::vector<std::string> &V_main, std::vector<std::string> &V_combat){
   std::vector<std::string> DontNeed = {"Brawl", "Grapple", "Martial Arts"};
   for(int i = 0; i < V_main.size(); i++){
-    
     if(IsSkillACombatSkill(V_main[i]) == true && IsStringInVector(V_main[i], DontNeed) != true){
       while(IsStringInVector(V_main[i],V_combat) != true){
         V_combat.push_back(V_main[i]);
@@ -1842,14 +1936,13 @@ void BRP_human_base::OnlyUniqueStringsIn(std::vector<std::string> &V_main){
 }
 
 //randomly assigns subskills with an availible name; "Art0":"Painting", etc
-void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>> &SUBSKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST, std::vector<std::string> &V_artillery){
+void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, std::map<std::string, SkillData> &SKILLLIST, std::map<std::string, std::vector<std::string>> &SUBSKILLLIST, std::map<std::string, WeaponsData> &WEAPONSLIST){
   //loop through each skill in vector
   for(int i = 0; i < V_main.size(); i++){
     std::string TEMPNAME = V_main[i];
     TEMPNAME.pop_back();
     int SubSkillCount = NumberOfSubSkills(TEMPNAME, SKILLLIST);
     //skip skills without subskills and already filled in subskills
-
     if(IsSubskillEmpty(V_main[i], SKILLLIST) != true || IsSkillWithoutSubSkills(V_main[i]) == true){
       SubSpecialtySelection(TEMPNAME, SKILLLIST[V_main[i]].SubSkillName, SubSkillCount, SKILLLIST, SUBSKILLLIST);
       continue;
@@ -1895,17 +1988,15 @@ void BRP_human_base::RandomSubSkillSelection(std::vector<std::string> &V_main, s
 }
 
 //Loop through all skills and adds the skill's base value and a skill's category value to the skill's mod value
-void BRP_human_base::FillSkillMod(){
-  for (auto& X : SkillTable){
+void BRP_human_base::FillSkillMod(std::map<std::string, SkillData> &SKILLLIST){
+  for (auto& X : SKILLLIST){
     X.second.SkillMod += X.second.SkillBase + X.second.SkillCat;
   }
 }
 
 //Assigns a random Own Language into Language0
-void BRP_human_base::OwnLanguage(){
-  int OwnLang = ROLL.Die(0,Language.size()-1);
+void BRP_human_base::OwnLanguage(int OwnLang){
   SkillTable["Language0"].SubSkillName = Language.at(OwnLang);
-  std::cout << "\n\nNumber of characters in " << Language.at(OwnLang) << " is "<< SkillTable["Language0"].SubSkillName.length() <<"\n\n"; //testing
 }
 
 //Generate a random combat skill
@@ -2020,7 +2111,6 @@ void BRP_human_base::RandomCombatSelecting(std::vector<std::string> &V_combat, s
   for(int i = 0; i < V_combat.size(); i++){
     std::string CombatSkillToCheck = V_combat.at(i);
     CombatSkillToCheck.pop_back();
-
     //fill ApprovedWeaponsKeys
     for(iWL = WEAPONSLIST.begin(); iWL != WEAPONSLIST.end(); iWL++){
       if(CombatSkillToCheck == "Parry"){
@@ -2033,7 +2123,7 @@ void BRP_human_base::RandomCombatSelecting(std::vector<std::string> &V_combat, s
         }else{continue;}
       }
     }
-
+    
     //reduce ApprovedWeaponsKeys down to one random option
     while(ApprovedWeaponsKeys.size() != 1){
       int removed = ROLL.Die(0, ApprovedWeaponsKeys.size()-1);
@@ -2155,22 +2245,22 @@ void BRP_human_base::fullrandom(){
   SkillRatingMaximum();
   SkillCategory();
   Skills(DEX, INT, POW);
-  OwnLanguage();
+  OwnLanguage(ROLL.Die(0,Language.size()-1));
   Professions();
   PickJobSkills();
   PickHobbySkills();
   PersonalityPick(ROLL.Die(1,4));
   RandomSubSkillAssignment(JOBSKILLS);
-  RandomSubSkillSelection(JOBSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
+  RandomSubSkillSelection(JOBSKILLS, SkillTable, SubSkillTable, WeaponsTable);
   RandomSubSkillAssignment(HOBBYSKILLS);
-  RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
+  RandomSubSkillSelection(HOBBYSKILLS, SkillTable, SubSkillTable, WeaponsTable);
   RandomSubSkillAssignment(PERSONALITYSKILLS);
-  RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable, WeaponsTable, Artillery);
+  RandomSubSkillSelection(PERSONALITYSKILLS, SkillTable, SubSkillTable, WeaponsTable);
   FillCOMBATSKILLS(JOBSKILLS, COMBATSKILLS);
   FillCOMBATSKILLS(HOBBYSKILLS, COMBATSKILLS);
   FillCOMBATSKILLS(PERSONALITYSKILLS, COMBATSKILLS);
   RandomCombatSelecting(COMBATSKILLS, SkillTable, WeaponsTable);
-  FillSkillMod(); 
+  FillSkillMod(SkillTable); 
   SkillPointSetting(JOBSKILLS, SkillTable, ProSkillPtsMAX, SkillRatingMAX);
   SkillPointSetting(HOBBYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
   SkillPointSetting(PERSONALITYSKILLS, SkillTable, PerSkillPtsMAX, SkillRatingMAX);
@@ -2397,16 +2487,3 @@ void BRP_human_base::printChar(){
 
   std::cout.rdbuf(original);
 }
-/*
-BRP_human_AncientEra::BRP_human_AncientEra(int a, int b, int c, int d, int e, int x, int y, int z) : BRP_human_base(a,b,c,d,e,x,y,z){ 
-  
-  OwnLanguage();
-  {
-    std::vector<std::string>AncientLanguage = {"Ug-Ugh", "Ogga-Booga", "Bam-Bam", "Yaba-Daba", "Zug-Zug", "Chi-Chi"};
-    
-    int OwnLang = ROLL.Die(0,AncientLanguage.size()-1);
-    SkillTable["Language0"].SubSkillName = AncientLanguage.at(OwnLang);
-    std::cout << "\n\nNumber of characters in " << AncientLanguage.at(OwnLang) << " is "<< SkillTable["Language0"].SubSkillName.length() <<"\n\n"; //testing
-  }
-  
-}*/

@@ -305,11 +305,10 @@ int BRP_menu()
         }//Options sub-menu end
       } 
       case 6:{//placeholder for standard
-        //std::cout << "\033c";
+        std::cout << "\033c";
         
-        BRP_human_base* test = new BRP_human_AncientEra(10,10,10,10,10,10,10,10);
+        BRP_human_base* test = new BRP_human_AncientEra(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
         test->fullrandom();
-        //test->OwnLanguage();
         test->consoleChar();
 
         delete test;
