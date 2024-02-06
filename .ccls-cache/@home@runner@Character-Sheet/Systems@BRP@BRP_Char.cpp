@@ -460,7 +460,8 @@ void BRP_human_base::Professions(){
 
   //44 total profession, elements are between 0 and 43
   //Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
-  Hired = ROLL.Die(0,8);
+  //Hired = ROLL.Die(0,13);
+  Hired = 7;
 
   Profession = jobs[Hired];
 
@@ -1053,7 +1054,7 @@ void BRP_human_base::Skills(int stat_dex, int stat_int, int stat_pow){
 }
 
 //Picks random skills for professions with random choices of skills and populates JOBSKILLS from 0 to NumberOfPicks.
-void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> &ProfessionSkills){
+void BRP_human_base::RandomProfessionSkillPick(int NumberOfPicks, std::vector<std::string> ProfessionSkills){
   std::shuffle(std::begin(ProfessionSkills), std::end(ProfessionSkills), RANDOMCORE.mt_rando);
   for(int i = 0; i < NumberOfPicks; i++){
     JOBSKILLS.push_back(ProfessionSkills[i]);
@@ -1399,8 +1400,24 @@ void BRP_human_base::PickJobSkills(){
         //Persuade
         //Spot
         //Throw
-      std::vector<std::string> CriminalSkillRando = {"Appraise", "Brawl", "Climb", "Fast Talk", "Fine Manipulation", "Firearm0", "Gaming", "Grapple", "Insight", "Jump", "Knowledge0", "Listen", "Martial Arts", "Melee Weapons0", "Persuade", "Spot", "Throw"};
+      std::vector<std::string> CriminalSkillRando = {"Appraise", "Brawl", "Climb", "Fast Talk", "Fine Manipulation", "Firearm0", "Gaming", "Grapple", "Insight", "Jump", "Knowledge0", "Listen", "Martial Arts", "Melee Weapon0", "Persuade", "Spot", "Throw"};
       RandomProfessionSkillPick(6,CriminalSkillRando);
+      if(IsStringInVector(CriminalSkillRando.at(10), JOBSKILLS)){
+        std::cout << ">>>" << CriminalSkillRando.at(10) << std::endl; //testing
+        SkillTable["Knowledge0"].SubSkillName = "Law";
+      }
+      if(IsStringInVector(CriminalSkillRando.at(13), JOBSKILLS)){
+        std::cout << ">>>" << CriminalSkillRando.at(13) << std::endl; //testing
+        int Chance = ROLL.Die(1, 10);
+        std::cout << "Chance roll: " << Chance << std::endl; //testing
+        if(Chance <= 4){
+          SkillTable["Melee Weapon0"].SubSkillName = "Dagger";
+        }else if(Chance >= 5 && Chance <= 8){
+          SkillTable["Melee Weapon0"].SubSkillName = "Club";
+        }else{}
+      }
+      
+      /*
       for(int i = 0; i < JOBSKILLS.size(); i++){
         if(JOBSKILLS.at(i) == "Knowledge0"){
           SkillTable["Knowledge0"].SubSkillName = "Law";
@@ -1413,6 +1430,7 @@ void BRP_human_base::PickJobSkills(){
           }else{continue;}
         }else{continue;}
       }
+      */
 
       //Drive or Ride
       int coin = ROLL.Die(0, 1);
@@ -1428,6 +1446,7 @@ void BRP_human_base::PickJobSkills(){
       
       //Stealth
       JOBSKILLS.push_back("Stealth");
+      std::cout << "End of Criminal Skill Pick" << std::endl; //testing
     break;
     }
     
@@ -1482,26 +1501,203 @@ void BRP_human_base::PickJobSkills(){
  
     break;
     }
+    
     case 9: //Doctor
     {
+      //Pick 4 as appropriate to setting
+        //Insight
+        //Language (other)
+        //Psychotherapy
+        //Science (any)
+        //Status
+      std::vector<std::string> DoctorSkillRando = {"Insight", "Language1", "Psychotherapy", "Science0", "Status"};
+      RandomProfessionSkillPick(4,DoctorSkillRando);
+
+      //First Aid
+      JOBSKILLS.push_back("First Aid");
+      
+      //Language (Own)
+      JOBSKILLS.push_back("Language0");
+
+      //Medicine
+      JOBSKILLS.push_back("Medicine");
+
+      //Persuade
+      JOBSKILLS.push_back("Persuade");
+
+      //Research
+      JOBSKILLS.push_back("Research");
+
+      //Spot
+      JOBSKILLS.push_back("Spot");
+
     break;
     }
+    
     case 10: //Engineer
     {
+      //Pick 5 of the following as appropriate to setting and concept
+        //Art (usually Drafting)
+        //Drive
+        //Heavy Machine
+        //Knowledge (any)
+        //Pilot (any)
+        //Repair (Electrical)
+        //Repair (Electronics)
+        //Science (any)
+        //Technical Skill (Computer Use)
+      //I'm skipping the Electrical and Electronics Repair as both Repair subskills are called for by the profession by default. May need to make an overflow skill slot in SkillTable
+      std::vector<std::string> EngineerSkillRando = {"Art0", "Drive", "Heavy Machine", "Knowledge", "Pilot", "Technical Skill0"};
+      RandomProfessionSkillPick(5,EngineerSkillRando);
+      if(IsStringInVector(EngineerSkillRando.at(0), JOBSKILLS) == true){
+        int chance = ROLL.Die(0, 6);
+        if(chance <= 4){
+          SkillTable["Art0"].SubSkillName = "Drafting";}
+        else{}
+      }
+
+      //Craft (any)
+      JOBSKILLS.push_back("Craft");
+      
+      //Repair (Mechanical)
+      JOBSKILLS.push_back("Repair0");
+      SkillTable["Repair0"].SubSkillName = "Mechanical";
+      
+      //Repair (Structural)
+      JOBSKILLS.push_back("Repair1");
+      SkillTable["Repair1"].SubSkillName = "Structural";
+      
+      //Spot
+      JOBSKILLS.push_back("Spot");
+      
+      //Status
+      JOBSKILLS.push_back("Status");
+      
     break;
     } 
+    
     case 11: //Entertainer
     {
+      JOBSKILLS.push_back("Art");
+      JOBSKILLS.push_back("Disguise");
+      JOBSKILLS.push_back("Fast Talk");
+      JOBSKILLS.push_back("Fine Manipulation");
+      JOBSKILLS.push_back("Insight");
+      JOBSKILLS.push_back("Language1");
+      JOBSKILLS.push_back("Language0");
+      JOBSKILLS.push_back("Listen");
+      JOBSKILLS.push_back("Preform");
+      JOBSKILLS.push_back("Persuade");
+      
     break;
     }
+    
     case 12: //Explorer
     {
+      //Pick 4 as appropriate to setting
+        //Knowledge (Anthropogy,Group,History,Natural World, or Region)
+        //Drive
+        //Fast Talk
+        //Firearm(Pistol, Revolver, or Rifle)
+        //Navigate
+        //Pilot (Aircraft or Boat)
+        //Ride
+        //Science (Geology)
+        //Swim
+        //Track
+      std::vector<std::string> ExplorerSkillRando = {"Fast Talk", "Drive", "Knowledge0", "Pilot0", "Science0", "Firearm0", "Navigate", "Ride0", "Swim", "Track"};
+      RandomProfessionSkillPick(4,ExplorerSkillRando);
+      
+      if(IsStringInVector(ExplorerSkillRando.at(2), JOBSKILLS) == true){
+        std::vector<std::string> SelectedKnow = {"Anthropogy","Group (subspecialty)","History","Natural World","Region (subspecialty)"};
+        while(SelectedKnow.size() != 1){
+          int removed = ROLL.Die(0, SelectedKnow.size()-1);
+          SelectedKnow.erase(SelectedKnow.begin()+removed);}
+        SkillTable["Knowledge0"].SubSkillName = SelectedKnow.at(0);}
+
+      if(IsStringInVector(ExplorerSkillRando.at(5), JOBSKILLS) == true){
+        std::vector<std::string> SelectedFirearm = {"Pistol","Revolver","Rifle"};
+        while(SelectedFirearm.size() != 1){
+          int removed = ROLL.Die(0, SelectedFirearm.size()-1);
+          SelectedFirearm.erase(SelectedFirearm.begin()+removed);}
+        SkillTable["Firearm0"].SubSkillName = SelectedFirearm.at(0);}  
+      
+      if(IsStringInVector(ExplorerSkillRando.at(3), JOBSKILLS) == true){
+        int coin = ROLL.Die(0, 1);
+        if(coin == 1){
+          SkillTable["Pilot0"].SubSkillName = "Aircraft";}
+        else{SkillTable["Pilot0"].SubSkillName = "Boat";}
+      }
+      
+      if(IsStringInVector(ExplorerSkillRando.at(4), JOBSKILLS) == true){
+        SkillTable["Science0"].SubSkillName = "Geology";}
+      
+      JOBSKILLS.push_back("Climb");
+      JOBSKILLS.push_back("Language1");
+      JOBSKILLS.push_back("Language0");
+      JOBSKILLS.push_back("Persuade");
+      JOBSKILLS.push_back("Research");
+      JOBSKILLS.push_back("Spot");
+      
     break;
     }
+    
     case 13: //Farmer
     {
+      //Knowledge (Natural History)
+      JOBSKILLS.push_back("Knowledge0");
+      SkillTable["Knowledge0"].SubSkillName = "Natural History";
+      
+      //Pick 5 as appropraite to setting and concept
+        //Brawl
+        //Drive
+        //Firearm (Rifle or Shotgun)
+        //First Aid
+        //Heavy Machine
+        //Knowledge (History)
+        //Repair (Mechanical)
+        //Ride
+        //Science (Biology, Bontany, or Geology)
+        //Track
+      std::vector<std::string> FarmerSkillRando = {"Brawl", "Drive", "Knowledge1", "First Aid", "Firearm0", "Navigate", "Ride", "Science0", "Track", "Heavy Machine", "Repair0"};
+      RandomProfessionSkillPick(5,FarmerSkillRando);
+      
+      if(IsStringInVector(FarmerSkillRando[2], JOBSKILLS) == true){
+        SkillTable["Knowledge1"].SubSkillName = "History";
+      }
+      
+      if(IsStringInVector(FarmerSkillRando.at(4), JOBSKILLS) == true){
+          int coin = ROLL.Die(0, 1);
+          if(coin == 1){
+            SkillTable["Firearm0"].SubSkillName = "Rifle";}
+          else{SkillTable["Firearm0"].SubSkillName = "Shotgun";}
+      }
+        
+      if(IsStringInVector(FarmerSkillRando.at(7), JOBSKILLS) == true){
+          std::vector<std::string> scipick = {"Biology","Bontany","Geology"};
+          int select = ROLL.Die(0, scipick.size()-1);
+          SkillTable["Science0"].SubSkillName = scipick.at(select);
+        }    
+      
+      if(IsStringInVector(FarmerSkillRando.at(10), JOBSKILLS) == true){
+        SkillTable["Repair0"].SubSkillName = "Mechanical";
+      }
+
+      //Bargain
+      JOBSKILLS.push_back("Bargain");
+      
+      //Craft (any)
+      JOBSKILLS.push_back("Craft");
+            
+      //Listen
+      JOBSKILLS.push_back("Listen");
+      
+      //Spot
+      JOBSKILLS.push_back("Spot");
+      
     break;
     }
+    
     case 14: //Gambler
     {
     break;
@@ -2430,7 +2626,6 @@ void BRP_human_base::consoleChar(){
   std::cout << "Combat Notes " << std::endl;
 
   //END OF PAGE 1
-  /*
   std::cout << "\n" << "Total number of Job Skills: " << JOBSKILLS.size() << std::endl; //testing
   std::sort(JOBSKILLS.begin(), JOBSKILLS.end());
   for(int i = 0; i < JOBSKILLS.size(); i++){
@@ -2468,7 +2663,6 @@ void BRP_human_base::consoleChar(){
       std::cout << ".\n";}
     else{std::cout << ", ";}
   }
-  */
   
   std::cout << "\n\nSeed: " << RANDOMCORE.currentSeed;
 }
