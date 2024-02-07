@@ -69,6 +69,15 @@ BRP_human_base::BRP_human_base( int a,  int b,  int c,  int d,  int e,  int x,  
   INT = x;
   SIZ = y;
   EDU = z;
+
+  std::cout << "STR,CON,POW,DEX,CHA,INT,SIZ,EDU" << std::endl; //testing
+  std::vector<int> abc = {STR,CON,POW,DEX,CHA,INT,SIZ,EDU};
+  for(int i = 0; i < abc.size(); i++){
+    std::cout << abc[i];
+    if(i == abc.size()-1){
+      std::cout << ".\n";}
+    else{std::cout << ", ";}
+  }
 }
    
  /*Setting&Era switches
@@ -460,8 +469,8 @@ void BRP_human_base::Professions(){
 
   //44 total profession, elements are between 0 and 43
   //Hired = ROLL.Die(0,43); //OFF FOR TESTING, also need to replace the 44 with dynamic count of the jobs array
-  //Hired = ROLL.Die(0,13);
-  Hired = 7;
+  Hired = ROLL.Die(0,13);
+  //Hired = 7;
 
   Profession = jobs[Hired];
 
@@ -1403,34 +1412,16 @@ void BRP_human_base::PickJobSkills(){
       std::vector<std::string> CriminalSkillRando = {"Appraise", "Brawl", "Climb", "Fast Talk", "Fine Manipulation", "Firearm0", "Gaming", "Grapple", "Insight", "Jump", "Knowledge0", "Listen", "Martial Arts", "Melee Weapon0", "Persuade", "Spot", "Throw"};
       RandomProfessionSkillPick(6,CriminalSkillRando);
       if(IsStringInVector(CriminalSkillRando.at(10), JOBSKILLS)){
-        std::cout << ">>>" << CriminalSkillRando.at(10) << std::endl; //testing
         SkillTable["Knowledge0"].SubSkillName = "Law";
       }
       if(IsStringInVector(CriminalSkillRando.at(13), JOBSKILLS)){
-        std::cout << ">>>" << CriminalSkillRando.at(13) << std::endl; //testing
         int Chance = ROLL.Die(1, 10);
-        std::cout << "Chance roll: " << Chance << std::endl; //testing
         if(Chance <= 4){
           SkillTable["Melee Weapon0"].SubSkillName = "Dagger";
         }else if(Chance >= 5 && Chance <= 8){
           SkillTable["Melee Weapon0"].SubSkillName = "Club";
         }else{}
       }
-      
-      /*
-      for(int i = 0; i < JOBSKILLS.size(); i++){
-        if(JOBSKILLS.at(i) == "Knowledge0"){
-          SkillTable["Knowledge0"].SubSkillName = "Law";
-        }else if(JOBSKILLS.at(i) == "Melee Weapons0"){
-          int Chance = ROLL.Die(1, 10);
-          if(Chance <= 4){
-            SkillTable["Melee Weapons0"].SubSkillName = "Dagger";
-          }else if(Chance >= 5 and Chance <= 8){
-            SkillTable["Melee Weapons0"].SubSkillName = "Club";
-          }else{continue;}
-        }else{continue;}
-      }
-      */
 
       //Drive or Ride
       int coin = ROLL.Die(0, 1);
@@ -1446,7 +1437,6 @@ void BRP_human_base::PickJobSkills(){
       
       //Stealth
       JOBSKILLS.push_back("Stealth");
-      std::cout << "End of Criminal Skill Pick" << std::endl; //testing
     break;
     }
     

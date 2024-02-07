@@ -214,3 +214,4 @@ void BRP_human_AncientEra::Skills(int stat_dex, int stat_int, int stat_pow){
   SubSkillTable["Religion"] = {Religion};
   SubSkillTable["Instrument"] = {Instrument};
 }
+

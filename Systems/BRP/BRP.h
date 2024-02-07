@@ -309,4 +309,6 @@ public:
   void fullrandom();
   void consoleChar();
   void printChar();
+
+  virtual ~BRP_human_base() {};
 };
