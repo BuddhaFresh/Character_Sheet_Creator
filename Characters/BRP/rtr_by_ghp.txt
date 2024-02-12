@@ -1,0 +1,96 @@
+===========================================================
+			PERSONAL
+===========================================================
+Name:                Player: ghp
+Culture: Human     Gender: Male
+Height: Average    Weight: Average
+Wealth: Affluent   Profession: Doctor
+Handedness: Right-Handed
+Religion: Jainist
+Move (MOV): 10     Age: 23
+
+ They have bracelets and other arm jewelry. They have hairless arms.
+
+ They have a brutal personality, thinking first of solving problems by means of physical force and brawn.
+
+STR 06  Effort roll 30%         INT 17  Idea roll 85%
+CON 13  Stamina roll 65%        CHA 12  Charm roll 60%
+DEX 12  Agility roll 60%        POW 15  Luck roll 75%
+EDU 15  Knowledge roll 75%      SIZ 15  Damage Bonus of None
+
+===========================================================
+			HIT POINTS
+===========================================================
+HP: 14 with Major Wound occuring at 07 HP
+
+===========================================================
+			SKILLS
+===========================================================
+Professional Skill Points Pool: 300		Personal Skill Points Pool: 170
+
+COMMUNICATION 10%                         MENTAL 09%                                PHYSICAL -4%
+Bargain (05)..................15% [ ]     Appraise (15).................24% [ ]     Climb (40)....................56% [ ]
+Command (05)..................15% [ ]     First Aid (30)................75% [ ]     Drive (20) ...................23% [ ]
+Disguise (01).................34% [ ]     Gaming (32)...................41% [ ]       ............................04% [ ]
+Etiquette (05)................15% [ ]     Knowledge (00)                              ............................23% [ ]
+Fast Talk (05)................30% [ ]       ............................09% [ ]     Fly (06)......................02% [ ]
+Language (85)                               ............................09% [ ]     Hide (10).....................22% [ ]
+  Chinese.....................95% [ ]       ............................09% [ ]     Jump (25).....................41% [ ]
+  Marathi.....................51% [ ]     Literacy (00).................38% [ ]     Pilot (01) ...................-3% [ ]
+  ............................10% [ ]     Medicine (05).................61% [ ]       ............................-3% [ ]
+  ............................10% [ ]     Psychotherapy (00)............54% [ ]       ............................-3% [ ]
+Preform (05) .................15% [ ]     Science (01) .................10% [ ]     Projection (24)...............20% [ ]
+Persuade (15).................47% [ ]       ............................10% [ ]     Ride (05) Zebra...............35% [ ]
+Status (15)...................75% [ ]       ............................10% [ ]       ............................15% [ ]
+Teach (10)....................20% [ ]       ............................10% [ ]     Stealth (10)..................26% [ ]
+                                          Strategy (01).................10% [ ]     Swim (25).....................41% [ ]
+MANIPULATION 03%                          Technical (05) ...............14% [ ]     Throw (25)....................41% [ ]
+Art (05) .....................08% [ ]       ............................14% [ ]
+  ............................08% [ ]       ............................14% [ ]     COMBAT 03%
+Craft (05) ...................08% [ ]                                               Dodge (24)....................40% [ ]
+  ............................08% [ ]     PERCEPTION 10%                            Martial Arts (01).............04% [ ]
+Demolition (01)...............04% [ ]     Insight (05)..................67% [ ]     See Weapons below for more Combat skills
+Fine Manipulation (05)........08% [ ]     Listen (25)...................35% [ ]
+Heavy Machine (01)                        Navigate (10).................20% [ ]     Heavy Weapon (15) Machine Gun.45% [ ]
+  ............................04% [ ]     Research (25).................66% [ ]     Parry (25) Dagger.............50% [ ]
+Repair (15) ..................18% [ ]     Sense (10)....................40% [ ]     Shield (15) Round.............38% [ ]
+  ............................18% [ ]     Spot (25).....................69% [ ]     Energy Weapon (20) Pistol.....43% [ ]
+Sleight of Hand (05)..........08% [ ]     Track (10)....................20% [ ]      (00) ........................00% [ ]
+                                                                                    EXPERENCE BONUS 08%
+===========================================================
+		WEAPONS
+===========================================================
+Weapon Type				%		Damage		Range	Attacks	Lengths	Hand	HP
+Mini-Gun (15)			45%	2D6+4	0	3	0	2H	14	
+Switchblade Knife (25)			43%	1D4+dm	0	1	0Short	1H	7	
+Laser Pistol (20)			0%	1D8	0	3	0	1H	14	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+ (0)			0%		0		0		0	
+Brawl (25)			48%	1D3+dm	touch	1	close	1h	- [ ]
+Grapple (25)			48%	...	touch	1	close	2h	- [ ]
+
+===========================================================
+		ARMOR
+===========================================================
+Armor	Armor Value
+ 
+ 
+Shield	%	Damage	HP
+Round	38%	1D3+dm	20
+Combat Notes 
+
+Total number of Job Skills: 10
+First Aid, Insight, Language0, Language1, Medicine, Persuade, Psychotherapy, Research, Spot, Status.
+
+Total number of Hobby Skills: 8
+Disguise, Fast Talk, First Aid, Heavy Weapon0, Hide, Literacy, Parry0, Status.
+
+Total number of Personality Skills: 13
+Brawl, Climb, Dodge, Energy Weapon0, Grapple, Insight, Jump, Ride0, Sense, Shield0, Stealth, Swim, Throw.
+
+Total number of Comabt Skills: 4
+Energy Weapon0, Heavy Weapon0, Parry0, Shield0.
+
+
+Seed: 1707505004

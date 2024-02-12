@@ -14,6 +14,8 @@ void FolderOriginBRP();
 int ThreeDSix();
 int TwoDSixPlusSix();
 
+
+
 //This struct takes an int argument and makes sure it is at minimum two digits starting with 0. It is set up to be able to overload the cout lines.
 struct DD{
   int value;
@@ -312,3 +314,6 @@ public:
 
   virtual ~BRP_human_base() {};
 };
+
+void SaveData(const BRP_human_base& obj, const std::string& filename);
+BRP_human_base LoadData(const std::string& filename);

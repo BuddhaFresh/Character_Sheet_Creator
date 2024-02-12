@@ -132,7 +132,13 @@ int main()
           
         case 2:{//Load Sheet
           std::cout << "\033c";
-          std::cout << "\nLoad Sheet not availible\n\n";
+          std::cout << "Attempting to load" << std::endl; //testing
+          BRP_human_base Object_Load_Space = LoadData("Characters/BRP/save_data.bin");
+          std::cout << "Loaded bin data to 'Object_Load_Space'" << std::endl; //testing
+          Object_Load_Space.consoleChar();
+          std::cout << "Printed 'Object_Load_Space'" << std::endl; //testing
+          //std::cout << "\nLoad Sheet not availible\n\n";
+          std::cout << "Finishing load sheet" << std::endl; //testing
           break;
           }
         

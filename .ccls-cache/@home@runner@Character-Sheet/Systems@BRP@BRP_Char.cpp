@@ -69,15 +69,6 @@ BRP_human_base::BRP_human_base( int a,  int b,  int c,  int d,  int e,  int x,  
   INT = x;
   SIZ = y;
   EDU = z;
-
-  std::cout << "STR,CON,POW,DEX,CHA,INT,SIZ,EDU" << std::endl; //testing
-  std::vector<int> abc = {STR,CON,POW,DEX,CHA,INT,SIZ,EDU};
-  for(int i = 0; i < abc.size(); i++){
-    std::cout << abc[i];
-    if(i == abc.size()-1){
-      std::cout << ".\n";}
-    else{std::cout << ", ";}
-  }
 }
    
  /*Setting&Era switches
@@ -2470,7 +2461,7 @@ void BRP_human_base::consoleChar(){
   std::cout << "===========================================================" << std::endl;
   std::cout << "\t\t\tPERSONAL" << std::endl;
   std::cout << "===========================================================" << std::endl;
-  std::cout << "Name: " <<  std::setw(13) << std::setfill(' ') << "Player: " << std::endl;
+  std::cout << "Name: " <<  std::setw(15) << std::setfill(' ') << "" << "Player: " <<  << std::endl;
   std::cout << "Culture: " << "Human" << std::setw(13) << std::setfill(' ') << "Gender: " << Gender << std::endl;
   std::cout << "Height: " << Height << std::setw(19-Height.length()) << std::setfill(' ') << "Weight: " << Weight << std::endl;
   std::cout << "Wealth: " << Wealth << std::setw(23-Wealth.length()) << std::setfill(' ') << "Profession: " << Profession << std::endl;
@@ -2670,4 +2661,35 @@ void BRP_human_base::printChar(){
   consoleChar();
 
   std::cout.rdbuf(original);
+}
+
+//Serialization function for saving data
+void SaveData(const BRP_human_base& obj, const std::string& filename){
+  std::ofstream outFile(filename, std::ios::binary);
+  if(!outFile.is_open()){
+    std::cerr << "Failure in opening " << filename << std::endl;
+    return;
+  }
+  outFile.write(reinterpret_cast<const char*>(&obj), sizeof(BRP_human_base));
+  outFile.close();
+}
+
+//Serialization function for loading data
+BRP_human_base LoadData(const std::string& filename){
+  std::cerr << "###_STARTING LOADDATA FUNCTION_###" << std::endl; //testing
+  BRP_human_base LoadSpace(0,0,0,0,0,0,0,0);
+  std::cerr << "###_CREATED LOADSPACE OF CLASS_###" << std::endl; //testing
+  std::ifstream inFile(filename, std::ios::binary);
+  std::cerr << "###_IFSTREAM FOR BINARY BEGINS_###" << std::endl; //testing
+  if(!inFile.is_open()){
+    std::cerr << "Failure in opening " << filename << std::endl;
+    return LoadSpace;
+  }
+  std::cerr << "###_FILE WAS ABLE TO BE READ_###" << std::endl; //testing
+  inFile.read(reinterpret_cast<char*>(&LoadSpace), sizeof(BRP_human_base));
+  std::cerr << "###_LOADED RAW BITES INTO CLASS_###" << std::endl; //testing
+  inFile.close();
+  std::cerr << "###_CLOSED FILE_###" << std::endl; //testing
+  std::cerr << "###_ENDING LOADDATA FUNCTION_###" << std::endl; //testing
+  return LoadSpace;
 }

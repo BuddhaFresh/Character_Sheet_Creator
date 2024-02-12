@@ -54,6 +54,7 @@ int BRP_menu()
               case 1:
                 std::cout << "\033c" << std::endl;
                 BRPChar0.CharName();
+                SaveData(BRPChar0, "Characters/BRP/save_data.bin");
                 BRPChar0.printChar();
                 break;
               case 0:
@@ -303,6 +304,7 @@ int BRP_menu()
             break;
           }; 
         }//Options sub-menu end
+        break;
       } 
       case 6:{//placeholder for standard
         std::cout << "\033c";
@@ -310,7 +312,7 @@ int BRP_menu()
         BRP_human_base* test = new BRP_human_AncientEra(ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),ThreeDSix(),TwoDSixPlusSix(),TwoDSixPlusSix(),TwoDSixPlusSix());
         test->fullrandom();
         test->consoleChar();
-
+        
         delete test;
         
         /* Overview of current options settings
