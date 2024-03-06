@@ -60,15 +60,15 @@ bool BRP_human_base::WINGED_CHARACTER = false;
 
 //BRP_human_base class
 //Constructor to hold Characteristics, 
-BRP_human_base::BRP_human_base( int a,  int b,  int c,  int d,  int e,  int x,  int y,  int z){
-  STR = a;
-  CON = b;
-  POW = c;
-  DEX = d;
-  CHA = e;
-  INT = x;
-  SIZ = y;
-  EDU = z;
+BRP_human_base::BRP_human_base(int a,  int b,  int c,  int d,  int e,  int x,  int y,  int z) : STR(a), CON(b), POW(c), DEX(d), CHA(e), INT(x), SIZ(y), EDU(z){
+  p_STATS[0] = &STR;
+  p_STATS[1] = &CON;
+  p_STATS[2] = &POW;
+  p_STATS[3] = &DEX;
+  p_STATS[4] = &CHA;
+  p_STATS[5] = &INT;
+  p_STATS[6] = &SIZ;
+  p_STATS[7] = &EDU;
 }
    
  /*Setting&Era switches
@@ -206,9 +206,89 @@ int BRP_human_base::CharacteristicRoll(int r){
 
 //Generates starting age
 //Will need to expand to allow input from user and modifiers for higher and lower ages
-int BRP_human_base::Born(){
+int BRP_human_base::Born(bool random){
   int startage = 17+ROLL.Die(1,6);
-  Age = startage;
+  if(random == true){
+    Age = startage;
+  }else{
+    int targetage = 0;
+    int powerlevelskillpoints = 0;
+    switch(POWER_LEVEL){
+      case 0:powerlevelskillpoints = 10;//normal
+      break;
+      case 1:powerlevelskillpoints = 20;//heroic
+      break;
+      case 2:powerlevelskillpoints = 30;//epic
+      break;
+      case 3:powerlevelskillpoints = 40;//superhuman
+      break;
+      default: std::cout << "error in Born()... switch(POWER_LEVEL)... result default";
+        break;
+    }
+    std::cout << "Your starting age is "<<startage<<"\n"<<std::endl;
+    std::cout << "What age do you want the character to be?" << std::endl;
+    std::cin >> targetage;
+    if(targetage < 18){//under 18
+
+      int YearsBelowEighteen = 18-targetage;
+      std::cout << "\nUNDER 18\n" << std::endl; //testing
+      std::cout << "\nNumber of years below 18: " << YearsBelowEighteen << std::endl; //testing
+      std::cout << "\nStarting ProSkillPtsMax: " << ProSkillPtsMAX << std::endl; //testing
+      for(int i = 0; i < YearsBelowEighteen; i++){
+        ProSkillPtsMAX = ProSkillPtsMAX - powerlevelskillpoints;
+      }
+      std::cout << "\nFinal ProSkillPtsMax " << ProSkillPtsMAX << std::endl; //testing
+      int CharPointsToRemove = YearsBelowEighteen;
+      const std::string charnames[7] = {"Strength (STR)", "Constitution (CON)", "Power (POW)", "Dexterity (DEX)", "Charisma (CHA)", "Intelligence (INT)", "Size (SIZ)"};
+      
+      while(CharPointsToRemove != 0){
+        int userinput_selection;
+        int userinput_value;
+        std::string PTS = (CharPointsToRemove == 1) ? " point" : " points";
+        std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+        std::cout << "Please select a characteristic to reduce" << std::endl;
+        std::cout << "Need to reduce characteristics by " << CharPointsToRemove << PTS << std::endl;
+        std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+        for(int i = 0; i < sizeof(charnames)/sizeof(std::string); i++){
+          int choice = i +1;
+          std::cout << choice <<". " << charnames[i] << ": " << *p_STATS[i] << std::endl;
+        }
+        std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+        std::cin >> userinput_selection;
+        if(userinput_selection < 0 || userinput_selection > sizeof(charnames)/sizeof(std::string)+1){
+          std::cout << "\033c";
+          std::cout << "Please enter one of the options presented." << std::endl;
+          continue;
+        }
+        std::cout << "How many points do you want to reduce " << charnames[userinput_selection-1] << " by?" << std::endl;
+        std::cin >> userinput_value;
+        if(userinput_value < 0){
+          std::cout << "\033c";
+          std::cout << "Please only enter positive numbers." << std::endl;
+          continue;
+        }else if(userinput_value > CharPointsToRemove){
+          while(userinput_value != CharPointsToRemove){
+            userinput_value--;
+          }
+        }
+        while(userinput_value != 0){
+          (*p_STATS[userinput_selection-1])--;
+          CharPointsToRemove--;
+          userinput_value--;
+        }
+        //end of while loop
+      }
+      Age = targetage;
+      
+    }else if(targetage > startage+10){//10 years over starting age
+      
+      std::cout << "\nOVER 18\nstartingage+10 is " << startage+10 << std::endl; //testing
+      Age = targetage; //testing
+      
+    }else{//close to starting age
+      Age = targetage;
+    }
+  }
   return Age;
 }
 
@@ -536,7 +616,7 @@ void BRP_human_base::Professions(){
   }
 }
 
-//Determines character's gender 
+//Determines character's gender
 std::string BRP_human_base::RandGender(int X){
   
   //50% Female, 49% Male, 1% Non-Binary
@@ -2411,7 +2491,7 @@ void BRP_human_base::fullrandom(){
   MajorWounds(HP);
   DamageBonus(STR, SIZ);
   Weapons();
-  Born();
+  Born(true);
   RandGender(ROLL.Die(1,100));
   HandDom(ROLL.Die(1,100));
   Faith();
@@ -2451,9 +2531,21 @@ int BRP_human_base::Toolong(int mod){
 }
 
 //Free build a full character
-void BRP_human_base::freebuild()
-{
-  ;
+void BRP_human_base::freebuild(){
+  PlayerName();
+  EDUstat();
+  ProSkillPointsPool();
+  PerSkillPonitsPool();
+  SkillRatingMaximum();
+  Born(false);
+  ExpBonus(INT);
+  SanityPoints(POW);
+  FatiguePoints(STR, CON);
+  HitPoints(CON, SIZ);
+  HPbyLocation(HP);
+  MajorWounds(HP);
+  DamageBonus(STR, SIZ);
+ 
 }
 
 //Prints character sheet to console
@@ -2461,7 +2553,7 @@ void BRP_human_base::consoleChar(){
   std::cout << "===========================================================" << std::endl;
   std::cout << "\t\t\tPERSONAL" << std::endl;
   std::cout << "===========================================================" << std::endl;
-  std::cout << "Name: " <<  std::setw(15) << std::setfill(' ') << "" << "Player: " <<  << std::endl;
+  std::cout << "Name: " << CN << std::setw(13-CN.length()) << std::setfill(' ') << "" << "Player: " << PN << std::endl;
   std::cout << "Culture: " << "Human" << std::setw(13) << std::setfill(' ') << "Gender: " << Gender << std::endl;
   std::cout << "Height: " << Height << std::setw(19-Height.length()) << std::setfill(' ') << "Weight: " << Weight << std::endl;
   std::cout << "Wealth: " << Wealth << std::setw(23-Wealth.length()) << std::setfill(' ') << "Profession: " << Profession << std::endl;
@@ -2478,7 +2570,6 @@ void BRP_human_base::consoleChar(){
   {std::cout << "EDU " << DD(EDU) << std::setw(2) << std::setfill(' ') << "" << "Knowledge roll " << CharacteristicRoll(EDU) << "%" << std::setw(10) << std::setfill(' ') << "SIZ " << DD(SIZ) << std::setw(2) << std::setfill(' ') << "" << "Damage Bonus of " << DamBonus << "\n" <<  std::endl;}
   else
   {std::cout << "SIZ " << DD(SIZ) << std::setw(2) << std::setfill(' ') << "" << "Damage Bonus of " << DamBonus << "\n" << std::endl;}
-  
   std::cout << "===========================================================" << std::endl;
   std::cout << "\t\t\tHIT POINTS" << std::endl;
   std::cout << "===========================================================" << std::endl;
@@ -2662,6 +2753,7 @@ void BRP_human_base::printChar(){
 
   std::cout.rdbuf(original);
 }
+
 
 //Serialization function for saving data
 void SaveData(const BRP_human_base& obj, const std::string& filename){

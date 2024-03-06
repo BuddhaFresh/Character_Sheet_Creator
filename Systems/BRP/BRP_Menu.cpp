@@ -97,7 +97,126 @@ int BRP_menu()
         }
       case 4:{//free-form
         std::cout << "\033c";
-        std::cout << "Not availible";
+        int menu_input;
+        int numinput;
+        std::string statinput[8] = {"Strength (STR)","Constitution (CON)","Power (POW)","Dexterity (DEX)","Charisma (CHA)","Intelligence (INT)","Size (SIZ)","Education (EDU)"};
+        std::vector<int> inputforcharacter;
+        while(true){
+          
+          for(int i = 0; i < 8; i++){
+            std::cout << "\033c";
+            std::cout << "Please input a number between 3 and 18 for the "<< statinput[i] <<std::endl;
+            std::cin >> numinput;
+            inputforcharacter.push_back(numinput);}
+          
+          std::cout << "\033c";
+          std::cout << "Here are the stats you entered" <<std::endl;
+          
+          for(int i = 0; i < 8; i++){
+            std::cout<<" "<<statinput[i]<<" "<<std::setw(26-statinput[i].length())<< std::setfill('.')<<" "<<inputforcharacter.at(i)<<std::endl;}
+          
+            std::cout<< "\nIs this acceptable?"<<std::endl;
+            std::cout<< "\n<>##########<>##########<>##########<>\n";
+            std::cout<< "1. Yes, make a character with these characteristics"<<std::endl;
+            std::cout<< "2. No, I'd like re-enter characteristics"<<std::endl;
+            std::cout<< "\n0. Exit"<<std::endl;
+            std::cout<< "<>##########<>##########<>##########<>\n";
+            std::cin>> menu_input;
+          switch(menu_input){
+            case 1:{//make character
+              BRP_human_base Apple(inputforcharacter.at(0),inputforcharacter.at(1),inputforcharacter.at(2),inputforcharacter.at(3),inputforcharacter.at(4),inputforcharacter.at(5),inputforcharacter.at(6),inputforcharacter.at(7));
+              Apple.freebuild();
+              Apple.consoleChar();
+
+              while(true)
+              {//save character menu
+                int charKeepInput;
+                std::cout << "\n\n<>##########<>##########<>##########<>\n";
+                std::cout << "\t\tSave this charcater?" << std::endl;
+                std::cout << "1. Save as txt file" << std::endl;
+                std::cout << "\n0. Return" << std::endl;
+                std::cout << "<>##########<>##########<>##########<>\n\n";
+                std::cin >> charKeepInput;
+
+                switch(charKeepInput)
+                {//save character input
+                  case 1:
+                    std::cout << "\033c" << std::endl;
+                      Apple.CharName();
+                    SaveData(Apple, "Characters/BRP/save_data.bin");
+                      Apple.printChar();
+                    break;
+                  case 0:
+                    std::cout << "\033c";
+                    break;
+                  default:
+                    std::cout << "\033c";
+                    std::cout << "\nNot one of the options";
+                    break;
+                }//save character input end
+
+                if (charKeepInput == 0 || charKeepInput == 1){
+                  std::cout << "\033c";
+                  break;
+                };
+
+              }//save character menu end
+              menu_input = 0;
+              break;
+            }
+            case 2:{//redo stat input
+              
+            }
+            case 0:{//exit menu
+              std::cout << "\033c";
+              return 0;
+              //break;
+            }
+            default:{
+              std::cout<<"Please enter one of the options provided";}
+          }
+          if (menu_input == 0){
+            std::cout << "\033c";
+            break;
+            //return 0;
+          }; 
+        }
+        /*
+        std::cout << "\033c";
+        int menu_input;
+        int numinput;
+        std::string statinput[8] = {"Strength (STR)","Constitution (CON)","Power (POW)","Dexterity (DEX)","Charisma (CHA)","Intelligence (INT)","Size (SIZ)","Education (EDU)"};
+        std::vector<int> inputforcharacter;
+        for(int i = 0; i < 8; i++){
+          std::cout << "\033c";
+          std::cout << "Please input a number between 3 and 18 for the "<< statinput[i] <<std::endl;
+          std::cin >> numinput;
+          inputforcharacter.push_back(numinput);}
+        std::cout << "\033c";
+        std::cout << "Here are the stats you entered" <<std::endl;
+        for(int i = 0; i < 8; i++){
+          std::cout<<statinput[i]<<" "<<inputforcharacter.at(i)<<std::endl;}
+        std::cout<<"\nIs this acceptable?"<<std::endl;
+        std::cout << "<>##########<>##########<>##########<>\n";
+        std::cout<<"1. Yes, make a character with these characteristics"<<std::endl;
+        std::cout<<"2. No, I'd like re-enter characteristics"<<std::endl;
+        std::cout<<"\n0. Exit"<<std::endl;
+        std::cout << "<>##########<>##########<>##########<>\n";
+        std::cin >> menu_input;
+        if(menu_input == 0){break;}
+        else if(menu_input == 2){
+          break;
+          std::cout << "\033c";
+          BRPMainMenuInput = 4;}
+        else if(menu_input == 1){
+          BRP_human_base Apple(inputforcharacter.at(0),inputforcharacter.at(1),inputforcharacter.at(2),inputforcharacter.at(3),inputforcharacter.at(4),inputforcharacter.at(5),inputforcharacter.at(6),inputforcharacter.at(7));
+          Apple.fullrandom();
+          Apple.consoleChar();
+        }
+        else{std::cout<<"Please enter one of the options provided";}
+        */
+        
+        //std::cout << "Not availible";
         break;
         }
       case 5:{

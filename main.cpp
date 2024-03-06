@@ -39,22 +39,30 @@ ROADMAP
  0.6 Point Buy System Character Creater
  0.7 Free Build Character Creater
    0.7a Maybe I should of started with this and build evertyhing else around it?
+   
 1. Move BRP Menus in BRP.cpp [DONE, made it's own cpp file]
  1.1 Have options adjustment menu [DONE]
  1.2 Move Dice Roller menu in Diceroller.cpp [DONE]
    1.2a Make a multi-dice roller too [DONE]
  1.3 Clean up all headers so every script is modular  
+ 
 2. Load from txt file
  2.1 need to make something that reads a code on the bottom that tells it settings for layout 
  [LOADCODE: Character Name#C0DeSy$t3m#0060180090200
  Using # to seperate sections, numbers at end are raw base rolls,selections,outcomes, etc. Two digit code system sets the parameters/context for the numbers. 
  Maybe another at the end for equipment tracking.]
+ 
 3. Able to edit a blank sheet (point buy and full custom edit)
+
 4. Able to edit randomized sheet
+
 5. Make a user defined multi-random character (txt) sheet generater
  5.1 Make each called random charcter generate a new seed, but save old current one and reapply it after the the loop [save old seed on NEW, use pointer to replace whatever was generated during the loop. DELETE after loop is complete.].
+ 
 6. basic windows GUI (can do on replit?)
+
 7. exe file installer (need to be on own pc?)
+
 8. PDF file output (may just skip, needs a plugin)
  8.1 Fillable PDF file output (may just skip, needs a plugin)
 */

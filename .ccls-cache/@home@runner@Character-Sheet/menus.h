@@ -10,3 +10,7 @@
 #include <sstream>
 #include <vector>
 //#include <direct.h>
+#include <map>
+#include <math.h>
+#include <iomanip>
+#include <algorithm>

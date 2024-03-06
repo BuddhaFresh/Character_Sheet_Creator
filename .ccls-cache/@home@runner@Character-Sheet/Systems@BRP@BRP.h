@@ -126,6 +126,7 @@ protected:
   static bool TOTAL_HIT_POINTS;
   static bool WINGED_CHARACTER;
 
+  int *p_STATS[8];
   int STR;
   int CON;
   int POW;
@@ -192,7 +193,7 @@ private:
     
   void SkillPointSetting(std::vector<std::string> &V_main, std::map<std::string, SkillData>&SKILLLIST, int &SkillPointsMax, int &SkillMAX);
   int CharacteristicRoll(int r);
-  int Born();
+  int Born(bool random);
     
   void HPbyLocation(int B);
   std::string DamageBonus(int T, int Z);
@@ -312,7 +313,20 @@ public:
   void consoleChar();
   void printChar();
 
-  virtual ~BRP_human_base() {};
+  virtual ~BRP_human_base() {
+    //delete[] p_STATS;
+  };
+};
+
+class Profession{
+  public:
+    Profession(int JOB, int INCOME);
+    int giveProfessionInt();
+    std::string giveProfessionString();
+    char* giveProfessionANDWealthCharArray();
+    int giveWealthInt();
+    std::string giveWealthString();
+    ~Profession() {};
 };
 
 void SaveData(const BRP_human_base& obj, const std::string& filename);
