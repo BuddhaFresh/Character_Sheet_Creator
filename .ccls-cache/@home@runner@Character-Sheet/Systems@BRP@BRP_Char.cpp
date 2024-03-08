@@ -208,43 +208,42 @@ int BRP_human_base::CharacteristicRoll(int r){
 //Will need to expand to allow input from user and modifiers for higher and lower ages
 int BRP_human_base::Born(bool random){
   int startage = 17+ROLL.Die(1,6);
+  const std::string charnames[7] = {"Strength (STR)", "Constitution (CON)", "Power (POW)", "Dexterity (DEX)", "Charisma (CHA)", "Intelligence (INT)", "Size (SIZ)"};
+  int CharPointsToRemove = 0;
+  int powerlevelskillpoints = 0;
+  int userinput_selection;
+  int userinput_value;
+  std::string PTS = (CharPointsToRemove == 1) ? " point" : " points";
+  
+  switch(POWER_LEVEL){
+    case 0:powerlevelskillpoints = 10;//normal
+    break;
+    case 1:powerlevelskillpoints = 20;//heroic
+    break;
+    case 2:powerlevelskillpoints = 30;//epic
+    break;
+    case 3:powerlevelskillpoints = 40;//superhuman
+    break;
+    default: std::cout << "error in Born()... switch(POWER_LEVEL)... result default";
+      break;
+  }
+  
   if(random == true){
     Age = startage;
   }else{
     int targetage = 0;
-    int powerlevelskillpoints = 0;
-    switch(POWER_LEVEL){
-      case 0:powerlevelskillpoints = 10;//normal
-      break;
-      case 1:powerlevelskillpoints = 20;//heroic
-      break;
-      case 2:powerlevelskillpoints = 30;//epic
-      break;
-      case 3:powerlevelskillpoints = 40;//superhuman
-      break;
-      default: std::cout << "error in Born()... switch(POWER_LEVEL)... result default";
-        break;
-    }
+
     std::cout << "Your starting age is "<<startage<<"\n"<<std::endl;
     std::cout << "What age do you want the character to be?" << std::endl;
     std::cin >> targetage;
     if(targetage < 18){//under 18
 
       int YearsBelowEighteen = 18-targetage;
-      std::cout << "\nUNDER 18\n" << std::endl; //testing
-      std::cout << "\nNumber of years below 18: " << YearsBelowEighteen << std::endl; //testing
-      std::cout << "\nStarting ProSkillPtsMax: " << ProSkillPtsMAX << std::endl; //testing
       for(int i = 0; i < YearsBelowEighteen; i++){
-        ProSkillPtsMAX = ProSkillPtsMAX - powerlevelskillpoints;
-      }
-      std::cout << "\nFinal ProSkillPtsMax " << ProSkillPtsMAX << std::endl; //testing
-      int CharPointsToRemove = YearsBelowEighteen;
-      const std::string charnames[7] = {"Strength (STR)", "Constitution (CON)", "Power (POW)", "Dexterity (DEX)", "Charisma (CHA)", "Intelligence (INT)", "Size (SIZ)"};
+        ProSkillPtsMAX = ProSkillPtsMAX - powerlevelskillpoints;}
+      CharPointsToRemove = YearsBelowEighteen;
       
       while(CharPointsToRemove != 0){
-        int userinput_selection;
-        int userinput_value;
-        std::string PTS = (CharPointsToRemove == 1) ? " point" : " points";
         std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
         std::cout << "Please select a characteristic to reduce" << std::endl;
         std::cout << "Need to reduce characteristics by " << CharPointsToRemove << PTS << std::endl;
@@ -255,7 +254,7 @@ int BRP_human_base::Born(bool random){
         }
         std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
         std::cin >> userinput_selection;
-        if(userinput_selection < 0 || userinput_selection > sizeof(charnames)/sizeof(std::string)+1){
+        if(userinput_selection <= 0 || userinput_selection > (sizeof(charnames)/sizeof(std::string))){
           std::cout << "\033c";
           std::cout << "Please enter one of the options presented." << std::endl;
           continue;
@@ -277,12 +276,132 @@ int BRP_human_base::Born(bool random){
           userinput_value--;
         }
         //end of while loop
+        //may need to make a redo and random options
       }
       Age = targetage;
       
     }else if(targetage > startage+10){//10 years over starting age
+      int decadesoverstartingage = targetage/10;
+      int oldagedecades = std::min(7,decadesoverstartingage); //between 50 and 79, ignoring 80 and up
+      int advancedagedecades = decadesoverstartingage-7; //decades starting 80 and up
       
       std::cout << "\nOVER 18\nstartingage+10 is " << startage+10 << std::endl; //testing
+      std::cout << "The number of decades in " << targetage << " is: " << decadesoverstartingage << std::endl; //testing
+      std::cout << "The number of decades between 50 and 79 is: " << oldagedecades << std::endl; //testing
+      std::cout << "The number of decades from 80 onward is: " << advancedagedecades << std::endl; //testing
+      
+      for(int i = 0; i < decadesoverstartingage; i++){
+        ProSkillPtsMAX = ProSkillPtsMAX + powerlevelskillpoints;}
+
+      if(decadesoverstartingage >= 5){
+        std::cout << "\nOLD AGE\nCharacter is between 50 and 79 years old" << std::endl; //testing
+        const std::string agedchars[4] = {"Strength (STR)", "Constitution (CON)", "Dexterity (DEX)", "Charisma (CHA)"};
+        std::map <int,int> choicetostat;
+        choicetostat[1] = {0}; //STR
+        choicetostat[2] = {1}; //CON
+        choicetostat[3] = {3}; //DEX
+        choicetostat[4] = {4}; //CHA
+        CharPointsToRemove = oldagedecades;
+        
+        while(CharPointsToRemove != 0){
+          //menu and input
+          std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+          std::cout << "Please select a characteristic to reduce" << std::endl;
+          std::cout << "Need to reduce characteristics by " << CharPointsToRemove << PTS << std::endl;
+          std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+          for(int i = 0; i < sizeof(agedchars)/sizeof(std::string); i++){
+            int choice = i +1;
+            std::cout << choice <<". " << agedchars[i] << ": " << *p_STATS[choicetostat[choice]] << std::endl;
+          }
+          std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+          std::cin >> userinput_selection;
+          //check if input is allowed
+          if(userinput_selection <= 0 || userinput_selection > (sizeof(agedchars)/sizeof(std::string))){
+            std::cout << "\033c";
+            std::cout << "Please enter one of the options presented." << std::endl;
+            continue;
+          }
+          //ask for input value to reduce by
+          std::cout << "How many points do you want to reduce " << agedchars[userinput_selection-1] << " by?" << std::endl;
+          std::cin >> userinput_value;
+          //check if input value is negitive and reduce if over allowed points
+          if(userinput_value < 0){
+            std::cout << "\033c";
+            std::cout << "Please only enter positive numbers." << std::endl;
+            continue;
+          }else if(userinput_value > CharPointsToRemove){
+            while(userinput_value != CharPointsToRemove){
+              userinput_value--;
+            }
+          }
+          //apply choices
+          while(userinput_value != 0){
+            (*p_STATS[choicetostat[userinput_selection]])--;
+            CharPointsToRemove--;
+            userinput_value--;
+          }
+          //End of While Loop
+        }
+
+        if(decadesoverstartingage >= 8){
+          std::cout << "\nADVANCED AGE\nCharacter is 80 years old or older" << std::endl; //testing
+          CharPointsToRemove = advancedagedecades;
+          std::vector<int> userinput_for_advancedage;
+          while(CharPointsToRemove != 0){
+            int choicesleft = 3;
+            while(choicesleft != 0){
+              //menu and input
+              std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+              std::cout << "Please select three characteristics to reduce by 1" << std::endl;
+              std::cout << "Need to reduce characteristics " << CharPointsToRemove << " times" << std::endl;
+              std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+              for(int i = 0; i < sizeof(agedchars)/sizeof(std::string); i++){
+                int choice = i +1;
+                std::cout << choice <<". " << agedchars[i] << ": " << *p_STATS[choicetostat[choice]] << std::endl;
+              }
+              if(userinput_for_advancedage.size() > 0){
+                std::cout << "\n" << "Options Picked: ";
+                for(int x = 0; x < userinput_for_advancedage.size(); x++){
+                  std::cout << agedchars[userinput_for_advancedage.at(x)];
+                  if(x == userinput_for_advancedage.size()-1){
+                    std::cout << "\n";}
+                  else{std::cout << ", ";}
+                }
+              }
+              std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
+              std::cin >> userinput_selection;
+              //check if input is allowed
+              if(userinput_selection <= 0 || userinput_selection > (sizeof(agedchars)/sizeof(std::string))){
+                std::cout << "\033c";
+                std::cout << "Please enter one of the options presented." << std::endl;
+                continue;
+              }
+              bool AlreadySelected = false;
+              int check_pick_size = userinput_for_advancedage.size();
+              for(int e = 0; e < check_pick_size; e++){
+                if(userinput_for_advancedage.at(e) == userinput_selection-1){
+                  AlreadySelected = true;}
+              }
+              if(AlreadySelected == true){
+                std::cout << "\033c";
+                std::cout << "You already selected " << agedchars[userinput_selection-1] << std::endl;
+                continue;
+              }
+              //add choices
+              userinput_for_advancedage.push_back(userinput_selection-1);
+              choicesleft--;
+              //end of choices while loop
+            }
+            for(int z = 0; z < userinput_for_advancedage.size()-1; z++){
+              (*p_STATS[choicetostat[userinput_for_advancedage.at(z)]])--;
+            }
+            CharPointsToRemove--;
+            userinput_for_advancedage.clear();
+           //end of while loop 
+          }
+        }
+      }
+      
       Age = targetage; //testing
       
     }else{//close to starting age
@@ -505,7 +624,7 @@ int BRP_human_base::SkillRatingMaximum(){
       {SkillRatingMAX = 101;}
     case 3: //Superhuman game
       {SkillRatingMAX = 999;}//No limit to skill ratings
-    default: //default for Nomral game
+    default: //default for Normal game
       {SkillRatingMAX = 75;}
   }
   
@@ -2532,12 +2651,17 @@ int BRP_human_base::Toolong(int mod){
 
 //Free build a full character
 void BRP_human_base::freebuild(){
+  //STEP 1
   PlayerName();
   EDUstat();
+  //STEP 2
+  //STEP 3
   ProSkillPointsPool();
   PerSkillPonitsPool();
   SkillRatingMaximum();
   Born(false);
+  //STEP 4
+  //STEP 5
   ExpBonus(INT);
   SanityPoints(POW);
   FatiguePoints(STR, CON);
@@ -2545,6 +2669,10 @@ void BRP_human_base::freebuild(){
   HPbyLocation(HP);
   MajorWounds(HP);
   DamageBonus(STR, SIZ);
+  //STEP 6
+  //STEP 7
+  //STEP 8
+  //STEP 9
  
 }
 
