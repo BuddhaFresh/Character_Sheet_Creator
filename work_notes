@@ -1,0 +1,23 @@
+p_STATS[0] = &STR;
+p_STATS[1] = &CON;
+p_STATS[2] = &POW;
+p_STATS[3] = &DEX;
+p_STATS[4] = &CHA;
+p_STATS[5] = &INT;
+p_STATS[6] = &SIZ;
+p_STATS[7] = &EDU;
+
+agedchars[4] = {
+"Strength (STR)", 
+"Constitution (CON)", 
+"Dexterity (DEX)", 
+"Charisma (CHA)"};
+
+choicetostat[1] = {0}; //STR
+choicetostat[2] = {1}; //CON
+choicetostat[3] = {3}; //DEX
+choicetostat[4] = {4}; //CHA
+
+
+userinput_selection -> 1,2,3,4
+userinput_for_advancedage -> 1,2,3,4
