@@ -305,6 +305,7 @@ int BRP_human_base::Born(bool random){
         
         while(CharPointsToRemove != 0){
           //menu and input
+          std::cout << "\033c";
           std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
           std::cout << "Please select a characteristic to reduce" << std::endl;
           std::cout << "Need to reduce characteristics by " << CharPointsToRemove << PTS << std::endl;
@@ -347,10 +348,13 @@ int BRP_human_base::Born(bool random){
           std::cout << "\nADVANCED AGE\nCharacter is 80 years old or older" << std::endl; //testing
           CharPointsToRemove = advancedagedecades;
           std::vector<int> userinput_for_advancedage;
+          
           while(CharPointsToRemove != 0){
             int ChoicesLeft = 3;
+            
             while(ChoicesLeft != 0){
               //menu and input
+              std::cout << "\033c";
               std::cout << std::setw(59) << std::setfill('=') << "" << std::endl;
               std::cout << "Please select three characteristics to reduce by 1" << std::endl;
               std::cout << "Need to reduce characteristics " << CharPointsToRemove << " times" << std::endl;
@@ -362,7 +366,6 @@ int BRP_human_base::Born(bool random){
               if(userinput_for_advancedage.size() > 0){
                 std::cout << "\nOptions Picked: ";
                 for(int x = 0; x < userinput_for_advancedage.size(); x++){
-                  std::cout << userinput_for_advancedage.at(x) << " "; //testing
                   std::cout << agedchars[userinput_for_advancedage.at(x)-1];
                   if(x == userinput_for_advancedage.size()-1){
                     std::cout << "\n";}
@@ -378,34 +381,36 @@ int BRP_human_base::Born(bool random){
                 continue;
               }
               //check if input was already selected
-              //WHY ISN'T THIS WORKING?
+              bool IsSelectionAlreadyPick = false;
               for(int e = 0; e < userinput_for_advancedage.size(); e++){
-                if(userinput_for_advancedage.at(e) == userinput_selection-1){
+                if(userinput_for_advancedage.at(e) == userinput_selection){
                   std::cout << "\033c";
                   std::cout << "You already selected " << userinput_for_advancedage.at(e) << std::endl;
-                  continue;
-                }
+                  IsSelectionAlreadyPick = true;
+                  break;
+                }else{}
               }
-              //add choices
-              userinput_for_advancedage.push_back(userinput_selection);
-              ChoicesLeft--;
-              //end of choices while loop
+              if(IsSelectionAlreadyPick == false){
+                //add choices
+                userinput_for_advancedage.push_back(userinput_selection);
+                ChoicesLeft--;
+                //end of choices while loop
+              }
             }
-            std::cout << "Starting to apply stat modifications" << std::endl; //testing
+            
+            //updating stats and clearing selection
             for(int z = 0; z < userinput_for_advancedage.size(); z++){
               (*p_STATS[choicetostat[userinput_for_advancedage.at(z)]])--;
             }
-            std::cout << "Clearing vector" << std::endl; //testing
             userinput_for_advancedage.clear();
-            std::cout << "-1 to CharPointsToRemove" << std::endl; //testing
             CharPointsToRemove--;
-            std::cout << "End of CharPointToRemove Loop" << std::endl; //testing
            //end of while loop 
           }
+          
         }
       }
       
-      Age = targetage; //testing
+      Age = targetage;
       
     }else{//close to starting age
       Age = targetage;
