@@ -205,7 +205,6 @@ int BRP_human_base::CharacteristicRoll(int r){
 }
 
 //Generates starting age
-//Will need to expand to allow input from user and modifiers for higher and lower ages
 int BRP_human_base::Born(bool random){
   int startage = 17+ROLL.Die(1,6);
   const std::string charnames[7] = {"Strength (STR)", "Constitution (CON)", "Power (POW)", "Dexterity (DEX)", "Charisma (CHA)", "Intelligence (INT)", "Size (SIZ)"};
@@ -422,7 +421,20 @@ int BRP_human_base::Born(bool random){
 //Calculates Damage Bonus
 std::string BRP_human_base::DamageBonus(int T, int Z){
   int Db = T + Z;
+
+  std::string HIGHERscalingDAMmod;
+  if(Db >= 73){
+    int numberofsixteens = 3;
+    int check = Db-72;
+    while(check >= 0){
+      if(check % 16 == 0){
+        numberofsixteens++;}
+      check--;
+    }
+    HIGHERscalingDAMmod = "+"+std::to_string(numberofsixteens)+"D6";
     
+  }else{HIGHERscalingDAMmod = "Ea. +16";}
+  
   std::map<int, std::string> DamageModifierTable;
   DamageModifierTable[0] = "Error";
   DamageModifierTable[1] = "-1D6";
@@ -432,7 +444,7 @@ std::string BRP_human_base::DamageBonus(int T, int Z){
   DamageModifierTable[5] = "+1D6";
   DamageModifierTable[6] = "+2D6";
   DamageModifierTable[7] = "+3D6";
-  DamageModifierTable[8] = "Ea. +16"; //need to edit result 8, adding 1d6 for every 16th value above 73 (double check the book). Can I do a for loop in the else if(Db >= 73) which adds 1 to x for "+"4+x"D6"?
+  DamageModifierTable[8] = HIGHERscalingDAMmod;
 
   int DMT;
   
@@ -2670,14 +2682,15 @@ void BRP_human_base::freebuild(){
   Born(false);
   //STEP 4
   //STEP 5
-  ExpBonus(INT);
-  SanityPoints(POW);
-  FatiguePoints(STR, CON);
+  DamageBonus(STR, SIZ);
   HitPoints(CON, SIZ);
   HPbyLocation(HP);
   MajorWounds(HP);
-  DamageBonus(STR, SIZ);
+  ExpBonus(INT);
+  SanityPoints(POW);
+  FatiguePoints(STR, CON);
   //STEP 6
+  
   //STEP 7
   //STEP 8
   //STEP 9

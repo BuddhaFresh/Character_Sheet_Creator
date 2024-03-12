@@ -75,7 +75,7 @@ Dice ROLL;
 
 int main() 
 {//All menus
-
+   
   //Inputs for menus
   int mainMenuInput;
   int optionsMenuInput;
